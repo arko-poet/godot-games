@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://brk2n11wjbay4"]
+
+[ext_resource type="Script" uid="uid://i811txx1mm7a" path="res://achievement.gd" id="1_by1ap"]
+[ext_resource type="Texture2D" uid="uid://bftla34bgcqio" path="res://sprites/icon.svg" id="2_234ot"]
+
+[node name="Achievement" type="Control" unique_id=295264065]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_top = -75.0
+offset_right = 250.0
+offset_bottom = -25.0
+script = ExtResource("1_by1ap")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=251246198]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=153009439]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 241.0
+offset_bottom = 70.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1354599795]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+texture = ExtResource("2_234ot")
+expand_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1431884434]
+layout_mode = 2
+
+[node name="AchievementHeader" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1263568830]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "Achivement unlocked"
+
+[node name="AchievementName" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1046605669]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "10 grandmas"

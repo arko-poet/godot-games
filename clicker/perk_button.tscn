@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b86yoyjj3son2"]
+
+[ext_resource type="Texture2D" uid="uid://bftla34bgcqio" path="res://sprites/icon.svg" id="1_8i2b7"]
+[ext_resource type="Script" uid="uid://cpbif2metwqml" path="res://perk_button.gd" id="2_mbjg5"]
+
+[node name="PerkButton" type="Button" unique_id=1605068136]
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = -1
+anchor_right = 1.4333333
+anchor_bottom = 2.15
+offset_right = -982.0
+offset_bottom = -982.0
+tooltip_text = "perk description"
+icon = ExtResource("1_8i2b7")
+vertical_icon_alignment = 0
+expand_icon = true
+script = ExtResource("2_mbjg5")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bck7eyfsmvevw"]
+
+[ext_resource type="Script" uid="uid://dxkp4qf3jdjq1" path="res://grid.gd" id="1_fqc2p"]
+[ext_resource type="Texture2D" uid="uid://by784qhjqf3pw" path="res://sprites/Background.png" id="2_g2qvd"]
+
+[node name="Grid" type="Control" unique_id=1101155530]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fqc2p")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1085634864]
+layout_mode = 0
+texture = ExtResource("2_g2qvd")
+
+[node name="CountdownLabel" type="Label" parent="Background" unique_id=1622266246]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 200
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StrafeTimer" type="Timer" parent="." unique_id=1141909183]
+wait_time = 0.05
+
+[node name="DropTimer" type="Timer" parent="." unique_id=1055907684]
+wait_time = 0.05
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=797046486]
+z_index = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1830720169]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(300, 600)
+render_target_update_mode = 4
+
+[connection signal="timeout" from="StrafeTimer" to="." method="_on_strafe_timer_timeout"]
+[connection signal="timeout" from="DropTimer" to="." method="_drop_timer_timeout"]

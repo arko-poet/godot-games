@@ -1,0 +1,20 @@
+{
+  "grandma_0": {
+	"name": "Grandmas are 2x faster",
+	"cost": 1000,
+	"factor": 0.5,
+	"operation": "MULTIPLIER",
+	"icon": "res://sprites/grandma.png",
+	"property": "wait_time",
+	"target": "GrandmaTimer"
+  },
+  "click_0": {
+	"name": "Clicks produce 2x cookies",
+	"cost": 1000,
+	"factor": 2,
+	"operation": "MULTIPLIER",
+	"icon": "res://sprites/cookie.png",
+	"property": "cookies_per_click",
+	"target": null
+  }
+}

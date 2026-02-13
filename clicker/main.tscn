@@ -1,0 +1,224 @@
+[gd_scene format=3 uid="uid://cwjx5gvxrny4v"]
+
+[ext_resource type="Script" uid="uid://chldmm8ymyixw" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://b2j4wj7rxegjq" path="res://sprites/cookie.png" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://c2iisltrto1gl" path="res://floating_text.tscn" id="2_5vw27"]
+[ext_resource type="Texture2D" uid="uid://byvmk0yxbaw4f" path="res://sprites/sun.png" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://c3ye4ycrb0cpf" path="res://cookie_button.gd" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://ufc6hrun0ktp" path="res://upgrade_button.tscn" id="5_lquwl"]
+[ext_resource type="AudioStream" uid="uid://da04bg2ju8iqi" path="res://audio/tap.wav" id="6_4c57u"]
+[ext_resource type="Texture2D" uid="uid://d0f6ntvrmkx82" path="res://sprites/grandma.png" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://brk2n11wjbay4" path="res://achievement.tscn" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://cjlpruau2s1h4" path="res://achievement_manager.gd" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://0qbylhb5gxss" path="res://end_scene.tscn" id="11_efxa6"]
+
+[sub_resource type="Animation" id="Animation_lquwl"]
+length = 15.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.6, 1.6), Vector2(1.9, 1.9), Vector2(1.6, 1.6), Vector2(1.6, 1.6), Vector2(1.9, 1.9), Vector2(1.6, 1.6), Vector2(1.6, 1.6), Vector2(1.9, 1.9), Vector2(1.6, 1.6), Vector2(1.6, 1.6), Vector2(1.9, 1.9), Vector2(1.6, 1.6), Vector2(1.6, 1.6), Vector2(1.9, 1.9), Vector2(1.6, 1.6), Vector2(1.6, 1.6)]
+}
+
+[sub_resource type="Animation" id="Animation_1bvp3"]
+resource_name = "sun_pulse"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.6, 1.6), Vector2(1.7, 1.7), Vector2(1.6, 1.6)]
+}
+
+[sub_resource type="Animation" id="Animation_7mycd"]
+resource_name = "sun"
+length = 14.008333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 2.0666666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.654366, 1.654366), Vector2(1.654366, 1.654366), Vector2(1.654366, 1.654366)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_272bh"]
+_data = {
+&"RESET": SubResource("Animation_lquwl"),
+&"sun_pulse": SubResource("Animation_1bvp3"),
+&"sun_rotation": SubResource("Animation_7mycd")
+}
+
+[node name="Main" type="Node" unique_id=567444482]
+script = ExtResource("1_ig7tw")
+floating_text_scene = ExtResource("2_5vw27")
+
+[node name="Background" type="ColorRect" parent="." unique_id=994488588]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8952549, 0.97597164, 0.8740644, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=546965300]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.5
+offset_right = 22.5
+offset_bottom = 94.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Time" type="Label" parent="VBoxContainer" unique_id=1348303427]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "00:00:00"
+
+[node name="Cookies" type="Label" parent="VBoxContainer" unique_id=931256839]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "0$"
+
+[node name="GrandmaTimer" type="Timer" parent="." unique_id=1057870418]
+autostart = true
+
+[node name="CookieButton" type="TextureButton" parent="." unique_id=363380030]
+z_index = 1
+z_as_relative = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -512.0
+offset_right = 512.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture_normal = ExtResource("2_0xm2m")
+script = ExtResource("4_lquwl")
+
+[node name="Sun" type="Sprite2D" parent="CookieButton" unique_id=536479902]
+z_index = -1
+position = Vector2(522.00024, 551.99976)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("4_1bvp3")
+
+[node name="CookieButtonPressed" type="AudioStreamPlayer2D" parent="CookieButton" unique_id=1605553404]
+position = Vector2(-3087.9995, -1887.9998)
+scale = Vector2(9.999999, 9.999999)
+stream = ExtResource("6_4c57u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=295456375]
+root_node = NodePath("../CookieButton/Sun")
+libraries/ = SubResource("AnimationLibrary_272bh")
+autoplay = &"RESET"
+
+[node name="UpgradeContainer" type="VBoxContainer" parent="." unique_id=2087004711]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 84.0
+grow_horizontal = 0
+
+[node name="PerkContainer" type="GridContainer" parent="UpgradeContainer" unique_id=323611923]
+layout_mode = 2
+columns = 4
+
+[node name="HSeparator" type="HSeparator" parent="UpgradeContainer" unique_id=1220171078]
+layout_mode = 2
+
+[node name="ClickButton" parent="UpgradeContainer" unique_id=761334476 instance=ExtResource("5_lquwl")]
+layout_mode = 2
+tooltip_text = "tooltip"
+
+[node name="GrandmaButton" parent="UpgradeContainer" unique_id=1450560640 instance=ExtResource("5_lquwl")]
+layout_mode = 2
+icon = ExtResource("6_7mycd")
+
+[node name="AchievementManager" type="Node" parent="." unique_id=2146431709]
+script = ExtResource("9_kek77")
+achievement_scene = ExtResource("8_5vw27")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=2032620766]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 10000.0
+step = 1.0
+
+[node name="EndScene" parent="." unique_id=857656464 instance=ExtResource("11_efxa6")]
+visible = false
+z_index = 2
+
+[connection signal="timeout" from="GrandmaTimer" to="." method="_on_grandma_timer_timeout"]
+[connection signal="button_down" from="CookieButton" to="CookieButton" method="_on_button_down"]
+[connection signal="button_up" from="CookieButton" to="CookieButton" method="_on_button_up"]
+[connection signal="mouse_entered" from="CookieButton" to="CookieButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CookieButton" to="CookieButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="CookieButton" to="." method="_on_cookie_button_pressed"]
+[connection signal="pressed" from="CookieButton" to="CookieButton" method="_on_pressed"]
+[connection signal="pressed" from="UpgradeContainer/ClickButton" to="." method="_on_click_button_pressed"]
+[connection signal="pressed" from="UpgradeContainer/GrandmaButton" to="." method="_on_grandma_button_pressed"]
+[connection signal="play_again" from="EndScene" to="." method="_on_end_scene_play_again"]

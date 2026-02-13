@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://ufc6hrun0ktp"]
+
+[ext_resource type="Texture2D" uid="uid://bftla34bgcqio" path="res://sprites/icon.svg" id="1_feo8w"]
+[ext_resource type="Script" uid="uid://bfrcpdlfjr6qt" path="res://upgrade_button.gd" id="2_gwg2v"]
+
+[node name="UpgradeButton" type="Button" unique_id=1450560640]
+custom_minimum_size = Vector2(200, 40)
+offset_right = 200.0
+offset_bottom = 40.0
+icon = ExtResource("1_feo8w")
+expand_icon = true
+script = ExtResource("2_gwg2v")
+
+[node name="UpgradeName" type="Label" parent="." unique_id=1501881075]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 3.0
+offset_right = 111.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 14
+text = "UpgradeName"
+
+[node name="UpgradeCost" type="Label" parent="." unique_id=988196108]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 18.0
+offset_right = 79.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "UpgradeCost"
+
+[node name="UpgradeCount" type="Label" parent="." unique_id=227853983]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -22.5
+offset_bottom = 22.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "0"
