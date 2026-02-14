@@ -1,9 +1,9 @@
-extends AnimatedSprite2D
+extends CharacterBody2D
 
 
-const PLAYER_SPEED = 500
+const PLAYER_SPEED = 300
 
-func _process(delta) -> void:
+func _physics_process(delta) -> void:
 	var movement_direction = Vector2.ZERO
 	if Input.is_action_pressed("move_down"):
 		movement_direction.y += 1
@@ -15,8 +15,9 @@ func _process(delta) -> void:
 		movement_direction.x += 1
 	
 	if movement_direction == Vector2.ZERO:
-		animation = "idle"
+		$Sprite2D.animation = "idle"
 	else:
-		animation = "walk"
-		position += movement_direction.normalized() * PLAYER_SPEED * delta
-		position = position.clamp(Vector2.ZERO + sprite_frames.get_frame_texture("walk", 0).get_size() * 0.5, get_viewport_rect().size - sprite_frames.get_frame_texture("walk", 0).get_size() * 0.5)
+		$Sprite2D.animation = "walk"
+		velocity = movement_direction * PLAYER_SPEED
+		move_and_slide()
+		position = position.clamp(Vector2.ZERO + $Sprite2D.sprite_frames.get_frame_texture("walk", 0).get_size() * 0.5, get_viewport_rect().size - $Sprite2D.sprite_frames.get_frame_texture("walk", 0).get_size() * 0.5)

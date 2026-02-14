@@ -111,7 +111,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -152,11 +152,21 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 10.0
+"speed": 12.0
 }]
 
-[node name="Player" type="AnimatedSprite2D" unique_id=1424504527]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
+size = Vector2(128, 128)
+
+[node name="Player" type="CharacterBody2D" unique_id=885266496]
+collision_mask = 2
+script = ExtResource("2_onrkg")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1424504527]
 sprite_frames = SubResource("SpriteFrames_606se")
 animation = &"walk"
 autoplay = "idle"
-script = ExtResource("2_onrkg")
+frame_progress = 0.69129753
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=25646077]
+shape = SubResource("RectangleShape2D_i3pqv")
