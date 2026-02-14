@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dn0r7723xc1p"]
+
+[ext_resource type="Script" uid="uid://btjiu8gsn1wmv" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dd4l57rwjq1c" path="res://player.tscn" id="2_h2yge"]
+
+[node name="Main" type="Node" unique_id=690354364]
+script = ExtResource("1_0xm2m")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1862806789]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13725491, 0.3372549, 0.38431373, 1)
+
+[node name="Player" parent="." unique_id=1488588299 instance=ExtResource("2_h2yge")]
