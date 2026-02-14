@@ -3,7 +3,8 @@ extends CharacterBody2D
 
 const PLAYER_SPEED = 300
 
-func _physics_process(delta) -> void:
+
+func _physics_process(_delta) -> void:
 	var movement_direction = Vector2.ZERO
 	if Input.is_action_pressed("move_down"):
 		movement_direction.y += 1
