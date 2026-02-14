@@ -15,3 +15,4 @@ func _process(delta) -> void:
 		movement_direction.x += 1
 	
 	position += movement_direction.normalized() * PLAYER_SPEED * delta
+	position = position.clamp(Vector2.ZERO + texture.get_size() * 0.5, get_viewport_rect().size - texture.get_size() * 0.5)
