@@ -156,7 +156,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
-size = Vector2(128, 128)
+size = Vector2(72, 80)
 
 [node name="Player" type="CharacterBody2D" unique_id=885266496]
 collision_mask = 2
@@ -166,7 +166,8 @@ script = ExtResource("2_onrkg")
 sprite_frames = SubResource("SpriteFrames_606se")
 animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.69129753
+frame_progress = 0.45231622
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=25646077]
+position = Vector2(-4, 24)
 shape = SubResource("RectangleShape2D_i3pqv")

@@ -21,4 +21,4 @@ func _physics_process(_delta) -> void:
 		$Sprite2D.animation = "walk"
 		velocity = movement_direction.normalized() * PLAYER_SPEED
 		move_and_slide()
-		position = position.clamp(Vector2.ZERO + $Sprite2D.sprite_frames.get_frame_texture("walk", 0).get_size() * 0.5, get_viewport_rect().size - $Sprite2D.sprite_frames.get_frame_texture("walk", 0).get_size() * 0.5)
+		position = position.clamp(Vector2.ZERO + $CollisionShape2D.shape.size * 0.5, get_viewport_rect().size - $Sprite2D.sprite_frames.get_frame_texture("walk", 0).get_size() * 0.5)

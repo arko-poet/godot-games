@@ -28,6 +28,6 @@ scale = Vector2(1, 4.6875)
 position = Vector2(0, 236)
 
 [node name="Player" parent="." unique_id=885266496 instance=ExtResource("2_h2yge")]
-position = Vector2(64, 64)
+position = Vector2(216, 264)
 
 [editable path="Barricade"]
