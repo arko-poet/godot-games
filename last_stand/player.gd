@@ -15,6 +15,11 @@ func _physics_process(_delta) -> void:
 	if Input.is_action_pressed("move_right"):
 		movement_direction.x += 1
 	
+	if movement_direction.x == 1:
+		$Sprite.flip_h = false
+	if movement_direction.x == -1:
+		$Sprite.flip_h = true
+	
 	if movement_direction == Vector2.ZERO:
 		$Sprite.animation = "idle"
 	else:
