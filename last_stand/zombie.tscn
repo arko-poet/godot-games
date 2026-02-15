@@ -2,9 +2,30 @@
 
 [ext_resource type="Script" uid="uid://cw1jisn8kbi4i" path="res://zombie.gd" id="1_roy8y"]
 [ext_resource type="Texture2D" uid="uid://5lpsdrcwjgbk" path="res://sprites/zombie/Zombie_1/Walk.png" id="1_uiaus"]
+[ext_resource type="Texture2D" uid="uid://bnvwk4qfebumw" path="res://sprites/zombie/Zombie_1/Attack.png" id="2_jmu02"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_roy8y"]
 size = Vector2(24, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcb2u"]
+atlas = ExtResource("2_jmu02")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vm0g"]
+atlas = ExtResource("2_jmu02")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpxwj"]
+atlas = ExtResource("2_jmu02")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo31b"]
+atlas = ExtResource("2_jmu02")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdvb4"]
+atlas = ExtResource("2_jmu02")
+region = Rect2(512, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmu02"]
 atlas = ExtResource("1_uiaus")
@@ -48,9 +69,24 @@ region = Rect2(1152, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dcb2u"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcb2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vm0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpxwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo31b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdvb4")
+}],
 "loop": true,
-"name": &"default",
+"name": &"attack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -89,7 +125,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Zombie" type="StaticBody2D" unique_id=1371934403]
+[node name="Zombie" type="CharacterBody2D" unique_id=1127369954]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_roy8y")
@@ -100,7 +136,6 @@ shape = SubResource("RectangleShape2D_roy8y")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1638596850]
 sprite_frames = SubResource("SpriteFrames_dcb2u")
-animation = &"walk"
+animation = &"attack"
 autoplay = "walk"
-frame_progress = 0.74660116
 metadata/_edit_lock_ = true
