@@ -162,12 +162,12 @@ size = Vector2(72, 80)
 collision_mask = 2
 script = ExtResource("2_onrkg")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1424504527]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1424504527]
 sprite_frames = SubResource("SpriteFrames_606se")
 animation = &"walk"
 autoplay = "idle"
 frame_progress = 0.45231622
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=25646077]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=25646077]
 position = Vector2(-4, 24)
 shape = SubResource("RectangleShape2D_i3pqv")
