@@ -37,6 +37,7 @@ position = Vector2(0, 236)
 position = Vector2(216, 264)
 
 [node name="ZombieTimer" type="Timer" parent="." unique_id=304221522]
+wait_time = 1.5
 autostart = true
 
 [node name="ZombieSpawnPath" type="Path2D" parent="." unique_id=56149562]

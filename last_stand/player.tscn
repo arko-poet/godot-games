@@ -2,7 +2,24 @@
 
 [ext_resource type="Texture2D" uid="uid://corp22h63ai6s" path="res://sprites/satyr/Satyr_1/Idle.png" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://tthm0ynhvl27" path="res://sprites/satyr/Satyr_1/Walk.png" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bqmybw17o0y41" path="res://sprites/satyr/Satyr_1/Attack.png" id="2_hqtel"]
 [ext_resource type="Script" uid="uid://crorvm1f14ppk" path="res://player.gd" id="2_onrkg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ahtn"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lmhl"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx0e4"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jm5j8"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
 atlas = ExtResource("1_i3pqv")
@@ -82,10 +99,22 @@ region = Rect2(1408, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_606se"]
 animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ahtn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lmhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx0e4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jm5j8")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -112,6 +141,11 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 7.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -156,7 +190,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
-size = Vector2(72, 80)
+size = Vector2(56, 80)
 
 [node name="Player" type="CharacterBody2D" unique_id=885266496]
 collision_mask = 2
@@ -166,8 +200,9 @@ script = ExtResource("2_onrkg")
 sprite_frames = SubResource("SpriteFrames_606se")
 animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.45231622
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=25646077]
 position = Vector2(-4, 24)
 shape = SubResource("RectangleShape2D_i3pqv")
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
