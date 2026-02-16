@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-const PLAYER_SPEED = 300
-
+const PLAYER_SPEED := 300
+const PROJECTILE_SCENE := preload("res://projectile.tscn")
 
 var is_attacking := false
 
@@ -38,4 +38,10 @@ func _physics_process(_delta) -> void:
 
 
 func _on_sprite_animation_finished() -> void:
+	var projectile := PROJECTILE_SCENE.instantiate()
+	projectile.position = Vector2(position)
+	var direction = Vector2(get_global_mouse_position() - position).normalized()
+	projectile.direction = direction
+	projectile.rotation = direction.angle()
+	get_viewport().add_child(projectile)
 	is_attacking = false
