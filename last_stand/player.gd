@@ -32,10 +32,9 @@ func _physics_process(_delta) -> void:
 				$Sprite.animation = "idle"
 			else:
 				$Sprite.animation = "walk"
-			$Sprite.play()
-			
-			move_and_slide()
-			position = position.clamp(Vector2.ZERO + $Collision.shape.size * 0.5, get_viewport_rect().size - $Sprite.sprite_frames.get_frame_texture("walk", 0).get_size() * 0.5)
+		$Sprite.play()
+		move_and_slide()
+		position = position.clamp(Vector2.ZERO + $Collision.shape.size * 0.5, get_viewport_rect().size - $Sprite.sprite_frames.get_frame_texture("walk", 0).get_size() * 0.5)
 
 
 func _on_sprite_animation_finished() -> void:
