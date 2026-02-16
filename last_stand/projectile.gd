@@ -2,6 +2,7 @@ extends Area2D
 
 
 const SPEED := 400
+
 var direction : Vector2
 
 
@@ -13,3 +14,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	position += direction * SPEED * delta
+
+
+func _on_body_entered(_body: Node2D) -> void:
+	direction = Vector2.ZERO
+	$Sprite.animation = "explode"
+	$Sprite.animation_finished.connect(queue_free)

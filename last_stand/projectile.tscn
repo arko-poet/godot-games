@@ -98,8 +98,10 @@ script = ExtResource("1_qxf0c")
 sprite_frames = SubResource("SpriteFrames_48ys4")
 animation = &"fly"
 autoplay = "fly"
-frame_progress = 0.75481147
+frame_progress = 0.3408048
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=765030855]
 position = Vector2(40, 0)
 shape = SubResource("RectangleShape2D_guifb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
