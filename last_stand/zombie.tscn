@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cw1jisn8kbi4i" path="res://zombie.gd" id="1_roy8y"]
 [ext_resource type="Texture2D" uid="uid://5lpsdrcwjgbk" path="res://sprites/zombie/Zombie_1/Walk.png" id="1_uiaus"]
 [ext_resource type="Texture2D" uid="uid://bnvwk4qfebumw" path="res://sprites/zombie/Zombie_1/Attack.png" id="2_jmu02"]
+[ext_resource type="Texture2D" uid="uid://diewycfy7dcrp" path="res://sprites/zombie/Zombie_1/Dead.png" id="3_eseir"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_roy8y"]
 size = Vector2(24, 64)
@@ -25,6 +26,26 @@ region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdvb4"]
 atlas = ExtResource("2_jmu02")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls26a"]
+atlas = ExtResource("3_eseir")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xm6x"]
+atlas = ExtResource("3_eseir")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8dj8"]
+atlas = ExtResource("3_eseir")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni6fi"]
+atlas = ExtResource("3_eseir")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jp71"]
+atlas = ExtResource("3_eseir")
 region = Rect2(512, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmu02"]
@@ -91,6 +112,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ls26a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xm6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8dj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ni6fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jp71")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jmu02")
 }, {
 "duration": 1.0,
@@ -136,5 +177,5 @@ shape = SubResource("RectangleShape2D_roy8y")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1638596850]
 sprite_frames = SubResource("SpriteFrames_dcb2u")
-animation = &"walk"
+animation = &"die"
 metadata/_edit_lock_ = true
