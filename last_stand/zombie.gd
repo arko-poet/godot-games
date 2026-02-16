@@ -3,20 +3,30 @@ extends CharacterBody2D
 
 const ZOMBIE_SPEED := 100
 
-var alive := true
+var is_attacking := false
+var attack_target
 
 func _ready() -> void:
-	$Sprite.flip_h = true
-	$Sprite.play("walk")
+	velocity = Vector2(-1, 0) * ZOMBIE_SPEED
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	if alive:
-		velocity = Vector2(-1, 0).normalized() * ZOMBIE_SPEED
-		if move_and_slide():
-			$Sprite.animation = "attack"
+	if move_and_slide():
+		if not attack_target:
+			attack_target = get_last_slide_collision().get_collider()
+			$Sprite.play("attack")
+	else:
+		velocity = Vector2(-1, 0) * ZOMBIE_SPEED
+		$Sprite.play("walk")
+
+
+func _on_sprite_animation_finished() -> void:
+	if attack_target:
+		attack_target.hit()
+	attack_target = null
+
 
 func hit() -> void:
 	$Sprite.animation = "die"
-	alive = false
 	$Collision.queue_free()
+	set_physics_process(false)

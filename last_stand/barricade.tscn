@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://vivbwy15jqep"]
 
+[ext_resource type="Script" uid="uid://d34duq3rqb070" path="res://barricade.gd" id="1_4w3go"]
 [ext_resource type="Texture2D" uid="uid://c8t4eh1ndh56a" path="res://icon.svg" id="1_688k7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
@@ -8,6 +9,7 @@ size = Vector2(128, 600)
 [node name="Barricade" type="StaticBody2D" unique_id=1010004601]
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("1_4w3go")
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1344042694]
