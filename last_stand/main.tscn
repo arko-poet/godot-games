@@ -47,6 +47,15 @@ curve = SubResource("Curve2D_h2yge")
 position = Vector2(800, 0)
 rotation = 1.5707964
 
+[node name="BarricadeLabel" type="Label" parent="." unique_id=521777446]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 101.0
+grow_vertical = 0
+text = "Barricade: 100"
+
 [connection signal="timeout" from="ZombieTimer" to="." method="_on_zombie_spawner_timeout"]
 
 [editable path="Barricade"]

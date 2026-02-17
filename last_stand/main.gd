@@ -11,6 +11,12 @@ func _ready() -> void:
 	Input.set_custom_mouse_cursor(crosshair)
 
 
+func _process(delta) -> void:
+	var barricade_life := 0
+	if $Barricade:
+		barricade_life = $Barricade.health
+	$BarricadeLabel.text = "Barricade: %s" % barricade_life
+
 func _on_zombie_spawner_timeout() -> void:
 	var zombie: Zombie = ZOMBIE_SCENE.instantiate()
 	$ZombieSpawnPath/ZombieSpawnLocation.progress_ratio = randf()
