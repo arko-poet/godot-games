@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dn0r7723xc1p"]
+
+[ext_resource type="Script" uid="uid://btjiu8gsn1wmv" path="res://combat.gd" id="1_kx3u1"]
+[ext_resource type="PackedScene" uid="uid://vivbwy15jqep" path="res://barricade.tscn" id="2_ga4lu"]
+[ext_resource type="PackedScene" uid="uid://dd4l57rwjq1c" path="res://player.tscn" id="3_u30h6"]
+
+[sub_resource type="Curve2D" id="Curve2D_h2yge"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 800, 0, 0, 0, 0, 0, 800, 600)
+}
+point_count = 2
+
+[node name="Combat" type="Node" unique_id=1312297838]
+script = ExtResource("1_kx3u1")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1862806789]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13725491, 0.3372549, 0.38431373, 1)
+
+[node name="Barricade" parent="." unique_id=1010004601 instance=ExtResource("2_ga4lu")]
+position = Vector2(320, 64)
+
+[node name="Sprite" parent="Barricade" index="0" unique_id=1344042694]
+position = Vector2(0, 236)
+scale = Vector2(1, 4.6875)
+
+[node name="Collision" parent="Barricade" index="1" unique_id=1776921890]
+position = Vector2(0, 236)
+
+[node name="Player" parent="." unique_id=885266496 instance=ExtResource("3_u30h6")]
+position = Vector2(216, 264)
+
+[node name="ZombieTimer" type="Timer" parent="." unique_id=304221522]
+wait_time = 1.5
+autostart = true
+
+[node name="ZombieSpawnPath" type="Path2D" parent="." unique_id=56149562]
+curve = SubResource("Curve2D_h2yge")
+
+[node name="ZombieSpawnLocation" type="PathFollow2D" parent="ZombieSpawnPath" unique_id=1844207156]
+position = Vector2(800, 0)
+rotation = 1.5707964
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=587626036]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -77.0
+offset_right = 135.0
+grow_vertical = 0
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer" unique_id=290008588]
+layout_mode = 2
+text = "Level: 1"
+
+[node name="BarricadeLabel" type="Label" parent="VBoxContainer" unique_id=521777446]
+layout_mode = 2
+text = "Barricade: 100"
+
+[node name="ZombiesKilledLabel" type="Label" parent="VBoxContainer" unique_id=1901526833]
+layout_mode = 2
+text = "Zombies Killed : 0"
+
+[connection signal="timeout" from="ZombieTimer" to="." method="_on_zombie_spawner_timeout"]
+
+[editable path="Barricade"]

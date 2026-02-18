@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cpwk7hp3gegy2"]
 
+[ext_resource type="Script" uid="uid://dwg78liwn4peh" path="res://upgrade_screen.gd" id="1_adbc8"]
+
 [node name="UpgradeScreen" type="Control" unique_id=1731244684]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_adbc8")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1953594450]
 layout_mode = 0
@@ -104,3 +107,5 @@ layout_mode = 2
 size_flags_vertical = 1
 rounded = true
 fill_mode = 3
+
+[connection signal="pressed" from="MarginContainer/NextLevel" to="." method="_on_next_level_pressed"]

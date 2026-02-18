@@ -30,3 +30,4 @@ func hit() -> void:
 	$Sprite.animation = "die"
 	$Collision.queue_free()
 	set_physics_process(false)
+	Global.zombies_killed += 1
