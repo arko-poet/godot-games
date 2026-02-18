@@ -13,7 +13,7 @@ config_version=5
 config/name="last stand"
 run/main_scene="uid://dn0r7723xc1p"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://c6ls8t8oivk73"
 
 [display]
 
