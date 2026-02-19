@@ -15,6 +15,7 @@ func _ready() -> void:
 func _physics_process(_delta) -> void:
 	if not is_attacking:
 		if Input.is_action_just_pressed("attack"):
+			$Sprite.speed_scale = Global.cast_speed
 			$Sprite.animation = "attack"
 			is_attacking = true
 			projectile_direction = Vector2(get_global_mouse_position() - position).normalized()
@@ -35,6 +36,7 @@ func _physics_process(_delta) -> void:
 				$Sprite.flip_h = true
 			
 			velocity = movement_direction.normalized() * PLAYER_SPEED
+			$Sprite.speed_scale = 1.0
 			if movement_direction == Vector2.ZERO:
 				$Sprite.animation = "idle"
 			else:
