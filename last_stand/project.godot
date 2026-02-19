@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="last stand"
+config/name="satyrs vs zombies"
 run/main_scene="uid://cwcqgxdqohc5s"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://c6ls8t8oivk73"

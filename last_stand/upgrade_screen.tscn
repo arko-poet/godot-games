@@ -81,12 +81,6 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "Start Level 2"
 
-[node name="BarricadeHealth" type="Label" parent="." unique_id=1432747516]
-layout_mode = 1
-offset_right = 146.0
-offset_bottom = 23.0
-text = "Barrier Health: 100"
-
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1624048173]
 layout_mode = 1
 anchors_preset = 12
@@ -111,13 +105,8 @@ rounded = true
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="." unique_id=97353406]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
-grow_vertical = 2
+offset_right = 167.0
+offset_bottom = 142.0
 
 [node name="Label" type="Label" parent="VBoxContainer3" unique_id=1827518634]
 layout_mode = 2
@@ -135,6 +124,10 @@ text = "Projectile Count: 1"
 [node name="CastSpeedLabel" type="Label" parent="VBoxContainer3" unique_id=1575587497]
 layout_mode = 2
 text = "Cast Speed: 0.4"
+
+[node name="BarricadeHealth" type="Label" parent="VBoxContainer3" unique_id=1432747516]
+layout_mode = 2
+text = "Barricade Health: 100"
 
 [connection signal="pressed" from="VBoxContainer/UpgradeBarrier" to="." method="_on_upgrade_barricade_pressed"]
 [connection signal="pressed" from="VBoxContainer/UpgradeWeapon" to="." method="_on_upgrade_weapon_pressed"]
