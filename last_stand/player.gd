@@ -8,6 +8,10 @@ const PROJECTILE_CONE_ANGLE := PI / 4
 var is_attacking := false
 var projectile_direction : Vector2
 
+
+func _ready() -> void:
+	$Sprite.speed_scale = Global.cast_speed
+
 func _physics_process(_delta) -> void:
 	if not is_attacking:
 		if Input.is_action_just_pressed("attack"):

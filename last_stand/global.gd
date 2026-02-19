@@ -12,4 +12,4 @@ var resources := LEVEL_RESOURCES
 var number_of_projectiles := 1
 var upgrade_weapon_progress := 0
 var projectile_damage := 1
-var cast_speed := 100
+var cast_speed := 0.5

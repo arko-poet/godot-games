@@ -10,7 +10,7 @@ func _process(_delta) -> void:
 	$VBoxContainer2/ProgressBar.value = Global.upgrade_weapon_progress
 	$VBoxContainer3/ProjectileDamageLabel.text = "Damage: %s" % Global.projectile_damage
 	$VBoxContainer3/ProjectileCountLabel.text = "Count: %s" % Global.number_of_projectiles
-#a	$VBoxContainer3/CastSpeedLabel.text = "Speed: %s" % Global.speed_cast_speed
+	$VBoxContainer3/CastSpeedLabel.text = "Speed: %s" % Global.cast_speed
 
 
 func _on_next_level_pressed() -> void:
@@ -33,4 +33,8 @@ func _on_upgrade_weapon_pressed() -> void:
 			if Global.number_of_projectiles < Global.projectile_damage:
 				Global.number_of_projectiles += 1
 			else:
-				Global.projectile_damage += 1
+				if Global.projectile_damage > Global.cast_speed / 0.5:
+					Global.cast_speed += 0.5
+				else:
+					Global.projectile_damage += 1
+					
