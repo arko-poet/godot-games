@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 const PLAYER_SPEED := 300
 const PROJECTILE_SCENE := preload("res://projectile.tscn")
+const PROJECTILE_CONE_ANGLE := PI / 4
 
 var is_attacking := false
 var projectile_direction : Vector2
@@ -39,10 +40,37 @@ func _physics_process(_delta) -> void:
 		position = position.clamp(Vector2.ZERO + $Collision.shape.size * 0.5, get_viewport_rect().size - $Sprite.sprite_frames.get_frame_texture("walk", 0).get_size() * 0.5)
 
 
+## support piercing of projectiles
 func _on_sprite_animation_finished() -> void:
-	var projectile := PROJECTILE_SCENE.instantiate()
-	projectile.position = Vector2(position)
-	projectile.direction = projectile_direction
-	projectile.rotation = projectile_direction.angle()
-	get_parent().add_child(projectile)
-	is_attacking = false
+	for angle in _get_projectile_angles():
+		var projectile := PROJECTILE_SCENE.instantiate()
+		projectile.position = Vector2(position)
+		projectile.direction = projectile_direction.rotated(angle)
+		projectile.rotation = projectile_direction.angle() + angle
+		get_parent().add_child(projectile)
+		is_attacking = false
+
+
+func _get_projectile_angles():
+	var angles : Array[float] = []
+	if Global.number_of_projectiles == 1:
+		angles.append(0.0)
+		return angles
+
+	# cone is divided into sections, projectiles emerge from bundries of these
+	var sections : int
+	var angle_step : float
+	if Global.number_of_projectiles % 2 == 0:
+		# for even case no projectiles on boundries of cone for lesser spread
+		sections = Global.number_of_projectiles + 1
+		angle_step = PROJECTILE_CONE_ANGLE / sections
+		for i in range(1, sections):
+			angles.append(-PROJECTILE_CONE_ANGLE * 0.5 + angle_step * i)
+	else:
+		angles.append(-PROJECTILE_CONE_ANGLE * 0.5)
+		sections = Global.number_of_projectiles - 1
+		angle_step = PROJECTILE_CONE_ANGLE / sections
+		for i in range(1, sections + 1):
+			angles.append(angles[0] + angle_step * i)
+	return angles
+	

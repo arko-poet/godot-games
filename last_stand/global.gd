@@ -8,3 +8,4 @@ var level := 1
 var zombies_killed := 0
 var health := 100
 var resources := LEVEL_RESOURCES
+var number_of_projectiles := 3
