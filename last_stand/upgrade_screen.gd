@@ -5,7 +5,8 @@ signal next_level
 
 
 func _process(_delta) -> void:
-	$BarricadeHealth.text = str(Global.health)
+	$BarricadeHealth.text = "Barricade: %s" % Global.health
+	$Resources.text = str(Global.resources)
 
 
 func _on_next_level_pressed() -> void:
@@ -13,4 +14,6 @@ func _on_next_level_pressed() -> void:
 
 
 func _on_upgrade_barricade_pressed() -> void:
-	Global.health += 10
+	if Global.resources > 0:
+		Global.resources -= 1
+		Global.health += 10
