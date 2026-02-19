@@ -20,3 +20,4 @@ func _on_body_entered(body: Node2D) -> void:
 	$Sprite.animation = "explode"
 	$Sprite.animation_finished.connect(queue_free)
 	body.hit()
+		

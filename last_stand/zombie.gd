@@ -29,8 +29,8 @@ func _on_sprite_animation_finished() -> void:
 
 
 func hit() -> void:
-	if health > 1:
-		health -= 1
+	if health > Global.projectile_damage:
+		health -= Global.projectile_damage
 	else:
 		$Sprite.animation = "die"
 		$Collision.queue_free()

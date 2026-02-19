@@ -27,5 +27,7 @@ func _on_upgrade_weapon_pressed() -> void:
 			Global.upgrade_weapon_progress += 1
 		else:
 			Global.upgrade_weapon_progress = 0
-			Global.number_of_projectiles += 1
-		
+			if Global.number_of_projectiles < Global.projectile_damage:
+				Global.number_of_projectiles += 1
+			else:
+				Global.projectile_damage += 1
