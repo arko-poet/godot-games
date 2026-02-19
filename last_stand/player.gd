@@ -45,7 +45,4 @@ func _on_sprite_animation_finished() -> void:
 	projectile.direction = projectile_direction
 	projectile.rotation = projectile_direction.angle()
 	get_parent().add_child(projectile)
-	print(get_viewport())
-	print(get_parent())
-	#get_viewport().add_child(projectile)
 	is_attacking = false

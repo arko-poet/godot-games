@@ -46,6 +46,7 @@ position = Vector2(800, 0)
 rotation = 1.5707964
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=587626036]
+z_index = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
