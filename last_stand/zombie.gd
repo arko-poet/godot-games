@@ -5,9 +5,11 @@ const ZOMBIE_SPEED := 100
 
 var is_attacking := false
 var attack_target
+var health
 
 func _ready() -> void:
 	velocity = Vector2(-1, 0) * ZOMBIE_SPEED
+	health =  2 * Global.level
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
@@ -27,7 +29,10 @@ func _on_sprite_animation_finished() -> void:
 
 
 func hit() -> void:
-	$Sprite.animation = "die"
-	$Collision.queue_free()
-	set_physics_process(false)
-	Global.zombies_killed += 1
+	if health > 1:
+		health -= 1
+	else:
+		$Sprite.animation = "die"
+		$Collision.queue_free()
+		set_physics_process(false)
+		Global.zombies_killed += 1

@@ -13,5 +13,6 @@ func _process(_delta: float) -> void:
 
 
 func _on_upgrade_screen_next_level() -> void:
+	Global.level += 1
 	$UpgradeScreen.hide()
 	add_child(load("res://combat.tscn").instantiate())
