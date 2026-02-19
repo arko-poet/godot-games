@@ -13,16 +13,12 @@ func _ready() -> void:
 
 
 func _process(_delta) -> void:
-	var barricade_life := 0
-	if $Barricade:
-		barricade_life = $Barricade.health
-	$VBoxContainer/BarricadeLabel.text = "Barricade: %s" % barricade_life
+	$VBoxContainer/BarricadeLabel.text = "Barricade: %s" % Global.health
 	
 	$VBoxContainer/LevelLabel.text = "Level: %s" % Global.level
 	$VBoxContainer/ZombiesKilledLabel.text = "Zombies Killed: %s" % Global.zombies_killed
 
 func _on_zombie_spawner_timeout() -> void:
-	print(spawned_zombies)
 	if spawned_zombies < Global.MAX_ZOMBIES:
 		var zombie: Zombie = ZOMBIE_SCENE.instantiate()
 		$ZombieSpawnPath/ZombieSpawnLocation.progress_ratio = randf()

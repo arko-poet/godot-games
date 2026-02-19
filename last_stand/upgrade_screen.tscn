@@ -81,7 +81,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "Start Level 2"
 
-[node name="BarrierHealth" type="Label" parent="." unique_id=1432747516]
+[node name="BarricadeHealth" type="Label" parent="." unique_id=1432747516]
 layout_mode = 1
 offset_right = 146.0
 offset_bottom = 23.0
@@ -108,4 +108,5 @@ size_flags_vertical = 1
 rounded = true
 fill_mode = 3
 
+[connection signal="pressed" from="VBoxContainer/UpgradeBarrier" to="." method="_on_upgrade_barricade_pressed"]
 [connection signal="pressed" from="MarginContainer/NextLevel" to="." method="_on_next_level_pressed"]

@@ -10,6 +10,7 @@ func _process(_delta: float) -> void:
 		$Combat.free()
 		$UpgradeScreen.show()
 		Global.zombies_killed = 0
+	
 
 
 func _on_upgrade_screen_next_level() -> void:
