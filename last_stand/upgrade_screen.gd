@@ -8,6 +8,9 @@ func _process(_delta) -> void:
 	$BarricadeHealth.text = "Barricade: %s" % Global.health
 	$Resources.text = str(Global.resources)
 	$VBoxContainer2/ProgressBar.value = Global.upgrade_weapon_progress
+	$VBoxContainer3/ProjectileDamageLabel.text = "Damage: %s" % Global.projectile_damage
+	$VBoxContainer3/ProjectileCountLabel.text = "Count: %s" % Global.number_of_projectiles
+#a	$VBoxContainer3/CastSpeedLabel.text = "Speed: %s" % Global.speed_cast_speed
 
 
 func _on_next_level_pressed() -> void:

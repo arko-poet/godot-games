@@ -99,7 +99,7 @@ grow_vertical = 0
 
 [node name="UpgradeProgress" type="Label" parent="VBoxContainer2" unique_id=1076886415]
 layout_mode = 2
-text = "Upgrade:"
+text = "Next Upgrade:"
 vertical_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer2" unique_id=223724636]
@@ -108,6 +108,33 @@ size_flags_vertical = 1
 max_value = 6.0
 step = 1.0
 rounded = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="." unique_id=97353406]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer3" unique_id=1827518634]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Stats:"
+
+[node name="ProjectileDamageLabel" type="Label" parent="VBoxContainer3" unique_id=249980422]
+layout_mode = 2
+text = "Projectile Damage: 1"
+
+[node name="ProjectileCountLabel" type="Label" parent="VBoxContainer3" unique_id=1697071050]
+layout_mode = 2
+text = "Projectile Count: 1"
+
+[node name="CastSpeedLabel" type="Label" parent="VBoxContainer3" unique_id=1575587497]
+layout_mode = 2
+text = "Cast Speed: 0.4"
 
 [connection signal="pressed" from="VBoxContainer/UpgradeBarrier" to="." method="_on_upgrade_barricade_pressed"]
 [connection signal="pressed" from="VBoxContainer/UpgradeWeapon" to="." method="_on_upgrade_weapon_pressed"]
