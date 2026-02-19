@@ -105,8 +105,10 @@ vertical_alignment = 1
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer2" unique_id=223724636]
 layout_mode = 2
 size_flags_vertical = 1
+max_value = 6.0
+step = 1.0
 rounded = true
-fill_mode = 3
 
 [connection signal="pressed" from="VBoxContainer/UpgradeBarrier" to="." method="_on_upgrade_barricade_pressed"]
+[connection signal="pressed" from="VBoxContainer/UpgradeWeapon" to="." method="_on_upgrade_weapon_pressed"]
 [connection signal="pressed" from="MarginContainer/NextLevel" to="." method="_on_next_level_pressed"]
