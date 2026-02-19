@@ -1,7 +1,5 @@
 extends Node
 
-const ZOMBIE_SCENE := preload("res://zombie.tscn")
-
 var spawned_zombies := 0
 
 
@@ -20,7 +18,8 @@ func _process(_delta) -> void:
 
 func _on_zombie_spawner_timeout() -> void:
 	if spawned_zombies < Global.MAX_ZOMBIES:
-		var zombie: Zombie = ZOMBIE_SCENE.instantiate()
+		var zombie_scene := load("res://zombie%s.tscn" % ((randi() % 4) + 1))
+		var zombie: Zombie = zombie_scene.instantiate()
 		$ZombieSpawnPath/ZombieSpawnLocation.progress_ratio = randf()
 		zombie.position = $ZombieSpawnPath/ZombieSpawnLocation.position
 		add_child(zombie)

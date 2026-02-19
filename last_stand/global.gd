@@ -1,7 +1,7 @@
 extends Node
 
 
-const MAX_ZOMBIES := 2
+const MAX_ZOMBIES := 10
 const LEVEL_RESOURCES := 10
 const UPGRADE_WEAPON_COST := 6
 
