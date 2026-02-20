@@ -21,7 +21,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_sprite_animation_finished() -> void:
 	if attack_target:
-		attack_target.hit()
+		attack_target.hit(damage)
 	attack_target = null
 
 
