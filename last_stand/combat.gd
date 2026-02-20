@@ -1,3 +1,4 @@
+class_name Combat
 extends Node
 
 var spawned_zombies := 0
