@@ -6,7 +6,6 @@ extends Node
 ## TODO add win and loose conditions
 ## TODO make combat scene look good
 ## TODO different zombies different properties
-## TODO investigate projectyiles errors animation_finished already connected
 func _ready() -> void:
 	$UpgradeScreen.hide()
 

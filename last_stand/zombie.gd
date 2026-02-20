@@ -33,6 +33,6 @@ func hit() -> void:
 		health -= Global.projectile_damage
 	else:
 		$Sprite.animation = "die"
+		$Sprite.animation_finished.connect(func(): Global.zombies_killed += 1)
 		$Collision.queue_free()
 		set_physics_process(false)
-		Global.zombies_killed += 1
