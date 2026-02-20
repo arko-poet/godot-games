@@ -19,8 +19,10 @@ func _process(_delta) -> void:
 
 func _on_zombie_spawner_timeout() -> void:
 	if spawned_zombies < Global.max_zombies:
-		var zombie_scene := load("res://zombie%s.tscn" % ((randi() % 4) + 1))
+		var zombie_type := (randi() % 4) + 1
+		var zombie_scene := load("res://zombie%s.tscn" % zombie_type)
 		var zombie: Zombie = zombie_scene.instantiate()
+		zombie.set_type(zombie_type)
 		$ZombieSpawnPath/ZombieSpawnLocation.progress_ratio = randf()
 		zombie.position = $ZombieSpawnPath/ZombieSpawnLocation.position
 		add_child(zombie)

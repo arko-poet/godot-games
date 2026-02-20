@@ -226,8 +226,9 @@ shape = SubResource("RectangleShape2D_roy8y")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1638596850]
 sprite_frames = SubResource("SpriteFrames_dcb2u")
-animation = &"attack"
+animation = &"walk"
 autoplay = "walk"
+frame_progress = 0.5304033
 flip_h = true
 metadata/_edit_lock_ = true
 

@@ -1,10 +1,9 @@
 extends Node
 
-## TODO increase zombie spawn timer
-## TODO increase increse number of zombies to kill
 ## TODO add win and loose conditions
 ## TODO make combat scene look good
 ## TODO different zombies different properties
+## TODO make game beatable
 func _ready() -> void:
 	$UpgradeScreen.hide()
 
