@@ -9,6 +9,7 @@ func _ready() -> void:
 	crosshair.resize(24, 24)
 	Input.set_custom_mouse_cursor(crosshair)
 
+	$ZombieTimer.wait_time = Global.spawn_rate * pow(0.9, (Global.level - 1)) + 0.1
 
 func _process(_delta) -> void:
 	$VBoxContainer/BarricadeLabel.text = "Barricade: %s" % Global.health
@@ -17,7 +18,7 @@ func _process(_delta) -> void:
 	$VBoxContainer/ZombiesKilledLabel.text = "Zombies Killed: %s" % Global.zombies_killed
 
 func _on_zombie_spawner_timeout() -> void:
-	if spawned_zombies < Global.MAX_ZOMBIES:
+	if spawned_zombies < Global.max_zombies:
 		var zombie_scene := load("res://zombie%s.tscn" % ((randi() % 4) + 1))
 		var zombie: Zombie = zombie_scene.instantiate()
 		$ZombieSpawnPath/ZombieSpawnLocation.progress_ratio = randf()
