@@ -1,8 +1,15 @@
 extends Node
 
-
+## TODO increase zombie spawn timer
+## TODO increase increse number of zombies to kill
+## TODO investigate levels not progressing
+## TODO add win and loose conditions
+## TODO make combat scene look good
+## TODO different zombies different properties
+## TODO investigate projectyiles errors animation_finished already connected
 func _ready() -> void:
 	$UpgradeScreen.hide()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -10,7 +17,6 @@ func _process(_delta: float) -> void:
 		$Combat.free()
 		$UpgradeScreen.show()
 		Global.zombies_killed = 0
-	
 
 
 func _on_upgrade_screen_next_level() -> void:
