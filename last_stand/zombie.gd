@@ -2,7 +2,6 @@ class_name Zombie
 extends CharacterBody2D
 
 var zombie_speed := 100
-var is_attacking := false
 var attack_target
 var health : int
 var damage : int
@@ -29,7 +28,7 @@ func hit() -> void:
 	if health > Global.projectile_damage:
 		health -= Global.projectile_damage
 	else:
-		$Sprite.animation = "die"
+		$Sprite.play("die")
 		$Sprite.animation_finished.connect(func(): Global.zombies_killed += 1)
 		$Collision.queue_free()
 		set_physics_process(false)
