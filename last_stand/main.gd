@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 
 func _on_upgrade_screen_next_level() -> void:
 	Global.level += 1
-	Global.max_zombies += 10
+	Global.max_zombies += 4
 	$UpgradeScreen.hide()
 	combat = COMBAT_SCENE.instantiate()
 	add_child(combat)

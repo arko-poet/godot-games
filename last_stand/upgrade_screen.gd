@@ -27,7 +27,7 @@ func _on_upgrade_weapon_pressed() -> void:
 	if Global.resources > 0:
 		Global.resources -= 1
 		# upgrades cycle through damage, speed and projectiles
-		if Global.upgrade_weapon_progress < 5:
+		if Global.upgrade_weapon_progress < Global.upgrade_weapon_cost - 1:
 			Global.upgrade_weapon_progress += 1
 		else:
 			Global.upgrade_weapon_progress = 0
