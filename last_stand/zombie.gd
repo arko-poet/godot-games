@@ -5,7 +5,7 @@ var zombie_speed := 100
 var attack_target
 var health : int
 var damage : int
-
+var is_dead := false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
@@ -27,11 +27,12 @@ func _on_sprite_animation_finished() -> void:
 func hit() -> void:
 	if health > Global.projectile_damage:
 		health -= Global.projectile_damage
-	else:
+	elif not is_dead:
 		$Sprite.play("die")
 		$Sprite.animation_finished.connect(func(): Global.zombies_killed += 1)
 		$Collision.queue_free()
 		set_physics_process(false)
+		is_dead = true
 
 func set_type(type: int) -> void:
 	# 4 zombie type: 1 normal, 2 fast, 3 tanky, 4 strong
