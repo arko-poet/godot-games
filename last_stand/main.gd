@@ -4,9 +4,12 @@ const COMBAT_SCENE := preload("res://combat.tscn")
 
 var combat : Combat
 
-## TODO add win and loose conditions
+## TODO multiple projectiles can hit same zombie
 ## TODO make combat scene look good
-## TODO make game beatable
+## TODO fix zombies gettin stuck in animation diying
+## TODO clean code comments etc
+## TODO balance game
+## TODO win condition
 func _ready() -> void:
 	Global.new_game()
 	$UpgradeScreen.hide()
