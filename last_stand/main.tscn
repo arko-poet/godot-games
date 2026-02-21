@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c4yflk0621g7" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cpwk7hp3gegy2" path="res://upgrade_screen.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bjerm51gxb3b7" path="res://game_over.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://byvg05x4hbno4" path="res://game_won.tscn" id="4_lquwl"]
 
 [node name="Main" type="Node" unique_id=1219308454]
 script = ExtResource("1_0xm2m")
@@ -12,5 +13,8 @@ script = ExtResource("1_0xm2m")
 [node name="GameOver" parent="." unique_id=483299073 instance=ExtResource("4_1bvp3")]
 visible = false
 
+[node name="GameWon" parent="." unique_id=1712994843 instance=ExtResource("4_lquwl")]
+
 [connection signal="next_level" from="UpgradeScreen" to="." method="_on_upgrade_screen_next_level"]
 [connection signal="start_new_game" from="GameOver" to="." method="_on_game_over_start_new_game"]
+[connection signal="start_new_game" from="GameWon" to="." method="_on_game_won_start_new_game"]

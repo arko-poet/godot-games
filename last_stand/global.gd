@@ -16,13 +16,13 @@ var spawn_rate : float
 
 
 func new_game() -> void:
-	level = 1
+	level = 9
 	zombies_killed = 0
 	health = 100
 	resources = LEVEL_RESOURCES
-	number_of_projectiles = 3
+	number_of_projectiles = 10
 	upgrade_weapon_progress = 0
-	projectile_damage = 1
+	projectile_damage = 10
 	cast_speed = 0.5
 	max_zombies = 10
 	spawn_rate = 1.5

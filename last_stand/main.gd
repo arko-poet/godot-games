@@ -11,6 +11,7 @@ func _ready() -> void:
 	Global.new_game()
 	$UpgradeScreen.hide()
 	$GameOver.hide()
+	$GameWon.hide()
 	combat = COMBAT_SCENE.instantiate()
 	add_child(combat)
 
@@ -21,12 +22,18 @@ func _process(_delta: float) -> void:
 		combat.queue_free()
 		$GameOver.show()
 		Global.new_game()
-		
+	
 	
 	if Global.zombies_killed == Global.max_zombies:
 		combat.free()
 		$UpgradeScreen.show()
 		Global.zombies_killed = 0
+	
+	
+	if Global.level == 10 and not combat:
+		$GameWon.show()
+		Global.new_game()
+		
 
 
 func _on_upgrade_screen_next_level() -> void:
@@ -42,3 +49,9 @@ func _on_game_over_start_new_game() -> void:
 	combat = COMBAT_SCENE.instantiate()
 	add_child(combat)
 	$GameOver.hide()
+
+
+func _on_game_won_start_new_game() -> void:
+	combat = COMBAT_SCENE.instantiate()
+	add_child(combat)
+	$GameWon.hide()
