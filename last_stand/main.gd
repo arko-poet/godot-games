@@ -5,8 +5,6 @@ const COMBAT_SCENE := preload("res://combat.tscn")
 var combat : Combat
 
 
-## TODO win condition
-## TODO balance game
 func _ready() -> void:
 	Global.new_game()
 	$UpgradeScreen.hide()

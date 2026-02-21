@@ -7,6 +7,7 @@ var health : int
 var damage : int
 var is_dead := false
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	if move_and_slide():
@@ -34,6 +35,7 @@ func hit() -> void:
 		set_physics_process(false)
 		is_dead = true
 
+
 func set_type(type: int) -> void:
 	# 4 zombie type: 1 normal, 2 fast, 3 tanky, 4 strong
 	velocity = Vector2(-1, 0) * zombie_speed
@@ -45,5 +47,3 @@ func set_type(type: int) -> void:
 		health *= 2
 	elif type == 4:
 		damage *= 2
-		
-		

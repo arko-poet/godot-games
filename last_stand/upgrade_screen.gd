@@ -23,7 +23,6 @@ func _on_upgrade_barricade_pressed() -> void:
 		Global.health += 10
 
 
-
 func _on_upgrade_weapon_pressed() -> void:
 	if Global.resources > 0:
 		Global.resources -= 1
@@ -32,6 +31,8 @@ func _on_upgrade_weapon_pressed() -> void:
 			Global.upgrade_weapon_progress += 1
 		else:
 			Global.upgrade_weapon_progress = 0
+			Global.upgrade_weapon_cost += 1
+			$VBoxContainer2/ProgressBar.max_value = Global.upgrade_weapon_cost
 			if Global.number_of_projectiles < Global.projectile_damage:
 				Global.number_of_projectiles += 1
 			else:
@@ -39,4 +40,3 @@ func _on_upgrade_weapon_pressed() -> void:
 					Global.cast_speed += 0.5
 				else:
 					Global.projectile_damage += 1
-					

@@ -1,7 +1,7 @@
 extends Node
 
 const LEVEL_RESOURCES := 10
-const UPGRADE_WEAPON_COST := 6
+
 
 var level : int
 var zombies_killed : int
@@ -11,6 +11,7 @@ var number_of_projectiles : int
 var upgrade_weapon_progress : int
 var projectile_damage : int
 var max_zombies : int
+var upgrade_weapon_cost : int
 var cast_speed : float
 var spawn_rate : float
 
@@ -26,3 +27,4 @@ func new_game() -> void:
 	cast_speed = 0.5
 	max_zombies = 10
 	spawn_rate = 1.5
+	upgrade_weapon_cost = 6
