@@ -29,10 +29,10 @@ func _physics_process(_delta) -> void:
 			if Input.is_action_pressed("move_right"):
 				movement_direction.x += 1
 			
-			if movement_direction.x == 1:
-				$Sprite.flip_h = false
-			if movement_direction.x == -1:
-				$Sprite.flip_h = true
+			if movement_direction.x != 0:
+				$Sprite.flip_h = movement_direction.x < 0
+			else:
+				$Sprite.flip_h = get_global_mouse_position().x < global_position.x
 			
 			velocity = movement_direction.normalized() * PLAYER_SPEED
 			$Sprite.speed_scale = 1.0

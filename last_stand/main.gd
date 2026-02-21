@@ -5,7 +5,6 @@ const COMBAT_SCENE := preload("res://combat.tscn")
 var combat : Combat
 
 
-## TODO clean code comments etc
 ## TODO win condition
 ## TODO balance game
 func _ready() -> void:
