@@ -4,12 +4,10 @@ const COMBAT_SCENE := preload("res://combat.tscn")
 
 var combat : Combat
 
-## TODO multiple projectiles can hit same zombie
-## TODO make combat scene look good
-## TODO fix zombies gettin stuck in animation diying
+
 ## TODO clean code comments etc
-## TODO balance game
 ## TODO win condition
+## TODO balance game
 func _ready() -> void:
 	Global.new_game()
 	$UpgradeScreen.hide()
@@ -20,7 +18,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	print(Global.health)
 	if Global.health == 0:
 		combat.queue_free()
 		$GameOver.show()

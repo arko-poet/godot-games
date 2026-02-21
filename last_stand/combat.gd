@@ -1,4 +1,5 @@
 class_name Combat
+
 extends Node
 
 var spawned_zombies := 0
@@ -12,11 +13,12 @@ func _ready() -> void:
 
 	$ZombieTimer.wait_time = Global.spawn_rate * pow(0.9, (Global.level - 1)) + 0.1
 
+
 func _process(_delta) -> void:
 	$VBoxContainer/BarricadeLabel.text = "Barricade: %s" % Global.health
-	
 	$VBoxContainer/LevelLabel.text = "Level: %s" % Global.level
 	$VBoxContainer/ZombiesKilledLabel.text = "Zombies Killed: %s" % Global.zombies_killed
+
 
 func _on_zombie_spawner_timeout() -> void:
 	if spawned_zombies < Global.max_zombies:

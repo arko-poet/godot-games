@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const PLAYER_SPEED := 300
 const PROJECTILE_SCENE := preload("res://projectile.tscn")
 const PROJECTILE_CONE_ANGLE := PI / 4
@@ -46,7 +45,6 @@ func _physics_process(_delta) -> void:
 		position = position.clamp(Vector2.ZERO + $Collision.shape.size * 0.5, get_viewport_rect().size - $Sprite.sprite_frames.get_frame_texture("walk", 0).get_size() * 0.5)
 
 
-## support piercing of projectiles
 func _on_sprite_animation_finished() -> void:
 	for angle in _get_projectile_angles():
 		var projectile := PROJECTILE_SCENE.instantiate()

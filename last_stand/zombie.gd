@@ -34,11 +34,10 @@ func hit() -> void:
 		set_physics_process(false)
 
 func set_type(type: int) -> void:
+	# 4 zombie type: 1 normal, 2 fast, 3 tanky, 4 strong
 	velocity = Vector2(-1, 0) * zombie_speed
 	health =  2 * Global.level
 	damage = 1
-	
-	# 1 normal, 2 fast, 3 tanky, 4 strong
 	if type == 2:
 		zombie_speed *= 2
 	elif type == 3:

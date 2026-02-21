@@ -1,6 +1,5 @@
 extends Control
 
-
 signal next_level
 
 
@@ -24,9 +23,11 @@ func _on_upgrade_barricade_pressed() -> void:
 		Global.health += 10
 
 
+
 func _on_upgrade_weapon_pressed() -> void:
 	if Global.resources > 0:
 		Global.resources -= 1
+		# upgrades cycle through damage, speed and projectiles
 		if Global.upgrade_weapon_progress < 5:
 			Global.upgrade_weapon_progress += 1
 		else:

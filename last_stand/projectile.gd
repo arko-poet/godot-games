@@ -1,6 +1,5 @@
 extends Area2D
 
-
 const SPEED := 400
 
 var direction : Vector2
