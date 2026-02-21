@@ -21,5 +21,6 @@ func _on_body_entered(body: Node2D) -> void:
 		direction = Vector2.ZERO
 		$Sprite.animation = "explode"
 		$Sprite.animation_finished.connect(queue_free)
+		$Sound.play()
 		has_collided = true
 	body.hit() # outside of check above means projectiles splash

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://tthm0ynhvl27" path="res://sprites/satyr/Satyr_1/Walk.png" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bqmybw17o0y41" path="res://sprites/satyr/Satyr_1/Attack.png" id="2_hqtel"]
 [ext_resource type="Script" uid="uid://crorvm1f14ppk" path="res://player.gd" id="2_onrkg"]
+[ext_resource type="AudioStream" uid="uid://blkbnrvjd7c4f" path="res://sound/projectile.wav" id="5_sweqy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ahtn"]
 atlas = ExtResource("2_hqtel")
@@ -207,5 +208,8 @@ speed_scale = 0.5
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=25646077]
 position = Vector2(-4, 24)
 shape = SubResource("RectangleShape2D_i3pqv")
+
+[node name="ProjectileSound" type="AudioStreamPlayer2D" parent="." unique_id=192449423]
+stream = ExtResource("5_sweqy")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

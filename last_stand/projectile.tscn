@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b0kpbbjyqqq2e" path="res://sprites/satyr/Satyr_1/Charge.png" id="1_a85iw"]
 [ext_resource type="Script" uid="uid://dakccatgadv4e" path="res://projectile.gd" id="1_qxf0c"]
+[ext_resource type="AudioStream" uid="uid://brld7d17i4fj4" path="res://sound/explosion.wav" id="3_dgwo2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxf0c"]
 atlas = ExtResource("1_a85iw")
@@ -102,5 +103,8 @@ autoplay = "fly"
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=765030855]
 position = Vector2(40, 0)
 shape = SubResource("RectangleShape2D_guifb")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="." unique_id=1711201863]
+stream = ExtResource("3_dgwo2")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

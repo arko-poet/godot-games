@@ -47,6 +47,7 @@ func _physics_process(_delta) -> void:
 
 
 func _on_sprite_animation_finished() -> void:
+	$ProjectileSound.play()
 	for angle in _get_projectile_angles():
 		var projectile := PROJECTILE_SCENE.instantiate()
 		projectile.position = Vector2(position)
