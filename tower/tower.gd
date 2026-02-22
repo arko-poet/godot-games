@@ -1,5 +1,7 @@
 extends Node2D
 
+const SCROLL_SPEED = 100
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,7 +10,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("move_up"):
-		$Camera.global_position.y += delta * -100
-		$LeftWall.global_position.y += delta * -100
-		$RightWall.global_position.y += delta * -100
+	$Camera.global_position.y += delta * -SCROLL_SPEED
+	$LeftWall.position.y += delta * -SCROLL_SPEED
+	$RightWall.position.y += delta * -SCROLL_SPEED
