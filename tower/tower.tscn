@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ca5eirs1pfuvp"]
+
+[ext_resource type="Texture2D" uid="uid://c084ile7r2hh0" path="res://sprites/black_background.png" id="1_stebd"]
+[ext_resource type="Texture2D" uid="uid://ctq8t6bmq6wkv" path="res://sprites/stars.png" id="1_vedim"]
+
+[node name="Tower" type="Node2D" unique_id=385049633]
+
+[node name="BlackBackground" type="Sprite2D" parent="." unique_id=931640921]
+scale = Vector2(799.166, 600)
+texture = ExtResource("1_stebd")
+centered = false
+
+[node name="ParallaxBackground" type="Parallax2D" parent="." unique_id=332449211]
+scroll_scale = Vector2(0.7, 0.7)
+repeat_size = Vector2(800, 600)
+autoscroll = Vector2(0, 100)
+
+[node name="Stars" type="Sprite2D" parent="ParallaxBackground" unique_id=1768523763]
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("1_vedim")
+centered = false
