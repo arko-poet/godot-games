@@ -4,12 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://ctq8t6bmq6wkv" path="res://sprites/stars.png" id="1_vedim"]
 [ext_resource type="Script" uid="uid://ciu6xd7wu5kar" path="res://camera.gd" id="3_stebd"]
 [ext_resource type="Texture2D" uid="uid://dvl5oqupugse3" path="res://sprites/brickwall.png" id="4_jbe1c"]
+[ext_resource type="Script" uid="uid://dlk4ojdr4qufi" path="res://player.gd" id="5_lny5m"]
+[ext_resource type="Texture2D" uid="uid://bjwsakoadnovr" path="res://icon.svg" id="6_4ibu2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbe1c"]
 size = Vector2(104, 600)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxmma"]
 size = Vector2(104, 600)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdbe0"]
+size = Vector2(128, 128)
 
 [node name="Tower" type="Node2D" unique_id=385049633]
 script = ExtResource("3_stebd")
@@ -52,13 +57,29 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1024, 6144)
 
 [node name="LeftWall" type="StaticBody2D" parent="." unique_id=1024174384]
+collision_layer = 2
+collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="LeftWall" unique_id=1218415816]
 position = Vector2(52, 300)
 shape = SubResource("RectangleShape2D_jbe1c")
 
 [node name="RightWall" type="StaticBody2D" parent="." unique_id=1440512667]
+collision_layer = 2
+collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="RightWall" unique_id=710097485]
 position = Vector2(748, 300)
 shape = SubResource("RectangleShape2D_vxmma")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=314330960]
+position = Vector2(392, 320)
+collision_mask = 2
+script = ExtResource("5_lny5m")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1807186779]
+texture = ExtResource("6_4ibu2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=61578451]
+shape = SubResource("RectangleShape2D_tdbe0")

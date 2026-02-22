@@ -12,4 +12,3 @@ func _process(delta: float) -> void:
 		$Camera.global_position.y += delta * -100
 		$LeftWall.global_position.y += delta * -100
 		$RightWall.global_position.y += delta * -100
-		
