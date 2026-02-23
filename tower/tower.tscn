@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c084ile7r2hh0" path="res://sprites/black_background.png" id="1_stebd"]
 [ext_resource type="Texture2D" uid="uid://ctq8t6bmq6wkv" path="res://sprites/stars.png" id="1_vedim"]
 [ext_resource type="Script" uid="uid://ciu6xd7wu5kar" path="res://tower.gd" id="3_stebd"]
-[ext_resource type="Texture2D" uid="uid://dvl5oqupugse3" path="res://sprites/brickwall.png" id="4_jbe1c"]
+[ext_resource type="Texture2D" uid="uid://dvl5oqupugse3" path="res://sprites/brick_wall.png" id="4_jbe1c"]
 [ext_resource type="Script" uid="uid://dlk4ojdr4qufi" path="res://player.gd" id="5_lny5m"]
 [ext_resource type="Texture2D" uid="uid://bjwsakoadnovr" path="res://icon.svg" id="6_4ibu2"]
 

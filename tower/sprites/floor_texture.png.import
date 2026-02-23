@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvl5oqupugse3"
-path="res://.godot/imported/brickwall.png-5f7e36624247685bd0b34588e6d11685.ctex"
+uid="uid://pcsg5haicg5x"
+path="res://.godot/imported/floor_texture.png-a2182a0cb0c4f2bcc878a3e5b1b1efb7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/brickwall.png"
-dest_files=["res://.godot/imported/brickwall.png-5f7e36624247685bd0b34588e6d11685.ctex"]
+source_file="res://sprites/floor_texture.png"
+dest_files=["res://.godot/imported/floor_texture.png-a2182a0cb0c4f2bcc878a3e5b1b1efb7.ctex"]
 
 [params]
 

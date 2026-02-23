@@ -1,10 +1,7 @@
 [gd_scene format=3 uid="uid://o8cc4b4ta3kf"]
 
 [ext_resource type="Script" uid="uid://qevnbgb03ku2" path="res://floor.gd" id="1_cgngl"]
-[ext_resource type="Texture2D" uid="uid://pcsg5haicg5x" path="res://sprites/green.png" id="1_oj3tl"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgngl"]
-size = Vector2(48, 48)
+[ext_resource type="Texture2D" uid="uid://pcsg5haicg5x" path="res://sprites/floor_texture.png" id="1_oj3tl"]
 
 [node name="Floor" type="StaticBody2D" unique_id=886591708]
 collision_layer = 4
@@ -17,5 +14,4 @@ scale = Vector2(47.999996, 48.000004)
 texture = ExtResource("1_oj3tl")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=61855673]
-shape = SubResource("RectangleShape2D_cgngl")
 one_way_collision = true
