@@ -36,10 +36,27 @@ centered = false
 [node name="Camera" type="Camera2D" parent="." unique_id=297675335]
 anchor_mode = 0
 
-[node name="ParallaxWall" type="Parallax2D" parent="." unique_id=519988515]
+[node name="LeftWall" type="StaticBody2D" parent="Camera" unique_id=1024174384]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape2D" parent="Camera/LeftWall" unique_id=1218415816]
+position = Vector2(52, 300)
+shape = SubResource("RectangleShape2D_jbe1c")
+
+[node name="RightWall" type="StaticBody2D" parent="Camera" unique_id=1440512667]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape2D" parent="Camera/RightWall" unique_id=710097485]
+position = Vector2(748, 300)
+shape = SubResource("RectangleShape2D_vxmma")
+
+[node name="ParallaxWalls" type="Parallax2D" parent="." unique_id=519988515]
+scroll_scale = Vector2(0.9, 0.9)
 repeat_size = Vector2(0, 600)
 
-[node name="LeftWall" type="Sprite2D" parent="ParallaxWall" unique_id=182090050]
+[node name="LeftWallSprite" type="Sprite2D" parent="ParallaxWalls" unique_id=182090050]
 texture_repeat = 2
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_jbe1c")
@@ -47,7 +64,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1024, 6144)
 
-[node name="RightWall" type="Sprite2D" parent="ParallaxWall" unique_id=356965015]
+[node name="RightWallSprite" type="Sprite2D" parent="ParallaxWalls" unique_id=356965015]
 texture_repeat = 2
 position = Vector2(696, 6.7762636e-21)
 scale = Vector2(0.1, 0.099999994)
@@ -56,23 +73,8 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1024, 6144)
 
-[node name="LeftWall" type="StaticBody2D" parent="." unique_id=1024174384]
-collision_layer = 2
-collision_mask = 0
-
-[node name="Collision" type="CollisionShape2D" parent="LeftWall" unique_id=1218415816]
-position = Vector2(52, 300)
-shape = SubResource("RectangleShape2D_jbe1c")
-
-[node name="RightWall" type="StaticBody2D" parent="." unique_id=1440512667]
-collision_layer = 2
-collision_mask = 0
-
-[node name="Collision" type="CollisionShape2D" parent="RightWall" unique_id=710097485]
-position = Vector2(748, 300)
-shape = SubResource("RectangleShape2D_vxmma")
-
 [node name="Player" type="CharacterBody2D" parent="." unique_id=314330960]
+z_index = 1
 position = Vector2(400, 64)
 scale = Vector2(1, 1.0024438)
 collision_mask = 6
