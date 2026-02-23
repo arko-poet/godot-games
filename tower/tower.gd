@@ -1,6 +1,6 @@
 extends Node2D
 
-const SCROLL_SPEED = 100
+const SCROLL_SPEED = 0
 
 
 # Called when the node enters the scene tree for the first time.
