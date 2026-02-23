@@ -8,7 +8,6 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("move_up"):
 		velocity.y = -400
 	velocity += get_gravity() * _delta
-	print(velocity)
 	move_and_slide()
 	
 		
