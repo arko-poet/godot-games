@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dvl5oqupugse3" path="res://sprites/brickwall.png" id="4_jbe1c"]
 [ext_resource type="Script" uid="uid://dlk4ojdr4qufi" path="res://player.gd" id="5_lny5m"]
 [ext_resource type="Texture2D" uid="uid://bjwsakoadnovr" path="res://icon.svg" id="6_4ibu2"]
+[ext_resource type="PackedScene" uid="uid://o8cc4b4ta3kf" path="res://floor.tscn" id="7_4ibu2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbe1c"]
 size = Vector2(104, 600)
@@ -73,8 +74,8 @@ position = Vector2(748, 300)
 shape = SubResource("RectangleShape2D_vxmma")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=314330960]
-position = Vector2(392, 320)
-collision_mask = 2
+position = Vector2(400, 64)
+collision_mask = 6
 script = ExtResource("5_lny5m")
 metadata/_edit_group_ = true
 
@@ -83,3 +84,7 @@ texture = ExtResource("6_4ibu2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=61578451]
 shape = SubResource("RectangleShape2D_tdbe0")
+
+[node name="Floor" parent="." unique_id=886591708 instance=ExtResource("7_4ibu2")]
+position = Vector2(399.99997, 384)
+scale = Vector2(1.1666543, 1)
