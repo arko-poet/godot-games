@@ -19,6 +19,7 @@ var scroll_multiplier := 1.0
 var has_started_scrolling := false
 var floors : Array[Floor] = []
 var viewport_size : Vector2
+var level := 0
 
 @onready var camera : Camera2D = $Camera
 @onready var player : Node2D = $Player
@@ -56,10 +57,11 @@ func _process(delta: float) -> void:
 	# floor pooling - move floors up if they leave screen
 	if camera.global_position.y + viewport_size.y + FLOOR_HEIGHT * 0.5 < floors[0].position.y:
 		var first_floor : Floor = floors.pop_front()
+		level = first_floor.level
 		first_floor.level += FLOOR_COUNT
 		_set_floor_properties(first_floor)
 		floors.push_back(first_floor)
-	
+
 	if player.position.y - player.SIZE > camera.global_position.y + viewport_size.y:
 		player_fell_off.emit()
 

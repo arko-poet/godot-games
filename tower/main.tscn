@@ -22,14 +22,32 @@ script = ExtResource("4_lquwl")
 script = ExtResource("4_1bvp3")
 
 [node name="VolumeControl" type="HSlider" parent="HUD" unique_id=1830701180]
-offset_left = 8.0
-offset_top = 544.0
-offset_right = 96.0
-offset_bottom = 592.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -88.0
+offset_bottom = 48.0
+grow_horizontal = 0
 tooltip_text = "volume"
 max_value = 1.0
 step = 0.01
 value = 1.0
+
+[node name="LevelLabel" type="Label" parent="HUD" unique_id=974656142]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -34.0
+offset_right = 86.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Floor: 0"
+
+[node name="BestLevelLabel" type="Label" parent="HUD" unique_id=1301412432]
+offset_right = 143.0
+offset_bottom = 34.0
+theme_override_font_sizes/font_size = 24
+text = "Best Floor: 0"
 
 [connection signal="player_fell_off" from="Tower" to="." method="_on_tower_player_fell_off"]
 [connection signal="drag_ended" from="HUD/VolumeControl" to="HUD" method="_on_volume_control_drag_ended"]
