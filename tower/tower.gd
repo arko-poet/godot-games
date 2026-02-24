@@ -12,9 +12,10 @@ const MAX_FLOOR_WIDTH := 256
 const MAX_CAMERA_BOOST := 4.0
 const WALL_WIDTH := 102.4 # TODO set actual wall width to this
 const SCROLL_MULTI_INCREMENT := 0.2
+const WIDE_FLOOR_FREQUENCY := 50
 
 var scroll_multiplier := 1.0
-var is_scrolling := false
+var has_started_scrolling := false
 var floors : Array[Floor] = []
 var viewport_size : Vector2
 @onready var camera : Camera2D = $Camera
@@ -29,9 +30,9 @@ func _ready() -> void:
 	# initialise pool of floors
 	for i in range(FLOOR_COUNT):
 		var f : Floor = FLOOR_SCENE.instantiate()
-		f.position.y += viewport_size.y - FLOOR_HEIGHT * 0.5
+		f.level = i
 		add_child(f)
-		_set_floor_properties(f, i)
+		_set_floor_properties(f)
 		floors.append(f)
 
 
@@ -42,17 +43,18 @@ func _process(delta: float) -> void:
 	var camera_center : Vector2 = camera.global_position + viewport_size * 0.5
 	var offset_ratio = (player.position.y - camera_center.y) / (viewport_size.y * 0.5)
 	if offset_ratio <= 0.5:
-		is_scrolling = true
+		has_started_scrolling = true
 		if scroll_multi_timer.is_stopped():
 			scroll_multi_timer.start()
 	if offset_ratio < 0.0: 
 		dy *= 1.0 + MAX_CAMERA_BOOST * abs(offset_ratio)
-	if is_scrolling:
+	if has_started_scrolling:
 		camera.global_position.y -= dy
 
 	# floor pooling - move floors up if they leave screen
 	if camera.global_position.y + viewport_size.y + FLOOR_HEIGHT * 0.5 < floors[0].position.y:
 		var first_floor : Floor = floors.pop_front()
+		first_floor.level += FLOOR_COUNT
 		_set_floor_properties(first_floor)
 		floors.push_back(first_floor)
 	
@@ -60,17 +62,21 @@ func _process(delta: float) -> void:
 		player_fell_off.emit()
 
 
-## i is an index representing position of Floor in floors Array
-## i is only meant to be used when initialising floors Array
-## i defaults to FLOOR_COUNT so that it can be repositioned to the top of Array
-func _set_floor_properties(f: Floor, i: int = FLOOR_COUNT):
-	var width := randi_range(MIN_FLOOR_WIDTH, MAX_FLOOR_WIDTH)
-	if i == 0:
-		width = 800
-	f.set_size(Vector2(width, FLOOR_HEIGHT))
-	f.position.y -= FLOOR_SPACING * i
-	var x_offset = WALL_WIDTH + width * 0.5
-	f.position.x = randf_range(x_offset, viewport_size.x - x_offset)
+## sets position and size of floor
+func _set_floor_properties(f: Floor):
+	var floor_size := Vector2i(0, FLOOR_HEIGHT)
+	var floor_position := Vector2.ZERO
+	if f.level % WIDE_FLOOR_FREQUENCY == 0:
+		floor_size.x = int(viewport_size.x)
+		floor_position.x = viewport_size.x / 2
+	else:
+		floor_size.x = randi_range(MIN_FLOOR_WIDTH, MAX_FLOOR_WIDTH)
+		var x_offset = WALL_WIDTH + floor_size.x * 0.5
+		floor_position.x = randf_range(x_offset, viewport_size.x - x_offset)
+	floor_position.y = -FLOOR_SPACING * f.level + viewport_size.y - FLOOR_HEIGHT * 0.5
+	
+	f.set_size(floor_size)
+	f.position = floor_position
 
 
 func _on_scroll_multi_timer_timeout() -> void:

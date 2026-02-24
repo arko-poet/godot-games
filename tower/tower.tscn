@@ -37,6 +37,7 @@ anchor_mode = 0
 position = Vector2(696, 0)
 
 [node name="ParallaxWalls" type="Parallax2D" parent="." unique_id=519988515]
+z_index = 1
 scroll_scale = Vector2(0.9, 0.9)
 repeat_size = Vector2(0, 600)
 
