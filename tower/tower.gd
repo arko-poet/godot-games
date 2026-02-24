@@ -18,6 +18,7 @@ var scroll_multiplier := 1.0
 var has_started_scrolling := false
 var floors : Array[Floor] = []
 var viewport_size : Vector2
+
 @onready var camera : Camera2D = $Camera
 @onready var player : Node2D = $Player
 @onready var scroll_multi_timer : Timer = $ScrollMultiTimer
@@ -67,13 +68,13 @@ func _set_floor_properties(f: Floor):
 	var floor_size := Vector2i(0, FLOOR_HEIGHT)
 	var floor_position := Vector2.ZERO
 	if f.level % WIDE_FLOOR_FREQUENCY == 0:
-		floor_size.x = int(viewport_size.x)
+		floor_size.x = int(viewport_size.x - WALL_WIDTH)
 		floor_position.x = viewport_size.x / 2
 	else:
 		floor_size.x = randi_range(MIN_FLOOR_WIDTH, MAX_FLOOR_WIDTH)
 		var x_offset = WALL_WIDTH + floor_size.x * 0.5
 		floor_position.x = randf_range(x_offset, viewport_size.x - x_offset)
-	floor_position.y = -FLOOR_SPACING * f.level + viewport_size.y - FLOOR_HEIGHT * 0.5
+	floor_position.y = viewport_size.y - FLOOR_SPACING * f.level - FLOOR_HEIGHT * 0.5
 	
 	f.set_size(floor_size)
 	f.position = floor_position
