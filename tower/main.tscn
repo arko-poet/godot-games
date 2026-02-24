@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cns4vebgsgfkx" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://ca5eirs1pfuvp" path="res://tower.tscn" id="1_ig7tw"]
 [ext_resource type="AudioStream" uid="uid://daj1mg1cg6ou1" path="res://assets/prettyjohn1-funk-funky-483396.mp3" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://dpvpf55n41csj" path="res://hud.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://kl7ms873ejpl" path="res://music.gd" id="4_lquwl"]
 
 [node name="Main" type="Node" unique_id=220603152]
 script = ExtResource("1_0xm2m")
@@ -11,10 +13,23 @@ script = ExtResource("1_0xm2m")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1949642088]
 stream = ExtResource("3_h2yge")
+volume_db = 1.0
 autoplay = true
+parameters/looping = false
+script = ExtResource("4_lquwl")
 
-[node name="HSlider" type="HSlider" parent="." unique_id=2013291659]
-offset_right = 8.0
-offset_bottom = 16.0
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1205729635]
+script = ExtResource("4_1bvp3")
+
+[node name="VolumeControl" type="HSlider" parent="HUD" unique_id=1830701180]
+offset_left = 8.0
+offset_top = 544.0
+offset_right = 96.0
+offset_bottom = 592.0
+tooltip_text = "volume"
+max_value = 1.0
+step = 0.01
+value = 1.0
 
 [connection signal="player_fell_off" from="Tower" to="." method="_on_tower_player_fell_off"]
+[connection signal="drag_ended" from="HUD/VolumeControl" to="HUD" method="_on_volume_control_drag_ended"]
