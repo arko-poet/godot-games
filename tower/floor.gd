@@ -13,8 +13,6 @@ func _ready():
 
 
 func set_size(size_: Vector2) -> void:
-	print(sprite.texture.get_size())
 	sprite.scale = size_ / sprite.texture.get_size()
 	collision.shape.size = size_
-	#$CenterContainer/NinePatchRect.size = size_
 	self.size = size_

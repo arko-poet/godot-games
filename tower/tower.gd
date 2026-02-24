@@ -1,3 +1,4 @@
+class_name Tower
 extends Node2D
 
 signal player_fell_off
