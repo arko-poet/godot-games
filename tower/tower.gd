@@ -2,13 +2,13 @@ extends Node2D
 
 const SCROLL_SPEED = 100
 const FLOOR_SCENE := preload("res://floor.tscn")
-const FLOOR_COUNT := 20
+const FLOOR_COUNT := 10
 const FLOOR_SPACING := 100
 const FLOOR_HEIGHT := 32
 const MIN_FLOOR_WIDTH := 64
 const MAX_FLOOR_WIDTH := 256
 const MAX_CAMERA_BOOST := 4.0
-const WALL_WIDTH := 102.4
+const WALL_WIDTH := 102.4 # TODO set actual wall width to this
 
 var floors : Array[Floor] = []
 var viewport_size : Vector2
@@ -46,11 +46,13 @@ func _process(delta: float) -> void:
 		floors.push_back(first_floor)
 
 
-## i is an index representing position of Floor in array
-## i is only used when initialising floors Array
+## i is an index representing position of Floor in floors Array
+## i is only meant to be used when initialising floors Array
 ## i defaults to FLOOR_COUNT so that it can be repositioned to the top of Array
 func _set_floor_properties(f: Floor, i: int = FLOOR_COUNT):
 	var width := randi_range(MIN_FLOOR_WIDTH, MAX_FLOOR_WIDTH)
+	if i == 0:
+		width = 800
 	f.set_size(Vector2(width, FLOOR_HEIGHT))
 	f.position.y -= FLOOR_SPACING * i
 	var x_offset = WALL_WIDTH + width * 0.5
