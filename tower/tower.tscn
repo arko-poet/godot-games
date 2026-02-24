@@ -73,3 +73,8 @@ texture = ExtResource("6_4ibu2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=61578451]
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_tdbe0")
+
+[node name="ScrollMultiTimer" type="Timer" parent="." unique_id=1688615953]
+wait_time = 10.0
+
+[connection signal="timeout" from="ScrollMultiTimer" to="." method="_on_scroll_multi_timer_timeout"]

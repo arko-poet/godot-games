@@ -2,7 +2,7 @@ extends Node2D
 
 signal player_fell_off
 
-const BASE_SCROLL_SPEED = 100
+const BASE_SCROLL_SPEED = 100.0
 const FLOOR_SCENE := preload("res://floor.tscn")
 const FLOOR_COUNT := 10
 const FLOOR_SPACING := 100
@@ -11,12 +11,15 @@ const MIN_FLOOR_WIDTH := 64
 const MAX_FLOOR_WIDTH := 256
 const MAX_CAMERA_BOOST := 4.0
 const WALL_WIDTH := 102.4 # TODO set actual wall width to this
+const SCROLL_MULTI_INCREMENT := 0.2
 
+var scroll_multiplier := 1.0
 var is_scrolling := false
 var floors : Array[Floor] = []
 var viewport_size : Vector2
 @onready var camera : Camera2D = $Camera
 @onready var player : Node2D = $Player
+@onready var scroll_multi_timer : Timer = $ScrollMultiTimer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -35,11 +38,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# move up the tower
-	var dy = delta * BASE_SCROLL_SPEED
+	var dy := delta * BASE_SCROLL_SPEED * scroll_multiplier
 	var camera_center : Vector2 = camera.global_position + viewport_size * 0.5
 	var offset_ratio = (player.position.y - camera_center.y) / (viewport_size.y * 0.5)
 	if offset_ratio <= 0.5:
 		is_scrolling = true
+		if scroll_multi_timer.is_stopped():
+			scroll_multi_timer.start()
 	if offset_ratio < 0.0: 
 		dy *= 1.0 + MAX_CAMERA_BOOST * abs(offset_ratio)
 	if is_scrolling:
@@ -66,3 +71,7 @@ func _set_floor_properties(f: Floor, i: int = FLOOR_COUNT):
 	f.position.y -= FLOOR_SPACING * i
 	var x_offset = WALL_WIDTH + width * 0.5
 	f.position.x = randf_range(x_offset, viewport_size.x - x_offset)
+
+
+func _on_scroll_multi_timer_timeout() -> void:
+	scroll_multiplier += SCROLL_MULTI_INCREMENT
