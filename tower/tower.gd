@@ -2,7 +2,7 @@ extends Node2D
 
 signal player_fell_off
 
-const SCROLL_SPEED = 100
+const BASE_SCROLL_SPEED = 100
 const FLOOR_SCENE := preload("res://floor.tscn")
 const FLOOR_COUNT := 10
 const FLOOR_SPACING := 100
@@ -12,6 +12,7 @@ const MAX_FLOOR_WIDTH := 256
 const MAX_CAMERA_BOOST := 4.0
 const WALL_WIDTH := 102.4 # TODO set actual wall width to this
 
+var is_scrolling := false
 var floors : Array[Floor] = []
 var viewport_size : Vector2
 @onready var camera : Camera2D = $Camera
@@ -34,12 +35,15 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# move up the tower
-	var dy = delta * SCROLL_SPEED
+	var dy = delta * BASE_SCROLL_SPEED
 	var camera_center : Vector2 = camera.global_position + viewport_size * 0.5
 	var offset_ratio = (player.position.y - camera_center.y) / (viewport_size.y * 0.5)
+	if offset_ratio <= 0.5:
+		is_scrolling = true
 	if offset_ratio < 0.0: 
 		dy *= 1.0 + MAX_CAMERA_BOOST * abs(offset_ratio)
-	camera.global_position.y -= dy
+	if is_scrolling:
+		camera.global_position.y -= dy
 
 	# floor pooling - move floors up if they leave screen
 	if camera.global_position.y + viewport_size.y + FLOOR_HEIGHT * 0.5 < floors[0].position.y:

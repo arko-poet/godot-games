@@ -60,7 +60,7 @@ region_rect = Rect2(0, 0, 1024, 6144)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=314330960]
 z_index = 1
-position = Vector2(424, 120)
+position = Vector2(408, 528)
 scale = Vector2(1, 1.0024438)
 collision_mask = 6
 script = ExtResource("5_lny5m")
