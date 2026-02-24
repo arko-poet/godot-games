@@ -3,6 +3,7 @@ extends CharacterBody2D
 const HORIZONTAL_ACCELERATION := 900
 const MAX_SPEED := 500
 const JUMP_IMPULSE := 500
+const SIZE := 64 # TODO set sprite and collision size to this
 
 func _physics_process(delta: float) -> void:
 	# horizontal movement

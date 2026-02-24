@@ -1,5 +1,7 @@
 extends Node2D
 
+signal player_fell_off
+
 const SCROLL_SPEED = 100
 const FLOOR_SCENE := preload("res://floor.tscn")
 const FLOOR_COUNT := 10
@@ -44,6 +46,9 @@ func _process(delta: float) -> void:
 		var first_floor : Floor = floors.pop_front()
 		_set_floor_properties(first_floor)
 		floors.push_back(first_floor)
+	
+	if player.position.y - player.SIZE > camera.global_position.y + viewport_size.y:
+		player_fell_off.emit()
 
 
 ## i is an index representing position of Floor in floors Array

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cc05utqu543r1"]
+
+[ext_resource type="Script" uid="uid://cns4vebgsgfkx" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://ca5eirs1pfuvp" path="res://tower.tscn" id="1_ig7tw"]
+
+[node name="Main" type="Node" unique_id=220603152]
+script = ExtResource("1_0xm2m")
+
+[node name="Tower" parent="." unique_id=385049633 instance=ExtResource("1_ig7tw")]
+
+[connection signal="player_fell_off" from="Tower" to="." method="_on_tower_player_fell_off"]
