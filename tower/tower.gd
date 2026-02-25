@@ -85,3 +85,7 @@ func _set_floor_properties(f: Floor):
 
 func _on_scroll_multi_timer_timeout() -> void:
 	scroll_multiplier += SCROLL_MULTI_INCREMENT
+
+
+func get_time_left() -> float:
+	return scroll_multi_timer.time_left
