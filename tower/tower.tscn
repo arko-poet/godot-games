@@ -26,7 +26,8 @@ texture = ExtResource("1_stebd")
 centered = false
 
 [node name="Stars" type="Sprite2D" parent="ParallaxBackground" unique_id=1768523763]
-scale = Vector2(3.125, 3.125)
+texture_repeat = 2
+scale = Vector2(3.1171875, 2.6785715)
 texture = ExtResource("1_vedim")
 centered = false
 
@@ -46,7 +47,7 @@ repeat_size = Vector2(0, 600)
 [node name="LeftWallSprite" type="Sprite2D" parent="ParallaxWalls" unique_id=182090050]
 texture_repeat = 2
 position = Vector2(1.5258789e-05, -7.6293945e-06)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.1, 0.09765624)
 texture = ExtResource("4_jbe1c")
 centered = false
 region_enabled = true
@@ -55,7 +56,7 @@ region_rect = Rect2(0, 0, 1024, 6144)
 [node name="RightWallSprite" type="Sprite2D" parent="ParallaxWalls" unique_id=356965015]
 texture_repeat = 2
 position = Vector2(696, 6.7762636e-21)
-scale = Vector2(0.1, 0.099999994)
+scale = Vector2(0.1, 0.09765625)
 texture = ExtResource("4_jbe1c")
 centered = false
 region_enabled = true
