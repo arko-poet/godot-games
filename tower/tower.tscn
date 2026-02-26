@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dvl5oqupugse3" path="res://assets/brick_wall.png" id="4_jbe1c"]
 [ext_resource type="Script" uid="uid://dlk4ojdr4qufi" path="res://player.gd" id="5_lny5m"]
 [ext_resource type="Texture2D" uid="uid://bjwsakoadnovr" path="res://assets/icon.svg" id="6_4ibu2"]
+[ext_resource type="AudioStream" uid="uid://b2kill3rup6pt" path="res://assets/freesound_community-wind-up-clock-alarm-bell-64219.mp3" id="10_kvyee"]
+[ext_resource type="Script" uid="uid://dm7uacs5yx7h4" path="res://scroll_multi_speed.gd" id="11_o6rmy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdbe0"]
 size = Vector2(128, 128)
@@ -77,5 +79,9 @@ shape = SubResource("RectangleShape2D_tdbe0")
 
 [node name="ScrollMultiTimer" type="Timer" parent="." unique_id=1688615953]
 wait_time = 10.0
+
+[node name="ScrollMultiSound" type="AudioStreamPlayer" parent="." unique_id=1848785704]
+stream = ExtResource("10_kvyee")
+script = ExtResource("11_o6rmy")
 
 [connection signal="timeout" from="ScrollMultiTimer" to="." method="_on_scroll_multi_timer_timeout"]

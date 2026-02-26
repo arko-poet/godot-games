@@ -5,18 +5,13 @@
 [ext_resource type="AudioStream" uid="uid://daj1mg1cg6ou1" path="res://assets/prettyjohn1-funk-funky-483396.mp3" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://dpvpf55n41csj" path="res://hud.gd" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://kl7ms873ejpl" path="res://music.gd" id="4_lquwl"]
+[ext_resource type="AudioStream" uid="uid://d0l54chtfbl6h" path="res://assets/wilhelmscream.mp3" id="6_272bh"]
+[ext_resource type="Script" uid="uid://bcpvwixe7cidg" path="res://player_death_sound.gd" id="7_5vw27"]
 
 [node name="Main" type="Node" unique_id=220603152]
 script = ExtResource("1_0xm2m")
 
 [node name="Tower" parent="." unique_id=385049633 instance=ExtResource("1_ig7tw")]
-
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1949642088]
-stream = ExtResource("3_h2yge")
-volume_db = 1.0
-autoplay = true
-parameters/looping = false
-script = ExtResource("4_lquwl")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1205729635]
 script = ExtResource("4_1bvp3")
@@ -56,6 +51,17 @@ text = "Speed Up In: 0.0"
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Floor: 0"
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1949642088]
+stream = ExtResource("3_h2yge")
+volume_db = 1.0
+autoplay = true
+parameters/looping = false
+script = ExtResource("4_lquwl")
+
+[node name="PlayerDeathSound" type="AudioStreamPlayer" parent="." unique_id=42388761]
+stream = ExtResource("6_272bh")
+script = ExtResource("7_5vw27")
 
 [connection signal="player_fell_off" from="Tower" to="." method="_on_tower_player_fell_off"]
 [connection signal="drag_ended" from="HUD/VolumeControlSlider" to="HUD" method="_on_volume_control_drag_ended"]

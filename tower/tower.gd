@@ -20,6 +20,7 @@ var has_started_scrolling := false
 var floors : Array[Floor] = []
 var viewport_size : Vector2
 var level := 0
+var has_fallen := false
 
 @onready var camera : Camera2D = $Camera
 @onready var player : Node2D = $Player
@@ -63,7 +64,9 @@ func _process(delta: float) -> void:
 		floors.push_back(first_floor)
 
 	if player.position.y - player.SIZE > camera.global_position.y + viewport_size.y:
-		player_fell_off.emit()
+		if not has_fallen:
+			has_fallen = true
+			player_fell_off.emit()
 
 
 ## sets position and size of floor
@@ -84,6 +87,7 @@ func _set_floor_properties(f: Floor):
 
 
 func _on_scroll_multi_timer_timeout() -> void:
+	$ScrollMultiSound.play()
 	scroll_multiplier += SCROLL_MULTI_INCREMENT
 
 
