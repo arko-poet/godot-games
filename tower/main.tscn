@@ -28,11 +28,18 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="BestLevelLabel" type="Label" parent="HUD" unique_id=1301412432]
-offset_right = 143.0
-offset_bottom = 34.0
+[node name="BestScoreLabels" type="VBoxContainer" parent="HUD" unique_id=2013330786]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BestLevelLabel" type="Label" parent="HUD/BestScoreLabels" unique_id=1301412432]
+layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Best Floor: 0"
+
+[node name="BestComboLabel" type="Label" parent="HUD/BestScoreLabels" unique_id=1469922311]
+layout_mode = 2
+text = "Best Combo: 0"
 
 [node name="CurrentRunLabels" type="VBoxContainer" parent="HUD" unique_id=1110861676]
 anchors_preset = 2
@@ -41,6 +48,10 @@ anchor_bottom = 1.0
 offset_top = -61.0
 offset_right = 86.0
 grow_vertical = 0
+
+[node name="ComboLabel" type="Label" parent="HUD/CurrentRunLabels" unique_id=423478077]
+layout_mode = 2
+text = "Combo: 0"
 
 [node name="TimeLeftLabel" type="Label" parent="HUD/CurrentRunLabels" unique_id=1695683155]
 layout_mode = 2

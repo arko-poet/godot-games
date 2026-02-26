@@ -24,9 +24,11 @@ func get_level() -> int:
 
 
 func _set_color() -> void:
+	var color : Color
 	if _level < 50:
-		sprite.material.set_shader_parameter("fill_color", Color.MEDIUM_SLATE_BLUE)
+		color = Color.MEDIUM_SLATE_BLUE
 	elif _level < 100:
-		sprite.material.set_shader_parameter("fill_color", Color.MEDIUM_PURPLE)
+		color = Color.MEDIUM_PURPLE
 	else:
-		sprite.material.set_shader_parameter("fill_color", Color.PALE_VIOLET_RED)
+		color = Color.PALE_VIOLET_RED
+	sprite.material.set_shader_parameter("fill_color", color)

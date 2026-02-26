@@ -94,3 +94,9 @@ func _on_scroll_multi_timer_timeout() -> void:
 
 func get_time_left() -> float:
 	return scroll_multi_timer.time_left
+	
+func get_combo() -> int:
+	return player.combo
+
+func get_player_level() -> int:
+	return player.last_floor
