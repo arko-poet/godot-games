@@ -50,3 +50,16 @@ Node2D, AnimatedSprite2D, SubViewportContainer, SubViewport
 - Utilising TileMapLayer to draw objects
 ### New Godot Nodes learned
 Area2D, CollisionShape2D, StaticBody2D, CharacterBody2D, TileMapLayer, Path2D, PathFollow2D
+## 4. `tower`
+![](screenshots/tower.png)
+### What I learned
+- Parallax Scrolling
+- Procedural platform generation with object pooling
+- Using Scene Groups
+- Physics based character movement, bouncing, gravity, acceleration
+- Global audio settings
+- Implementing basic shaders to modify pixel colors
+- Texture smoothing using mipmaps and anisotropic filtering
+- Score persistence
+### New Godot Nodes learned
+Parallax2D, Camera2D, AudioStreamPlayer
