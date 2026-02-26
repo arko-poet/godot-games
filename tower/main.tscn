@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ca5eirs1pfuvp" path="res://tower.tscn" id="1_ig7tw"]
 [ext_resource type="AudioStream" uid="uid://daj1mg1cg6ou1" path="res://assets/prettyjohn1-funk-funky-483396.mp3" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://dpvpf55n41csj" path="res://hud.gd" id="4_1bvp3"]
+[ext_resource type="FontFile" uid="uid://cxb2annquybcr" path="res://assets/ArchivoBlack-Regular.ttf" id="4_5vw27"]
 [ext_resource type="Script" uid="uid://kl7ms873ejpl" path="res://music.gd" id="4_lquwl"]
 [ext_resource type="AudioStream" uid="uid://d0l54chtfbl6h" path="res://assets/wilhelmscream.mp3" id="6_272bh"]
 [ext_resource type="Script" uid="uid://bcpvwixe7cidg" path="res://player_death_sound.gd" id="7_5vw27"]
@@ -20,7 +21,8 @@ script = ExtResource("4_1bvp3")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -88.0
+offset_left = -96.0
+offset_right = -8.0
 offset_bottom = 48.0
 grow_horizontal = 0
 tooltip_text = "volume"
@@ -34,11 +36,13 @@ offset_bottom = 40.0
 
 [node name="BestLevelLabel" type="Label" parent="HUD/BestScoreLabels" unique_id=1301412432]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5vw27")
 theme_override_font_sizes/font_size = 24
 text = "Best Floor: 0"
 
 [node name="BestComboLabel" type="Label" parent="HUD/BestScoreLabels" unique_id=1469922311]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5vw27")
 text = "Best Combo: 0"
 
 [node name="CurrentRunLabels" type="VBoxContainer" parent="HUD" unique_id=1110861676]
@@ -51,15 +55,19 @@ grow_vertical = 0
 
 [node name="ComboLabel" type="Label" parent="HUD/CurrentRunLabels" unique_id=423478077]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5vw27")
+theme_override_font_sizes/font_size = 24
 text = "Combo: 0"
 
 [node name="TimeLeftLabel" type="Label" parent="HUD/CurrentRunLabels" unique_id=1695683155]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5vw27")
 theme_override_font_sizes/font_size = 24
 text = "Speed Up In: 0.0"
 
 [node name="LevelLabel" type="Label" parent="HUD/CurrentRunLabels" unique_id=974656142]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5vw27")
 theme_override_font_sizes/font_size = 24
 text = "Floor: 0"
 
