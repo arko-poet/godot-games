@@ -18,21 +18,28 @@ script = ExtResource("1_0xm2m")
 script = ExtResource("4_1bvp3")
 
 [node name="VolumeControlSlider" type="HSlider" parent="HUD" unique_id=1830701180]
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -96.0
+offset_top = -48.0
 offset_right = -8.0
-offset_bottom = 48.0
 grow_horizontal = 0
+grow_vertical = 0
 tooltip_text = "volume"
 max_value = 1.0
 step = 0.01
 value = 1.0
 
 [node name="BestScoreLabels" type="VBoxContainer" parent="HUD" unique_id=2013330786]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -168.0
+offset_bottom = 51.0
+grow_horizontal = 0
 
 [node name="BestLevelLabel" type="Label" parent="HUD/BestScoreLabels" unique_id=1301412432]
 layout_mode = 2
@@ -43,6 +50,7 @@ text = "Best Floor: 0"
 [node name="BestComboLabel" type="Label" parent="HUD/BestScoreLabels" unique_id=1469922311]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_5vw27")
+theme_override_font_sizes/font_size = 24
 text = "Best Combo: 0"
 
 [node name="CurrentRunLabels" type="VBoxContainer" parent="HUD" unique_id=1110861676]
