@@ -2,10 +2,11 @@ extends Node
 
 @onready var tower : Tower = $Tower
 @onready var hud : HUD = $HUD
+@onready var player_death_sound : AudioStreamPlayer = $PlayerDeathSound
 
 func _on_tower_player_fell_off() -> void:
-	$PlayerDeathSound.play()
-	await $PlayerDeathSound.finished
+	player_death_sound.play()
+	await player_death_sound.finished
 	AudioManager.free_players()
 	Globals.record_level(tower.level)
 	get_tree().reload_current_scene()

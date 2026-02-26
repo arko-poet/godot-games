@@ -34,8 +34,8 @@ func _ready() -> void:
 	# initialise pool of floors
 	for i in range(FLOOR_COUNT):
 		var f : Floor = FLOOR_SCENE.instantiate()
-		f.level = i
 		add_child(f)
+		f.set_level(i)
 		_set_floor_properties(f)
 		floors.append(f)
 
@@ -58,8 +58,8 @@ func _process(delta: float) -> void:
 	# floor pooling - move floors up if they leave screen
 	if camera.global_position.y + viewport_size.y + FLOOR_HEIGHT * 0.5 < floors[0].position.y:
 		var first_floor : Floor = floors.pop_front()
-		level = first_floor.level
-		first_floor.level += FLOOR_COUNT
+		level = first_floor.get_level()
+		first_floor.set_level(level + FLOOR_COUNT)
 		_set_floor_properties(first_floor)
 		floors.push_back(first_floor)
 
@@ -73,14 +73,15 @@ func _process(delta: float) -> void:
 func _set_floor_properties(f: Floor):
 	var floor_size := Vector2i(0, FLOOR_HEIGHT)
 	var floor_position := Vector2.ZERO
-	if f.level % WIDE_FLOOR_FREQUENCY == 0:
+	var l = f.get_level()
+	if l % WIDE_FLOOR_FREQUENCY == 0:
 		floor_size.x = int(viewport_size.x - WALL_WIDTH)
 		floor_position.x = viewport_size.x / 2
 	else:
 		floor_size.x = randi_range(MIN_FLOOR_WIDTH, MAX_FLOOR_WIDTH)
 		var x_offset = WALL_WIDTH + floor_size.x * 0.5
 		floor_position.x = randf_range(x_offset, viewport_size.x - x_offset)
-	floor_position.y = viewport_size.y - FLOOR_SPACING * f.level - FLOOR_HEIGHT * 0.5
+	floor_position.y = viewport_size.y - FLOOR_SPACING * l - FLOOR_HEIGHT * 0.5
 	
 	f.set_size(floor_size)
 	f.position = floor_position
