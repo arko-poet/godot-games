@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ox3ffoofd1ck"]
+
+[ext_resource type="Script" uid="uid://d11bv8qiroouq" path="res://sauce/player.gd" id="1_of14c"]
+[ext_resource type="Texture2D" uid="uid://db64n4kx11uww" path="res://assets/icon.svg" id="2_uwsgo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uv825"]
+
+[node name="Player" type="CharacterBody2D" unique_id=112692872]
+script = ExtResource("1_of14c")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=327319475]
+texture = ExtResource("2_uwsgo")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=814240406]
+shape = SubResource("RectangleShape2D_uv825")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1630495901]

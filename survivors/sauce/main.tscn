@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://demnf1vhw4xdd"]
+
+[ext_resource type="PackedScene" uid="uid://ciop0q6l3smip" path="res://sauce/hud.tscn" id="1_c4nqf"]
+[ext_resource type="PackedScene" uid="uid://c32ovnmsltmeb" path="res://sauce/world.tscn" id="2_wx6ee"]
+[ext_resource type="PackedScene" uid="uid://ox3ffoofd1ck" path="res://sauce/player.tscn" id="3_hqn58"]
+
+[node name="Main" type="Node" unique_id=958853341]
+
+[node name="HUD" parent="." unique_id=768161950 instance=ExtResource("1_c4nqf")]
+
+[node name="World" parent="." unique_id=1058740518 instance=ExtResource("2_wx6ee")]
+
+[node name="Player" parent="World" unique_id=112692872 instance=ExtResource("3_hqn58")]
