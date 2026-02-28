@@ -9,6 +9,7 @@ var chunk_size : float
 @onready var center_chunk : WorldChunk = $Chunk2
 @onready var right_chunk : WorldChunk = $Chunk3
 @onready var player : CharacterBody2D = $Player
+@onready var monster_spawn_points : PathFollow2D = $Player/Path/MonsterSpawnPoints
 
 
 func _ready() -> void:
@@ -29,3 +30,8 @@ func _process(_delta: float) -> void:
 		center_chunk = right_chunk
 		right_chunk = left_chunk
 		left_chunk = temp_chunk
+
+
+func get_monster_spawn_point() -> Vector2:
+	monster_spawn_points.progress_ratio = randf()
+	return monster_spawn_points.global_position

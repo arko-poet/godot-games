@@ -4,6 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://csn72tp3w20gj" path="res://sauce/world_chunk.tscn" id="1_k1pjg"]
 [ext_resource type="PackedScene" uid="uid://ox3ffoofd1ck" path="res://sauce/player.tscn" id="1_w151q"]
 
+[sub_resource type="Curve2D" id="Curve2D_6qj8k"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 500, 300, 0, 0, 0, 0, 500, -300, 0, 0, 0, 0, -500, -300, 0, 0, 0, 0, -500, 300, 0, 0, 0, 0, 500, 300)
+}
+point_count = 5
+
 [node name="World" type="Node2D" unique_id=1058740518]
 script = ExtResource("1_6qj8k")
 
@@ -16,3 +22,10 @@ position = Vector2(-3456, 0)
 position = Vector2(3456, 0)
 
 [node name="Player" parent="." unique_id=112692872 instance=ExtResource("1_w151q")]
+
+[node name="Path" type="Path2D" parent="Player" unique_id=225518473]
+curve = SubResource("Curve2D_6qj8k")
+
+[node name="MonsterSpawnPoints" type="PathFollow2D" parent="Player/Path" unique_id=1786463695]
+position = Vector2(500, 300)
+rotation = -1.5707964
