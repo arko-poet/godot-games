@@ -11,6 +11,7 @@ collision_mask = 2
 script = ExtResource("1_of14c")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=327319475]
+modulate = Color(0, 1, 0, 1)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_uwsgo")
 
@@ -18,4 +19,4 @@ texture = ExtResource("2_uwsgo")
 shape = SubResource("RectangleShape2D_uv825")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1630495901]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(2, 2)

@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-var speed := 1000
+var speed := 150.0
 
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# movement
 	var direction := Vector2.ZERO
 	if Input.is_action_pressed("move_down"):

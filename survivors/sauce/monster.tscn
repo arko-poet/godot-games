@@ -1,19 +1,20 @@
 [gd_scene format=3 uid="uid://c2vmfgmppxu1t"]
 
+[ext_resource type="Script" uid="uid://cgdokq350ee0r" path="res://sauce/monster.gd" id="1_f3lrl"]
 [ext_resource type="Texture2D" uid="uid://db64n4kx11uww" path="res://assets/icon.svg" id="1_pniwd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3lrl"]
 size = Vector2(32, 32)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xifm1"]
-blend_mode = 1
-
 [node name="Monster" type="CharacterBody2D" unique_id=1484541772]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_f3lrl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=887818423]
 shape = SubResource("RectangleShape2D_f3lrl")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1979495443]
-material = SubResource("CanvasItemMaterial_xifm1")
+modulate = Color(1, 0, 0, 1)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_pniwd")
