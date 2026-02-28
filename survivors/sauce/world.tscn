@@ -29,3 +29,8 @@ curve = SubResource("Curve2D_6qj8k")
 [node name="MonsterSpawnPoints" type="PathFollow2D" parent="Player/Path" unique_id=1786463695]
 position = Vector2(500, 300)
 rotation = -1.5707964
+
+[node name="MonsterSpawner" type="Timer" parent="." unique_id=598087123]
+autostart = true
+
+[connection signal="timeout" from="MonsterSpawner" to="." method="_on_monster_spawner_timeout"]

@@ -1,6 +1,7 @@
 extends Node2D
 
 
+const MonsterScene := preload("res://sauce/monster.tscn")
 const CHUNK_COUNT := 3
 
 var chunk_size : float
@@ -35,3 +36,9 @@ func _process(_delta: float) -> void:
 func get_monster_spawn_point() -> Vector2:
 	monster_spawn_points.progress_ratio = randf()
 	return monster_spawn_points.global_position
+
+
+func _on_monster_spawner_timeout() -> void:
+	var monster := MonsterScene.instantiate()
+	add_child(monster)
+	monster.global_position = get_monster_spawn_point()
