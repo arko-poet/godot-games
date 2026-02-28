@@ -8,11 +8,11 @@
 script = ExtResource("1_6qj8k")
 
 [node name="Chunk" parent="." unique_id=1334374625 instance=ExtResource("1_k1pjg")]
-position = Vector2(-3200, 0)
+position = Vector2(-3456, 0)
 
 [node name="Chunk2" parent="." unique_id=1321329296 instance=ExtResource("1_k1pjg")]
 
 [node name="Chunk3" parent="." unique_id=1932232924 instance=ExtResource("1_k1pjg")]
-position = Vector2(3200, 0)
+position = Vector2(3456, 0)
 
 [node name="Player" parent="." unique_id=112692872 instance=ExtResource("1_w151q")]
