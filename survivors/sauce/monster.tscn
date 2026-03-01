@@ -4,17 +4,25 @@
 [ext_resource type="Texture2D" uid="uid://db64n4kx11uww" path="res://assets/icon.svg" id="1_pniwd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3lrl"]
-size = Vector2(32, 32)
+size = Vector2(16, 16)
 
 [node name="Monster" type="CharacterBody2D" unique_id=1484541772]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 6
 script = ExtResource("1_f3lrl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=887818423]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=887818423]
 shape = SubResource("RectangleShape2D_f3lrl")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1979495443]
 modulate = Color(1, 0, 0, 1)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_pniwd")
+
+[node name="Navigation" type="NavigationAgent2D" parent="." unique_id=1071640888]
+
+[node name="UpdateTargetPosition" type="Timer" parent="." unique_id=1743981951]
+wait_time = 0.8
+autostart = true
+
+[connection signal="timeout" from="UpdateTargetPosition" to="." method="_on_update_target_position_timeout"]
