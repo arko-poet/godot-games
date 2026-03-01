@@ -3,9 +3,7 @@ extends Node2D
 
 const MonsterScene := preload("res://sauce/monster.tscn")
 const CHUNK_COUNT := 3
-
 var chunk_size : float
-
 @onready var left_chunk : WorldChunk = $Chunk
 @onready var center_chunk : WorldChunk = $Chunk2
 @onready var right_chunk : WorldChunk = $Chunk3
