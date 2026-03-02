@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d11bv8qiroouq" path="res://sauce/player.gd" id="1_of14c"]
 [ext_resource type="Texture2D" uid="uid://db64n4kx11uww" path="res://assets/icon.svg" id="2_uwsgo"]
+[ext_resource type="Script" uid="uid://cqnuv0q4xkl87" path="res://sauce/weapon_manager.gd" id="3_uwsgo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uv825"]
 size = Vector2(32, 32)
@@ -20,3 +21,6 @@ shape = SubResource("RectangleShape2D_uv825")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1630495901]
 zoom = Vector2(2, 2)
+
+[node name="WeaponManager" type="Node2D" parent="." unique_id=632685048]
+script = ExtResource("3_uwsgo")

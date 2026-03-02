@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://yj34xq67ejo6"]
+
+[ext_resource type="PackedScene" uid="uid://mxtxxy6qqk06" path="res://sauce/weapon.tscn" id="1_2b7m0"]
+[ext_resource type="Script" uid="uid://b22n8gkk5cw1b" path="res://sauce/fire_staff.gd" id="1_u7bxs"]
+
+[node name="FireStaff" unique_id=12557176 instance=ExtResource("1_2b7m0")]
+script = ExtResource("1_u7bxs")
+
+[node name="CooldownTimer" parent="." index="0" unique_id=390843552]
+wait_time = 0.5
