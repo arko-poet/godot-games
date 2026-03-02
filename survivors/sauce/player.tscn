@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uv825"]
 size = Vector2(32, 32)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uwsgo"]
+radius = 100.0
+
 [node name="Player" type="CharacterBody2D" unique_id=112692872]
 collision_mask = 2
 script = ExtResource("1_of14c")
@@ -24,3 +27,10 @@ zoom = Vector2(2, 2)
 
 [node name="WeaponManager" type="Node2D" parent="." unique_id=632685048]
 script = ExtResource("3_uwsgo")
+
+[node name="XPMagnet" type="Area2D" parent="." unique_id=2093961326 groups=["magnet"]]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="XPMagnet" unique_id=1287711624]
+shape = SubResource("CircleShape2D_uwsgo")

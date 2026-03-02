@@ -1,7 +1,9 @@
+class_name Player
 extends CharacterBody2D
 
 var speed := 150.0
 
+var xp := 0
 
 func _physics_process(_delta: float) -> void:
 	# movement
@@ -16,3 +18,7 @@ func _physics_process(_delta: float) -> void:
 		direction.x += 1
 	velocity = direction.normalized() * speed
 	move_and_slide()
+
+
+func add_xp(value : int) -> void:
+	xp += value

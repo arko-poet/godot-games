@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bnpyn03s61qm3"]
+
+[ext_resource type="Texture2D" uid="uid://clwhp1303oafo" path="res://assets/All_Fire_Bullet_Pixel_16x16_03.png" id="1_akea0"]
+[ext_resource type="Script" uid="uid://h22jxh1ns1mh" path="res://sauce/xp_orb.gd" id="1_pamjg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pamjg"]
+radius = 6.0
+
+[node name="XPOrb" type="Area2D" unique_id=1925383040]
+collision_layer = 16
+collision_mask = 33
+script = ExtResource("1_pamjg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=154383313]
+shape = SubResource("CircleShape2D_pamjg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=502246827]
+texture_filter = 3
+texture = ExtResource("1_akea0")
+region_enabled = true
+region_rect = Rect2(192, 208, 16, 16)
+region_filter_clip_enabled = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

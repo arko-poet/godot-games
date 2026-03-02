@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED := 100.0
+const XPOrbScene := preload("res://sauce/xp_orb.tscn")
 var target : Node
 @onready var navigation: NavigationAgent2D = $Navigation
 
@@ -21,5 +22,9 @@ func _on_navigation_velocity_computed(safe_velocity: Vector2) -> void:
 		velocity = safe_velocity
 		move_and_slide()
 
+
 func hit() -> void:
+	var xp_orb := XPOrbScene.instantiate()
+	xp_orb.global_position = global_position
+	get_parent().add_child(xp_orb)
 	queue_free()
