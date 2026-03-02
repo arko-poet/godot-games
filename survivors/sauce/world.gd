@@ -38,6 +38,6 @@ func get_monster_spawn_point() -> Vector2:
 
 func _on_monster_spawner_timeout() -> void:
 	var monster := MonsterScene.instantiate()
+	monster.global_position = get_monster_spawn_point()
 	monster.set_target(player)
 	add_child(monster)
-	monster.global_position = get_monster_spawn_point()

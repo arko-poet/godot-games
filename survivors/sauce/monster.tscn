@@ -4,20 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://db64n4kx11uww" path="res://assets/icon.svg" id="1_pniwd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f3lrl"]
-radius = 8.0
+radius = 16.0
 
 [node name="Monster" type="CharacterBody2D" unique_id=1484541772 groups=["monsters"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_f3lrl")
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=887818423]
-shape = SubResource("CircleShape2D_f3lrl")
-
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1979495443]
 modulate = Color(1, 0, 0, 1)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_pniwd")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=887818423]
+shape = SubResource("CircleShape2D_f3lrl")
 
 [node name="Navigation" type="NavigationAgent2D" parent="." unique_id=1071640888]
 avoidance_enabled = true

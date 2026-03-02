@@ -43,13 +43,23 @@ animations = [{
 radius = 8.0
 
 [node name="Area2D" type="Area2D" unique_id=1021673665]
+collision_layer = 8
+collision_mask = 4
 script = ExtResource("1_t6b4q")
 
 [node name="Animated" type="AnimatedSprite2D" parent="." unique_id=1160971174]
 sprite_frames = SubResource("SpriteFrames_h4qhm")
 autoplay = "default"
-frame_progress = 0.5775823
+frame_progress = 0.7829029
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1313145955]
 position = Vector2(3, 0)
 shape = SubResource("CircleShape2D_t6b4q")
+
+[node name="TTL" type="Timer" parent="." unique_id=929566586]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TTL" to="." method="_on_ttl_timeout"]

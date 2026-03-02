@@ -1,8 +1,18 @@
 class_name Fireball
 extends Area2D
 
-const BASE_SPEED := 200
+const BASE_SPEED := 100
 var direction := Vector2.ZERO
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	position += direction * BASE_SPEED * delta
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("monsters"):
+		body.hit()
+		queue_free()
+
+
+func _on_ttl_timeout() -> void:
+	queue_free()

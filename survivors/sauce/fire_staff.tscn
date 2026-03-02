@@ -7,4 +7,4 @@
 script = ExtResource("1_u7bxs")
 
 [node name="CooldownTimer" parent="." index="0" unique_id=390843552]
-wait_time = 0.5
+wait_time = 2.0

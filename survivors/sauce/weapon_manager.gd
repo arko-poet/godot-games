@@ -12,8 +12,10 @@ func _ready() -> void:
 
 
 func _process(_delta : float) -> void:
-	for weapon in weapons:
-		weapon.target = _find_nearest_enemy()
+	var target : Node2D = _find_nearest_enemy()
+	if target:
+		for weapon in weapons:
+			weapon.target = target.global_position
 
 
 func _find_nearest_enemy() -> Node2D:
