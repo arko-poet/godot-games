@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c758gvoe4akid" path="res://sauce/weapon.gd" id="1_tl61x"]
 
-[node name="Weapon" type="Node2D" unique_id=1797850414]
+[node name="Weapon" type="Node2D" unique_id=1064152361]
 script = ExtResource("1_tl61x")
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=390843552]

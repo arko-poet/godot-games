@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://urwbna5m5nfd"]
 
 [ext_resource type="Texture2D" uid="uid://b7eixecff1h8w" path="res://assets/All_Fire_Bullet_Pixel_16x16_06.png" id="1_jqpc6"]
+[ext_resource type="Script" uid="uid://banmx6f4cmjjr" path="res://sauce/fireball.gd" id="1_t6b4q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qujof"]
 atlas = ExtResource("1_jqpc6")
@@ -42,11 +43,12 @@ animations = [{
 radius = 8.0
 
 [node name="Area2D" type="Area2D" unique_id=1021673665]
+script = ExtResource("1_t6b4q")
 
 [node name="Animated" type="AnimatedSprite2D" parent="." unique_id=1160971174]
 sprite_frames = SubResource("SpriteFrames_h4qhm")
 autoplay = "default"
-frame_progress = 0.4514372
+frame_progress = 0.5775823
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1313145955]
 position = Vector2(3, 0)
