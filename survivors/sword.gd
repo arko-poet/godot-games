@@ -26,7 +26,7 @@ func _sword_swipe(angle: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Monster:
-		body.call_deferred("hit")
+		body.call_deferred("hit", damage)
 
 
 func _activate():

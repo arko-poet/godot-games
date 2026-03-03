@@ -5,6 +5,7 @@
 
 [node name="FireStaff" unique_id=12557176 instance=ExtResource("1_2b7m0")]
 script = ExtResource("1_u7bxs")
+damage = 5
 
 [node name="CooldownTimer" parent="." index="0" unique_id=390843552]
 wait_time = 5.0

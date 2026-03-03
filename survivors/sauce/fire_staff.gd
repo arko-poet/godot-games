@@ -5,6 +5,7 @@ const FireballScene := preload("res://sauce/fireball.tscn")
 
 func _attack() -> void:
 	var fireball : Fireball = FireballScene.instantiate()
+	fireball.damage = damage
 	if target:
 		fireball.direction = (target - global_position).normalized()
 		fireball.rotation = fireball.direction.angle()

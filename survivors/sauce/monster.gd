@@ -27,9 +27,9 @@ func _on_navigation_velocity_computed(safe_velocity: Vector2) -> void:
 		move_and_slide()
 
 
-func hit() -> void:
-	hp -= 1
-	if hp <= 0:
+func hit(damage_recieved: int) -> void:
+	hp = max(0, hp - damage_recieved)
+	if hp == 0:
 		var xp_orb := XPOrbScene.instantiate()
 		xp_orb.global_position = global_position
 		get_parent().add_child(xp_orb)
