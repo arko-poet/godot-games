@@ -8,6 +8,7 @@ var xp := 0
 var max_hp := 100
 var hp := 100
 var monsters_in_contact : Array[Monster] = []
+@onready var sprite: AnimatedSprite2D = $Sprite
 
 
 func _physics_process(_delta: float) -> void:
@@ -22,6 +23,11 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
 	velocity = direction.normalized() * speed
+	if velocity.x != 0 or velocity.y != 0:
+		sprite.animation = "walk"
+	else:
+		sprite.animation = "idle"
+	sprite.flip_h = direction.x < 0.0
 	move_and_slide()
 
 
