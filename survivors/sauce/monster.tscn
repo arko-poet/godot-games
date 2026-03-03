@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cgdokq350ee0r" path="res://sauce/monster.gd" id="1_f3lrl"]
 [ext_resource type="Texture2D" uid="uid://db64n4kx11uww" path="res://assets/icon.svg" id="1_pniwd"]
+[ext_resource type="Shader" uid="uid://bn88dr56efcdj" path="res://sauce/hit_flash.gdshader" id="2_xifm1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dpc8o"]
+resource_local_to_scene = true
+shader = ExtResource("2_xifm1")
+shader_parameter/flash_amount = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f3lrl"]
 radius = 16.0
@@ -13,6 +19,7 @@ script = ExtResource("1_f3lrl")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1979495443]
 modulate = Color(1, 0, 0, 1)
+material = SubResource("ShaderMaterial_dpc8o")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_pniwd")
 

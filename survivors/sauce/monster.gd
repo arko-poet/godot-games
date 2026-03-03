@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
-
 const SPEED := 100.0
 const XPOrbScene := preload("res://sauce/xp_orb.tscn")
 var target : Node
+var hp := 2
 @onready var navigation: NavigationAgent2D = $Navigation
+@onready var sprite: Sprite2D = $Sprite
+
 
 func _physics_process(_delta: float) -> void:
 	if target:
@@ -24,7 +26,22 @@ func _on_navigation_velocity_computed(safe_velocity: Vector2) -> void:
 
 
 func hit() -> void:
-	var xp_orb := XPOrbScene.instantiate()
-	xp_orb.global_position = global_position
-	get_parent().add_child(xp_orb)
+	hp -= 1
+	if hp <= 0:
+		var xp_orb := XPOrbScene.instantiate()
+		xp_orb.global_position = global_position
+		get_parent().add_child(xp_orb)
+		_die()
+	else:
+		_hit_flash()
+
+
+func _hit_flash() -> void:
+	sprite.material.set_shader_parameter("flash_amount", 1.0)
+	var t : Tween = create_tween()
+	t.tween_method(func(b): sprite.material.set_shader_parameter("flash_amount", b), 1, 0, 0.1)
+	t.play()
+
+
+func _die() -> void:
 	queue_free()
