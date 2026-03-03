@@ -33,4 +33,5 @@ rotation = -1.5707964
 [node name="MonsterSpawner" type="Timer" parent="." unique_id=598087123]
 autostart = true
 
+[connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="timeout" from="MonsterSpawner" to="." method="_on_monster_spawner_timeout"]

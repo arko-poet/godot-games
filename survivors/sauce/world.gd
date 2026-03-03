@@ -1,6 +1,6 @@
 extends Node2D
 
-
+signal game_over
 const MonsterScene := preload("res://sauce/monster.tscn")
 const CHUNK_COUNT := 3
 var chunk_size : float
@@ -41,3 +41,7 @@ func _on_monster_spawner_timeout() -> void:
 	monster.global_position = get_monster_spawn_point()
 	monster.set_target(player)
 	add_child(monster)
+
+
+func _on_player_died() -> void:
+	game_over.emit()

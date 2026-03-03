@@ -1,11 +1,13 @@
+class_name Monster
 extends CharacterBody2D
 
 const SPEED := 100.0
 const XPOrbScene := preload("res://sauce/xp_orb.tscn")
 var target : Node
 var hp := 2
+var damage := 1
 @onready var navigation: NavigationAgent2D = $Navigation
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = $Sprite
 
 
 func _physics_process(_delta: float) -> void:
@@ -39,7 +41,7 @@ func hit() -> void:
 func _hit_flash() -> void:
 	sprite.material.set_shader_parameter("flash_amount", 1.0)
 	var t : Tween = create_tween()
-	t.tween_method(func(b): sprite.material.set_shader_parameter("flash_amount", b), 1, 0, 0.1)
+	t.tween_method(func(x): sprite.material.set_shader_parameter("flash_amount", x), 1, 0, 0.1)
 	t.play()
 
 

@@ -10,6 +10,9 @@ size = Vector2(32, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_uwsgo"]
 radius = 100.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uv825"]
+radius = 8.0
+
 [node name="Player" type="CharacterBody2D" unique_id=112692872]
 collision_mask = 2
 script = ExtResource("1_of14c")
@@ -34,3 +37,18 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="XPMagnet" unique_id=1287711624]
 shape = SubResource("CircleShape2D_uwsgo")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=892427871]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="HurtBox" unique_id=1792089874]
+shape = SubResource("CircleShape2D_uv825")
+
+[node name="HPDrainTimer" type="Timer" parent="." unique_id=1815229696]
+wait_time = 0.1
+autostart = true
+
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]
+[connection signal="timeout" from="HPDrainTimer" to="." method="_on_hp_drain_timer_timeout"]
