@@ -1,6 +1,7 @@
 extends Node2D
 
 const FireStaff := preload("res://sauce/fire_staff.tscn")
+const Sword := preload("res://sauce/sword.tscn")
 var weapons : Array[Weapon] = []
 
 
@@ -10,6 +11,10 @@ func _ready() -> void:
 	add_child(fire_staff)
 	weapons.append(fire_staff)
 
+	var sword : Weapon = Sword.instantiate()
+	sword.projectile_root = get_parent().get_parent() 
+	add_child(sword)
+	weapons.append(sword)
 
 func _process(_delta : float) -> void:
 	var target : Node2D = _find_nearest_enemy()
