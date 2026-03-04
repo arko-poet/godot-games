@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://csn72tp3w20gj"]
 
 [ext_resource type="Script" uid="uid://dvfrm1yf0a3xf" path="res://sauce/world_chunk.gd" id="1_suydt"]
-[ext_resource type="Texture2D" uid="uid://u54p1ww8co86" path="res://assets/mainlevbuild.png" id="2_bqg8p"]
+[ext_resource type="Texture2D" uid="uid://u54p1ww8co86" path="res://assets/dungeon/mainlevbuild.png" id="2_bqg8p"]
 [ext_resource type="TileSet" uid="uid://wdmnj2atk58e" path="res://sauce/tile_set.tres" id="2_suydt"]
-[ext_resource type="Texture2D" uid="uid://ry8rjvftak2w" path="res://assets/decorative.png" id="3_esawt"]
+[ext_resource type="Texture2D" uid="uid://ry8rjvftak2w" path="res://assets/dungeon/decorative.png" id="3_esawt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_suydt"]
 vertices = PackedVector2Array(-48, -47, -48, -241, 1695, -1551, 1695, 1567, -1695, -1551, -306, -241, -1695, 1567, -306, -47)

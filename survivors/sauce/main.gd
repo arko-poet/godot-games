@@ -3,6 +3,11 @@ extends Node
 @onready var player: Player = $World/Player
 @onready var hud: HUD = $HUDLayer/HUD
 
+
+func _process(_delta):
+	print(Engine.get_frames_per_second())
+
+
 func _on_world_game_over() -> void:
 	get_tree().reload_current_scene()
 

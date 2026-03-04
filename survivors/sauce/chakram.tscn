@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://c1xxl37c8ca6i"]
+
+[ext_resource type="Script" uid="uid://cin4g2ejeeree" path="res://chakram.gd" id="1_dgn7x"]
+[ext_resource type="Texture2D" uid="uid://c7b5oxumeoosy" path="res://assets/Trap and Weapon/00 All.png" id="2_gvym2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qpfu8"]
+radius = 24.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhkpg"]
+atlas = ExtResource("2_gvym2")
+region = Rect2(0, 400, 48, 48)
+
+[sub_resource type="Animation" id="Animation_ep12q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xpvw7"]
+resource_name = "rotation"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hrnoj"]
+_data = {
+&"RESET": SubResource("Animation_ep12q"),
+&"rotation": SubResource("Animation_xpvw7")
+}
+
+[node name="Chakram" type="Area2D" unique_id=140805019]
+scale = Vector2(0.5, 0.5)
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_dgn7x")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=2143847978]
+shape = SubResource("CircleShape2D_qpfu8")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1076513225]
+texture = SubResource("AtlasTexture_jhkpg")
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=1668143449]
+libraries/ = SubResource("AnimationLibrary_hrnoj")
+autoplay = &"rotation"
+
+[node name="TTL" type="Timer" parent="." unique_id=25831983]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TTL" to="." method="_on_ttl_timeout"]
