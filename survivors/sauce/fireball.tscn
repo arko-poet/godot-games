@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://urwbna5m5nfd"]
+[gd_scene format=3 uid="uid://7phw4cyec6q1"]
 
 [ext_resource type="Texture2D" uid="uid://b7eixecff1h8w" path="res://assets/fire_bullets/All_Fire_Bullet_Pixel_16x16_06.png" id="1_jqpc6"]
-[ext_resource type="Script" uid="uid://banmx6f4cmjjr" path="res://sauce/fireball.gd" id="1_t6b4q"]
+[ext_resource type="PackedScene" uid="uid://7qjv0qyipjw8" path="res://sauce/projectile.tscn" id="1_l8gjs"]
+[ext_resource type="Script" uid="uid://3co8rsy58qsh" path="res://sauce/fireball.gd" id="1_t6b4q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qujof"]
 atlas = ExtResource("1_jqpc6")
@@ -19,7 +20,7 @@ region = Rect2(320, 240, 32, 16)
 atlas = ExtResource("1_jqpc6")
 region = Rect2(352, 240, 32, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_h4qhm"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_kvvf7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -39,27 +40,16 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_t6b4q"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_amh8k"]
 radius = 8.0
 
-[node name="Fireball" type="Area2D" unique_id=1021673665]
-collision_layer = 8
-collision_mask = 4
+[node name="Fireball" unique_id=1721435030 instance=ExtResource("1_l8gjs")]
 script = ExtResource("1_t6b4q")
 
-[node name="Animated" type="AnimatedSprite2D" parent="." unique_id=1160971174]
-sprite_frames = SubResource("SpriteFrames_h4qhm")
+[node name="Animated" type="AnimatedSprite2D" parent="." index="0" unique_id=1955013424]
+sprite_frames = SubResource("SpriteFrames_kvvf7")
 autoplay = "default"
-frame_progress = 0.8357158
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=1313145955]
-position = Vector2(3, 0)
-shape = SubResource("CircleShape2D_t6b4q")
-
-[node name="TTL" type="Timer" parent="." unique_id=929566586]
-wait_time = 10.0
-one_shot = true
-autostart = true
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="TTL" to="." method="_on_ttl_timeout"]
+[node name="Collision" parent="." index="1" unique_id=137886357]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_amh8k")

@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://c1xxl37c8ca6i"]
 
-[ext_resource type="Script" uid="uid://cin4g2ejeeree" path="res://sauce/chakram.gd" id="1_dgn7x"]
+[ext_resource type="Script" uid="uid://od16htrdmn74" path="res://chakram.gd" id="1_dgn7x"]
+[ext_resource type="PackedScene" uid="uid://7qjv0qyipjw8" path="res://sauce/projectile.tscn" id="1_gvym2"]
 [ext_resource type="Texture2D" uid="uid://c7b5oxumeoosy" path="res://assets/Trap and Weapon/00 All.png" id="2_gvym2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qpfu8"]
-radius = 24.0
+radius = 25.298223
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jhkpg"]
 atlas = ExtResource("2_gvym2")
@@ -42,32 +43,22 @@ tracks/0/keys = {
 "values": [0.0, 6.283185307179586]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hrnoj"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ep12q"]
 _data = {
 &"RESET": SubResource("Animation_ep12q"),
 &"rotation": SubResource("Animation_xpvw7")
 }
 
-[node name="Chakram" type="Area2D" unique_id=140805019]
-scale = Vector2(0.5, 0.5)
-collision_layer = 8
-collision_mask = 4
+[node name="Chakram" unique_id=1721435030 instance=ExtResource("1_gvym2")]
+scale = Vector2(0.25, 0.25)
 script = ExtResource("1_dgn7x")
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=2143847978]
+[node name="Collision" parent="." index="0" unique_id=137886357]
 shape = SubResource("CircleShape2D_qpfu8")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1076513225]
+[node name="Sprite" type="Sprite2D" parent="." index="2" unique_id=412437909]
 texture = SubResource("AtlasTexture_jhkpg")
 
-[node name="Animation" type="AnimationPlayer" parent="." unique_id=1668143449]
-libraries/ = SubResource("AnimationLibrary_hrnoj")
+[node name="Animation" type="AnimationPlayer" parent="." index="3" unique_id=1444101290]
+libraries/ = SubResource("AnimationLibrary_ep12q")
 autoplay = &"rotation"
-
-[node name="TTL" type="Timer" parent="." unique_id=25831983]
-wait_time = 10.0
-one_shot = true
-autostart = true
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="TTL" to="." method="_on_ttl_timeout"]

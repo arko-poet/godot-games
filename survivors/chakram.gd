@@ -1,10 +1,8 @@
-extends Area2D
+extends Projectile
 
 const MIN_CHANGE_OF_RADIUS := 50
 const RATE_OF_CHANGE_OF_RADIUS := 1500
 const ANGULAR_SPEED := 3.0
-var damage : int
-var direction : Vector2
 var radius := 0.0
 var angle := 0.0
 var center : Vector2
@@ -22,12 +20,3 @@ func _physics_process(delta) -> void:
 	
 	angle += ANGULAR_SPEED * delta
 	global_position = center + Vector2(cos(angle), sin(angle)) * radius
-
-
-func _on_ttl_timeout() -> void:
-	queue_free()
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("monsters"):
-		body.call_deferred("hit", damage)
