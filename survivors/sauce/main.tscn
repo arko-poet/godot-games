@@ -12,13 +12,10 @@ script = ExtResource("1_wx6ee")
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=1148066190]
 
 [node name="HUD" parent="HUDLayer" unique_id=768161950 instance=ExtResource("1_c4nqf")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 
 [connection signal="game_over" from="World" to="." method="_on_world_game_over"]
 [connection signal="hp_changed" from="World/Player" to="." method="_on_player_hp_changed"]
+[connection signal="level_changed" from="World/Player" to="." method="_on_player_level_changed"]
+[connection signal="xp_changed" from="World/Player" to="." method="_on_player_xp_changed"]
 
 [editable path="World"]

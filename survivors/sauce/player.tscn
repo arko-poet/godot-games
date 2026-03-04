@@ -153,9 +153,6 @@ visible = false
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_avjkq")
 
-[node name="Camera" type="Camera2D" parent="." unique_id=1630495901]
-zoom = Vector2(2, 2)
-
 [node name="WeaponManager" type="Node2D" parent="." unique_id=632685048]
 script = ExtResource("3_uwsgo")
 

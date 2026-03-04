@@ -9,3 +9,11 @@ func _on_world_game_over() -> void:
 
 func _on_player_hp_changed() -> void:
 	hud.set_hp(player.hp, player.max_hp)
+
+
+func _on_player_level_changed() -> void:
+	hud.set_level(player.level)
+
+
+func _on_player_xp_changed() -> void:
+	hud.set_xp(player.xp, player.next_level_xp)

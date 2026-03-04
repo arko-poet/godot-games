@@ -23,6 +23,9 @@ position = Vector2(3456, 0)
 
 [node name="Player" parent="." unique_id=112692872 instance=ExtResource("1_w151q")]
 
+[node name="Camera" type="Camera2D" parent="Player" unique_id=1846617962]
+zoom = Vector2(2, 2)
+
 [node name="Path" type="Path2D" parent="Player" unique_id=225518473]
 curve = SubResource("Curve2D_6qj8k")
 

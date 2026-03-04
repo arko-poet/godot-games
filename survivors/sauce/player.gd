@@ -3,11 +3,15 @@ extends CharacterBody2D
 
 signal died
 signal hp_changed
+signal xp_changed
+signal level_changed
 var speed := 150.0
 var xp := 0
+var next_level_xp := 10
 var max_hp := 100
 var hp := 100
 var monsters_in_contact : Array[Monster] = []
+var level := 1
 @onready var sprite: AnimatedSprite2D = $Sprite
 
 
@@ -33,6 +37,11 @@ func _physics_process(_delta: float) -> void:
 
 func add_xp(value : int) -> void:
 	xp += value
+	if xp >= next_level_xp:
+		xp = xp - next_level_xp
+		level += 1
+		level_changed.emit()
+	xp_changed.emit()
 
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
