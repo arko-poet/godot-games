@@ -1,26 +1,19 @@
 extends Node2D
 
-const FireStaff := preload("res://sauce/fire_staff.tscn")
-const Sword := preload("res://sauce/sword.tscn")
-const Chakrams := preload("res://sauce/chakrams.tscn")
+enum WeaponID {FIRE_STAFF, SWORD, CHAKRAMS}
+const WEAPON_SCENES := {
+	WeaponID.FIRE_STAFF : preload("res://sauce/fire_staff.tscn"),
+	WeaponID.SWORD : preload("res://sauce/sword.tscn"),
+	WeaponID.CHAKRAMS : preload("res://sauce/chakrams.tscn")
+}
 var weapons : Array[Weapon] = []
 
 
 func _ready() -> void:
-	var fire_staff : Weapon = FireStaff.instantiate()
-	fire_staff.projectile_root = get_parent().get_parent() 
-	add_child(fire_staff)
-	weapons.append(fire_staff)
+	add_weapon(WeaponID.FIRE_STAFF)
+	add_weapon(WeaponID.SWORD)
+	add_weapon(WeaponID.CHAKRAMS)
 
-	var sword : Weapon = Sword.instantiate()
-	sword.projectile_root = get_parent().get_parent() 
-	add_child(sword)
-	weapons.append(sword)
-
-	var chakrams : Weapon = Chakrams.instantiate()
-	chakrams.projectile_root = get_parent().get_parent() 
-	add_child(chakrams)
-	weapons.append(chakrams)
 
 func _process(_delta : float) -> void:
 	var target : Node2D = _find_nearest_enemy()
@@ -42,3 +35,14 @@ func _find_nearest_enemy() -> Node2D:
 			nearest_enemy = e
 			nearest_distance = e_distance
 	return nearest_enemy
+
+
+func add_weapon(weapon_id : WeaponID) -> void:
+	var weapon_scene : PackedScene = WEAPON_SCENES[weapon_id]
+	if weapon_scene != null:
+		var weapon : Weapon = weapon_scene.instantiate()
+		weapon.projectile_root = get_parent().get_parent() 
+		add_child(weapon)
+		weapons.append(weapon)
+	else:
+		push_error("invalid weapon_id: %s" % weapon_id)

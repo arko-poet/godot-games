@@ -4,8 +4,8 @@ extends Node
 @onready var hud: HUD = $HUDLayer/HUD
 
 
-func _process(_delta):
-	print(Engine.get_frames_per_second())
+#func _process(_delta):
+	#print(Engine.get_frames_per_second())
 
 
 func _on_world_game_over() -> void:
