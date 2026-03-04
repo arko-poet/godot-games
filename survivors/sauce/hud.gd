@@ -5,6 +5,7 @@ extends Control
 @onready var hp_bar: ProgressBar = $HPBar
 @onready var xp_bar: ProgressBar = $XPBar
 @onready var level_label: Label = $LevelLabel
+@onready var kill_count_label: Label = $KillCount/Label
 
 
 func set_hp(hp: int, max_hp: int) -> void:
@@ -19,3 +20,7 @@ func set_xp(xp: int, max_xp: int) -> void:
 
 func set_level(level: int) -> void:
 	level_label.text = "Level: %s" % level
+
+
+func set_kill_count(count: int) -> void:
+	kill_count_label.text = "%s" % count

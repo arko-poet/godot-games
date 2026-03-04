@@ -1,9 +1,11 @@
 extends Node2D
 
 signal game_over
+signal kill_count_changed
 const MonsterScene := preload("res://sauce/monster.tscn")
 const CHUNK_COUNT := 3
 var chunk_size : float
+var kill_count := 0
 @onready var left_chunk : WorldChunk = $Chunk
 @onready var center_chunk : WorldChunk = $Chunk2
 @onready var right_chunk : WorldChunk = $Chunk3
@@ -40,8 +42,14 @@ func _on_monster_spawner_timeout() -> void:
 	var monster := MonsterScene.instantiate()
 	monster.global_position = get_monster_spawn_point()
 	monster.set_target(player)
+	monster.connect("monster_died", _on_monster_killed)
 	add_child(monster)
 
 
 func _on_player_died() -> void:
 	game_over.emit()
+
+
+func _on_monster_killed() -> void:
+	kill_count += 1
+	kill_count_changed.emit()

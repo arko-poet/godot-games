@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c1xxl37c8ca6i"]
 
-[ext_resource type="Script" uid="uid://cin4g2ejeeree" path="res://chakram.gd" id="1_dgn7x"]
+[ext_resource type="Script" uid="uid://cin4g2ejeeree" path="res://sauce/chakram.gd" id="1_dgn7x"]
 [ext_resource type="Texture2D" uid="uid://c7b5oxumeoosy" path="res://assets/Trap and Weapon/00 All.png" id="2_gvym2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qpfu8"]

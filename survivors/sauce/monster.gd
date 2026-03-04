@@ -1,6 +1,7 @@
 class_name Monster
 extends CharacterBody2D
 
+signal monster_died
 const SPEED := 100.0
 const XPOrbScene := preload("res://sauce/xp_orb.tscn")
 var target : Node
@@ -46,4 +47,5 @@ func _hit_flash() -> void:
 
 
 func _die() -> void:
+	monster_died.emit()
 	queue_free()

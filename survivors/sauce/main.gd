@@ -1,5 +1,6 @@
 extends Node
 
+@onready var world: Node2D = $World
 @onready var player: Player = $World/Player
 @onready var hud: HUD = $HUDLayer/HUD
 
@@ -22,3 +23,7 @@ func _on_player_level_changed() -> void:
 
 func _on_player_xp_changed() -> void:
 	hud.set_xp(player.xp, player.next_level_xp)
+
+
+func _on_world_kill_count_changed() -> void:
+	hud.set_kill_count(world.kill_count)
