@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://d11bv8qiroouq" path="res://sauce/player.gd" id="1_of14c"]
 [ext_resource type="Texture2D" uid="uid://df154vg0aftl0" path="res://assets/goose/Flap.png" id="2_wntcw"]
 [ext_resource type="Texture2D" uid="uid://cqw6aog5ep8ln" path="res://assets/goose/Idle.png" id="3_ia1rr"]
-[ext_resource type="Script" uid="uid://cqnuv0q4xkl87" path="res://sauce/weapon_manager.gd" id="3_uwsgo"]
 [ext_resource type="Texture2D" uid="uid://bxrbcciywotbr" path="res://assets/goose/Run.png" id="4_u0yvj"]
 [ext_resource type="Texture2D" uid="uid://bktmrrp82jd5d" path="res://assets/goose/Walk.png" id="5_es2v8"]
 
@@ -152,9 +151,6 @@ frame_progress = 0.05052859
 visible = false
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_avjkq")
-
-[node name="WeaponManager" type="Node2D" parent="." unique_id=632685048]
-script = ExtResource("3_uwsgo")
 
 [node name="XPMagnet" type="Area2D" parent="." unique_id=2093961326 groups=["magnet"]]
 visible = false

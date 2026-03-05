@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://3co8rsy58qsh" path="res://sauce/ball.gd" id="2_wxt7p"]
 [ext_resource type="Texture2D" uid="uid://b7eixecff1h8w" path="res://assets/fire_bullets/All_Fire_Bullet_Pixel_16x16_06.png" id="3_0nm32"]
 
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qujof"]
 atlas = ExtResource("3_0nm32")
 region = Rect2(256, 240, 32, 16)

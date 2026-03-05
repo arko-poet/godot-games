@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ciop0q6l3smip"]
+[gd_scene format=3 uid="uid://d0fo3cohalljj"]
 
 [ext_resource type="Script" uid="uid://cejxbi43gxqnr" path="res://sauce/hud.gd" id="1_uimqp"]
 [ext_resource type="Texture2D" uid="uid://c72d20evjvk63" path="res://assets/Skull&Bones - FrodoUndead.png" id="2_j1dav"]
@@ -35,6 +35,15 @@ max_value = 1.0
 value = 1.0
 show_percentage = false
 
+[node name="XPBar" type="ProgressBar" parent="." unique_id=1492579678]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+show_percentage = false
+
 [node name="LevelLabel" type="Label" parent="." unique_id=1357821693]
 layout_mode = 1
 anchors_preset = 5
@@ -45,15 +54,6 @@ offset_right = 29.0
 offset_bottom = 23.0
 grow_horizontal = 2
 text = "Level: 1"
-
-[node name="XPBar" type="ProgressBar" parent="." unique_id=1492579678]
-modulate = Color(0, 1, 0, 1)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 24.0
-grow_horizontal = 2
-show_percentage = false
 
 [node name="KillCount" type="HBoxContainer" parent="." unique_id=276897550]
 layout_mode = 1
