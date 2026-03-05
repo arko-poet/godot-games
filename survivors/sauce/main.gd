@@ -3,14 +3,12 @@ extends Node
 @onready var world: Node2D = $World
 @onready var player: Player = $World/Player
 @onready var hud: HUD = $HUDLayer/HUD
-
-
-#func _process(_delta):
-	#print(Engine.get_frames_per_second())
+@onready var game_over_sound: AudioStreamPlayer = $GameOverSound
 
 
 func _on_world_game_over() -> void:
-	get_tree().reload_current_scene()
+	game_over_sound.finished.connect(get_tree().reload_current_scene)
+	game_over_sound.play()
 
 
 func _on_player_hp_changed() -> void:
