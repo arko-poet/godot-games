@@ -7,18 +7,18 @@ signal xp_changed
 signal level_changed
 enum WeaponID {BALLS, SWORD, CHAKRAMS, SPEARS}
 const WEAPON_SCENES := {
-	WeaponID.BALLS : preload("res://sauce/weapons/balls/balls.tscn"),
-	WeaponID.SWORD : preload("res://sauce/weapons/sword/sword.tscn"),
-	WeaponID.CHAKRAMS : preload("res://sauce/weapons/chakrams/chakrams.tscn"),
+	WeaponID.BALLS: preload("res://sauce/weapons/balls/balls.tscn"),
+	WeaponID.SWORD: preload("res://sauce/weapons/sword/sword.tscn"),
+	WeaponID.CHAKRAMS: preload("res://sauce/weapons/chakrams/chakrams.tscn"),
 	WeaponID.SPEARS: preload("res://sauce/weapons/spears/spears.tscn"),
 }
-var weapons : Array[Weapon] = []
+var weapons: Array[Weapon] = []
 var speed := 150.0
 var xp := 0
 var next_level_xp := 10
 var max_hp := 100
 var hp := 100
-var monsters_in_contact : Array[Monster] = []
+var monsters_in_contact: Array[Monster] = []
 var level := 1
 @onready var sprite: AnimatedSprite2D = $Sprite
 
@@ -30,10 +30,10 @@ func _ready() -> void:
 	add_weapon(WeaponID.SPEARS)
 
 
-func add_weapon(weapon_id : WeaponID) -> void:
-	var weapon_scene : PackedScene = WEAPON_SCENES[weapon_id]
+func add_weapon(weapon_id: WeaponID) -> void:
+	var weapon_scene: PackedScene = WEAPON_SCENES[weapon_id]
 	if weapon_scene != null:
-		var weapon : Weapon = weapon_scene.instantiate()
+		var weapon: Weapon = weapon_scene.instantiate()
 		weapon.projectile_root = get_parent()
 		add_child(weapon)
 		weapons.append(weapon)
@@ -61,7 +61,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
-func add_xp(value : int) -> void:
+func add_xp(value: int) -> void:
 	xp += value
 	if xp >= next_level_xp:
 		xp = xp - next_level_xp
@@ -89,4 +89,3 @@ func _on_hp_drain_timer_timeout() -> void:
 		hp_changed.emit()
 		if hp == 0:
 			died.emit()
-	

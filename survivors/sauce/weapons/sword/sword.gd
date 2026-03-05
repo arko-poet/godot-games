@@ -13,7 +13,7 @@ func _ready() -> void:
 func _attack() -> void:
 	position = (target.global_position - global_position).normalized() * SWIPE_RADIUS
 	rotation = position.normalized().angle()
-	var t : Tween = create_tween()
+	var t: Tween = create_tween()
 	t.tween_method(_sword_swipe, rotation - HALF_CONE, rotation + HALF_CONE, attack_time)
 	t.finished.connect(_deactivate)
 	_activate()

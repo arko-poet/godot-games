@@ -26,7 +26,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _next_target() -> void:
-	var enemy : Node2D = Globals.find_nearest_enemy(global_position)
+	var enemy: Node2D = Globals.find_nearest_enemy(global_position)
 	if global_position.distance_to(enemy.global_position) < bounce_distance:
 		target = enemy
 		_set_direction()

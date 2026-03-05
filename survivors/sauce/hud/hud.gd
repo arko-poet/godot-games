@@ -31,7 +31,7 @@ func set_kill_count(count: int) -> void:
 	kill_count_label.text = "%s" % count
 	
 
-func switch_gg_label(show_ : bool):
+func switch_gg_label(show_: bool):
 	if show_:
 		gg_label.show()
 	else:

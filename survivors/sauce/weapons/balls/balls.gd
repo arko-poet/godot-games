@@ -4,7 +4,7 @@ const BallScene := preload("res://sauce/weapons/balls/ball.tscn")
 
 
 func _attack() -> void:
-	var ball : Ball = BallScene.instantiate()
+	var ball: Ball = BallScene.instantiate()
 	ball.damage = damage
 	if target:
 		ball.target = target

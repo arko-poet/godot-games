@@ -1,9 +1,9 @@
 class_name Projectile
 extends Node2D
 
-var damage : int
-var target : Node2D
-var direction : Vector2
+var damage: int
+var target: Node2D
+var direction: Vector2
 
 func _on_ttl_timeout() -> void:
 	queue_free()

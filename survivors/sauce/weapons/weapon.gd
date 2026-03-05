@@ -1,9 +1,9 @@
 class_name Weapon
 extends Node2D
 
-@export_range(0, 9999) var damage : int = 1
-var projectile_root : Node2D ## reference where weapon creates projectiles
-var target : Node2D
+@export_range(0, 9999) var damage: int = 1
+var projectile_root: Node2D ## reference where weapon creates projectiles
+var target: Node2D
 @onready var cooldown_timer: Timer = $CooldownTimer
 
 

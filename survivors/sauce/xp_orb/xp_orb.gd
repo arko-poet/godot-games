@@ -1,7 +1,7 @@
 extends Area2D
 
 var speed := 100
-var target : Area2D
+var target: Area2D
 var xp := 1
 
 func _physics_process(delta: float) -> void:
