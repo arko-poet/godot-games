@@ -4,7 +4,7 @@
 
 [node name="Projectile" type="Area2D" unique_id=1721435030]
 collision_layer = 8
-collision_mask = 4
+collision_mask = 6
 script = ExtResource("1_2vqht")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=137886357]

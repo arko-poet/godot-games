@@ -5,6 +5,3 @@
 
 [node name="Spears" unique_id=12557176 instance=ExtResource("1_ke3gb")]
 script = ExtResource("2_ke3gb")
-
-[node name="CooldownTimer" parent="." index="0" unique_id=390843552]
-wait_time = 5.0

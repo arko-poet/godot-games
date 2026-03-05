@@ -16,14 +16,13 @@ func _physics_process(delta: float) -> void:
 	position += direction * BASE_SPEED * delta
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("monsters"):
-		if bounce > 0:
-			bounce -= 1
-			_next_target()
-		else:
-			queue_free()
-		body.call_deferred("hit", damage)
+func _monster_collision(monster: Monster) -> void:
+	if bounce > 0:
+		bounce -= 1
+		_next_target()
+	else:
+		queue_free()
+	monster.call_deferred("hit", damage)
 
 
 func _next_target() -> void:
