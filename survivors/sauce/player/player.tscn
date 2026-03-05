@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ox3ffoofd1ck"]
 
-[ext_resource type="Script" uid="uid://d11bv8qiroouq" path="res://sauce/player.gd" id="1_of14c"]
+[ext_resource type="Script" uid="uid://d11bv8qiroouq" path="res://sauce/player/player.gd" id="1_of14c"]
 [ext_resource type="Texture2D" uid="uid://df154vg0aftl0" path="res://assets/goose/Flap.png" id="2_wntcw"]
 [ext_resource type="Texture2D" uid="uid://cqw6aog5ep8ln" path="res://assets/goose/Idle.png" id="3_ia1rr"]
 [ext_resource type="Texture2D" uid="uid://bxrbcciywotbr" path="res://assets/goose/Run.png" id="4_u0yvj"]

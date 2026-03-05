@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c32ovnmsltmeb"]
 
-[ext_resource type="Script" uid="uid://bibks5c8b7jl8" path="res://sauce/world.gd" id="1_6qj8k"]
-[ext_resource type="PackedScene" uid="uid://csn72tp3w20gj" path="res://sauce/world_chunk.tscn" id="1_k1pjg"]
-[ext_resource type="PackedScene" uid="uid://ox3ffoofd1ck" path="res://sauce/player.tscn" id="1_w151q"]
+[ext_resource type="Script" uid="uid://bibks5c8b7jl8" path="res://sauce/world/world.gd" id="1_6qj8k"]
+[ext_resource type="PackedScene" uid="uid://csn72tp3w20gj" path="res://sauce/world/world_chunk.tscn" id="1_k1pjg"]
+[ext_resource type="PackedScene" uid="uid://ox3ffoofd1ck" path="res://sauce/player/player.tscn" id="1_w151q"]
 
 [sub_resource type="Curve2D" id="Curve2D_6qj8k"]
 _data = {

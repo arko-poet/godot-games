@@ -1,7 +1,7 @@
 extends Weapon
 
 
-const Chakram := preload("res://sauce/chakram.tscn")
+const Chakram := preload("res://sauce/weapons/chakrams/chakram.tscn")
 
 
 func _attack():

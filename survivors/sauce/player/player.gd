@@ -7,10 +7,10 @@ signal xp_changed
 signal level_changed
 enum WeaponID {BALLS, SWORD, CHAKRAMS, SPEARS}
 const WEAPON_SCENES := {
-	WeaponID.BALLS : preload("res://sauce/balls.tscn"),
-	WeaponID.SWORD : preload("res://sauce/sword.tscn"),
-	WeaponID.CHAKRAMS : preload("res://sauce/chakrams.tscn"),
-	WeaponID.SPEARS: preload("res://sauce/spears.tscn"),
+	WeaponID.BALLS : preload("res://sauce/weapons/balls/balls.tscn"),
+	WeaponID.SWORD : preload("res://sauce/weapons/sword/sword.tscn"),
+	WeaponID.CHAKRAMS : preload("res://sauce/weapons/chakrams/chakrams.tscn"),
+	WeaponID.SPEARS: preload("res://sauce/weapons/spears/spears.tscn"),
 }
 var weapons : Array[Weapon] = []
 var speed := 150.0
@@ -25,6 +25,10 @@ var level := 1
 
 func _ready() -> void:
 	add_weapon(WeaponID.BALLS)
+	add_weapon(WeaponID.SWORD)
+	add_weapon(WeaponID.CHAKRAMS)
+	add_weapon(WeaponID.SPEARS)
+
 
 func add_weapon(weapon_id : WeaponID) -> void:
 	var weapon_scene : PackedScene = WEAPON_SCENES[weapon_id]

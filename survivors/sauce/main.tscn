@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://demnf1vhw4xdd"]
 
-[ext_resource type="PackedScene" uid="uid://ciop0q6l3smip" path="res://sauce/hud.tscn" id="1_c4nqf"]
 [ext_resource type="Script" uid="uid://7srcpue42bvg" path="res://sauce/main.gd" id="1_wx6ee"]
-[ext_resource type="PackedScene" uid="uid://c32ovnmsltmeb" path="res://sauce/world.tscn" id="2_wx6ee"]
+[ext_resource type="PackedScene" uid="uid://c32ovnmsltmeb" path="res://sauce/world/world.tscn" id="2_wx6ee"]
+[ext_resource type="PackedScene" uid="uid://d0fo3cohalljj" path="res://sauce/hud/hud.tscn" id="3_wx6ee"]
 [ext_resource type="AudioStream" uid="uid://dkfcriv37b4vw" path="res://assets/faaah.mp3" id="4_wx6ee"]
 
 [node name="Main" type="Node" unique_id=958853341]
@@ -12,7 +12,7 @@ script = ExtResource("1_wx6ee")
 
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=1148066190]
 
-[node name="HUD" parent="HUDLayer" unique_id=768161950 instance=ExtResource("1_c4nqf")]
+[node name="HUD" parent="HUDLayer" unique_id=768161950 instance=ExtResource("3_wx6ee")]
 
 [node name="GameOverSound" type="AudioStreamPlayer" parent="." unique_id=1408528262]
 stream = ExtResource("4_wx6ee")

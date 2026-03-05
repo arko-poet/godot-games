@@ -2,7 +2,7 @@ extends Node2D
 
 signal game_over
 signal kill_count_changed
-const MonsterScene := preload("res://sauce/monster.tscn")
+const MonsterScene := preload("res://sauce/monsters/monster.tscn")
 const CHUNK_COUNT := 3
 const SPAWN_TOLERANCE := 128.0
 const MAX_SPAWN_ATTEMPTS := 256

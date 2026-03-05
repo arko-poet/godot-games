@@ -1,6 +1,6 @@
 extends Weapon
 
-const SpearScene := preload("res://sauce/spear.tscn")
+const SpearScene := preload("res://sauce/weapons/spears/spear.tscn")
 
 
 func _attack() -> void:

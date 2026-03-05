@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://yj34xq67ejo6"]
-
-[ext_resource type="PackedScene" path="res://sauce/weapon.tscn" id="1_en827"]
-[ext_resource type="Script" uid="uid://b22n8gkk5cw1b" path="res://sauce/balls.gd" id="2_xoubm"]
-
-[node name="Balls" unique_id=12557176 instance=ExtResource("1_en827")]
-script = ExtResource("2_xoubm")
-damage = 5

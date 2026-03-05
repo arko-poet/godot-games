@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 signal monster_died
 const SPEED := 100.0
-const XPOrbScene := preload("res://sauce/xp_orb.tscn")
+const XPOrbScene := preload("res://sauce/xp_orb/xp_orb.tscn")
 var target : Node
 var hp := 2
 var damage := 1

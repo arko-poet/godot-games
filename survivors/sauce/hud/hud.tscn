@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d0fo3cohalljj"]
 
-[ext_resource type="Script" uid="uid://cejxbi43gxqnr" path="res://sauce/hud.gd" id="1_uimqp"]
+[ext_resource type="Script" uid="uid://cejxbi43gxqnr" path="res://sauce/hud/hud.gd" id="1_uimqp"]
 [ext_resource type="Texture2D" uid="uid://c72d20evjvk63" path="res://assets/Skull&Bones - FrodoUndead.png" id="2_j1dav"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ldqu"]
