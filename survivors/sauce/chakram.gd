@@ -10,6 +10,7 @@ var change_of_radius := 500
 
 
 func _ready() -> void:
+	_set_direction()
 	center = global_position
 	angle = direction.angle()
 	

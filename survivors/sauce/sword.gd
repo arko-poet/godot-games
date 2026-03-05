@@ -5,12 +5,13 @@ const HALF_CONE := PI * 0.25
 var attack_time := 0.25
 @onready var hit_box: CollisionShape2D = $HitBox/Collision
 
+
 func _ready() -> void:
 	_deactivate()
 	
 	
 func _attack() -> void:
-	position = (target - global_position).normalized() * SWIPE_RADIUS
+	position = (target.global_position - global_position).normalized() * SWIPE_RADIUS
 	rotation = position.normalized().angle()
 	var t : Tween = create_tween()
 	t.tween_method(_sword_swipe, rotation - HALF_CONE, rotation + HALF_CONE, attack_time)

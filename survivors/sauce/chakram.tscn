@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c1xxl37c8ca6i"]
 
-[ext_resource type="Script" uid="uid://od16htrdmn74" path="res://chakram.gd" id="1_dgn7x"]
+[ext_resource type="Script" uid="uid://od16htrdmn74" path="res://sauce/chakram.gd" id="1_dgn7x"]
 [ext_resource type="PackedScene" uid="uid://7qjv0qyipjw8" path="res://sauce/projectile.tscn" id="1_gvym2"]
 [ext_resource type="Texture2D" uid="uid://c7b5oxumeoosy" path="res://assets/Trap and Weapon/00 All.png" id="2_gvym2"]
 

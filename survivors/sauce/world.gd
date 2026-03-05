@@ -5,6 +5,7 @@ signal kill_count_changed
 const MonsterScene := preload("res://sauce/monster.tscn")
 const CHUNK_COUNT := 3
 const SPAWN_TOLERANCE := 128.0
+const MAX_SPAWN_ATTEMPTS := 256
 var chunk_size : float
 var kill_count := 0
 @onready var left_chunk : WorldChunk = $Chunk
@@ -39,7 +40,12 @@ func get_monster_spawn_point() -> Vector2:
 	var point := monster_spawn_points.global_position
 	var nav_map := get_world_2d().navigation_map
 	var closest := NavigationServer2D.map_get_closest_point(nav_map, point)
+	var attempts := 0
 	while closest.distance_to(point) > SPAWN_TOLERANCE:
+		if attempts >= MAX_SPAWN_ATTEMPTS:
+			return Vector2.INF
+		attempts += 1
+		
 		monster_spawn_points.progress_ratio = randf()
 		point = monster_spawn_points.global_position
 		closest = NavigationServer2D.map_get_closest_point(nav_map, point)
@@ -48,7 +54,10 @@ func get_monster_spawn_point() -> Vector2:
 
 func _on_monster_spawner_timeout() -> void:
 	var monster := MonsterScene.instantiate()
-	monster.global_position = get_monster_spawn_point()
+	var _spawn_point = get_monster_spawn_point()
+	if _spawn_point == Vector2.INF:
+		return
+	monster.global_position = _spawn_point
 	monster.set_target(player)
 	monster.connect("monster_died", _on_monster_killed)
 	add_child(monster)

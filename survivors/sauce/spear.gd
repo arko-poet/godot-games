@@ -6,6 +6,11 @@ const BASE_SPEED := 100
 var pierce := 5
 
 
+func _ready():
+	_set_direction()
+	rotation = direction.angle()
+
+
 func _physics_process(delta: float) -> void:
 	position += direction * BASE_SPEED * delta
 
