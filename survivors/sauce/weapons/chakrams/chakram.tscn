@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://od16htrdmn74" path="res://sauce/weapons/chakrams/chakram.gd" id="1_dgn7x"]
 [ext_resource type="PackedScene" uid="uid://7qjv0qyipjw8" path="res://sauce/weapons/projectile.tscn" id="1_gvym2"]
-[ext_resource type="Texture2D" uid="uid://c7b5oxumeoosy" path="res://assets/Trap and Weapon/00 All.png" id="2_gvym2"]
+[ext_resource type="Texture2D" uid="uid://c7b5oxumeoosy" path="res://assets/trap_and_weapon/00 All.png" id="2_gvym2"]
 
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qpfu8"]

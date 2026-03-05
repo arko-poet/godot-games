@@ -7,6 +7,8 @@ extends Node
 
 
 func _on_world_game_over() -> void:
+	world.process_mode = Node.PROCESS_MODE_DISABLED
+	hud.switch_gg_label(true)
 	game_over_sound.finished.connect(get_tree().reload_current_scene)
 	game_over_sound.play()
 
