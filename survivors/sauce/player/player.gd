@@ -5,13 +5,16 @@ signal died
 signal hp_changed
 signal xp_changed
 signal level_changed
+
 enum WeaponID {BALLS, SWORD, CHAKRAMS, SPEARS}
+
 const WEAPON_SCENES := {
 	WeaponID.BALLS: preload("res://sauce/weapons/balls/balls.tscn"),
 	WeaponID.SWORD: preload("res://sauce/weapons/sword/sword.tscn"),
 	WeaponID.CHAKRAMS: preload("res://sauce/weapons/chakrams/chakrams.tscn"),
 	WeaponID.SPEARS: preload("res://sauce/weapons/spears/spears.tscn"),
 }
+
 var weapons: Array[Weapon] = []
 var speed := 150.0
 var xp := 0
@@ -20,6 +23,9 @@ var max_hp := 100
 var hp := 100
 var monsters_in_contact: Array[Monster] = []
 var level := 1
+var hp_regen := 0
+var armour := 0
+
 @onready var sprite: AnimatedSprite2D = $Sprite
 
 
@@ -82,10 +88,15 @@ func _on_hurt_box_body_exited(body: Node2D) -> void:
 func _on_hp_drain_timer_timeout() -> void:
 	var total_damage := 0
 	for monster in monsters_in_contact:
-		total_damage += monster.damage
+		total_damage += maxi(1, monster.damage - armour)
 	var original_hp = hp
 	hp = maxi(hp - total_damage, 0)
 	if original_hp != hp:
 		hp_changed.emit()
 		if hp == 0:
 			died.emit()
+
+
+func _on_hp_regen_timer_timeout() -> void:
+	hp = mini(max_hp, hp + hp_regen)
+	hp_changed.emit()

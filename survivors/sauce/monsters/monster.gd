@@ -6,7 +6,7 @@ const SPEED := 100.0
 const XPOrbScene := preload("res://sauce/xp_orb/xp_orb.tscn")
 var target: Node
 var hp := 2
-var damage := 1
+var damage := 5
 @onready var navigation: NavigationAgent2D = $Navigation
 @onready var sprite: AnimatedSprite2D = $Sprite
 
