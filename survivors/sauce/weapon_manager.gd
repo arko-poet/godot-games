@@ -1,18 +1,20 @@
 extends Node2D
 
-enum WeaponID {FIRE_STAFF, SWORD, CHAKRAMS}
+enum WeaponID {FIRE_STAFF, SWORD, CHAKRAMS, SPEARS}
 const WEAPON_SCENES := {
 	WeaponID.FIRE_STAFF : preload("res://sauce/fire_staff.tscn"),
 	WeaponID.SWORD : preload("res://sauce/sword.tscn"),
-	WeaponID.CHAKRAMS : preload("res://sauce/chakrams.tscn")
+	WeaponID.CHAKRAMS : preload("res://sauce/chakrams.tscn"),
+	WeaponID.SPEARS: preload("res://sauce/spears.tscn"),
 }
 var weapons : Array[Weapon] = []
 
 
 func _ready() -> void:
-	add_weapon(WeaponID.FIRE_STAFF)
-	add_weapon(WeaponID.SWORD)
-	add_weapon(WeaponID.CHAKRAMS)
+	#add_weapon(WeaponID.FIRE_STAFF)
+	#add_weapon(WeaponID.SWORD)
+	#add_weapon(WeaponID.CHAKRAMS)
+	add_weapon(WeaponID.SPEARS)
 
 
 func _process(_delta : float) -> void:

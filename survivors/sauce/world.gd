@@ -4,6 +4,7 @@ signal game_over
 signal kill_count_changed
 const MonsterScene := preload("res://sauce/monster.tscn")
 const CHUNK_COUNT := 3
+const SPAWN_TOLERANCE := 128.0
 var chunk_size : float
 var kill_count := 0
 @onready var left_chunk : WorldChunk = $Chunk
@@ -35,13 +36,13 @@ func _process(_delta: float) -> void:
 
 func get_monster_spawn_point() -> Vector2:
 	monster_spawn_points.progress_ratio = randf()
-	var p := monster_spawn_points.global_position
-	var nav_map: RID = get_world_2d().navigation_map
-	var closest := NavigationServer2D.map_get_closest_point(nav_map, p)
-	while closest.distance_to(p) > 128:
+	var point := monster_spawn_points.global_position
+	var nav_map := get_world_2d().navigation_map
+	var closest := NavigationServer2D.map_get_closest_point(nav_map, point)
+	while closest.distance_to(point) > SPAWN_TOLERANCE:
 		monster_spawn_points.progress_ratio = randf()
-		p = monster_spawn_points.global_position
-		closest = NavigationServer2D.map_get_closest_point(nav_map, p)
+		point = monster_spawn_points.global_position
+		closest = NavigationServer2D.map_get_closest_point(nav_map, point)
 	return closest
 
 

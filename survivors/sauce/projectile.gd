@@ -4,6 +4,7 @@ extends Node2D
 var damage : int
 var direction : Vector2
 
+
 func _on_ttl_timeout() -> void:
 	queue_free()
 
