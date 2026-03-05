@@ -5,6 +5,7 @@ var damage: int
 var target: Node2D
 var direction: Vector2
 
+
 func _on_ttl_timeout() -> void:
 	queue_free()
 

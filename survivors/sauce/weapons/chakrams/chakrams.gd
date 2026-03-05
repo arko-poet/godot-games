@@ -1,6 +1,5 @@
 extends Weapon
 
-
 const Chakram := preload("res://sauce/weapons/chakrams/chakram.tscn")
 
 

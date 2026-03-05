@@ -3,6 +3,7 @@ extends Projectile
 const MIN_CHANGE_OF_RADIUS := 50
 const RATE_OF_CHANGE_OF_RADIUS := 1500
 const ANGULAR_SPEED := 3.0
+
 var radius := 0.0
 var angle := 0.0
 var center: Vector2

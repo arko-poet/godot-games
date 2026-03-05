@@ -2,7 +2,9 @@ extends Weapon
 
 const SWIPE_RADIUS := 16 ## distance from parent center to sword handle
 const HALF_CONE := PI * 0.25
+
 var attack_time := 0.25
+
 @onready var hit_box: CollisionShape2D = $HitBox/Collision
 
 

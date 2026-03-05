@@ -1,8 +1,8 @@
 class_name Spear
 extends Projectile
 
-
 const BASE_SPEED := 100
+
 var pierce := 5
 
 

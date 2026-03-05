@@ -2,12 +2,15 @@ extends Node2D
 
 signal game_over
 signal kill_count_changed
+
 const MonsterScene := preload("res://sauce/monsters/monster.tscn")
 const CHUNK_COUNT := 3
 const SPAWN_TOLERANCE := 128.0
 const MAX_SPAWN_ATTEMPTS := 256
+
 var chunk_size: float
 var kill_count := 0
+
 @onready var left_chunk: WorldChunk = $Chunk
 @onready var center_chunk: WorldChunk = $Chunk2
 @onready var right_chunk: WorldChunk = $Chunk3

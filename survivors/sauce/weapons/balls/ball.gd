@@ -2,6 +2,7 @@ class_name Ball
 extends Projectile
 
 const BASE_SPEED := 100
+
 var bounce := 5
 var bounce_distance := 100
 
