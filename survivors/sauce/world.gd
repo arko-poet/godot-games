@@ -35,7 +35,14 @@ func _process(_delta: float) -> void:
 
 func get_monster_spawn_point() -> Vector2:
 	monster_spawn_points.progress_ratio = randf()
-	return monster_spawn_points.global_position
+	var p := monster_spawn_points.global_position
+	var nav_map: RID = get_world_2d().navigation_map
+	var closest := NavigationServer2D.map_get_closest_point(nav_map, p)
+	while closest.distance_to(p) > 128:
+		monster_spawn_points.progress_ratio = randf()
+		p = monster_spawn_points.global_position
+		closest = NavigationServer2D.map_get_closest_point(nav_map, p)
+	return closest
 
 
 func _on_monster_spawner_timeout() -> void:
