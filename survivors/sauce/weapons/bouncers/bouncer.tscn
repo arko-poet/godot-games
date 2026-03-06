@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dxdl8guk5nhj8"]
+
+[ext_resource type="PackedScene" uid="uid://7qjv0qyipjw8" path="res://sauce/weapons/projectile.tscn" id="1_bjira"]
+[ext_resource type="Script" uid="uid://lrhe4gdq7wdu" path="res://sauce/weapons/bouncers/bouncer.gd" id="2_kmm1e"]
+[ext_resource type="Texture2D" uid="uid://db64n4kx11uww" path="res://assets/icon.svg" id="3_kmm1e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0t8l2"]
+size = Vector2(128, 128)
+
+[node name="Bouncer" unique_id=1721435030 instance=ExtResource("1_bjira")]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("2_kmm1e")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=746703012]
+texture = ExtResource("3_kmm1e")
+
+[node name="Collision" parent="." index="1" unique_id=137886357]
+shape = SubResource("RectangleShape2D_0t8l2")

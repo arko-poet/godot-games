@@ -6,13 +6,14 @@ signal hp_changed
 signal xp_changed
 signal level_changed
 
-enum WeaponID {BALLS, SWORD, CHAKRAMS, SPEARS}
+enum WeaponID {BALLS, SWORD, CHAKRAMS, SPEARS, BOUNCERS}
 
 const WEAPON_SCENES := {
 	WeaponID.BALLS: preload("res://sauce/weapons/balls/balls.tscn"),
 	WeaponID.SWORD: preload("res://sauce/weapons/sword/sword.tscn"),
 	WeaponID.CHAKRAMS: preload("res://sauce/weapons/chakrams/chakrams.tscn"),
 	WeaponID.SPEARS: preload("res://sauce/weapons/spears/spears.tscn"),
+	WeaponID.BOUNCERS: preload("res://sauce/weapons/bouncers/bouncers.tscn"),
 }
 
 var weapons: Array[Weapon] = []
@@ -33,7 +34,8 @@ func _ready() -> void:
 	#add_weapon(WeaponID.BALLS)
 	#add_weapon(WeaponID.SWORD)
 	#add_weapon(WeaponID.CHAKRAMS)
-	add_weapon(WeaponID.SPEARS)
+	#add_weapon(WeaponID.SPEARS)
+	add_weapon(WeaponID.BOUNCERS)
 
 
 func add_weapon(weapon_id: WeaponID) -> void:
