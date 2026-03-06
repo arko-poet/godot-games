@@ -4,6 +4,7 @@ const SWIPE_RADIUS := 16 ## distance from parent center to sword handle
 const HALF_CONE := PI * 0.25
 
 var attack_time := 0.25
+var knockback_magnitude := 100.0
 
 @onready var hit_box: CollisionShape2D = $HitBox/Collision
 
@@ -29,7 +30,8 @@ func _sword_swipe(angle: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Monster:
-		body.call_deferred("hit", damage)
+		var knockback := knockback_magnitude * (body.global_position - global_position).normalized()
+		body.call_deferred("hit", damage, knockback)
 
 
 func _activate():

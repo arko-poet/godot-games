@@ -4,7 +4,6 @@
 [ext_resource type="Shader" uid="uid://bn88dr56efcdj" path="res://sauce/hit_flash.gdshader" id="2_xifm1"]
 [ext_resource type="Texture2D" uid="uid://c2t0rpx81st4b" path="res://assets/slimes/Dungeon_Slimes1.png" id="3_xifm1"]
 
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dpc8o"]
 resource_local_to_scene = true
 shader = ExtResource("2_xifm1")
