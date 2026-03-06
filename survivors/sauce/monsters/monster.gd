@@ -7,8 +7,9 @@ const SPEED := 100.0
 const XPOrbScene := preload("res://sauce/xp_orb/xp_orb.tscn")
 const KNOCKBACK_DECAY := 200.0
 
+@export var hp := 10
+
 var target: Node
-var hp := 10
 var damage := 5
 var knockback_velocity := Vector2(0, 0)
 
