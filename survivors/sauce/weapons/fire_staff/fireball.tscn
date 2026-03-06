@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://ch44fagkbis0t"]
+
+[ext_resource type="PackedScene" uid="uid://7qjv0qyipjw8" path="res://sauce/weapons/projectile.tscn" id="1_ap8gt"]
+[ext_resource type="Script" uid="uid://dv64wlvm2m5fj" path="res://sauce/weapons/fire_staff/fireball.gd" id="2_2u8hi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m54l5"]
+
+[node name="Fireball" unique_id=1721435030 instance=ExtResource("1_ap8gt")]
+script = ExtResource("2_2u8hi")
+
+[node name="Collision" parent="." index="0" unique_id=137886357]
+shape = SubResource("CircleShape2D_m54l5")

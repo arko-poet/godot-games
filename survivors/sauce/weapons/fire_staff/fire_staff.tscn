@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cnfie7tlvi80n"]
+
+[ext_resource type="PackedScene" uid="uid://mxtxxy6qqk06" path="res://sauce/weapons/weapon.tscn" id="1_vynr2"]
+[ext_resource type="Script" uid="uid://cehrdl8ekedan" path="res://sauce/weapons/fire_staff/fire_staff.gd" id="2_nnm8b"]
+
+[node name="FireStaff" unique_id=1064152361 instance=ExtResource("1_vynr2")]
+script = ExtResource("2_nnm8b")
+damage = null
