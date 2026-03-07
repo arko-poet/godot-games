@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bh28wpejt6evp"]
+
+[ext_resource type="PackedScene" uid="uid://mxtxxy6qqk06" path="res://sauce/weapons/weapon.tscn" id="1_mktcx"]
+[ext_resource type="Script" uid="uid://d3hrorf3ty48m" path="res://sauce/weapons/toxic_weapon/toxic_vials.gd" id="2_83j8l"]
+
+[node name="ToxicVials" unique_id=1064152361 instance=ExtResource("1_mktcx")]
+script = ExtResource("2_83j8l")

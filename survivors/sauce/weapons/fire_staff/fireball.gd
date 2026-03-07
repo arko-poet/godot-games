@@ -4,8 +4,6 @@ extends Projectile
 const BASE_SPEED := 100
 const ExplosionScene := preload("res://sauce/weapons/fire_staff/explosion.tscn")
 
-var projectile_root : Node2D
-
 
 func _ready() -> void:
 	_set_direction()
