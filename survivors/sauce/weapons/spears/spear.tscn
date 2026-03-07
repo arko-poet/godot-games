@@ -10,6 +10,7 @@ height = 12.0
 
 [node name="Spear" unique_id=1721435030 instance=ExtResource("1_haueq")]
 script = ExtResource("2_haueq")
+speed = 300.0
 
 [node name="Collision" parent="." index="0" unique_id=137886357]
 position = Vector2(12, 0)

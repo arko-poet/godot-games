@@ -1,8 +1,6 @@
 class_name Spear
 extends Projectile
 
-const BASE_SPEED := 300
-
 var pierce := 5
 
 
@@ -12,7 +10,7 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
-	position += direction * BASE_SPEED * delta
+	position += direction * speed * delta
 
 
 func _monster_collision(monster: Monster) -> void:

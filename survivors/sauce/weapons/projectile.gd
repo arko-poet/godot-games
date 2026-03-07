@@ -1,6 +1,7 @@
 class_name Projectile
 extends Node2D
 
+@export var speed : float
 var damage: int
 var target: Node2D
 var direction: Vector2

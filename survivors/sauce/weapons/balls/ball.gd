@@ -1,8 +1,6 @@
 class_name Ball
 extends Projectile
 
-const BASE_SPEED := 100
-
 var bounce := 5
 var bounce_distance := 100
 
@@ -13,7 +11,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	rotation = direction.angle()
-	position += direction * BASE_SPEED * delta
+	position += direction * speed * delta
 
 
 func _monster_collision(monster: Monster) -> void:

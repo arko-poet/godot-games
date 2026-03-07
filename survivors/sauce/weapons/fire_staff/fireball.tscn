@@ -52,6 +52,7 @@ radius = 7.0
 
 [node name="Fireball" unique_id=1721435030 instance=ExtResource("1_ap8gt")]
 script = ExtResource("2_2u8hi")
+speed = 100.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0" unique_id=761251213]
 sprite_frames = SubResource("SpriteFrames_nj1uv")

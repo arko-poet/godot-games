@@ -1,8 +1,6 @@
 class_name Bouncer
 extends Projectile
 
-const BASE_SPEED := 100
-
 var bounce := 5
 
 

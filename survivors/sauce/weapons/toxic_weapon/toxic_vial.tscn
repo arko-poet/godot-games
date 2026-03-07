@@ -41,6 +41,7 @@ animations = [{
 [node name="ToxicVial" unique_id=1721435030 instance=ExtResource("1_777o2")]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_1mybq")
+speed = 100.0
 
 [node name="Collision" parent="." index="0" unique_id=137886357]
 shape = SubResource("CircleShape2D_xd5vo")
@@ -48,4 +49,4 @@ shape = SubResource("CircleShape2D_xd5vo")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." index="2" unique_id=1099097678]
 sprite_frames = SubResource("SpriteFrames_swtwf")
 autoplay = "default"
-frame_progress = 0.7558163
+frame_progress = 0.45621073
