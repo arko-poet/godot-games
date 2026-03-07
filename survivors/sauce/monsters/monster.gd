@@ -8,9 +8,10 @@ const XPOrbScene := preload("res://sauce/xp_orb/xp_orb.tscn")
 const KNOCKBACK_DECAY := 200.0
 
 @export var hp := 10
+@export var damage := 1
 
 var target: Node
-var damage := 5
+
 var knockback_velocity := Vector2(0, 0)
 
 @onready var navigation: NavigationAgent2D = $Navigation

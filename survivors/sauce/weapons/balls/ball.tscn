@@ -45,6 +45,7 @@ radius = 8.0
 
 [node name="Ball" unique_id=1721435030 instance=ExtResource("1_04phn")]
 script = ExtResource("2_wxt7p")
+speed = 100.0
 
 [node name="Animated" type="AnimatedSprite2D" parent="." index="0" unique_id=1955013424]
 sprite_frames = SubResource("SpriteFrames_kvvf7")

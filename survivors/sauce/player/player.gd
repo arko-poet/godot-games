@@ -37,9 +37,9 @@ func _ready() -> void:
 	#add_weapon(WeaponID.SWORD)
 	#add_weapon(WeaponID.CHAKRAMS)
 	#add_weapon(WeaponID.SPEARS)
-	#add_weapon(WeaponID.BOUNCERS)
+	add_weapon(WeaponID.BOUNCERS)
 	#add_weapon(WeaponID.FIRE_STAFF)
-	add_weapon(WeaponID.TOXIC_VIALS)
+	#add_weapon(WeaponID.TOXIC_VIALS)
 
 
 func add_weapon(weapon_id: WeaponID) -> void:
