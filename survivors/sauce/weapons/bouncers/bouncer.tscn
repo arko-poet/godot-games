@@ -50,6 +50,7 @@ script = ExtResource("2_kmm1e")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1225231593]
 sprite_frames = SubResource("SpriteFrames_y8jyl")
 autoplay = "default"
+frame_progress = 0.76041764
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=137886357]
 scale = Vector2(0.1, 0.1)

@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://dwk8hcx6gsplb"]
+
+[ext_resource type="Script" uid="uid://b7sxjclg85n8m" path="res://sauce/hud/upgrade_menu.gd" id="1_4igbq"]
+[ext_resource type="PackedScene" uid="uid://plud6oep0g52" path="res://sauce/hud/upgrade_card.tscn" id="2_0kvfh"]
+[ext_resource type="Texture2D" uid="uid://0x0dxjiqirvj" path="res://assets/cursors/PNG/Basic/Default/arrow_e.png" id="3_cl7k1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kvfh"]
+bg_color = Color(0.4199504, 0.6740715, 0.40401497, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.37254903, 0.8, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+
+[sub_resource type="Animation" id="Animation_cl7k1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h7wx6"]
+resource_name = "arrow"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 0), Vector2(0, 0), Vector2(-1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pyt3c"]
+_data = {
+&"RESET": SubResource("Animation_cl7k1"),
+&"arrow": SubResource("Animation_h7wx6")
+}
+
+[node name="UpgradeMenu" type="Control" unique_id=1341229159]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 247.0
+offset_bottom = 398.0
+script = ExtResource("1_4igbq")
+
+[node name="MainPanel" type="PanelContainer" parent="." unique_id=1351714727]
+custom_minimum_size = Vector2(220, 400)
+layout_mode = 0
+offset_right = 280.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0kvfh")
+
+[node name="Label" type="Label" parent="MainPanel" unique_id=1838209923]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Level Up!"
+
+[node name="UpgradeCards" type="VBoxContainer" parent="MainPanel" unique_id=1316810869]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Card1" parent="MainPanel/UpgradeCards" unique_id=214253739 instance=ExtResource("2_0kvfh")]
+layout_mode = 2
+
+[node name="Card2" parent="MainPanel/UpgradeCards" unique_id=876084571 instance=ExtResource("2_0kvfh")]
+layout_mode = 2
+
+[node name="Card3" parent="MainPanel/UpgradeCards" unique_id=1182747852 instance=ExtResource("2_0kvfh")]
+layout_mode = 2
+
+[node name="Arrow" type="TextureRect" parent="." unique_id=279333544]
+z_index = 1
+layout_mode = 1
+offset_right = 32.0
+offset_bottom = 32.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+texture = ExtResource("3_cl7k1")
+
+[node name="Animation" type="AnimationPlayer" parent="Arrow" unique_id=533369473]
+libraries/ = SubResource("AnimationLibrary_pyt3c")

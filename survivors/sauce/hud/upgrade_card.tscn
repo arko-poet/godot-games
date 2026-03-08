@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://plud6oep0g52"]
+
+[ext_resource type="Texture2D" uid="uid://cuebafomc3r0a" path="res://assets/swords/Iicon_32_01.png" id="1_ws361"]
+
+[sub_resource type="Theme" id="Theme_ws361"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bvrv"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.52672493, 0.52604127, 0.16462189, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+
+[node name="UpgradeCard" type="PanelContainer" unique_id=590646607]
+custom_minimum_size = Vector2(200, 80)
+offset_right = 210.0
+offset_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_ws361")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3bvrv")
+
+[node name="TextContainer" type="VBoxContainer" parent="." unique_id=833792296]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextContainer" unique_id=49479814]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="TextContainer/HBoxContainer" unique_id=827161884]
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("1_ws361")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="TextContainer/HBoxContainer" unique_id=1203730107]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 20.0
+theme_override_font_sizes/font_size = 18
+text = "Upgrade"
+
+[node name="Description" type="Label" parent="TextContainer" unique_id=1061127620]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+text = "Upgrade descriptin"
+autowrap_mode = 3

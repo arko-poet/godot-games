@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cejxbi43gxqnr" path="res://sauce/hud/hud.gd" id="1_uimqp"]
 [ext_resource type="Texture2D" uid="uid://c72d20evjvk63" path="res://assets/Skull&Bones - FrodoUndead.png" id="2_j1dav"]
+[ext_resource type="PackedScene" uid="uid://dwk8hcx6gsplb" path="res://sauce/hud/upgrade_menu.tscn" id="3_fix31"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ldqu"]
 atlas = ExtResource("2_j1dav")
@@ -75,6 +76,7 @@ theme_override_font_sizes/font_size = 24
 text = "0"
 
 [node name="GGLabel" type="Label" parent="." unique_id=1821155872]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -90,3 +92,19 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 128
 text = "GG"
+
+[node name="UpgradeMenu" parent="." unique_id=1763212823 instance=ExtResource("3_fix31")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -200.0
+offset_right = 110.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="upgrade_chosen" from="UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_chosen"]

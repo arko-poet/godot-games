@@ -22,5 +22,7 @@ stream = ExtResource("4_wx6ee")
 [connection signal="hp_changed" from="World/Player" to="." method="_on_player_hp_changed"]
 [connection signal="level_changed" from="World/Player" to="." method="_on_player_level_changed"]
 [connection signal="xp_changed" from="World/Player" to="." method="_on_player_xp_changed"]
+[connection signal="upgrade_chosen" from="HUDLayer/HUD" to="." method="_on_hud_upgrade_chosen"]
 
 [editable path="World"]
+[editable path="HUDLayer/HUD"]
