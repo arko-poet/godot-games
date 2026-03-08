@@ -11,7 +11,6 @@ var selected_card := 1
 @onready var arrow: TextureRect = $Arrow
 
 
-
 func _ready() -> void:
 	await get_tree().process_frame
 	_set_arrow_position()
