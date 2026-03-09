@@ -16,6 +16,7 @@ var kill_count := 0
 @onready var right_chunk: WorldChunk = $Chunk3
 @onready var player: CharacterBody2D = $Player
 @onready var monster_spawn_points: PathFollow2D = $Player/Path/MonsterSpawnPoints
+@onready var monster_spawner: Timer = $MonsterSpawner
 
 
 func _ready() -> void:
@@ -73,3 +74,7 @@ func _on_player_died() -> void:
 func _on_monster_killed() -> void:
 	kill_count += 1
 	kill_count_changed.emit()
+
+
+func _on_spawn_acceleration_timeout() -> void:
+	monster_spawner.wait_time *= 0.9

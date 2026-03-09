@@ -34,8 +34,12 @@ position = Vector2(500, 300)
 rotation = -1.5707964
 
 [node name="MonsterSpawner" type="Timer" parent="." unique_id=598087123]
-wait_time = 0.1
+autostart = true
+
+[node name="SpawnAcceleration" type="Timer" parent="." unique_id=615124642]
+wait_time = 10.0
 autostart = true
 
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="timeout" from="MonsterSpawner" to="." method="_on_monster_spawner_timeout"]
+[connection signal="timeout" from="SpawnAcceleration" to="." method="_on_spawn_acceleration_timeout"]
