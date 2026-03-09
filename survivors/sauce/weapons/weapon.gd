@@ -6,6 +6,7 @@ extends Node2D
 @export_range(0.0, 1.0) var size_scaling: float = 0.2
 @export_range(0.0, 1.0) var cooldown_scaling: float = 0.05
 
+var base_cooldown: float
 var damage_multiplier := 1.0
 var size_multiplier := 1.0
 var cooldown_multiplier := 1.0
@@ -14,8 +15,8 @@ var target: Node2D
 var id: int ## weapon type, not unique identifier
 var scalings: Dictionary = {}
 var scalers: Dictionary = {
-	"damage": scale_damage
-	#"cooldown": scale_cooldown,
+	"damage": scale_damage,
+	"cooldown": scale_cooldown
 	#"size": scale_size
 }
 
@@ -25,7 +26,9 @@ var scalers: Dictionary = {
 func _ready() -> void:
 	scalings["damage"] = damage_scaling
 	#scalings["size"] = size_scaling
-	#scalings["cooldown"] = cooldown_scaling
+	scalings["cooldown"] = cooldown_scaling
+	
+	base_cooldown = cooldown_timer.wait_time
 
 
 func _on_cooldown_timer_timeout() -> void:
@@ -43,6 +46,9 @@ func scale_damage(val: float) -> void:
 
 func scale_cooldown(val: float) -> void:
 	cooldown_multiplier += val
+	print(cooldown_multiplier)
+	cooldown_timer.wait_time = base_cooldown / cooldown_multiplier
+	print(cooldown_multiplier)
 	
 	
 func scale_size(val: float) -> void:

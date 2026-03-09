@@ -10,6 +10,7 @@ var knockback_magnitude := 100.0
 
 
 func _ready() -> void:
+	super._ready()
 	_deactivate()
 	
 	

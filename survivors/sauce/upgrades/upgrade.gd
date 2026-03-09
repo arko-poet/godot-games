@@ -8,4 +8,4 @@ var property: String
 var value: float
 var icon_path: String
 var rarity: Rarity
-var id: int
+var id: int ## weapon type id

@@ -52,10 +52,12 @@ func get_upgrades(player: Player) -> Array[Upgrade]:
 
 
 func execute_upgrade(upgrade: Upgrade, player: Player) -> void:
-	var weapon = _new_weapon(upgrade.id)
+	var weapon: Weapon
 	if upgrade.property:
+		weapon = player.get_weapon(upgrade.id)
 		weapon.scalers[upgrade.property].call(upgrade.value)
 	else:
+		weapon = _new_weapon(upgrade.id)
 		player.add_weapon(weapon)
 
 
