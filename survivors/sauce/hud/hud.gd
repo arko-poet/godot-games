@@ -1,7 +1,7 @@
 class_name HUD
 extends Control
 
-signal upgrade_chosen(upgrade: int)
+signal upgrade_chosen(upgrade: Upgrade)
 
 @onready var hp_bar: ProgressBar = $HPBar
 @onready var xp_bar: ProgressBar = $XPBar
@@ -41,10 +41,11 @@ func switch_gg_label(show_: bool):
 		gg_label.hide()
 
 
-func get_upgrades() -> void:
+func show_upgrades(upgrades: Array[Upgrade]) -> void:
+	upgrade_menu.set_upgrades(upgrades)
 	upgrade_menu.show()
 
 
-func _on_upgrade_menu_upgrade_chosen(upgrade: int) -> void:
+func _on_upgrade_menu_upgrade_chosen(upgrade: Upgrade) -> void:
 	upgrade_menu.hide()
 	emit_signal("upgrade_chosen", upgrade)

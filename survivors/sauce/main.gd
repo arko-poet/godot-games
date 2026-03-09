@@ -29,8 +29,9 @@ func _on_player_level_changed() -> void:
 
 
 func _show_level_up() -> void:
+	var upgrades := upgrade_service.get_upgrades(player)
 	world.process_mode = Node.PROCESS_MODE_DISABLED
-	hud.get_upgrades()
+	hud.show_upgrades(upgrades)
 
 
 func _on_player_xp_changed() -> void:
@@ -41,6 +42,6 @@ func _on_world_kill_count_changed() -> void:
 	hud.set_kill_count(world.kill_count)
 
 
-func _on_hud_upgrade_chosen(upgrade: int) -> void:
-	print(upgrade)
+func _on_hud_upgrade_chosen(upgrade: Upgrade) -> void:
+	upgrade_service.execute_upgrade(upgrade, player)
 	world.process_mode = Node.PROCESS_MODE_ALWAYS

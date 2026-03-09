@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://plud6oep0g52"]
 
+[ext_resource type="Script" uid="uid://bis8nqyxsuqp2" path="res://sauce/hud/upgrade_card.gd" id="1_3bvrv"]
 [ext_resource type="Texture2D" uid="uid://cuebafomc3r0a" path="res://assets/swords/Iicon_32_01.png" id="1_ws361"]
 
 [sub_resource type="Theme" id="Theme_ws361"]
@@ -28,6 +29,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource("Theme_ws361")
 theme_override_styles/panel = SubResource("StyleBoxFlat_3bvrv")
+script = ExtResource("1_3bvrv")
 
 [node name="TextContainer" type="VBoxContainer" parent="." unique_id=833792296]
 layout_mode = 2

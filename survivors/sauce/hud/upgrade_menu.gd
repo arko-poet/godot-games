@@ -1,6 +1,6 @@
 extends Control
 
-signal upgrade_chosen(upgrade: int)
+signal upgrade_chosen(upgrade: Upgrade)
 
 var selected_card := 1
 @onready var cards := {
@@ -14,6 +14,12 @@ var selected_card := 1
 func _ready() -> void:
 	await get_tree().process_frame
 	_set_arrow_position()
+
+
+func set_upgrades(upgrades):
+	cards[1].set_upgrade(upgrades[0])
+	cards[2].set_upgrade(upgrades[1])
+	cards[3].set_upgrade(upgrades[2])
 
 
 func _set_arrow_position() -> void:
@@ -34,4 +40,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		selected_card = 1 + selected_card % 3
 		_set_arrow_position()
 	elif event.is_action_pressed("ui_accept"):
-		emit_signal("upgrade_chosen", selected_card)
+		emit_signal("upgrade_chosen", cards[selected_card].upgrade)
