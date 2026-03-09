@@ -5,6 +5,7 @@ const BouncerScene := preload("res://sauce/weapons/bouncers/bouncer.tscn")
 
 func _attack() -> void:
 	var bouncer: Bouncer = BouncerScene.instantiate()
+	bouncer.scale *= size_multiplier
 	bouncer.damage = int(base_damage * damage_multiplier)
 	if target:
 		bouncer.target = target

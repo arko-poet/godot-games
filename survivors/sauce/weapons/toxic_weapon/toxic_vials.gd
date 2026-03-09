@@ -4,6 +4,8 @@ const ToxicVial := preload("res://sauce/weapons/toxic_weapon/toxic_vial.tscn")
 
 func _attack():
 	var toxic_vial := ToxicVial.instantiate()
+	toxic_vial.scale *= size_multiplier
+	toxic_vial.size_multiplier = size_multiplier
 	toxic_vial.damage = int(base_damage * damage_multiplier)
 	toxic_vial.projectile_root = projectile_root
 	if target:
