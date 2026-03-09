@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c32ovnmsltmeb"]
 
 [ext_resource type="Script" uid="uid://bibks5c8b7jl8" path="res://sauce/world/world.gd" id="1_6qj8k"]
-[ext_resource type="PackedScene" uid="uid://csn72tp3w20gj" path="res://sauce/world/world_chunk.tscn" id="1_k1pjg"]
 [ext_resource type="PackedScene" uid="uid://ox3ffoofd1ck" path="res://sauce/player/player.tscn" id="1_w151q"]
+[ext_resource type="PackedScene" uid="uid://dvl70rb3ascln" path="res://sauce/world/world_chunk.scn" id="2_7p412"]
 
 [sub_resource type="Curve2D" id="Curve2D_6qj8k"]
 _data = {
@@ -13,12 +13,12 @@ point_count = 5
 [node name="World" type="Node2D" unique_id=1058740518]
 script = ExtResource("1_6qj8k")
 
-[node name="Chunk" parent="." unique_id=1334374625 instance=ExtResource("1_k1pjg")]
+[node name="Chunk" parent="." unique_id=1334374625 instance=ExtResource("2_7p412")]
 position = Vector2(-3456, 0)
 
-[node name="Chunk2" parent="." unique_id=1321329296 instance=ExtResource("1_k1pjg")]
+[node name="Chunk2" parent="." unique_id=770893573 instance=ExtResource("2_7p412")]
 
-[node name="Chunk3" parent="." unique_id=1932232924 instance=ExtResource("1_k1pjg")]
+[node name="Chunk3" parent="." unique_id=1264279689 instance=ExtResource("2_7p412")]
 position = Vector2(3456, 0)
 
 [node name="Player" parent="." unique_id=112692872 instance=ExtResource("1_w151q")]
