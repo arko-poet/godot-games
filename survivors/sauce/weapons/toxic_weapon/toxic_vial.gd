@@ -4,6 +4,7 @@ const ToxicGround := preload("res://sauce/weapons/toxic_weapon/toxic_ground.tscn
 
 var size_multiplier: float
 
+
 func _ready() -> void:
 	_set_direction()
 

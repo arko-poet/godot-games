@@ -6,6 +6,8 @@ signal hp_changed
 signal xp_changed
 signal level_changed
 
+const XP_SCALING := 10
+
 var weapons: Array[Weapon] = []
 var speed := 150.0
 var xp := 0
@@ -18,16 +20,6 @@ var hp_regen := 0
 var armour := 0
 
 @onready var sprite: AnimatedSprite2D = $Sprite
-
-
-#func _ready() -> void:
-	#add_weapon(WeaponID.BALLS)
-	#add_weapon(WeaponID.SWORD)
-	#add_weapon(WeaponID.CHAKRAMS)
-	#add_weapon(WeaponID.SPEARS)
-	#add_weapon(WeaponID.BOUNCERS)
-	#add_weapon(WeaponID.FIRE_STAFF)
-	#add_weapon(WeaponID.TOXIC_VIALS)
 
 
 func add_weapon(weapon: Weapon) -> void:
@@ -61,6 +53,7 @@ func add_xp(value: int) -> void:
 	if xp >= next_level_xp:
 		xp = xp - next_level_xp
 		level += 1
+		next_level_xp += XP_SCALING
 		level_changed.emit()
 	xp_changed.emit()
 
