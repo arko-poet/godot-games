@@ -1,5 +1,7 @@
 extends Node
 
+var upgrade_service := UpgradeService.new()
+
 @onready var world: Node2D = $World
 @onready var player: Player = $World/Player
 @onready var hud: HUD = $HUDLayer/HUD
@@ -7,7 +9,6 @@ extends Node
 
 
 func _ready():
-	world.process_mode = Node.PROCESS_MODE_DISABLED
 	_show_level_up()
 
 

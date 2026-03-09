@@ -6,18 +6,6 @@ signal hp_changed
 signal xp_changed
 signal level_changed
 
-enum WeaponID {BALLS, SWORD, CHAKRAMS, SPEARS, BOUNCERS, FIRE_STAFF, TOXIC_VIALS}
-
-const WEAPON_SCENES := {
-	WeaponID.BALLS: preload("res://sauce/weapons/balls/balls.tscn"),
-	WeaponID.SWORD: preload("res://sauce/weapons/sword/sword.tscn"),
-	WeaponID.CHAKRAMS: preload("res://sauce/weapons/chakrams/chakrams.tscn"),
-	WeaponID.SPEARS: preload("res://sauce/weapons/spears/spears.tscn"),
-	WeaponID.BOUNCERS: preload("res://sauce/weapons/bouncers/bouncers.tscn"),
-	WeaponID.FIRE_STAFF: preload("res://sauce/weapons/fire_staff/fire_staff.tscn"),
-	WeaponID.TOXIC_VIALS: preload("res://sauce/weapons/toxic_weapon/toxic_vials.tscn")
-}
-
 var weapons: Array[Weapon] = []
 var speed := 150.0
 var xp := 0
@@ -32,25 +20,20 @@ var armour := 0
 @onready var sprite: AnimatedSprite2D = $Sprite
 
 
-func _ready() -> void:
+#func _ready() -> void:
 	#add_weapon(WeaponID.BALLS)
 	#add_weapon(WeaponID.SWORD)
 	#add_weapon(WeaponID.CHAKRAMS)
 	#add_weapon(WeaponID.SPEARS)
-	add_weapon(WeaponID.BOUNCERS)
+	#add_weapon(WeaponID.BOUNCERS)
 	#add_weapon(WeaponID.FIRE_STAFF)
 	#add_weapon(WeaponID.TOXIC_VIALS)
 
 
-func add_weapon(weapon_id: WeaponID) -> void:
-	var weapon_scene: PackedScene = WEAPON_SCENES[weapon_id]
-	if weapon_scene != null:
-		var weapon: Weapon = weapon_scene.instantiate()
-		weapon.projectile_root = get_parent()
-		add_child(weapon)
-		weapons.append(weapon)
-	else:
-		push_error("invalid weapon_id: %s" % weapon_id)
+func add_weapon(weapon: Weapon) -> void:
+	weapon.projectile_root = get_parent()
+	add_child(weapon)
+	weapons.append(weapon)
 
 
 func _physics_process(_delta: float) -> void:
