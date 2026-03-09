@@ -28,18 +28,25 @@ func get_upgrades(player: Player) -> Array[Upgrade]:
 	for weapon in player.weapons:
 		player_weapon_ids.append(weapon.id)
 	
+	# get 3 random items to upgrade
 	var weapon_pool = WeaponID.values().duplicate()
 	weapon_pool.shuffle()
 	var weapon_picks = weapon_pool.slice(0, 3)
 	
+	# create upgrade objects
 	var upgrades : Array[Upgrade] = []
 	for weapon_id in weapon_picks:
 		var upgrade := Upgrade.new()
 		upgrade.name_ = WEAPON_NAMES[weapon_id]
 		upgrade.id = weapon_id
 		if weapon_id in player_weapon_ids:
-			upgrade.property = "damage"
-			upgrade.value = 1.0
+			# random weapon property
+			var weapon: Weapon = player.get_weapon(weapon_id)
+			var property_pool = weapon.scalings.keys().duplicate()
+			property_pool.shuffle()
+			var property = property_pool[0]
+			upgrade.property = property
+			upgrade.value = weapon.scalings[property]
 		upgrades.append(upgrade)
 	return upgrades
 
@@ -47,7 +54,7 @@ func get_upgrades(player: Player) -> Array[Upgrade]:
 func execute_upgrade(upgrade: Upgrade, player: Player) -> void:
 	var weapon = _new_weapon(upgrade.id)
 	if upgrade.property:
-		weapon.damage += int(upgrade.value)
+		weapon.scalers[upgrade.property].call(upgrade.value)
 	else:
 		player.add_weapon(weapon)
 

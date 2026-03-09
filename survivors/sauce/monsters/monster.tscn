@@ -46,7 +46,7 @@ z_index = 1
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_f3lrl")
-hp = 2
+hp = 20
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1892772476]
 texture_filter = 3

@@ -5,4 +5,3 @@
 
 [node name="Balls" unique_id=12557176 instance=ExtResource("1_en827")]
 script = ExtResource("2_xoubm")
-damage = 5

@@ -31,7 +31,7 @@ func _sword_swipe(angle: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Monster:
 		var knockback := knockback_magnitude * (body.global_position - global_position).normalized()
-		body.call_deferred("hit", damage, knockback)
+		body.call_deferred("hit", int(base_damage * damage_multiplier), knockback)
 
 
 func _activate():

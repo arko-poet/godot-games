@@ -89,3 +89,12 @@ func _on_hp_drain_timer_timeout() -> void:
 func _on_hp_regen_timer_timeout() -> void:
 	hp = mini(max_hp, hp + hp_regen)
 	hp_changed.emit()
+
+
+func get_weapon(id: int) -> Weapon:
+	for weapon in weapons:
+		if weapon.id == id:
+			return weapon
+			
+	push_error("invalid weapon id %s" % id)
+	return null

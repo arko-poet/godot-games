@@ -5,7 +5,7 @@ const FireBallScene := preload("res://sauce/weapons/fire_staff/fireball.tscn")
 
 func _attack() -> void:
 	var fireball: FireBall = FireBallScene.instantiate()
-	fireball.damage = damage
+	fireball.damage = int(base_damage * damage_multiplier)
 	fireball.projectile_root = projectile_root
 	if target:
 		fireball.target = target
