@@ -3,8 +3,9 @@ extends Node2D
 
 @export_range(0, 9999) var damage: int = 1
 
-var projectile_root: Node2D ## reference where weapon creates projectiles
+var projectile_root: Node2D ## reference where weapon creates projectiles, e.g. World
 var target: Node2D
+var id: int ## weapon type, not unique identifier
 
 @onready var cooldown_timer: Timer = $CooldownTimer
 
