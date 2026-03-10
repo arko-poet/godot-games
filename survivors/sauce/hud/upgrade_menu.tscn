@@ -17,58 +17,21 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 corner_detail = 5
 
-[sub_resource type="Animation" id="Animation_cl7k1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_h7wx6"]
-resource_name = "arrow"
-length = 1.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1, 0), Vector2(0, 0), Vector2(-1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_pyt3c"]
-_data = {
-&"RESET": SubResource("Animation_cl7k1"),
-&"arrow": SubResource("Animation_h7wx6")
-}
-
 [node name="UpgradeMenu" type="Control" unique_id=1341229159]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 247.0
-offset_bottom = 398.0
+offset_right = 281.0
+offset_bottom = 397.0
 script = ExtResource("1_4igbq")
 
 [node name="MainPanel" type="PanelContainer" parent="." unique_id=1351714727]
 custom_minimum_size = Vector2(220, 400)
-layout_mode = 0
-offset_right = 280.0
-offset_bottom = 400.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_0kvfh")
 
 [node name="Label" type="Label" parent="MainPanel" unique_id=1838209923]
@@ -93,14 +56,31 @@ layout_mode = 2
 [node name="Card3" parent="MainPanel/UpgradeCards" unique_id=1182747852 instance=ExtResource("2_0kvfh")]
 layout_mode = 2
 
-[node name="Arrow" type="TextureRect" parent="." unique_id=279333544]
+[node name="LeftArrow" type="TextureRect" parent="." unique_id=279333544]
 z_index = 1
 layout_mode = 1
-offset_right = 32.0
+offset_left = -32.0
 offset_bottom = 32.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
 texture = ExtResource("3_cl7k1")
 
-[node name="Animation" type="AnimationPlayer" parent="Arrow" unique_id=533369473]
-libraries/ = SubResource("AnimationLibrary_pyt3c")
+[node name="RightArrow" type="TextureRect" parent="." unique_id=561323471]
+z_index = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+texture = ExtResource("3_cl7k1")
+flip_h = true
+
+[node name="ArrowAnimationTimer" type="Timer" parent="." unique_id=2027614060]
+wait_time = 0.4
+autostart = true
+
+[connection signal="timeout" from="ArrowAnimationTimer" to="." method="_on_arrow_animation_timer_timeout"]
