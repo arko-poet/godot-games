@@ -6,19 +6,28 @@ const RARITY_COLORS := {
 	UpgradeService.Rarity.EPIC: Color("A335EE"),
 	UpgradeService.Rarity.LEGENDARY: Color("FF9F1C")
 }
-
 const RARITY_NAMES := {
 	UpgradeService.Rarity.COMMON: "COMMON",
 	UpgradeService.Rarity.RARE: "RARE",
 	UpgradeService.Rarity.EPIC: "EPIC",
 	UpgradeService.Rarity.LEGENDARY: "LEGENDARY"
 }
+const ICON_PATHS := {
+	UpgradeService.WeaponID.BALLS: preload("res://assets/balls_icon.png"),
+	UpgradeService.WeaponID.SWORD: preload("res://assets/swords/Iicon_32_01.png"),
+	UpgradeService.WeaponID.CHAKRAMS: preload("res://assets/chakram_icon.png"),
+	UpgradeService.WeaponID.SPEARS: preload("res://assets/spear.png"),
+	UpgradeService.WeaponID.BOUNCERS: preload("res://assets/bouncer_icon.png"),
+	UpgradeService.WeaponID.FIRE_STAFF: preload("res://assets/fire_staff_icon.png"),
+	UpgradeService.WeaponID.TOXIC_VIALS: preload("res://assets/pixel-art-potion-pack-V1.1/sprites/green/potion_green_medium.png")
+}
+
+var upgrade: Upgrade
 
 @onready var name_label: Label = $TextContainer/HBoxContainer/Name
 @onready var description: Label = $TextContainer/Description
 @onready var rarity_label: Label = $TextContainer/HBoxContainer/Rarity
-
-var upgrade: Upgrade
+@onready var icon: TextureRect = $TextContainer/HBoxContainer/Icon
 
 
 func set_upgrade(new_upgrade: Upgrade):
@@ -37,3 +46,5 @@ func set_upgrade(new_upgrade: Upgrade):
 	var stylebox := get_theme_stylebox("panel").duplicate()
 	stylebox.border_color = rarity_color
 	add_theme_stylebox_override("panel", stylebox)
+	
+	icon.texture = ICON_PATHS[upgrade.id]
