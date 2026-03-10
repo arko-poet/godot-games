@@ -13,7 +13,7 @@ func _ready():
 	var bodies := get_overlapping_bodies()
 	for body in bodies:
 		if body.is_in_group("monsters"):
-			body.hit(1, (body.global_position - global_position).normalized() * knockback_velocity)
+			body.hit(damage, (body.global_position - global_position).normalized() * knockback_velocity)
 
 
 func _on_particles_finished() -> void:

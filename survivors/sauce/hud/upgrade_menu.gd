@@ -2,6 +2,8 @@ extends Control
 
 signal upgrade_chosen(upgrade: Upgrade)
 
+const ARROW_BOB_DISTANCE := 2
+
 var selected_card := 1
 var arrow_bob_switch := false ## arrow bob left or right
 
@@ -49,9 +51,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_arrow_animation_timer_timeout() -> void:
 	if arrow_bob_switch:
-		left_arrow.global_position.x += 2
-		right_arrow.global_position.x -= 2
+		left_arrow.global_position.x += ARROW_BOB_DISTANCE
+		right_arrow.global_position.x -= ARROW_BOB_DISTANCE
 	else:
-		left_arrow.global_position.x -= 2
-		right_arrow.global_position.x += 2
+		left_arrow.global_position.x -= ARROW_BOB_DISTANCE
+		right_arrow.global_position.x += ARROW_BOB_DISTANCE
 	arrow_bob_switch = not arrow_bob_switch

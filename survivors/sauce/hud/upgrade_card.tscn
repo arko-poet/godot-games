@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://plud6oep0g52"]
 
 [ext_resource type="Script" uid="uid://bis8nqyxsuqp2" path="res://sauce/hud/upgrade_card.gd" id="1_3bvrv"]
-[ext_resource type="Texture2D" uid="uid://cuebafomc3r0a" path="res://assets/swords/Iicon_32_01.png" id="1_ws361"]
+[ext_resource type="Texture2D" uid="uid://c736uw56u3be1" path="res://assets/pixel-art-potion-pack-V1.1/sprites/green/potion_green_medium.png" id="2_3bvrv"]
 
 [sub_resource type="Theme" id="Theme_ws361"]
 
@@ -42,7 +42,7 @@ layout_mode = 2
 [node name="Icon" type="TextureRect" parent="TextContainer/HBoxContainer" unique_id=827161884]
 layout_mode = 2
 size_flags_horizontal = 2
-texture = ExtResource("1_ws361")
+texture = ExtResource("2_3bvrv")
 expand_mode = 2
 stretch_mode = 5
 
@@ -61,11 +61,12 @@ theme_override_colors/font_color = Color(0.84313726, 0.8627451, 0.9019608, 1)
 theme_override_font_sizes/font_size = 12
 text = "[LEGENDARY]"
 
-[node name="Description" type="Label" parent="TextContainer" unique_id=1061127620]
+[node name="Description" type="RichTextLabel" parent="TextContainer" unique_id=824942689]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.84313726, 0.8627451, 0.9019608, 1)
-theme_override_font_sizes/font_size = 12
+theme_override_colors/default_color = Color(0.84313726, 0.8627451, 0.9019608, 1)
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+bbcode_enabled = true
 text = "Upgrade description"
-autowrap_mode = 3

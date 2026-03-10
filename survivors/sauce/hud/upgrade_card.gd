@@ -25,7 +25,7 @@ const ICON_PATHS := {
 var upgrade: Upgrade
 
 @onready var name_label: Label = $TextContainer/HBoxContainer/Name
-@onready var description: Label = $TextContainer/Description
+@onready var description: RichTextLabel = $TextContainer/Description
 @onready var rarity_label: Label = $TextContainer/HBoxContainer/Rarity
 @onready var icon: TextureRect = $TextContainer/HBoxContainer/Icon
 
@@ -33,15 +33,19 @@ var upgrade: Upgrade
 func set_upgrade(new_upgrade: Upgrade):
 	upgrade = new_upgrade
 	
-	name_label.text = upgrade.name_
-	if upgrade.property:
-		description.text = "Increase %s by %s" % [upgrade.property, upgrade.value]
-	else:
-		description.text = "NEW WEAPON"
-	
 	var rarity_color : Color = RARITY_COLORS[upgrade.rarity]
 	rarity_label.add_theme_color_override("font_color", rarity_color)
 	rarity_label.text = "[%s]" % RARITY_NAMES[upgrade.rarity]
+	
+	name_label.text = upgrade.name_
+	if upgrade.property:
+		description.text = "Increase [u]%s[/u] by [color=%s][b]%d%%[/b][/color]" % [
+			upgrade.property,
+			rarity_color.to_html(),
+			int(round(upgrade.value * 100.0))
+		]
+	else:
+		description.text = "NEW WEAPON"
 	
 	var stylebox := get_theme_stylebox("panel").duplicate()
 	stylebox.border_color = rarity_color

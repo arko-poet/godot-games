@@ -17,7 +17,7 @@ var id: int ## weapon type, not unique identifier
 var scalings: Dictionary = {}
 var scalers: Dictionary = {
 	"damage": scale_damage,
-	"cooldown": scale_cooldown,
+	"cooldown reduction": scale_cooldown,
 	"size": scale_size
 }
 
@@ -27,7 +27,7 @@ var scalers: Dictionary = {
 func _ready() -> void:
 	scalings["damage"] = damage_scaling
 	scalings["size"] = size_scaling
-	scalings["cooldown"] = cooldown_scaling
+	scalings["cooldown reduction"] = cooldown_scaling
 	
 	base_cooldown = cooldown_timer.wait_time
 	base_size = scale
