@@ -10,11 +10,12 @@ content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
+bg_color = Color(0.105882354, 0.12941177, 0.1882353, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.52672493, 0.52604127, 0.16462189, 1)
+border_color = Color(0.22745098, 0.2627451, 0.34509805, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -50,13 +51,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 20.0
+theme_override_colors/font_color = Color(0.84313726, 0.8627451, 0.9019608, 1)
 theme_override_font_sizes/font_size = 18
-text = "Upgrade"
+text = "Toxic Vials"
+
+[node name="Rarity" type="Label" parent="TextContainer/HBoxContainer" unique_id=1926979928]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84313726, 0.8627451, 0.9019608, 1)
+theme_override_font_sizes/font_size = 12
+text = "[LEGENDARY]"
 
 [node name="Description" type="Label" parent="TextContainer" unique_id=1061127620]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.84313726, 0.8627451, 0.9019608, 1)
 theme_override_font_sizes/font_size = 12
-text = "Upgrade descriptin"
+text = "Upgrade description"
 autowrap_mode = 3
