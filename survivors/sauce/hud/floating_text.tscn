@@ -7,8 +7,8 @@
 script = ExtResource("1_11k6c")
 
 [node name="Label" type="Label" parent="." unique_id=1359365903]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 42.0
+offset_bottom = 19.0
 theme_override_fonts/font = ExtResource("2_aktc4")
 theme_override_font_sizes/font_size = 12
 text = "20"

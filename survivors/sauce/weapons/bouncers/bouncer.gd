@@ -16,7 +16,10 @@ var same_collider_elapsed := 0.0
 
 
 func _ready() -> void:
-	direction = (target.global_position - global_position).normalized()
+	if target:
+		direction = (target.global_position - global_position).normalized()
+	else:
+		direction = Vector2(1, 0)
 
 
 func _physics_process(delta: float) -> void:
