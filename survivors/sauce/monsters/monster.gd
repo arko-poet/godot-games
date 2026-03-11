@@ -2,6 +2,7 @@ class_name Monster
 extends CharacterBody2D
 
 signal monster_died
+signal hit_recieved(damage: int, position: Vector2)
 
 const SPEED := 100.0
 const XPOrbScene := preload("res://sauce/xp_orb/xp_orb.tscn")
@@ -51,6 +52,8 @@ func hit(damage_recieved: int, knockback := Vector2(0.0, 0.0)) -> void:
 	else:
 		knockback_velocity += knockback
 		_hit_flash()
+	
+	hit_recieved.emit(damage_recieved, global_position)
 
 
 func _hit_flash() -> void:

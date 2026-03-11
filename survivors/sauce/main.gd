@@ -1,8 +1,10 @@
 extends Node
 
+const FloatingTextScene := preload("res://sauce/hud/floating_text.tscn")
+
 var upgrade_service := UpgradeService.new()
 
-@onready var world: Node2D = $World
+@onready var world: World = $World
 @onready var player: Player = $World/Player
 @onready var hud: HUD = $HUDLayer/HUD
 @onready var game_over_sound: AudioStreamPlayer = $GameOverSound
@@ -45,3 +47,10 @@ func _on_world_kill_count_changed() -> void:
 func _on_hud_upgrade_chosen(upgrade: Upgrade) -> void:
 	upgrade_service.execute_upgrade(upgrade, player)
 	world.process_mode = Node.PROCESS_MODE_ALWAYS
+
+
+func _on_world_monster_hit(damage: int, coordinates: Vector2) -> void:
+	var floating_text := FloatingTextScene.instantiate()
+	floating_text.position = coordinates
+	floating_text.damage = damage
+	world.add_child(floating_text)

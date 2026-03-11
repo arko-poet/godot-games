@@ -1,7 +1,9 @@
+class_name World
 extends Node2D
 
 signal game_over
 signal kill_count_changed
+signal monster_hit(damage: int, coordinates: Vector2)
 
 const MonsterScene := preload("res://sauce/monsters/monster.tscn")
 const CHUNK_COUNT := 3
@@ -57,7 +59,7 @@ func get_monster_spawn_point() -> Vector2:
 
 
 func _on_monster_spawner_timeout() -> void:
-	var monster := MonsterScene.instantiate()
+	var monster : Monster = MonsterScene.instantiate()
 	var _spawn_point = get_monster_spawn_point()
 	if _spawn_point == Vector2.INF:
 		return
@@ -65,6 +67,7 @@ func _on_monster_spawner_timeout() -> void:
 	monster.set_target(player)
 	monster.connect("monster_died", _on_monster_killed)
 	add_child(monster)
+	monster.hit_recieved.connect(_on_monster_hit_recived)
 
 
 func _on_player_died() -> void:
@@ -78,3 +81,7 @@ func _on_monster_killed() -> void:
 
 func _on_spawn_acceleration_timeout() -> void:
 	monster_spawner.wait_time *= 0.9
+
+
+func _on_monster_hit_recived(damage: int, coordinates: Vector2) -> void:
+	monster_hit.emit(damage, coordinates)
