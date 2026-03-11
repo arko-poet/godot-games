@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cs48rqq20ocks"]
+
+[ext_resource type="PackedScene" uid="uid://mxtxxy6qqk06" path="res://sauce/weapons/weapon.tscn" id="1_wbkmw"]
+[ext_resource type="Script" uid="uid://hwd0ihlo6xl1" path="res://sauce/weapons/sword/sword.gd" id="2_jo88f"]
+[ext_resource type="Texture2D" uid="uid://cuebafomc3r0a" path="res://assets/swords/Iicon_32_01.png" id="3_jo88f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jo88f"]
+radius = 3.0
+
+[node name="Sword" unique_id=1064152361 instance=ExtResource("1_wbkmw")]
+script = ExtResource("2_jo88f")
+
+[node name="CooldownTimer" parent="." index="0" unique_id=390843552]
+wait_time = 2.0
+
+[node name="Sprite" type="Sprite2D" parent="." index="1" unique_id=1687723098]
+texture_filter = 3
+rotation = 0.7853982
+texture = ExtResource("3_jo88f")
+centered = false
+offset = Vector2(0, -32)
+
+[node name="HitBox" type="Area2D" parent="." index="2" unique_id=1174587620]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="HitBox" index="0" unique_id=640152662]
+position = Vector2(29, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_jo88f")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_area_2d_body_entered"]

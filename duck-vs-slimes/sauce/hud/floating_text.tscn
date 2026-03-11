@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b6gp2gek1v40c"]
+
+[ext_resource type="Script" uid="uid://b7612874g1hx4" path="res://sauce/hud/floating_text.gd" id="1_11k6c"]
+[ext_resource type="FontFile" uid="uid://bdsr4ip48n37w" path="res://assets/Oswald-VariableFont_wght.ttf" id="2_aktc4"]
+
+[node name="FloatingText" type="Node2D" unique_id=8464365]
+script = ExtResource("1_11k6c")
+
+[node name="Label" type="Label" parent="." unique_id=1359365903]
+offset_right = 42.0
+offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("2_aktc4")
+theme_override_font_sizes/font_size = 12
+text = "20"

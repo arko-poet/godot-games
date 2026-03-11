@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://c2vmfgmppxu1t"]
+
+[ext_resource type="Script" uid="uid://cgdokq350ee0r" path="res://sauce/monsters/monster.gd" id="1_f3lrl"]
+[ext_resource type="Shader" uid="uid://bn88dr56efcdj" path="res://sauce/hit_flash.gdshader" id="2_xifm1"]
+[ext_resource type="Texture2D" uid="uid://c2t0rpx81st4b" path="res://assets/slimes/Dungeon_Slimes1.png" id="3_xifm1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dpc8o"]
+resource_local_to_scene = true
+shader = ExtResource("2_xifm1")
+shader_parameter/flash_amount = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpc8o"]
+atlas = ExtResource("3_xifm1")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xccc"]
+atlas = ExtResource("3_xifm1")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i0d6"]
+atlas = ExtResource("3_xifm1")
+region = Rect2(120, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7c0v7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpc8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xccc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i0d6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f3lrl"]
+radius = 8.0
+
+[node name="Monster" type="CharacterBody2D" unique_id=1484541772 groups=["monsters"]]
+z_index = 1
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_f3lrl")
+hp = 20
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1892772476]
+texture_filter = 3
+material = SubResource("ShaderMaterial_dpc8o")
+sprite_frames = SubResource("SpriteFrames_7c0v7")
+autoplay = "default"
+frame_progress = 0.3366239
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=887818423]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_f3lrl")
+
+[node name="Navigation" type="NavigationAgent2D" parent="." unique_id=1071640888]
+avoidance_enabled = true
+radius = 8.0
+neighbor_distance = 32.0
+max_neighbors = 1000
+
+[node name="UpdateTargetPosition" type="Timer" parent="." unique_id=1743981951]
+wait_time = 0.1
+autostart = true
+
+[connection signal="velocity_computed" from="Navigation" to="." method="_on_navigation_velocity_computed"]
+[connection signal="timeout" from="UpdateTargetPosition" to="." method="_on_update_target_position_timeout"]

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://54nuyq45kaku"]
+
+[ext_resource type="Script" uid="uid://bwq2xgxobx7u4" path="res://sauce/weapons/fire_staff/explosion.gd" id="1_ssja2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_odsc5"]
+radius = 30.0
+
+[sub_resource type="Curve" id="Curve_ssja2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_odsc5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.07978723, 1), -1.0561793, -1.0561793, 0, 0, Vector2(1, 0.30337083), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Explosion" type="Area2D" unique_id=336589678]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_ssja2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1967159076]
+shape = SubResource("CircleShape2D_odsc5")
+
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=231310919]
+emitting = false
+amount = 32
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.5
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+damping_min = 80.0
+damping_max = 80.0
+damping_curve = SubResource("Curve_ssja2")
+scale_amount_min = 0.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_odsc5")
+color = Color(0.69135684, 0.6913568, 0.69135684, 1)
+
+[connection signal="finished" from="Particles" to="." method="_on_particles_finished"]

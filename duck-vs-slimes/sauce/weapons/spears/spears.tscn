@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bqfuxof4h6l3y"]
+
+[ext_resource type="PackedScene" uid="uid://mxtxxy6qqk06" path="res://sauce/weapons/weapon.tscn" id="1_ke3gb"]
+[ext_resource type="Script" uid="uid://bhngu3m33h0ab" path="res://sauce/weapons/spears/spears.gd" id="2_ke3gb"]
+
+[node name="Spears" unique_id=12557176 instance=ExtResource("1_ke3gb")]
+script = ExtResource("2_ke3gb")

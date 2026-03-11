@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dbeh3ubysjxjb"]
+
+[ext_resource type="PackedScene" uid="uid://7qjv0qyipjw8" path="res://sauce/weapons/projectile.tscn" id="1_haueq"]
+[ext_resource type="Script" uid="uid://c1ivy6iqog8gw" path="res://sauce/weapons/spears/spear.gd" id="2_haueq"]
+[ext_resource type="Texture2D" uid="uid://d3u877qh8k6wp" path="res://assets/spear.png" id="3_haueq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7lla1"]
+radius = 2.9999998
+height = 12.0
+
+[node name="Spear" unique_id=1721435030 instance=ExtResource("1_haueq")]
+script = ExtResource("2_haueq")
+speed = 300.0
+
+[node name="Collision" parent="." index="0" unique_id=137886357]
+position = Vector2(12, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7lla1")
+
+[node name="Sprite" type="Sprite2D" parent="." index="2" unique_id=834226604]
+rotation = 0.7853982
+texture = ExtResource("3_haueq")

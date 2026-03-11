@@ -4,7 +4,7 @@ A collection of small projects created while learning Godot.
 
 Projects (in order created):
 
-## 1. `clicker` a clicker game where goal is to reach certain score as fast as possible
+## 1. `clicker` - based on cookie clicker
 ![](screenshots/clicker.png)
 ### What I learned
 - Animated Buttons
@@ -23,7 +23,7 @@ Projects (in order created):
 - Click-based income loop and passive income timers
 ### New Godot Nodes learned
 Node, Control, ColorRect, VBoxContainer, Label, TextureButton, Timer, Sprite2D, AudioStreamPlayer2D, AnimationPlayer, GridContainer, HSeparator, Button, ProgressBar, HBoxContainer, TextureRect 
-## 2. `tertis` a classic tetris game
+## 2. `blocks` - based on Tetris
 ![](screenshots/tetris.png)
 ### What I learned
 - Grid based game logic
@@ -32,7 +32,7 @@ Node, Control, ColorRect, VBoxContainer, Label, TextureButton, Timer, Sprite2D, 
 - Tracking data across runs with a global singleton script
 ### New Godot Nodes learned
 Node2D, AnimatedSprite2D, SubViewportContainer, SubViewport
-## 3. `satyr vs zombies` survive increasingly hard waves of zombies, purchase upgrades, defend the barricade
+## 3. `satyr vs zombies` - based on Last Stand
 ![](screenshots/satyr-vs-zombies.png)
 ### What I learned
 - Player movement with viewport clamping and collisions
@@ -50,7 +50,7 @@ Node2D, AnimatedSprite2D, SubViewportContainer, SubViewport
 - Utilising TileMapLayer to draw objects
 ### New Godot Nodes learned
 Area2D, CollisionShape2D, StaticBody2D, CharacterBody2D, TileMapLayer, Path2D, PathFollow2D
-## 4. `tower`
+## 4. `tower` - based on Icy Tower
 ![](screenshots/tower.png)
 ### What I learned
 - Parallax Scrolling
@@ -63,3 +63,19 @@ Area2D, CollisionShape2D, StaticBody2D, CharacterBody2D, TileMapLayer, Path2D, P
 - Score persistence
 ### New Godot Nodes learned
 Parallax2D, Camera2D, AudioStreamPlayer
+## 5. `duck vs slimes` - based on Vampire Survivors
+![](screenshots/survivors.png)
+### What I learned
+- item pickups
+- agent pathfinding and avoidance (RVO)
+- knockback
+- attack types: cone sweeps, homing projectiles, orbital projectiles, explosions, damaging ground
+- 3 chunk system for horizontal infinity
+- weighted rarity system
+- random upgrade offers
+- floating damage text
+- shader based hit flashes
+- particle effects
+- baking navigation meshes
+### New Godot Nodes learned
+PanelContainer, RichTextLabel, NavigationAgent2D, CPUParticles2D, GPUParticles2D, Polygon2D, CanvasLayer, NavigationRegion2D
