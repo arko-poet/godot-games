@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://fcerer108234"]
-
-[ext_resource type="PackedScene" uid="uid://mxtxxy6qqk06" path="res://sauce/weapons/weapon.tscn" id="1_pvcwv"]
-[ext_resource type="Script" uid="uid://dr7nw46kn20bk" path="res://sauce/weapons/bouncers/bouncers.gd" id="2_51vnw"]
-
-[node name="Bouncers" unique_id=1064152361 instance=ExtResource("1_pvcwv")]
-script = ExtResource("2_51vnw")
