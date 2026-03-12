@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bq03x1x31y0x"]
+
+[ext_resource type="Texture2D" uid="uid://ck3rq0uayoj07" path="res://assets/kenney_monster-builder-pack/PNG/Default/arm_darkE.png" id="1_hiqsg"]
+[ext_resource type="Texture2D" uid="uid://bmew8456w3fgm" path="res://assets/kenney_monster-builder-pack/PNG/Default/body_darkD.png" id="2_524c7"]
+[ext_resource type="Texture2D" uid="uid://bh1538tp6xphw" path="res://assets/kenney_monster-builder-pack/PNG/Default/eye_yellow.png" id="3_f16vp"]
+[ext_resource type="Texture2D" uid="uid://cx1d05705jm78" path="res://assets/kenney_monster-builder-pack/PNG/Double/mouth_closed_fangs.png" id="4_524c7"]
+[ext_resource type="Texture2D" uid="uid://c30u1ftxqptjq" path="res://assets/kenney_monster-builder-pack/PNG/Default/detail_white_horn_small.png" id="4_encmy"]
+
+[node name="Monster" type="Node2D" unique_id=422500346]
+metadata/_edit_group_ = true
+
+[node name="Body" type="Sprite2D" parent="." unique_id=1274210949]
+position = Vector2(115.5, 91)
+texture = ExtResource("2_524c7")
+
+[node name="Eye" type="Sprite2D" parent="." unique_id=386800413]
+position = Vector2(104, 64)
+texture = ExtResource("3_f16vp")
+
+[node name="LeftHorn" type="Sprite2D" parent="." unique_id=86661730]
+position = Vector2(144, 24)
+texture = ExtResource("4_encmy")
+
+[node name="RightHorn" type="Sprite2D" parent="." unique_id=1352450880]
+position = Vector2(75.5, 19)
+texture = ExtResource("4_encmy")
+flip_h = true
+
+[node name="Mouth" type="Sprite2D" parent="." unique_id=207911281]
+position = Vector2(104, 112)
+texture = ExtResource("4_524c7")
+
+[node name="LeftArm" type="Sprite2D" parent="." unique_id=953314269]
+position = Vector2(195.5, 115)
+texture = ExtResource("1_hiqsg")
+
+[node name="RightArm" type="Sprite2D" parent="." unique_id=2009329420]
+position = Vector2(35.5, 115)
+texture = ExtResource("1_hiqsg")
+flip_h = true
