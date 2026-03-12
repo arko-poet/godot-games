@@ -17,14 +17,14 @@ metadata/_snap_enabled = true
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2038444398]
 position = Vector2(0, 1.9073486e-06)
-scale = Vector2(18, 10.125)
+scale = Vector2(25.000002, 14.125001)
 texture = SubResource("GradientTexture2D_a7ehd")
 centered = false
 region_rect = Rect2(0, 0, 1, 1)
 
 [node name="Monster" parent="." unique_id=422500346 instance=ExtResource("1_a7ehd")]
-position = Vector2(752, 256)
+position = Vector2(1088, 385)
 
 [node name="Character" parent="." unique_id=1947639501 instance=ExtResource("2_4nd25")]
-position = Vector2(98, 232)
+position = Vector2(256, 336)
 scale = Vector2(0.5, 0.5)

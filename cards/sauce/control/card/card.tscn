@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://d3pg1m6glrge3"]
+
+[ext_resource type="Texture2D" uid="uid://b8iqdf5sjq0cu" path="res://assets/icon.svg" id="1_xtn7q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ap2b3"]
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+
+[node name="Card" type="PanelContainer" unique_id=1673318996]
+offset_right = 320.0
+offset_bottom = 450.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ap2b3")
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=440786661]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="NameLabel" type="Label" parent="VBox" unique_id=1747899173]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "ATTACK"
+
+[node name="Texture" type="TextureRect" parent="VBox" unique_id=1843766925]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("1_xtn7q")
+flip_h = true
+
+[node name="CostLabel" type="Label" parent="." unique_id=168710372]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "1"
+
+[node name="DescriptionLabel" type="Label" parent="." unique_id=1437024395]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Deals 1 damage."
