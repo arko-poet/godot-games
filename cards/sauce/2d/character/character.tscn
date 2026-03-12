@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://sn7u6jx0iwkw"]
+
+[ext_resource type="Texture2D" uid="uid://b2e61iltt1a83" path="res://assets/kenney_modular-characters/PNG/Skin/Tint 1/tint1_hand.png" id="2_pcljs"]
+[ext_resource type="Texture2D" uid="uid://fyh2aanncfn3" path="res://assets/kenney_modular-characters/PNG/Skin/Tint 1/tint1_head.png" id="3_lghu6"]
+[ext_resource type="Texture2D" uid="uid://0vr8i34kpxwx" path="res://assets/kenney_modular-characters/PNG/Pants/Blue 1/pantsBlue1_long.png" id="5_0erk3"]
+[ext_resource type="Texture2D" uid="uid://kv4uu33kax7i" path="res://assets/kenney_modular-characters/PNG/Skin/Tint 1/tint1_neck.png" id="5_7nyvo"]
+[ext_resource type="Texture2D" uid="uid://bqcmvwvwg8po3" path="res://assets/kenney_modular-characters/PNG/Shoes/Brown 1/brownShoe1.png" id="6_0erk3"]
+[ext_resource type="Texture2D" uid="uid://dhn2ond7ktbhw" path="res://assets/kenney_modular-characters/PNG/Shirts/Blue/blueArm_long.png" id="7_uxn7b"]
+[ext_resource type="Texture2D" uid="uid://ble3elbad3gtb" path="res://assets/kenney_modular-characters/PNG/Shirts/Blue/blueShirt5.png" id="8_6tebh"]
+[ext_resource type="Texture2D" uid="uid://crj3qhnwea130" path="res://assets/kenney_modular-characters/PNG/Hair/Black/blackMan1.png" id="8_uxn7b"]
+[ext_resource type="Texture2D" uid="uid://wmwmgpukten0" path="res://assets/kenney_modular-characters/PNG/Face/Nose/Tint 1/tint1Nose1.png" id="9_6tebh"]
+[ext_resource type="Texture2D" uid="uid://c57l16dhg13bo" path="res://assets/kenney_modular-characters/PNG/Face/Mouth/mouth_glad.png" id="10_15p25"]
+[ext_resource type="Texture2D" uid="uid://wivsppwvoenb" path="res://assets/kenney_modular-characters/PNG/Face/Eyes/eyeBlack_large.png" id="11_72lha"]
+[ext_resource type="Texture2D" uid="uid://vnxalasnwui1" path="res://assets/kenney_modular-characters/PNG/Face/Eyebrows/blackBrow1.png" id="12_7vbqn"]
+
+[node name="Character" type="Node2D" unique_id=1947639501]
+
+[node name="RightHand" type="Sprite2D" parent="." unique_id=211647257]
+position = Vector2(40, 280)
+texture = ExtResource("2_pcljs")
+flip_h = true
+
+[node name="LeftHand" type="Sprite2D" parent="." unique_id=663886908]
+position = Vector2(472, 280)
+texture = ExtResource("2_pcljs")
+
+[node name="Neck" type="Sprite2D" parent="." unique_id=410946575]
+position = Vector2(256, 144)
+texture = ExtResource("5_7nyvo")
+
+[node name="Head" type="Sprite2D" parent="." unique_id=770864577]
+position = Vector2(248, 64)
+texture = ExtResource("3_lghu6")
+
+[node name="RightShoe" type="Sprite2D" parent="." unique_id=455446172]
+position = Vector2(180, 456)
+texture = ExtResource("6_0erk3")
+flip_h = true
+
+[node name="LeftShoe" type="Sprite2D" parent="." unique_id=2095207613]
+position = Vector2(333, 451)
+texture = ExtResource("6_0erk3")
+
+[node name="LeftLeg" type="Sprite2D" parent="." unique_id=2003937096]
+position = Vector2(296, 360)
+texture = ExtResource("5_0erk3")
+
+[node name="RightLeg" type="Sprite2D" parent="." unique_id=1641757782]
+position = Vector2(216, 368)
+texture = ExtResource("5_0erk3")
+flip_h = true
+
+[node name="LeftArm" type="Sprite2D" parent="." unique_id=647171048]
+position = Vector2(392, 208)
+texture = ExtResource("7_uxn7b")
+
+[node name="RightArm" type="Sprite2D" parent="." unique_id=223483274]
+position = Vector2(120, 208)
+texture = ExtResource("7_uxn7b")
+flip_h = true
+
+[node name="Shirt" type="Sprite2D" parent="." unique_id=1353165109]
+position = Vector2(256, 216)
+texture = ExtResource("8_6tebh")
+
+[node name="Hair" type="Sprite2D" parent="." unique_id=1050846505]
+position = Vector2(248, 32)
+texture = ExtResource("8_uxn7b")
+
+[node name="Nose" type="Sprite2D" parent="." unique_id=51672464]
+position = Vector2(248, 88)
+texture = ExtResource("9_6tebh")
+
+[node name="Mouth" type="Sprite2D" parent="." unique_id=1573902444]
+position = Vector2(264, 112)
+texture = ExtResource("10_15p25")
+
+[node name="RightEye" type="Sprite2D" parent="." unique_id=1628635989]
+position = Vector2(224, 56)
+texture = ExtResource("11_72lha")
+
+[node name="LeftEye" type="Sprite2D" parent="." unique_id=140039816]
+position = Vector2(280, 67)
+texture = ExtResource("11_72lha")
+
+[node name="RightBrow" type="Sprite2D" parent="." unique_id=1848568379]
+position = Vector2(216, 40)
+texture = ExtResource("12_7vbqn")
+
+[node name="LeftBrow" type="Sprite2D" parent="." unique_id=1974990706]
+position = Vector2(280, 49)
+texture = ExtResource("12_7vbqn")
+flip_h = true

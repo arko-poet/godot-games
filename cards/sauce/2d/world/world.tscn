@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dus0pdtsdlh2n"]
 
 [ext_resource type="PackedScene" uid="uid://bq03x1x31y0x" path="res://sauce/2d/monster/monster.tscn" id="1_a7ehd"]
+[ext_resource type="PackedScene" uid="uid://sn7u6jx0iwkw" path="res://sauce/2d/character/character.tscn" id="2_4nd25"]
 
 [sub_resource type="Gradient" id="Gradient_21yxg"]
 offsets = PackedFloat32Array(0, 0.9819277)
@@ -23,3 +24,7 @@ region_rect = Rect2(0, 0, 1, 1)
 
 [node name="Monster" parent="." unique_id=422500346 instance=ExtResource("1_a7ehd")]
 position = Vector2(752, 256)
+
+[node name="Character" parent="." unique_id=1947639501 instance=ExtResource("2_4nd25")]
+position = Vector2(98, 232)
+scale = Vector2(0.5, 0.5)
