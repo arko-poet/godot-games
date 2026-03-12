@@ -1,3 +1,20 @@
 [gd_scene format=3 uid="uid://dus0pdtsdlh2n"]
 
+[sub_resource type="Gradient" id="Gradient_21yxg"]
+offsets = PackedFloat32Array(0, 0.9819277)
+colors = PackedColorArray(0.05882353, 0.09019608, 0.16470589, 1, 0.11764706, 0.16078432, 0.23137255, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a7ehd"]
+gradient = SubResource("Gradient_21yxg")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
 [node name="World" type="Node2D" unique_id=1249520300]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2038444398]
+position = Vector2(0, 1.9073486e-06)
+scale = Vector2(18, 10.125)
+texture = SubResource("GradientTexture2D_a7ehd")
+centered = false
+region_rect = Rect2(0, 0, 1, 1)
