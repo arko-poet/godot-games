@@ -7,37 +7,44 @@ border_width_left = 8
 border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Card" type="PanelContainer" unique_id=1673318996]
+custom_minimum_size = Vector2(160, 225)
 offset_right = 320.0
 offset_bottom = 450.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_ap2b3")
 
 [node name="VBox" type="VBoxContainer" parent="." unique_id=440786661]
 layout_mode = 2
-size_flags_vertical = 0
 
-[node name="NameLabel" type="Label" parent="VBox" unique_id=1747899173]
+[node name="DescriptionLabel" type="Label" parent="." unique_id=1437024395]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 32
-text = "ATTACK"
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 16
+text = "Deals 1 damage."
 
-[node name="Texture" type="TextureRect" parent="VBox" unique_id=1843766925]
+[node name="Texture" type="TextureRect" parent="." unique_id=1843766925]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
 texture = ExtResource("1_xtn7q")
+expand_mode = 5
+stretch_mode = 4
 flip_h = true
 
 [node name="CostLabel" type="Label" parent="." unique_id=168710372]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
+size_flags_vertical = 1
 theme_override_font_sizes/font_size = 48
 text = "1"
 
-[node name="DescriptionLabel" type="Label" parent="." unique_id=1437024395]
+[node name="NameLabel" type="Label" parent="." unique_id=1747899173]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Deals 1 damage."
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "ATTACK"

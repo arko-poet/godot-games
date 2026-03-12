@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://dftj8jcsyiyf"]
 
+[ext_resource type="PackedScene" uid="uid://d3pg1m6glrge3" path="res://sauce/control/card/card.tscn" id="1_gwyl7"]
+[ext_resource type="Script" uid="uid://dox0pedy8barr" path="res://sauce/control/hand/hand.gd" id="1_muybb"]
+
 [node name="UI" type="Control" unique_id=647190758]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +10,46 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Hand" type="Container" parent="." unique_id=1832430370]
+layout_mode = 0
+offset_left = 689.0
+offset_top = 1912.0
+offset_right = 689.0
+offset_bottom = 1912.0
+script = ExtResource("1_muybb")
+max_angle = 20.0
+radius = 1200.0
+metadata/_edit_group_ = true
+
+[node name="Card" parent="Hand" unique_id=1673318996 instance=ExtResource("1_gwyl7")]
+layout_mode = 2
+
+[node name="Card2" parent="Hand" unique_id=299165621 instance=ExtResource("1_gwyl7")]
+layout_mode = 2
+
+[node name="Card3" parent="Hand" unique_id=1204246134 instance=ExtResource("1_gwyl7")]
+layout_mode = 2
+
+[node name="Card4" parent="Hand" unique_id=1675985548 instance=ExtResource("1_gwyl7")]
+layout_mode = 2
+
+[node name="Card5" parent="Hand" unique_id=1342914958 instance=ExtResource("1_gwyl7")]
+layout_mode = 2
+
+[node name="Card6" parent="Hand" unique_id=1940499150 instance=ExtResource("1_gwyl7")]
+layout_mode = 2
+
+[node name="Card7" parent="Hand" unique_id=1891408916 instance=ExtResource("1_gwyl7")]
+layout_mode = 2
+
+[node name="Card8" parent="Hand" unique_id=474483021 instance=ExtResource("1_gwyl7")]
+layout_mode = 2
+
+[node name="Card9" parent="Hand" unique_id=67158750 instance=ExtResource("1_gwyl7")]
+layout_mode = 2
+
+[node name="Card10" parent="Hand" unique_id=400709566 instance=ExtResource("1_gwyl7")]
+layout_mode = 2
+
+[connection signal="sort_children" from="Hand" to="Hand" method="_on_sort_children"]
