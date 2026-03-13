@@ -79,3 +79,10 @@ Parallax2D, Camera2D, AudioStreamPlayer
 - baking navigation meshes
 ### New Godot Nodes learned
 PanelContainer, RichTextLabel, NavigationAgent2D, CPUParticles2D, GPUParticles2D, Polygon2D, CanvasLayer, NavigationRegion2D
+## 7. `cards` - based on Slay the Spire
+![](screenshots/cards.png)
+### What I learned
+- custom Container layouts
+- running code in editor with @tool
+### New Godot Nodes learned
+Container,
