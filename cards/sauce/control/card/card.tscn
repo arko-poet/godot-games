@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d3pg1m6glrge3"]
 
 [ext_resource type="Texture2D" uid="uid://b8iqdf5sjq0cu" path="res://assets/icon.svg" id="1_xtn7q"]
+[ext_resource type="Script" uid="uid://8fh5wxjjiq8w" path="res://sauce/control/card/card.gd" id="1_ymebk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ap2b3"]
 border_width_left = 8
@@ -18,6 +19,7 @@ offset_right = 320.0
 offset_bottom = 450.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_ap2b3")
+script = ExtResource("1_ymebk")
 
 [node name="VBox" type="VBoxContainer" parent="." unique_id=440786661]
 layout_mode = 2
@@ -48,3 +50,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 24
 text = "ATTACK"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
