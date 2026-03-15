@@ -12,6 +12,8 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+shadow_color = Color(0.2600163, 0.47939664, 1, 0.6)
+shadow_size = 10
 
 [node name="Card" type="PanelContainer" unique_id=1673318996]
 custom_minimum_size = Vector2(160, 225)
@@ -20,9 +22,6 @@ offset_bottom = 450.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_ap2b3")
 script = ExtResource("1_ymebk")
-
-[node name="VBox" type="VBoxContainer" parent="." unique_id=440786661]
-layout_mode = 2
 
 [node name="DescriptionLabel" type="Label" parent="." unique_id=1437024395]
 layout_mode = 2
@@ -34,9 +33,7 @@ text = "Deals 1 damage."
 [node name="Texture" type="TextureRect" parent="." unique_id=1843766925]
 layout_mode = 2
 texture = ExtResource("1_xtn7q")
-expand_mode = 5
 stretch_mode = 4
-flip_h = true
 
 [node name="CostLabel" type="Label" parent="." unique_id=168710372]
 layout_mode = 2
