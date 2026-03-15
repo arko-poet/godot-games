@@ -1,4 +1,7 @@
+class_name Card
 extends PanelContainer
+
+signal card_discarded(card: Card)
 
 const HOVER_Y := -100.0
 const HOVER_SCALE := 1.2
@@ -46,12 +49,25 @@ func _on_gui_input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and is_dragging:
 		_stop_dragging()
 
+
 func _input(event: InputEvent) -> void:
 	if is_dragging and event is InputEventMouseButton and not event.pressed:
 		_stop_dragging()
 
 
 func _stop_dragging() -> void:
-	is_dragging = false
-	get_parent().remove_child(self)
-	hand.add_child(self)
+	if position.y + size.y < hand.position.y:
+		_play_card()
+	else:
+		is_dragging = false
+		get_parent().remove_child(self)
+		hand.add_child(self)
+
+
+func _play_card() -> void:
+	print("card played")
+	_discard()
+
+
+func _discard() -> void:
+	emit_signal("card_discarded", self)

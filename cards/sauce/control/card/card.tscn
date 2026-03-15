@@ -13,7 +13,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 shadow_color = Color(0.2600163, 0.47939664, 1, 0.6)
-shadow_size = 10
+shadow_size = 8
 
 [node name="Card" type="PanelContainer" unique_id=1673318996]
 custom_minimum_size = Vector2(160, 225)

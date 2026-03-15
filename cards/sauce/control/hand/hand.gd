@@ -42,12 +42,13 @@ func _on_sort_children() -> void:
 	_arrange_cards()
 
 
-func add_card(card: PanelContainer) -> void:
+func add_card(card: Card) -> void:
 	cards.append(card)
+	card.card_discarded.connect(_discard_card)
 	add_child(card)
 
 
-func remove_card(card: PanelContainer) -> void:
+func remove_card(card: Card) -> void:
 	cards.erase(card)
 
 
@@ -59,3 +60,8 @@ func pop_card() -> void:
 
 func _get_minimum_size() -> Vector2:
 	return card_size
+
+
+func _discard_card(card: Card) -> void:
+	cards.erase(card)
+	card.queue_free()

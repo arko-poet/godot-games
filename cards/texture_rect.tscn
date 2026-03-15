@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://n6dcqbf51irg"]
+
+[ext_resource type="Texture2D" uid="uid://b8iqdf5sjq0cu" path="res://assets/icon.svg" id="1_ohhw7"]
+
+[node name="TextureRect" type="TextureRect" unique_id=1734696700]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.7661995
+texture = ExtResource("1_ohhw7")
