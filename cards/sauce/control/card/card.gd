@@ -35,7 +35,7 @@ func _on_mouse_exited() -> void:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		is_dragging = true
 		drag_offset = get_global_mouse_position() - global_position
 		hand = get_parent()
@@ -43,10 +43,15 @@ func _on_gui_input(event: InputEvent) -> void:
 		hand.remove_child(self)
 		hand.get_parent().add_child(self)
 		global_position = gp
-			
+	elif event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and is_dragging:
+		_stop_dragging()
 
 func _input(event: InputEvent) -> void:
 	if is_dragging and event is InputEventMouseButton and not event.pressed:
-		is_dragging = false
-		get_parent().remove_child(self)
-		hand.add_child(self)
+		_stop_dragging()
+
+
+func _stop_dragging() -> void:
+	is_dragging = false
+	get_parent().remove_child(self)
+	hand.add_child(self)

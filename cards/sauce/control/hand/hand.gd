@@ -13,6 +13,7 @@ func _ready():
 	if Engine.is_editor_hint():
 		queue_sort()
 
+
 func _process(_delta):
 	if Engine.is_editor_hint():
 		queue_sort()
