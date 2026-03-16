@@ -28,6 +28,7 @@ func _arrange_cards() -> void:
 	
 	for i in count:
 		var card: Control = get_child(i)
+		card.z_index = 0
 		var interpolation_weight = 0.5
 		if count > 1:
 			interpolation_weight = float(i) / (count - 1)
@@ -47,6 +48,7 @@ func add_card(card: Card) -> void:
 	cards.append(card)
 	card.card_discarded.connect(_discard_card)
 	card.stopped_dragging.connect(_arrange_cards)
+	card.stopped_hovering.connect(_arrange_cards)
 	add_child(card)
 
 
