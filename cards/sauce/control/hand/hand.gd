@@ -3,6 +3,7 @@ class_name Hand
 extends Container
 
 var cards : Array[Control] = []
+var is_dragging := false
 
 @export var max_angle: float = 18.0 ## maximum card spread
 @export var card_size := Vector2(160, 225)
@@ -45,6 +46,7 @@ func _on_sort_children() -> void:
 func add_card(card: Card) -> void:
 	cards.append(card)
 	card.card_discarded.connect(_discard_card)
+	card.stopped_dragging.connect(_arrange_cards)
 	add_child(card)
 
 

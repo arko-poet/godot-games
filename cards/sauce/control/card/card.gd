@@ -2,6 +2,7 @@ class_name Card
 extends PanelContainer
 
 signal card_discarded(card: Card)
+signal stopped_dragging()
 
 const HOVER_Y := -100.0
 const HOVER_SCALE := 1.2
@@ -9,45 +10,58 @@ const HOVER_SCALE := 1.2
 var pre_hover_rotation: float
 var pre_hover_position: Vector2
 var is_dragging := false
+var is_hovering := false
 var hand : Hand
 var drag_offset := Vector2.ZERO
+
 
 func _process(_delta: float) -> void:
 	if is_dragging:
 		global_position = get_global_mouse_position() - drag_offset
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PARENTED:
+		if get_parent() is Hand:
+			hand = get_parent()
+
+
 func _on_mouse_entered() -> void:
-	if not is_dragging:
-		print("card hover")
-		pre_hover_rotation = rotation
-		pre_hover_position = position
-		
-		z_index += 1
-		scale *= HOVER_SCALE
-		position.y = HOVER_Y
-		rotation = 0
+	if not is_dragging and not is_hovering and not hand.is_dragging:
+		_start_hovering()
+
+func _start_hovering() -> void:
+	pre_hover_rotation = rotation
+	pre_hover_position = position
+	
+	z_index = 1
+	scale = Vector2(HOVER_SCALE, HOVER_SCALE)
+	position.y = HOVER_Y
+	rotation = 0
+	is_hovering = true
 
 
 func _on_mouse_exited() -> void:
-	if not is_dragging:
-		z_index -= 1
-		scale /= 1.2
-		position = pre_hover_position
-		rotation = pre_hover_rotation
+	if not is_dragging and is_hovering:
+		_stop_hovering()
 
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		is_dragging = true
+		hand.is_dragging = true
 		drag_offset = get_global_mouse_position() - global_position
-		hand = get_parent()
-		var gp = global_position
-		hand.remove_child(self)
-		hand.get_parent().add_child(self)
-		global_position = gp
 	elif event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and is_dragging:
 		_stop_dragging()
+
+
+func _stop_hovering() -> void:
+	if is_hovering:
+		z_index = 0
+		scale = Vector2.ONE
+		position = pre_hover_position
+		rotation = pre_hover_rotation
+		is_hovering = false
 
 
 func _input(event: InputEvent) -> void:
@@ -56,16 +70,17 @@ func _input(event: InputEvent) -> void:
 
 
 func _stop_dragging() -> void:
-	if position.y + size.y < hand.position.y:
+	if global_position.y < get_viewport_rect().size.y - 2 * size.y:
 		_play_card()
 	else:
+		stopped_dragging.emit()
+		if is_hovering:
+			_start_hovering()
 		is_dragging = false
-		get_parent().remove_child(self)
-		hand.add_child(self)
+		hand.is_dragging = false
 
 
 func _play_card() -> void:
-	print("card played")
 	_discard()
 
 
