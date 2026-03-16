@@ -5,7 +5,7 @@ signal card_discarded(card: Card)
 signal stopped_dragging
 signal stopped_hovering
 
-const HOVER_Y := -100.0
+const HOVER_Y := -86.0
 const HOVER_SCALE := 1.2
 
 var is_dragging := false
@@ -40,7 +40,14 @@ func _on_mouse_entered() -> void:
 func _start_hovering() -> void:
 	z_index = 1
 	scale = Vector2(HOVER_SCALE, HOVER_SCALE)
+	print("yep")
+	print(get_viewport_rect().size.y)
+	print(size.y)
+	print(global_position.y)
+	print(position.y)
 	position.y = HOVER_Y
+	print(global_position.y)
+	print(position.y)
 	rotation = 0
 	is_hovering = true
 
