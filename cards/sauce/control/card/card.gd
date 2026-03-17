@@ -24,15 +24,11 @@ func _notification(what: int) -> void:
 		if get_parent() is Hand:
 			hand = get_parent()
 	elif what == NOTIFICATION_WM_MOUSE_EXIT:
-		_stop_dragging()
+		_stop_dragging(false)
 		_stop_hovering()
 
 
 func _on_mouse_entered() -> void:
-	print("yep")
-	print(is_dragging)
-	print(is_hovering)
-	print(hand.is_dragging)
 	if not is_dragging and not is_hovering and not hand.is_dragging:
 		_start_hovering()
 
@@ -40,14 +36,7 @@ func _on_mouse_entered() -> void:
 func _start_hovering() -> void:
 	z_index = 1
 	scale = Vector2(HOVER_SCALE, HOVER_SCALE)
-	print("yep")
-	print(get_viewport_rect().size.y)
-	print(size.y)
-	print(global_position.y)
-	print(position.y)
 	position.y = HOVER_Y
-	print(global_position.y)
-	print(position.y)
 	rotation = 0
 	is_hovering = true
 
@@ -62,8 +51,8 @@ func _on_gui_input(event: InputEvent) -> void:
 		is_dragging = true
 		hand.is_dragging = true
 		drag_offset = get_global_mouse_position() - global_position
-	elif event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and is_dragging:
-		_stop_dragging()
+	elif event is InputEventMouseButton and not event.pressed and is_dragging:
+		_stop_dragging(event.button_index == MOUSE_BUTTON_RIGHT)
 
 
 func _stop_hovering() -> void:
@@ -72,17 +61,13 @@ func _stop_hovering() -> void:
 		is_hovering = false
 
 
-func _input(event: InputEvent) -> void:
-	if is_dragging and event is InputEventMouseButton and not event.pressed:
-		_stop_dragging()
-
-
-func _stop_dragging() -> void:
-	if global_position.y < get_viewport_rect().size.y - 2 * size.y:
+func _stop_dragging(right_click: bool) -> void:
+	if global_position.y < get_viewport_rect().size.y - 2 * size.y and not right_click:
 		_play_card()
 	else:
 		stopped_dragging.emit()
-		if is_hovering:
+		if is_hovering and not right_click:
+			print("yep")
 			_start_hovering()
 		is_dragging = false
 	hand.is_dragging = false
