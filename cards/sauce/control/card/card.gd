@@ -23,7 +23,7 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_PARENTED:
 		if get_parent() is Hand:
 			hand = get_parent()
-	elif what == NOTIFICATION_WM_MOUSE_EXIT:
+	elif what == NOTIFICATION_WM_MOUSE_EXIT and is_dragging:
 		_stop_dragging(false)
 		_stop_hovering()
 
@@ -52,7 +52,7 @@ func _on_gui_input(event: InputEvent) -> void:
 		hand.is_dragging = true
 		drag_offset = get_global_mouse_position() - global_position
 	elif event is InputEventMouseButton and not event.pressed and is_dragging:
-		_stop_dragging(event.button_index == MOUSE_BUTTON_RIGHT)
+		_stop_dragging(not event.button_index == MOUSE_BUTTON_RIGHT)
 
 
 func _stop_hovering() -> void:
@@ -61,13 +61,13 @@ func _stop_hovering() -> void:
 		is_hovering = false
 
 
-func _stop_dragging(right_click: bool) -> void:
-	if global_position.y < get_viewport_rect().size.y - 2 * size.y and not right_click:
+func _stop_dragging(play: bool) -> void:
+	print(global_position.y)
+	if global_position.y < get_viewport_rect().size.y - 2 * size.y and play:
 		_play_card()
 	else:
 		stopped_dragging.emit()
-		if is_hovering and not right_click:
-			print("yep")
+		if is_hovering and play:
 			_start_hovering()
 		is_dragging = false
 	hand.is_dragging = false
