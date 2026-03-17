@@ -1,15 +1,20 @@
 class_name Card
 extends PanelContainer
 
-signal card_discarded(card: Card)
-signal stopped_dragging
+signal card_played(card: Card)
+signal dragging_changed(is_dragging: bool)
 signal stopped_hovering
 
 const HOVER_Y := -86.0
 const HOVER_SCALE := 1.2
 
-var is_dragging := false
-var hand : Hand
+var is_dragging := false:
+	set(value):
+		is_dragging = value
+		emit_signal("dragging_changed", value)
+		if value:
+			drag_offset = get_global_mouse_position() - global_position
+var hand: Hand
 var drag_offset := Vector2.ZERO
 
 
@@ -27,13 +32,25 @@ func _notification(what: int) -> void:
 
 
 func _on_mouse_entered() -> void:
-	print("_mouse_entered")
-	if not is_dragging and not hand.is_dragging:
+	if not hand.is_dragging:
 		_start_hovering()
 
 
+func _on_mouse_exited() -> void:
+	if not is_dragging:
+		_stop_hovering()
+		
+
+func _on_gui_input(event: InputEvent) -> void:
+	if not event is InputEventMouseButton:
+		return
+	if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		is_dragging = true
+	elif not event.pressed: # and is_dragging
+		_stop_dragging(event.button_index != MOUSE_BUTTON_RIGHT)
+
+
 func _start_hovering() -> void:
-	print("_start_hovering")
 	if not hand.is_dragging:
 		z_index = 1
 		scale = Vector2(HOVER_SCALE, HOVER_SCALE)
@@ -41,46 +58,26 @@ func _start_hovering() -> void:
 		rotation = 0
 
 
-func _on_mouse_exited() -> void:
-	print("mouse exited")
-	if not is_dragging:
-		_stop_hovering()
-
-
-func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print("left pressed")
-		is_dragging = true
-		hand.is_dragging = true
-		drag_offset = get_global_mouse_position() - global_position
-	elif event is InputEventMouseButton and not event.pressed and is_dragging:
-		print("left released")
-		_stop_dragging(not event.button_index == MOUSE_BUTTON_RIGHT)
-
-
 func _stop_hovering() -> void:
-	print("_stop_hovering")
 	if not hand.is_dragging:
 		stopped_hovering.emit()
 
+
+## play is true if intent is to play a card, otherwise intent is to drop it
 func _stop_dragging(play: bool) -> void:
-	print("_stop_dragging, play = %s" % play)
-	if global_position.y < get_viewport_rect().size.y - 2 * size.y and play:
+	var play_boundary := get_viewport_rect().size.y - 2 * size.y
+	if global_position.y < play_boundary and play:
 		_play_card()
-		stopped_dragging.emit()
-	else:
-		stopped_dragging.emit()
+		is_dragging = false
+	else: # cards go back to hand if outside of play region
+		is_dragging = false
 		if _is_hovering():
 			_start_hovering()
-		is_dragging = false
-
+	# dont set is_dragging here - the order matters
+		
 
 func _play_card() -> void:
-	_discard()
-
-
-func _discard() -> void:
-	emit_signal("card_discarded", self)
+	emit_signal("card_played", self)
 
 
 func _is_hovering() -> bool:

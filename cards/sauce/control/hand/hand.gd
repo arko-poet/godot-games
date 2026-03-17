@@ -46,8 +46,8 @@ func _on_sort_children() -> void:
 
 func add_card(card: Card) -> void:
 	cards.append(card)
-	card.card_discarded.connect(_discard_card)
-	card.stopped_dragging.connect(_on_card_stopped_dragging)
+	card.card_played.connect(_play_card)
+	card.dragging_changed.connect(_on_card_dragging_changed)
 	card.stopped_hovering.connect(_arrange_cards)
 	add_child(card)
 
@@ -65,11 +65,15 @@ func pop_card() -> void:
 func _get_minimum_size() -> Vector2:
 	return card_size
 
+func _play_card(card) -> void:
+	_discard_card(card)
+
 
 func _discard_card(card: Card) -> void:
 	cards.erase(card)
 	card.queue_free()
 	
-func _on_card_stopped_dragging() -> void:
-	is_dragging = false
-	_arrange_cards()
+func _on_card_dragging_changed(dragging: bool) -> void:
+	is_dragging = dragging
+	if not is_dragging:
+		_arrange_cards()
