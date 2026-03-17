@@ -9,7 +9,6 @@ const HOVER_Y := -86.0
 const HOVER_SCALE := 1.2
 
 var is_dragging := false
-var is_hovering := false
 var hand : Hand
 var drag_offset := Vector2.ZERO
 
@@ -25,52 +24,55 @@ func _notification(what: int) -> void:
 			hand = get_parent()
 	elif what == NOTIFICATION_WM_MOUSE_EXIT and is_dragging:
 		_stop_dragging(false)
-		_stop_hovering()
 
 
 func _on_mouse_entered() -> void:
-	if not is_dragging and not is_hovering and not hand.is_dragging:
+	print("_mouse_entered")
+	if not is_dragging and not hand.is_dragging:
 		_start_hovering()
 
 
 func _start_hovering() -> void:
-	z_index = 1
-	scale = Vector2(HOVER_SCALE, HOVER_SCALE)
-	position.y = HOVER_Y
-	rotation = 0
-	is_hovering = true
+	print("_start_hovering")
+	if not hand.is_dragging:
+		z_index = 1
+		scale = Vector2(HOVER_SCALE, HOVER_SCALE)
+		position.y = HOVER_Y
+		rotation = 0
 
 
 func _on_mouse_exited() -> void:
-	if not is_dragging and is_hovering:
+	print("mouse exited")
+	if not is_dragging:
 		_stop_hovering()
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and is_hovering:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		print("left pressed")
 		is_dragging = true
 		hand.is_dragging = true
 		drag_offset = get_global_mouse_position() - global_position
 	elif event is InputEventMouseButton and not event.pressed and is_dragging:
+		print("left released")
 		_stop_dragging(not event.button_index == MOUSE_BUTTON_RIGHT)
 
 
 func _stop_hovering() -> void:
-	if is_hovering:
+	print("_stop_hovering")
+	if not hand.is_dragging:
 		stopped_hovering.emit()
-		is_hovering = false
-
 
 func _stop_dragging(play: bool) -> void:
-	print(global_position.y)
+	print("_stop_dragging, play = %s" % play)
 	if global_position.y < get_viewport_rect().size.y - 2 * size.y and play:
 		_play_card()
+		stopped_dragging.emit()
 	else:
 		stopped_dragging.emit()
-		if is_hovering and play:
+		if _is_hovering():
 			_start_hovering()
 		is_dragging = false
-	hand.is_dragging = false
 
 
 func _play_card() -> void:
@@ -79,3 +81,7 @@ func _play_card() -> void:
 
 func _discard() -> void:
 	emit_signal("card_discarded", self)
+
+
+func _is_hovering() -> bool:
+	return get_global_rect().has_point(get_global_mouse_position())
