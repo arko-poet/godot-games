@@ -1,5 +1,6 @@
 {
   "Bozo Attack": {
+	"name": "Bozo Attack",
 	"actions": {
 	  "attack": {
 		"value": 10

@@ -5,11 +5,12 @@ const CardScene := preload("res://sauce/control/card/card.tscn")
 const MAX_HP := 100
 const MAX_MANA := 3
 
-var hp :int:
+var card_data: Dictionary
+var hp: int:
 	set(value):
 		hp = value
 		hp_label.text = "%s/%s" % [hp, MAX_HP]
-var mana:int:
+var mana: int:
 	set(value):
 		mana = value
 		mana_label.text = "%s/%s" % [mana, MAX_MANA]
@@ -22,10 +23,12 @@ var mana:int:
 func _ready() -> void:
 	hp = MAX_HP
 	mana = MAX_MANA
+	card_data = load("res://sauce/control/card/cards.json").get_data()
 
 
 func _on_add_card_button_pressed() -> void:
 	var card: Card = CardScene.instantiate()
+	card.set_card_properties(card_data["Bozo Attack"])
 	hand.add_card(card)
 
 
