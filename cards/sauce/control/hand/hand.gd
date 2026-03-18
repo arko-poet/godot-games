@@ -44,6 +44,7 @@ func _get_minimum_size() -> Vector2:
 
 
 func _arrange_cards() -> void:
+    print("_arrange_cards")
     var fan_radius := size.x
     var count = get_child_count()
     var total_angle = min(max_angle, angle_per_card * (count - 1))
@@ -63,7 +64,7 @@ func _arrange_cards() -> void:
 
 func add_card(card: Card) -> void:
     if get_child_count() == 10:
-        emit_signal("card_disarded", card)
+        _discard_card(card)
     else:
         card.card_entered.connect(_on_card_entered)
         card.card_exited.connect(_on_card_exited)
@@ -109,9 +110,9 @@ func _stop_dragging(play: bool) -> void:
     if active_card.global_position.y + active_card.size.y < global_position.y and play:
         _play_card(active_card)
         is_dragging = false
+        active_card = null
     else: # is_dragging must be set after play, otherwise set it immediatly
         is_dragging = false
-        
         # check if hovering is needed
         if _is_hovering(active_card):
             _start_hovering()
@@ -123,6 +124,8 @@ func _stop_dragging(play: bool) -> void:
 
 
 func _play_card(card) -> void:
+    if card in get_children():
+        remove_child(card)
     emit_signal("card_played", card)
 
 
@@ -141,3 +144,10 @@ func _start_hovering() -> void:
         get_viewport_rect().size.y
         - active_card.get_global_rect().size.y
     )
+
+
+func _discard_card(card: Card) -> void:
+    if card in get_children():
+        remove_child(card)
+    emit_signal("card_discarded", card)
+    

@@ -9,6 +9,7 @@
 	"cost": 1
   },
   "Bozo Block": {
+	"name": "Bozo Block",
 	"actions": {
 	  "block": {
 		"value": 5

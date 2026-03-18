@@ -4,6 +4,7 @@ const CardScene := preload("res://sauce/control/card/card.tscn")
 
 const MAX_HP := 100
 const MAX_MANA := 3
+const STARTING_HAND_SIZE := 5
 
 var card_data: Dictionary
 var hp: int:
@@ -14,6 +15,9 @@ var mana: int:
 	set(value):
 		mana = value
 		mana_label.text = "%s/%s" % [mana, MAX_MANA]
+var deck: Array[Card] = []
+var draw_pile: Array[Card] = []
+var discard_pile: Array[Card] = []
 
 @onready var hand: Hand = $Hand
 @onready var hp_label: Label = $PlayerStatsBox/HPLabel
@@ -24,12 +28,50 @@ func _ready() -> void:
 	hp = MAX_HP
 	mana = MAX_MANA
 	card_data = load("res://sauce/control/card/cards.json").get_data()
+	_starter_deck()
+	_start_combat()
 
 
-func _on_add_card_button_pressed() -> void:
-	var card: Card = CardScene.instantiate()
-	card.set_card_properties(card_data["Bozo Attack"])
-	hand.add_card(card)
+func _starter_deck() -> void:
+	for i in range(5):
+		var card: Card = CardScene.instantiate()
+		card.set_card_properties(card_data["Bozo Attack"])
+		deck.append(card)
+	
+	for i in range(5):
+		var card: Card = CardScene.instantiate()
+		card.set_card_properties(card_data["Bozo Block"])
+		deck.append(card)
+
+
+func _start_combat() -> void:
+	draw_pile = deck.duplicate()
+	draw_pile.shuffle()
+	for i in range(STARTING_HAND_SIZE):
+		_draw_card()
+
+
+func _draw_card() -> void:
+	if not draw_pile.is_empty():
+		var card: Card = draw_pile.pop_at(0)
+		hand.add_card(card)
+	else:
+		_shuffle_discard_pile()
+		if not draw_pile.is_empty():
+			_draw_card()
+	
+	print("_draw_card()")
+	print(draw_pile)
+	print(discard_pile)
+	print("------------")
+		
+
+func _shuffle_discard_pile() -> void:
+	for i in discard_pile.size():
+		var card: Card = discard_pile.pop_front()
+		draw_pile.append(card)
+	draw_pile.shuffle()
+	assert(discard_pile.is_empty())
 
 
 func _on_remove_card_button_pressed() -> void:
@@ -58,9 +100,10 @@ func _on_hand_card_played(card: Card) -> void:
 
 
 func _discard_card(card: Card) -> void:
-	# TODO implement discard pile
-	card.queue_free()
+	discard_pile.append(card)
+	print(discard_pile)
 	
+
 func _execute_card_actions(card: Card) -> void:
 	var actions = card.actions
 	for action in actions:
@@ -72,10 +115,13 @@ func _execute_card_actions(card: Card) -> void:
 
 
 func _on_hand_card_discarded(card: Card) -> void:
-	# TODO implement discard pile
-	card.queue_free()
+	_discard_card(card)
 
 
 func _attack(damage: int):
 	# TODO implement attacking
 	print("attack for %s" % damage)
+
+
+func _on_draw_card_button_pressed() -> void:
+	_draw_card()
