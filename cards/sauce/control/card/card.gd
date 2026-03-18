@@ -11,3 +11,8 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	emit_signal("card_exited", self)
+
+
+func set_card_properties(id: int) -> void:
+	perk_data = load("res://data/perks.json").get_data()
+	pass
