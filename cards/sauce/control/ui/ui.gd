@@ -50,3 +50,32 @@ func _on_add_mana_button_pressed() -> void:
 
 func _on_remove_mana_button_pressed() -> void:
 	mana -= 1
+
+
+func _on_hand_card_played(card: Card) -> void:
+	_execute_card_actions(card)
+	_discard_card(card)
+
+
+func _discard_card(card: Card) -> void:
+	# TODO implement discard pile
+	card.queue_free()
+	
+func _execute_card_actions(card: Card) -> void:
+	var actions = card.actions
+	for action in actions:
+		match action:
+			"attack":
+				_attack(int(actions[action]["value"]))
+			_:
+				push_error("unknown action type: %s" % action)
+
+
+func _on_hand_card_discarded(card: Card) -> void:
+	# TODO implement discard pile
+	card.queue_free()
+
+
+func _attack(damage: int):
+	# TODO implement attacking
+	print("attack for %s" % damage)

@@ -77,6 +77,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 1, 1)
 text = "3/3"
 
+[connection signal="card_discarded" from="Hand" to="." method="_on_hand_card_discarded"]
+[connection signal="card_played" from="Hand" to="." method="_on_hand_card_played"]
 [connection signal="gui_input" from="Hand" to="Hand" method="_on_gui_input"]
 [connection signal="sort_children" from="Hand" to="Hand" method="_on_sort_children"]
 [connection signal="pressed" from="DebuButtonsBox/AddCardButton" to="." method="_on_add_card_button_pressed"]

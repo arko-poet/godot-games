@@ -2,6 +2,9 @@
 class_name Hand
 extends Container
 
+signal card_played(card: Card)
+signal card_discarded(card: Card)
+
 const HOVER_SCALE := Vector2(1.2, 1.2)
 const MAX_CARDS := 10
 
@@ -60,7 +63,7 @@ func _arrange_cards() -> void:
 
 func add_card(card: Card) -> void:
     if get_child_count() == 10:
-        _discard_card(card)
+        emit_signal("card_disarded", card)
     else:
         card.card_entered.connect(_on_card_entered)
         card.card_exited.connect(_on_card_exited)
@@ -120,11 +123,7 @@ func _stop_dragging(play: bool) -> void:
 
 
 func _play_card(card) -> void:
-    _discard_card(card)
-
-
-func _discard_card(card: Card) -> void:
-    card.queue_free()
+    emit_signal("card_played", card)
 
 
 func _is_hovering(card: Card) -> bool:
