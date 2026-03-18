@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dus0pdtsdlh2n"]
 
 [ext_resource type="PackedScene" uid="uid://bq03x1x31y0x" path="res://sauce/2d/monster/monster.tscn" id="1_a7ehd"]
-[ext_resource type="PackedScene" uid="uid://sn7u6jx0iwkw" path="res://sauce/2d/character/character.tscn" id="2_4nd25"]
+[ext_resource type="PackedScene" uid="uid://sn7u6jx0iwkw" path="res://sauce/2d/player/player.tscn" id="2_4nd25"]
 
 [sub_resource type="Gradient" id="Gradient_21yxg"]
 offsets = PackedFloat32Array(0, 0.9819277)

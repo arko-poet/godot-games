@@ -2,7 +2,6 @@
 class_name Hand
 extends Container
 
-const HOVER_Y := -82.0
 const HOVER_SCALE := Vector2(1.2, 1.2)
 const MAX_CARDS := 10
 
