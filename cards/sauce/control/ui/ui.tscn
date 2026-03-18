@@ -42,6 +42,7 @@ text = "ADD CARD"
 layout_mode = 2
 text = "REMOVE CARD"
 
+[connection signal="gui_input" from="Hand" to="Hand" method="_on_gui_input"]
 [connection signal="sort_children" from="Hand" to="Hand" method="_on_sort_children"]
 [connection signal="pressed" from="VBoxContainer/AddCardButton" to="." method="_on_add_card_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/RemoveCardButton" to="." method="_on_remove_card_button_pressed"]

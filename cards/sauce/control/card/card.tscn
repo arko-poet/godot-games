@@ -20,6 +20,7 @@ custom_minimum_size = Vector2(160, 225)
 offset_right = 320.0
 offset_bottom = 450.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ap2b3")
 script = ExtResource("1_ymebk")
 
@@ -48,6 +49,5 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 24
 text = "ATTACK"
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

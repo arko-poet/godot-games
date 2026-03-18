@@ -6,7 +6,7 @@ const CardScene := preload("res://sauce/control/card/card.tscn")
 
 
 func _on_add_card_button_pressed() -> void:
-	var card : Control = CardScene.instantiate()
+	var card: Card = CardScene.instantiate()
 	card.mouse_entered.connect(_on_mouse_entered)
 	hand.add_card(card)
 
