@@ -20,6 +20,11 @@ var mana: int:
 var deck: Array[Card] = []
 var draw_pile: Array[Card] = []
 var discard_pile: Array[Card] = []
+var monster_max_hp := 100
+var monster_hp := 100:
+	set(value):
+		monster_hp = max(value, 0)
+		monster_hp_label.text = "%s/%s" % [monster_hp, monster_max_hp]
 
 @onready var hand: Hand = $Hand
 @onready var hp_label: Label = $PlayerStatsBox/HPLabel
@@ -27,6 +32,7 @@ var discard_pile: Array[Card] = []
 @onready var debug: VBoxContainer = $Debug
 @onready var draw_pile_label: Label = $PlayerStatsBox/DrawPileLabel
 @onready var discard_pile_label: Label = $PlayerStatsBox/DiscardPileLabel
+@onready var monster_hp_label: Label = $PlayerStatsBox/MonsterHPLabel
 
 
 func _ready() -> void:
@@ -56,13 +62,13 @@ func _start_combat() -> void:
 	draw_pile.shuffle()
 	for i in range(STARTING_HAND_SIZE):
 		draw_card()
-	_mana_changed()
 
 
 func draw_card() -> void:
 	if not draw_pile.is_empty():
 		var card: Card = draw_pile.pop_at(0)
 		hand.add_card(card)
+		card.playable = mana >= card.cost
 	else:
 		_shuffle_discard_pile()
 		if not draw_pile.is_empty():
@@ -108,8 +114,7 @@ func _execute_card_actions(card: Card) -> void:
 
 
 func _attack(damage: int):
-	# TODO implement attacking
-	print("attack for %s" % damage)
+	monster_hp -= damage
 
 
 func _on_hand_card_rejected(card: Card) -> void:
