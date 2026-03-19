@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dox0pedy8barr" path="res://sauce/control/hand/hand.gd" id="1_muybb"]
 [ext_resource type="Script" uid="uid://matfamt4pwv7" path="res://sauce/control/ui/ui.gd" id="1_tqrgo"]
 [ext_resource type="PackedScene" uid="uid://bkwbdd8vg8l2e" path="res://sauce/control/debug/debug.tscn" id="3_tqrgo"]
-[ext_resource type="Script" uid="uid://g3gl1ryuqow1" path="res://sauce/control/debug/debug.gd" id="4_1qspq"]
 
 [node name="UI" type="Control" unique_id=647190758]
 layout_mode = 3
@@ -34,7 +33,10 @@ metadata/_edit_group_ = true
 [node name="Debug" parent="." unique_id=1464696185 instance=ExtResource("3_tqrgo")]
 layout_mode = 0
 anchors_preset = 0
-script = ExtResource("4_1qspq")
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="PlayerStatsBox" type="VBoxContainer" parent="." unique_id=517024686]
 layout_mode = 1
@@ -55,7 +57,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 1, 1)
 text = "3/3"
 
-[connection signal="card_discarded" from="Hand" to="." method="_on_hand_card_discarded"]
 [connection signal="card_played" from="Hand" to="." method="_on_hand_card_played"]
+[connection signal="card_rejected" from="Hand" to="." method="_on_hand_card_rejected"]
 [connection signal="gui_input" from="Hand" to="Hand" method="_on_gui_input"]
 [connection signal="sort_children" from="Hand" to="Hand" method="_on_sort_children"]

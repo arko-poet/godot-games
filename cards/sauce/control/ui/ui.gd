@@ -98,10 +98,10 @@ func _execute_card_actions(card: Card) -> void:
 				push_error("unknown action type: %s" % action)
 
 
-func _on_hand_card_discarded(card: Card) -> void:
-	_discard_card(card)
-
-
 func _attack(damage: int):
 	# TODO implement attacking
 	print("attack for %s" % damage)
+
+
+func _on_hand_card_rejected(card: Card) -> void:
+	_discard_card(card)
