@@ -24,6 +24,8 @@ var discard_pile: Array[Card] = []
 @onready var hp_label: Label = $PlayerStatsBox/HPLabel
 @onready var mana_label: Label = $PlayerStatsBox/ManaLabel
 @onready var debug: VBoxContainer = $Debug
+@onready var draw_pile_label: Label = $PlayerStatsBox/DrawPileLabel
+@onready var discard_pile_label: Label = $PlayerStatsBox/DiscardPileLabel
 
 
 func _ready() -> void:
@@ -37,12 +39,12 @@ func _ready() -> void:
 
 
 func _starter_deck() -> void:
-	for i in range(5):
+	for i in range(6):
 		var card: Card = CardScene.instantiate()
 		card.set_card_properties(card_data["Bozo Attack"])
 		deck.append(card)
 	
-	for i in range(5):
+	for i in range(6):
 		var card: Card = CardScene.instantiate()
 		card.set_card_properties(card_data["Bozo Block"])
 		deck.append(card)
@@ -63,6 +65,8 @@ func draw_card() -> void:
 		_shuffle_discard_pile()
 		if not draw_pile.is_empty():
 			draw_card()
+	
+	_update_pile_labels()
 	
 	print("_draw_card()")
 	print(draw_pile)
@@ -86,6 +90,7 @@ func _on_hand_card_played(card: Card) -> void:
 func _discard_card(card: Card) -> void:
 	discard_pile.append(card)
 	print(discard_pile)
+	_update_pile_labels()
 	
 
 func _execute_card_actions(card: Card) -> void:
@@ -105,3 +110,8 @@ func _attack(damage: int):
 
 func _on_hand_card_rejected(card: Card) -> void:
 	_discard_card(card)
+
+
+func _update_pile_labels() -> void:
+	draw_pile_label.text = "draw pile: %s" % draw_pile.size()
+	discard_pile_label.text = "discard pile: %s" % discard_pile.size()

@@ -57,6 +57,14 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 1, 1)
 text = "3/3"
 
+[node name="DrawPileLabel" type="Label" parent="PlayerStatsBox" unique_id=558509698]
+layout_mode = 2
+text = "ABOBA"
+
+[node name="DiscardPileLabel" type="Label" parent="PlayerStatsBox" unique_id=995279892]
+layout_mode = 2
+text = "ABOBA"
+
 [connection signal="card_played" from="Hand" to="." method="_on_hand_card_played"]
 [connection signal="card_rejected" from="Hand" to="." method="_on_hand_card_rejected"]
 [connection signal="gui_input" from="Hand" to="Hand" method="_on_gui_input"]

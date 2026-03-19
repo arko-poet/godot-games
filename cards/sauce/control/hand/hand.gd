@@ -149,7 +149,5 @@ func _start_hovering() -> void:
 
 
 func _reject_card(card: Card) -> void:
-	if card in get_children():
-		remove_child(card)
 	emit_signal("card_rejected", card)
 	
