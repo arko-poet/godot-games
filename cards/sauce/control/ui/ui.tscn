@@ -70,7 +70,21 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "ABOBA"
 
+[node name="EndTurnButton" type="Button" parent="." unique_id=1469356740]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "END TURN"
+
 [connection signal="card_played" from="Hand" to="." method="_on_hand_card_played"]
 [connection signal="card_rejected" from="Hand" to="." method="_on_hand_card_rejected"]
 [connection signal="gui_input" from="Hand" to="Hand" method="_on_gui_input"]
 [connection signal="sort_children" from="Hand" to="Hand" method="_on_sort_children"]
+[connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]

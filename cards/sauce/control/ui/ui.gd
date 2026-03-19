@@ -33,6 +33,7 @@ var monster_hp := 100:
 @onready var draw_pile_label: Label = $PlayerStatsBox/DrawPileLabel
 @onready var discard_pile_label: Label = $PlayerStatsBox/DiscardPileLabel
 @onready var monster_hp_label: Label = $PlayerStatsBox/MonsterHPLabel
+@onready var end_turn_button: Button = $EndTurnButton
 
 
 func _ready() -> void:
@@ -129,3 +130,14 @@ func _update_pile_labels() -> void:
 func _mana_changed() -> void:
 	for card: Card in hand.get_children():
 		card.playable = mana >= card.cost
+
+
+func _on_end_turn_button_pressed() -> void:
+	_monster_turn()
+	draw_card()
+	mana = MAX_MANA
+
+
+func _monster_turn() -> void:
+	var monster_damage = 10
+	hp -= monster_damage
