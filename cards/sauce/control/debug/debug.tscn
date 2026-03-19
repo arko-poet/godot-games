@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bkwbdd8vg8l2e"]
+
+[ext_resource type="Script" uid="uid://g3gl1ryuqow1" path="res://sauce/control/debug/debug.gd" id="1_63okk"]
+
+[node name="Debug" type="VBoxContainer" unique_id=1464696185]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_63okk")
+
+[node name="DrawCardButton" type="Button" parent="." unique_id=930999266]
+layout_mode = 2
+text = "DRAW CARD"
+
+[node name="AddHPButton" type="Button" parent="." unique_id=12125717]
+layout_mode = 2
+text = "ADD HP"
+
+[node name="RemoveHPButton" type="Button" parent="." unique_id=1559990414]
+layout_mode = 2
+text = "REMOVE HP"
+
+[node name="AddManaButton" type="Button" parent="." unique_id=1284347651]
+layout_mode = 2
+text = "ADD MANA"
+
+[node name="RemoveManaButton" type="Button" parent="." unique_id=1262685824]
+layout_mode = 2
+text = "REMOVE MANA"
+
+[connection signal="pressed" from="DrawCardButton" to="." method="_on_draw_card_button_pressed"]
+[connection signal="pressed" from="AddHPButton" to="." method="_on_add_hp_button_pressed"]
+[connection signal="pressed" from="RemoveHPButton" to="." method="_on_remove_hp_button_pressed"]
+[connection signal="pressed" from="AddManaButton" to="." method="_on_add_mana_button_pressed"]
+[connection signal="pressed" from="RemoveManaButton" to="." method="_on_remove_mana_button_pressed"]

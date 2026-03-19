@@ -1,3 +1,4 @@
+class_name UI
 extends Control
 
 const CardScene := preload("res://sauce/control/card/card.tscn")
@@ -22,6 +23,7 @@ var discard_pile: Array[Card] = []
 @onready var hand: Hand = $Hand
 @onready var hp_label: Label = $PlayerStatsBox/HPLabel
 @onready var mana_label: Label = $PlayerStatsBox/ManaLabel
+@onready var debug: VBoxContainer = $Debug
 
 
 func _ready() -> void:
@@ -30,6 +32,8 @@ func _ready() -> void:
 	card_data = load("res://sauce/control/card/cards.json").get_data()
 	_starter_deck()
 	_start_combat()
+	
+	debug.ui = self
 
 
 func _starter_deck() -> void:
@@ -48,17 +52,17 @@ func _start_combat() -> void:
 	draw_pile = deck.duplicate()
 	draw_pile.shuffle()
 	for i in range(STARTING_HAND_SIZE):
-		_draw_card()
+		draw_card()
 
 
-func _draw_card() -> void:
+func draw_card() -> void:
 	if not draw_pile.is_empty():
 		var card: Card = draw_pile.pop_at(0)
 		hand.add_card(card)
 	else:
 		_shuffle_discard_pile()
 		if not draw_pile.is_empty():
-			_draw_card()
+			draw_card()
 	
 	print("_draw_card()")
 	print(draw_pile)
@@ -72,26 +76,6 @@ func _shuffle_discard_pile() -> void:
 		draw_pile.append(card)
 	draw_pile.shuffle()
 	assert(discard_pile.is_empty())
-
-
-func _on_remove_card_button_pressed() -> void:
-	hand.pop_card()
-
-
-func _on_add_hp_button_pressed() -> void:
-	hp += 1
-
-
-func _on_remove_hp_button_pressed() -> void:
-	hp -= 1
-
-
-func _on_add_mana_button_pressed() -> void:
-	mana += 1
-
-
-func _on_remove_mana_button_pressed() -> void:
-	mana -= 1
 
 
 func _on_hand_card_played(card: Card) -> void:
@@ -121,7 +105,3 @@ func _on_hand_card_discarded(card: Card) -> void:
 func _attack(damage: int):
 	# TODO implement attacking
 	print("attack for %s" % damage)
-
-
-func _on_draw_card_button_pressed() -> void:
-	_draw_card()

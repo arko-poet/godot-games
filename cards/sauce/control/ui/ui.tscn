@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dox0pedy8barr" path="res://sauce/control/hand/hand.gd" id="1_muybb"]
 [ext_resource type="Script" uid="uid://matfamt4pwv7" path="res://sauce/control/ui/ui.gd" id="1_tqrgo"]
+[ext_resource type="PackedScene" uid="uid://bkwbdd8vg8l2e" path="res://sauce/control/debug/debug.tscn" id="3_tqrgo"]
+[ext_resource type="Script" uid="uid://g3gl1ryuqow1" path="res://sauce/control/debug/debug.gd" id="4_1qspq"]
 
 [node name="UI" type="Control" unique_id=647190758]
 layout_mode = 3
@@ -29,30 +31,10 @@ script = ExtResource("1_muybb")
 max_angle = 15.0
 metadata/_edit_group_ = true
 
-[node name="DebuButtonsBox" type="VBoxContainer" parent="." unique_id=20169115]
+[node name="Debug" parent="." unique_id=1464696185 instance=ExtResource("3_tqrgo")]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="DrawCardButton" type="Button" parent="DebuButtonsBox" unique_id=1160775966]
-layout_mode = 2
-text = "DRAW CARD"
-
-[node name="AddHPButton" type="Button" parent="DebuButtonsBox" unique_id=1818309607]
-layout_mode = 2
-text = "ADD HP"
-
-[node name="RemoveHPButton" type="Button" parent="DebuButtonsBox" unique_id=763777477]
-layout_mode = 2
-text = "REMOVE HP"
-
-[node name="AddManaButton" type="Button" parent="DebuButtonsBox" unique_id=325679271]
-layout_mode = 2
-text = "ADD MANA"
-
-[node name="RemoveManaButton" type="Button" parent="DebuButtonsBox" unique_id=1531297703]
-layout_mode = 2
-text = "REMOVE MANA"
+anchors_preset = 0
+script = ExtResource("4_1qspq")
 
 [node name="PlayerStatsBox" type="VBoxContainer" parent="." unique_id=517024686]
 layout_mode = 1
@@ -77,8 +59,3 @@ text = "3/3"
 [connection signal="card_played" from="Hand" to="." method="_on_hand_card_played"]
 [connection signal="gui_input" from="Hand" to="Hand" method="_on_gui_input"]
 [connection signal="sort_children" from="Hand" to="Hand" method="_on_sort_children"]
-[connection signal="pressed" from="DebuButtonsBox/DrawCardButton" to="." method="_on_draw_card_button_pressed"]
-[connection signal="pressed" from="DebuButtonsBox/AddHPButton" to="." method="_on_add_hp_button_pressed"]
-[connection signal="pressed" from="DebuButtonsBox/RemoveHPButton" to="." method="_on_remove_hp_button_pressed"]
-[connection signal="pressed" from="DebuButtonsBox/AddManaButton" to="." method="_on_add_mana_button_pressed"]
-[connection signal="pressed" from="DebuButtonsBox/RemoveManaButton" to="." method="_on_remove_mana_button_pressed"]
