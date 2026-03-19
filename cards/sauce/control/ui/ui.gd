@@ -16,6 +16,7 @@ var mana: int:
 	set(value):
 		mana = value
 		mana_label.text = "%s/%s" % [mana, MAX_MANA]
+		_mana_changed()
 var deck: Array[Card] = []
 var draw_pile: Array[Card] = []
 var discard_pile: Array[Card] = []
@@ -55,6 +56,7 @@ func _start_combat() -> void:
 	draw_pile.shuffle()
 	for i in range(STARTING_HAND_SIZE):
 		draw_card()
+	_mana_changed()
 
 
 func draw_card() -> void:
@@ -83,6 +85,8 @@ func _shuffle_discard_pile() -> void:
 
 
 func _on_hand_card_played(card: Card) -> void:
+	assert(mana >= card.cost)
+	mana -= card.cost
 	_execute_card_actions(card)
 	_discard_card(card)
 
@@ -115,3 +119,8 @@ func _on_hand_card_rejected(card: Card) -> void:
 func _update_pile_labels() -> void:
 	draw_pile_label.text = "draw pile: %s" % draw_pile.size()
 	discard_pile_label.text = "discard pile: %s" % discard_pile.size()
+
+
+func _mana_changed() -> void:
+	for card: Card in hand.get_children():
+		card.playable = mana >= card.cost

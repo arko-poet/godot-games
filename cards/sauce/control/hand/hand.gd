@@ -94,12 +94,12 @@ func _on_card_exited(card: Card) -> void:
 	if card == active_card and not is_dragging:
 		active_card = null
 		_arrange_cards()
-	
+
 
 func _on_gui_input(event: InputEvent) -> void:
 	if not event is InputEventMouseButton or not active_card:
 		return
-	if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	if event.pressed and event.button_index == MOUSE_BUTTON_LEFT and active_card.playable:
 		is_dragging = true
 	elif not event.pressed: # and is_dragging
 		_stop_dragging(event.button_index != MOUSE_BUTTON_RIGHT)
@@ -124,10 +124,10 @@ func _stop_dragging(play: bool) -> void:
 
 
 func _play_card(card: Card) -> void:
-	if card in get_children():
-		remove_child(card)
-		card.disconnect("card_entered", _on_card_entered)
-		card.disconnect("card_exited", _on_card_exited)
+	assert(card in get_children())
+	remove_child(card)
+	card.disconnect("card_entered", _on_card_entered)
+	card.disconnect("card_exited", _on_card_exited)
 	emit_signal("card_played", card)
 
 
@@ -150,4 +150,3 @@ func _start_hovering() -> void:
 
 func _reject_card(card: Card) -> void:
 	emit_signal("card_rejected", card)
-	
