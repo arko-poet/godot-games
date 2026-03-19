@@ -23,6 +23,8 @@ var playable := false:
 
 
 func _ready() -> void:
+	if not _properties:
+		return
 	name_label.text = _properties["name"]
 	cost = int(_properties["cost"])
 	var description := ""

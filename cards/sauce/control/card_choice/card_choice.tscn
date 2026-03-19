@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://blqln82cjsfq2"]
+
+[ext_resource type="Script" uid="uid://dgyyel8os5hco" path="res://sauce/control/card_choice/card_choice.gd" id="1_u60r8"]
+
+[node name="CardChoice" type="VBoxContainer" unique_id=1243305144]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -327.0
+offset_top = -112.5
+offset_right = 327.0
+offset_bottom = 147.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+script = ExtResource("1_u60r8")
+
+[node name="CardContainer" type="HBoxContainer" parent="." unique_id=2073919313]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="SkipButton" type="Button" parent="." unique_id=469332473]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SKIP"
+
+[connection signal="gui_input" from="CardContainer" to="." method="_on_card_container_gui_input"]
+[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]

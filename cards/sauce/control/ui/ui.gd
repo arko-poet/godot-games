@@ -1,6 +1,8 @@
 class_name UI
 extends Control
 
+signal player_died
+
 const CardScene := preload("res://sauce/control/card/card.tscn")
 
 const MAX_HP := 100
@@ -10,8 +12,10 @@ const STARTING_HAND_SIZE := 5
 var card_data: Dictionary
 var hp: int:
 	set(value):
-		hp = value
+		hp = max(0, value)
 		hp_label.text = "%s/%s" % [hp, MAX_HP]
+		if hp == 0:
+			player_died.emit()
 var mana: int:
 	set(value):
 		mana = value
@@ -25,6 +29,8 @@ var monster_hp := 100:
 	set(value):
 		monster_hp = max(value, 0)
 		monster_hp_label.text = "%s/%s" % [monster_hp, monster_max_hp]
+		if monster_hp == 0:
+			_combat_finished()
 
 @onready var hand: Hand = $Hand
 @onready var hp_label: Label = $PlayerStatsBox/HPLabel
@@ -141,3 +147,11 @@ func _on_end_turn_button_pressed() -> void:
 func _monster_turn() -> void:
 	var monster_damage = 10
 	hp -= monster_damage
+	
+
+func _combat_finished() -> void:
+	_get_rewards()
+	
+	
+func _get_rewards() -> void:
+	pass
