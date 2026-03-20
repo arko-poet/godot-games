@@ -74,7 +74,6 @@ func _on_hand_card_played(card: Card) -> void:
 
 func _discard_card(card: Card) -> void:
 	discard_pile.append(card)
-	print(discard_pile)
 	_update_pile_labels()
 	
 

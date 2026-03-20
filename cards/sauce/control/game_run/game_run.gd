@@ -58,9 +58,7 @@ func _next_encounter() -> void:
 
 
 func _on_card_choice_card_chosen(card: Card) -> void:
-	assert(card)
 	if card:
-		print("hello?")
 		_add_card(card)
 		
 	card_choice.hide()
@@ -81,7 +79,6 @@ func _choose_cards() -> void:
 
 
 func _add_card(card: Card) -> void:
-	print("_add_card()")
 	assert(card)
 	deck.append(card)
 	_update_deck_label()
