@@ -84,5 +84,5 @@ func _add_card(card: Card) -> void:
 	_update_deck_label()
 
 func _update_deck_label() -> void:
-	deck_label.text = "%s" % deck.size()
+	deck_label.text = "DECK: %s" % deck.size()
 	
