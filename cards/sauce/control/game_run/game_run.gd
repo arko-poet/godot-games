@@ -11,7 +11,6 @@ const STARTING_HAND_SIZE := 5
 const CARD_CHOICE_SIZE := 3
 
 var card_data: Dictionary
-var deck: Array[Card] = []
 var hp: int:
 	set(value):
 		hp = max(0, value)
@@ -24,7 +23,8 @@ var hp: int:
 @onready var debug: VBoxContainer = $Debug
 @onready var card_choice: CardChoice = $CardChoice
 @onready var combat_encounter: CombatEncounter = $CombatEncounter
-@onready var deck_label: Label = $DeckLabel
+@onready var deck_label: Button = $DeckLabel
+@onready var deck: Deck = $Deck
 
 
 func _ready() -> void:
@@ -80,9 +80,16 @@ func _choose_cards() -> void:
 
 func _add_card(card: Card) -> void:
 	assert(card)
-	deck.append(card)
+	deck.add_card(card)
 	_update_deck_label()
 
 func _update_deck_label() -> void:
-	deck_label.text = "DECK: %s" % deck.size()
+	deck_label.text = "DECK: %s" % deck.card_container.get_children().size()
 	
+
+
+func _on_deck_label_pressed() -> void:
+	if deck.visible:
+		deck.hide()
+	else:
+		deck.show()

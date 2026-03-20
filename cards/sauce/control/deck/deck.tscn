@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bxcsjvs0mwci1"]
+
+[ext_resource type="Script" uid="uid://baytqiagysvqx" path="res://sauce/control/deck/deck.gd" id="1_2ew65"]
+
+[node name="Deck" type="ScrollContainer" unique_id=882760426]
+offset_right = 858.0
+offset_bottom = 900.0
+vertical_scroll_mode = 3
+script = ExtResource("1_2ew65")
+
+[node name="CardContainer" type="GridContainer" parent="." unique_id=786146267]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 64
+theme_override_constants/v_separation = 64
+columns = 4

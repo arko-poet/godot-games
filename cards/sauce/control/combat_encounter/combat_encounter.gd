@@ -1,7 +1,6 @@
 class_name CombatEncounter
 extends Control
 
-
 var game_run: GameRun
 var mana: int:
 	set(value):
@@ -37,10 +36,8 @@ func new_encounter(hp: int) -> void:
 	mana = game_run.MAX_MANA
 	
 	hand.clear()
-	
 	discard_pile.clear()
-	
-	draw_pile = game_run.deck.duplicate()
+	draw_pile = game_run.deck.get_card_copies()
 	draw_pile.shuffle()
 	for i in range(game_run.STARTING_HAND_SIZE):
 		draw_card()
