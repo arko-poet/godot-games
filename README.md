@@ -82,7 +82,9 @@ PanelContainer, RichTextLabel, NavigationAgent2D, CPUParticles2D, GPUParticles2D
 ## 7. `cards` - based on Slay the Spire
 ![](screenshots/cards.png)
 ### What I learned
-- custom Container layouts
+- custom Container layout to implement fan shaped hand of cards
 - running code in editor with @tool
+- msaa
+- turn based combat
 ### New Godot Nodes learned
 Container,
