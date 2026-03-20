@@ -81,11 +81,14 @@ func _on_sort_children() -> void:
 	_arrange_cards()
 
 
-func clear() -> void:
+func clear() -> Array[Card]:
+	var cards: Array[Card] = []
 	for c in get_children():
+		cards.append(c)
 		remove_card(c)
 	active_card = null
 	next_candidate = null
+	return cards
 
 
 func _on_card_entered(card: Card) -> void:

@@ -107,7 +107,10 @@ func _mana_changed() -> void:
 
 func _on_end_turn_button_pressed() -> void:
 	_monster_turn()
-	draw_card()
+	for c in hand.clear():
+		discard_pile.append(c)
+	for i in range(game_run.STARTING_HAND_SIZE):
+		draw_card()
 	mana = game_run.MAX_MANA
 
 
