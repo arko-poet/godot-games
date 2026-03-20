@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dftj8jcsyiyf"]
+
+[ext_resource type="Script" uid="uid://matfamt4pwv7" path="res://sauce/control/game_run/game_run.gd" id="1_tqrgo"]
+[ext_resource type="PackedScene" uid="uid://bkwbdd8vg8l2e" path="res://sauce/control/debug/debug.tscn" id="3_tqrgo"]
+[ext_resource type="PackedScene" uid="uid://blqln82cjsfq2" path="res://sauce/control/card_choice/card_choice.tscn" id="4_1qspq"]
+[ext_resource type="PackedScene" uid="uid://0aas2n2fuqs2" path="res://sauce/control/combat_encounter/combat_encounter.tscn" id="4_t4wxh"]
+
+[node name="GameRun" type="Control" unique_id=647190758]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tqrgo")
+
+[node name="HPLabel" type="Label" parent="." unique_id=493144936]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.5
+offset_right = 27.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "ABOBA"
+
+[node name="CombatEncounter" parent="." unique_id=246367046 instance=ExtResource("4_t4wxh")]
+layout_mode = 1
+
+[node name="CardChoice" parent="." unique_id=1243305144 instance=ExtResource("4_1qspq")]
+visible = false
+layout_mode = 1
+offset_top = -130.0
+offset_bottom = 130.0
+
+[node name="Debug" parent="." unique_id=1464696185 instance=ExtResource("3_tqrgo")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="DeckLabel" type="Label" parent="." unique_id=1330536998]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "XD"
+
+[connection signal="card_chosen" from="CardChoice" to="." method="_on_card_choice_card_chosen"]

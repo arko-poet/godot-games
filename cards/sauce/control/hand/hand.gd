@@ -44,7 +44,6 @@ func _get_minimum_size() -> Vector2:
 
 
 func _arrange_cards() -> void:
-	print("_arrange_cards")
 	var fan_radius := size.x
 	var count = get_child_count()
 	var total_angle = min(max_angle, angle_per_card * (count - 1))
@@ -80,6 +79,13 @@ func pop_card() -> void:
 
 func _on_sort_children() -> void:
 	_arrange_cards()
+
+
+func clear() -> void:
+	for c in get_children():
+		remove_card(c)
+	active_card = null
+	next_candidate = null
 
 
 func _on_card_entered(card: Card) -> void:
@@ -125,9 +131,7 @@ func _stop_dragging(play: bool) -> void:
 
 func _play_card(card: Card) -> void:
 	assert(card in get_children())
-	remove_child(card)
-	card.disconnect("card_entered", _on_card_entered)
-	card.disconnect("card_exited", _on_card_exited)
+	remove_card(card)
 	emit_signal("card_played", card)
 
 
@@ -150,3 +154,9 @@ func _start_hovering() -> void:
 
 func _reject_card(card: Card) -> void:
 	emit_signal("card_rejected", card)
+
+
+func remove_card(card: Card) -> void:
+	remove_child(card)
+	card.disconnect("card_entered", _on_card_entered)
+	card.disconnect("card_exited", _on_card_exited)

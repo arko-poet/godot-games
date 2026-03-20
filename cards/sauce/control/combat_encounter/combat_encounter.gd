@@ -1,28 +1,13 @@
-class_name UI
+class_name CombatEncounter
 extends Control
 
-signal player_died
 
-const CardScene := preload("res://sauce/control/card/card.tscn")
-
-const MAX_HP := 100
-const MAX_MANA := 3
-const STARTING_HAND_SIZE := 5
-const CARD_CHOICE_SIZE := 3
-
-var card_data: Dictionary
-var hp: int:
-	set(value):
-		hp = max(0, value)
-		hp_label.text = "%s/%s" % [hp, MAX_HP]
-		if hp == 0:
-			player_died.emit()
+var game_run: GameRun
 var mana: int:
 	set(value):
 		mana = value
-		mana_label.text = "%s/%s" % [mana, MAX_MANA]
+		mana_label.text = "%s/%s" % [mana, game_run.MAX_MANA]
 		_mana_changed()
-var deck: Array[Card] = []
 var draw_pile: Array[Card] = []
 var discard_pile: Array[Card] = []
 var monster_max_hp := 100
@@ -31,45 +16,31 @@ var monster_hp := 100:
 		monster_hp = max(value, 0)
 		monster_hp_label.text = "%s/%s" % [monster_hp, monster_max_hp]
 		if monster_hp == 0:
-			_combat_finished()
+			game_run.combat_finished()
 
 @onready var hand: Hand = $Hand
-@onready var hp_label: Label = $PlayerStatsBox/HPLabel
 @onready var mana_label: Label = $PlayerStatsBox/ManaLabel
-@onready var debug: VBoxContainer = $Debug
 @onready var draw_pile_label: Label = $PlayerStatsBox/DrawPileLabel
 @onready var discard_pile_label: Label = $PlayerStatsBox/DiscardPileLabel
 @onready var monster_hp_label: Label = $PlayerStatsBox/MonsterHPLabel
 @onready var end_turn_button: Button = $EndTurnButton
-@onready var card_choice: CardChoice = $CardChoice
 
 
 func _ready() -> void:
-	hp = MAX_HP
-	mana = MAX_MANA
-	card_data = load("res://sauce/control/card/cards.json").get_data()
-	_starter_deck()
-	_start_combat()
+	mana = game_run.MAX_MANA
+
+
+func new_encounter(hp: int) -> void:
+	monster_max_hp = hp
+	monster_hp = hp
 	
-	debug.ui = self
-
-
-func _starter_deck() -> void:
-	for i in range(6):
-		var card: Card = CardScene.instantiate()
-		card.set_card_properties(card_data["Bozo Attack"])
-		deck.append(card)
+	hand.clear()
 	
-	for i in range(6):
-		var card: Card = CardScene.instantiate()
-		card.set_card_properties(card_data["Bozo Block"])
-		deck.append(card)
-
-
-func _start_combat() -> void:
-	draw_pile = deck.duplicate()
+	discard_pile.clear()
+	
+	draw_pile = game_run.deck.duplicate()
 	draw_pile.shuffle()
-	for i in range(STARTING_HAND_SIZE):
+	for i in range(game_run.STARTING_HAND_SIZE):
 		draw_card()
 
 
@@ -84,12 +55,7 @@ func draw_card() -> void:
 			draw_card()
 	
 	_update_pile_labels()
-	
-	print("_draw_card()")
-	print(draw_pile)
-	print(discard_pile)
-	print("------------")
-		
+
 
 func _shuffle_discard_pile() -> void:
 	for i in discard_pile.size():
@@ -143,39 +109,9 @@ func _mana_changed() -> void:
 func _on_end_turn_button_pressed() -> void:
 	_monster_turn()
 	draw_card()
-	mana = MAX_MANA
+	mana = game_run.MAX_MANA
 
 
 func _monster_turn() -> void:
 	var monster_damage = 10
-	hp -= monster_damage
-	
-
-func _combat_finished() -> void:
-	# TODO hide/darken background
-	_choose_cards()
-
-
-
-func _next_encounter() -> void:
-	monster_hp = monster_max_hp
-	
-
-func _on_card_choice_card_chosen(card: Card) -> void:
-	if card:
-		deck.append(card)
-	card_choice.hide()
-	_next_encounter()
-
-
-func _choose_cards() -> void:
-	# TODO prevent other Control from interacting 
-	var card_keys = card_data.keys()
-	card_keys.shuffle()
-	var cards: Array[Card] = []
-	for i in range(CARD_CHOICE_SIZE):
-		var card: Card = CardScene.instantiate()
-		card.set_card_properties(card_data[card_keys[i]])
-		cards.append(card)
-	card_choice.new_card_choice(cards)
-	card_choice.show()
+	game_run.hp -= monster_damage

@@ -23,16 +23,16 @@ var selected_card: Card
 
 
 func new_card_choice(cards: Array[Card]) -> void:
-	for child in card_container.get_children():
-		child.queue_free()
 	for card in cards:
 		card.card_entered.connect(_on_card_entered)
 		card.card_exited.connect(_on_card_exited)
+		assert(card)
 		card_container.add_child(card)
 
 
 func _on_skip_button_pressed() -> void:
 	emit_signal("card_chosen", null)
+	_clear()
 	
 	
 func _on_card_entered(card: Card) -> void:
@@ -47,5 +47,14 @@ func _on_card_exited(card: Card) -> void:
 
 func _on_card_container_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and not event.pressed and selected_card:
+		card_container.remove_child(selected_card)
+		print("selected card %s" % selected_card)
 		emit_signal("card_chosen", selected_card)
-		# TODO it may be necessary to clear selected card here
+		assert(selected_card == null)
+		_clear()
+		
+
+func _clear() -> void:
+	selected_card = null
+	for child in card_container.get_children():
+		child.queue_free()

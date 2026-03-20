@@ -1,27 +1,27 @@
 extends VBoxContainer
 
-var ui: UI
+var game_run: GameRun
 
 
 func _on_add_hp_button_pressed() -> void:
-	ui.hp += 1
+	game_run.hp += 1
 
 
 func _on_remove_hp_button_pressed() -> void:
-	ui.hp -= 1
+	game_run.hp -= 1
 
 
 func _on_add_mana_button_pressed() -> void:
-	ui.mana += 1
+	game_run.combat_encounter.mana += 1
 
 
 func _on_remove_mana_button_pressed() -> void:
-	ui.mana -= 1
+	game_run.combat_encounter.mana -= 1
 
 
 func _on_draw_card_button_pressed() -> void:
-	ui.draw_card()
+	game_run.combat_encounter.draw_card()
 
 
 func _on_damage_button_pressed() -> void:
-	ui._attack(10)
+	game_run.combat_encounter._attack(10)
