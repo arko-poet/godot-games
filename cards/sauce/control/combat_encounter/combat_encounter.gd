@@ -34,6 +34,8 @@ func new_encounter(hp: int) -> void:
 	monster_max_hp = hp
 	monster_hp = hp
 	
+	mana = game_run.MAX_MANA
+	
 	hand.clear()
 	
 	discard_pile.clear()
