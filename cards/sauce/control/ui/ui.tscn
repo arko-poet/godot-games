@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dox0pedy8barr" path="res://sauce/control/hand/hand.gd" id="1_muybb"]
 [ext_resource type="Script" uid="uid://matfamt4pwv7" path="res://sauce/control/ui/ui.gd" id="1_tqrgo"]
 [ext_resource type="PackedScene" uid="uid://bkwbdd8vg8l2e" path="res://sauce/control/debug/debug.tscn" id="3_tqrgo"]
+[ext_resource type="PackedScene" uid="uid://blqln82cjsfq2" path="res://sauce/control/card_choice/card_choice.tscn" id="4_1qspq"]
 
 [node name="UI" type="Control" unique_id=647190758]
 layout_mode = 3
@@ -83,8 +84,15 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "END TURN"
 
+[node name="CardChoice" parent="." unique_id=1243305144 instance=ExtResource("4_1qspq")]
+visible = false
+layout_mode = 1
+offset_top = -130.0
+offset_bottom = 130.0
+
 [connection signal="card_played" from="Hand" to="." method="_on_hand_card_played"]
 [connection signal="card_rejected" from="Hand" to="." method="_on_hand_card_rejected"]
 [connection signal="gui_input" from="Hand" to="Hand" method="_on_gui_input"]
 [connection signal="sort_children" from="Hand" to="Hand" method="_on_sort_children"]
 [connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="card_chosen" from="CardChoice" to="." method="_on_card_choice_card_chosen"]

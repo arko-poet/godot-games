@@ -8,6 +8,7 @@ const CardScene := preload("res://sauce/control/card/card.tscn")
 const MAX_HP := 100
 const MAX_MANA := 3
 const STARTING_HAND_SIZE := 5
+const CARD_CHOICE_SIZE := 3
 
 var card_data: Dictionary
 var hp: int:
@@ -40,6 +41,7 @@ var monster_hp := 100:
 @onready var discard_pile_label: Label = $PlayerStatsBox/DiscardPileLabel
 @onready var monster_hp_label: Label = $PlayerStatsBox/MonsterHPLabel
 @onready var end_turn_button: Button = $EndTurnButton
+@onready var card_choice: CardChoice = $CardChoice
 
 
 func _ready() -> void:
@@ -150,8 +152,30 @@ func _monster_turn() -> void:
 	
 
 func _combat_finished() -> void:
-	_get_rewards()
+	# TODO hide/darken background
+	_choose_cards()
+
+
+
+func _next_encounter() -> void:
+	monster_hp = monster_max_hp
 	
-	
-func _get_rewards() -> void:
-	pass
+
+func _on_card_choice_card_chosen(card: Card) -> void:
+	if card:
+		deck.append(card)
+	card_choice.hide()
+	_next_encounter()
+
+
+func _choose_cards() -> void:
+	# TODO prevent other Control from interacting 
+	var card_keys = card_data.keys()
+	card_keys.shuffle()
+	var cards: Array[Card] = []
+	for i in range(CARD_CHOICE_SIZE):
+		var card: Card = CardScene.instantiate()
+		card.set_card_properties(card_data[card_keys[i]])
+		cards.append(card)
+	card_choice.new_card_choice(cards)
+	card_choice.show()

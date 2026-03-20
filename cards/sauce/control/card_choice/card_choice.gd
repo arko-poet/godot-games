@@ -1,3 +1,4 @@
+class_name CardChoice
 extends Control
 
 signal card_chosen(card: Card)
@@ -10,15 +11,15 @@ var selected_card: Card
 @onready var skip_button: Button = $SkipButton
 
 
-func _ready() -> void:
-	# TODO after implementing card choosing
-	var card_scene: PackedScene = load("res://sauce/control/card/card.tscn")
-	var cards: Array[Card] = []
-	for i in range(3):
-		var card: Card = card_scene.instantiate()
-		cards.append(card)
-	new_card_choice(cards)
-
+#func _ready() -> void:
+	## TODO after implementing card choosing
+	#var card_scene: PackedScene = load("res://sauce/control/card/card.tscn")
+	#var cards: Array[Card] = []
+	#for i in range(3):
+		#var card: Card = card_scene.instantiate()
+		#cards.append(card)
+	#new_card_choice(cards)
+#
 
 
 func new_card_choice(cards: Array[Card]) -> void:

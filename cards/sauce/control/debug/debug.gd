@@ -21,3 +21,7 @@ func _on_remove_mana_button_pressed() -> void:
 
 func _on_draw_card_button_pressed() -> void:
 	ui.draw_card()
+
+
+func _on_damage_button_pressed() -> void:
+	ui._attack(10)

@@ -18,6 +18,7 @@
 	"cost": 1
   },
   "Draw": {
+	"name": "Draw",
 	"actions": {
 	  "draw": {
 		"value": 2
@@ -26,6 +27,7 @@
 	"cost": 1
   },
   "Bandage": {
+	"name": "Bandage",
 	"actions": {
 	  "heal": {
 		"value": 3
@@ -34,6 +36,7 @@
 	"cost": 1
   },
   "Ramp Up": {
+	"name": "Ramp Up",
 	"actions": {
 	  "buff": {
 		"property": "strength",
@@ -43,6 +46,7 @@
 	"cost": 2
   },
   "Savagery": {
+	"name": "Savagery",
 	"actions": {
 	  "attack": {
 		"value": 8,
@@ -52,6 +56,7 @@
 	"cost": 3
   },
   "ABOBA": {
+	"name": "ABOBA",
 	"actions": {
 	  "attack": {
 		"value": 9
@@ -69,6 +74,7 @@
 	"cost": 3
   },
   "Beef Up": {
+	"name": "Beef Up",
 	"actions": {
 	  "buff": {
 		"property": "max_hp",

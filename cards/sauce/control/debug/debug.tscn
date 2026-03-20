@@ -30,8 +30,13 @@ text = "ADD MANA"
 layout_mode = 2
 text = "REMOVE MANA"
 
+[node name="DamageButton" type="Button" parent="." unique_id=1868077901]
+layout_mode = 2
+text = "10 DAMAGE"
+
 [connection signal="pressed" from="DrawCardButton" to="." method="_on_draw_card_button_pressed"]
 [connection signal="pressed" from="AddHPButton" to="." method="_on_add_hp_button_pressed"]
 [connection signal="pressed" from="RemoveHPButton" to="." method="_on_remove_hp_button_pressed"]
 [connection signal="pressed" from="AddManaButton" to="." method="_on_add_mana_button_pressed"]
 [connection signal="pressed" from="RemoveManaButton" to="." method="_on_remove_mana_button_pressed"]
+[connection signal="pressed" from="DamageButton" to="." method="_on_damage_button_pressed"]
