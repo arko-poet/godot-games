@@ -2,10 +2,11 @@ config_version=5
 
 [application]
 
-config/name="blocks"
+config/name="Blocks"
 run/main_scene="uid://woc2tkn7cjw4"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://b7juox8cgelqi"
+config/tags=PackedStringArray("personal")
 
 [autoload]
 

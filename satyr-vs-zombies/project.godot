@@ -1,19 +1,12 @@
-; Engine configuration file.
-; It's best edited using the editor UI and not directly,
-; since the parameters that go here are not all obvious.
-;
-; Format:
-;   [section] ; section goes between []
-;   param=value ; assign values to parameters
-
 config_version=5
 
 [application]
 
-config/name="satyrs vs zombies"
+config/name="Satyrs vs Zombies"
 run/main_scene="uid://cwcqgxdqohc5s"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://c6ls8t8oivk73"
+config/tags=PackedStringArray("personal")
 
 [autoload]
 

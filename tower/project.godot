@@ -1,19 +1,12 @@
-; Engine configuration file.
-; It's best edited using the editor UI and not directly,
-; since the parameters that go here are not all obvious.
-;
-; Format:
-;   [section] ; section goes between []
-;   param=value ; assign values to parameters
-
 config_version=5
 
 [application]
 
-config/name="tower"
+config/name="Tower"
 run/main_scene="uid://cc05utqu543r1"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://4phrfapfvmak"
+config/tags=PackedStringArray("personal")
 
 [autoload]
 
