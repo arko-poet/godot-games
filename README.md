@@ -5,6 +5,7 @@ A collection of small projects created while learning Godot.
 Projects (in order created):
 
 ## 1. `clicker` - based on cookie clicker
+Dates: 2026-01-28 → 2026-02-07
 ![](screenshots/clicker.png)
 ### What I learned
 - Animated Buttons
@@ -24,6 +25,7 @@ Projects (in order created):
 ### New Godot Nodes learned
 Node, Control, ColorRect, VBoxContainer, Label, TextureButton, Timer, Sprite2D, AudioStreamPlayer2D, AnimationPlayer, GridContainer, HSeparator, Button, ProgressBar, HBoxContainer, TextureRect 
 ## 2. `blocks` - based on Tetris
+Dates: 2026-02-07 → 2026-02-14
 ![](screenshots/tetris.png)
 ### What I learned
 - Grid based game logic
@@ -33,6 +35,7 @@ Node, Control, ColorRect, VBoxContainer, Label, TextureButton, Timer, Sprite2D, 
 ### New Godot Nodes learned
 Node2D, AnimatedSprite2D, SubViewportContainer, SubViewport
 ## 3. `satyr vs zombies` - based on Last Stand
+Dates: 2026-02-14 → 2026-02-22
 ![](screenshots/satyr-vs-zombies.png)
 ### What I learned
 - Player movement with viewport clamping and collisions
@@ -51,6 +54,7 @@ Node2D, AnimatedSprite2D, SubViewportContainer, SubViewport
 ### New Godot Nodes learned
 Area2D, CollisionShape2D, StaticBody2D, CharacterBody2D, TileMapLayer, Path2D, PathFollow2D
 ## 4. `tower` - based on Icy Tower
+Dates: 2026-02-22 → 2026-02-27
 ![](screenshots/tower.png)
 ### What I learned
 - Parallax Scrolling
@@ -64,6 +68,7 @@ Area2D, CollisionShape2D, StaticBody2D, CharacterBody2D, TileMapLayer, Path2D, P
 ### New Godot Nodes learned
 Parallax2D, Camera2D, AudioStreamPlayer
 ## 5. `duck vs slimes` - based on Vampire Survivors
+Dates: 2026-02-27 → 2026-03-12
 ![](screenshots/survivors.png)
 ### What I learned
 - item pickups
@@ -80,6 +85,7 @@ Parallax2D, Camera2D, AudioStreamPlayer
 ### New Godot Nodes learned
 PanelContainer, RichTextLabel, NavigationAgent2D, CPUParticles2D, GPUParticles2D, Polygon2D, CanvasLayer, NavigationRegion2D
 ## 7. `cards` - based on Slay the Spire
+Dates: 2026-03-12 → WIP
 ![](screenshots/cards.png)
 ### What I learned
 - custom Container layout to implement fan shaped hand of cards
