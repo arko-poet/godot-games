@@ -15,79 +15,200 @@
 
 [node name="Player" type="Node2D" unique_id=1947639501]
 
-[node name="RightHand" type="Sprite2D" parent="." unique_id=211647257]
-position = Vector2(40, 280)
-texture = ExtResource("1_3frkd")
-flip_h = true
+[node name="Sprites" type="Node2D" parent="." unique_id=921370113]
+metadata/_edit_lock_ = true
 
-[node name="LeftHand" type="Sprite2D" parent="." unique_id=663886908]
-position = Vector2(472, 280)
-texture = ExtResource("1_3frkd")
-
-[node name="Neck" type="Sprite2D" parent="." unique_id=410946575]
-position = Vector2(256, 144)
-texture = ExtResource("2_x5x7k")
-
-[node name="Head" type="Sprite2D" parent="." unique_id=770864577]
-position = Vector2(248, 64)
+[node name="Head" type="Sprite2D" parent="Sprites" unique_id=770864577]
+position = Vector2(0.20312238, -211.02933)
+rotation = 0.01171803
 texture = ExtResource("3_yi7tw")
+metadata/_edit_lock_ = true
 
-[node name="RightShoe" type="Sprite2D" parent="." unique_id=455446172]
-position = Vector2(180, 456)
-texture = ExtResource("4_bj0dr")
+[node name="EyeR" type="Sprite2D" parent="Sprites/Head" unique_id=1628635989]
+position = Vector2(-24, -8)
+texture = ExtResource("11_p4o6a")
+metadata/_edit_lock_ = true
+
+[node name="EyeL" type="Sprite2D" parent="Sprites/Head" unique_id=140039816]
+position = Vector2(32, 3)
+texture = ExtResource("11_p4o6a")
+metadata/_edit_lock_ = true
+
+[node name="BrowR" type="Sprite2D" parent="Sprites/Head" unique_id=1848568379]
+position = Vector2(-32, -24)
+texture = ExtResource("12_keuk3")
+metadata/_edit_lock_ = true
+
+[node name="BrowL" type="Sprite2D" parent="Sprites/Head" unique_id=1974990706]
+position = Vector2(32, -15)
+texture = ExtResource("12_keuk3")
 flip_h = true
+metadata/_edit_lock_ = true
 
-[node name="LeftShoe" type="Sprite2D" parent="." unique_id=2095207613]
-position = Vector2(333, 451)
-texture = ExtResource("4_bj0dr")
-
-[node name="LeftLeg" type="Sprite2D" parent="." unique_id=2003937096]
-position = Vector2(296, 360)
-texture = ExtResource("5_ao6dq")
-
-[node name="RightLeg" type="Sprite2D" parent="." unique_id=1641757782]
-position = Vector2(216, 368)
-texture = ExtResource("5_ao6dq")
-flip_h = true
-
-[node name="LeftArm" type="Sprite2D" parent="." unique_id=647171048]
-position = Vector2(392, 208)
-texture = ExtResource("6_jkfj7")
-
-[node name="RightArm" type="Sprite2D" parent="." unique_id=223483274]
-position = Vector2(120, 208)
-texture = ExtResource("6_jkfj7")
-flip_h = true
-
-[node name="Shirt" type="Sprite2D" parent="." unique_id=1353165109]
-position = Vector2(256, 216)
-texture = ExtResource("7_70fq8")
-
-[node name="Hair" type="Sprite2D" parent="." unique_id=1050846505]
-position = Vector2(248, 32)
-texture = ExtResource("8_7a41j")
-
-[node name="Nose" type="Sprite2D" parent="." unique_id=51672464]
-position = Vector2(248, 88)
-texture = ExtResource("9_gk1dx")
-
-[node name="Mouth" type="Sprite2D" parent="." unique_id=1573902444]
-position = Vector2(264, 112)
+[node name="Mouth" type="Sprite2D" parent="Sprites/Head" unique_id=1573902444]
+position = Vector2(16, 48)
 texture = ExtResource("10_ochmo")
+metadata/_edit_lock_ = true
 
-[node name="RightEye" type="Sprite2D" parent="." unique_id=1628635989]
-position = Vector2(224, 56)
-texture = ExtResource("11_p4o6a")
+[node name="Hair" type="Sprite2D" parent="Sprites/Head" unique_id=1050846505]
+position = Vector2(0, -32)
+texture = ExtResource("8_7a41j")
+metadata/_edit_lock_ = true
 
-[node name="LeftEye" type="Sprite2D" parent="." unique_id=140039816]
-position = Vector2(280, 67)
-texture = ExtResource("11_p4o6a")
+[node name="Nose" type="Sprite2D" parent="Sprites/Head" unique_id=51672464]
+position = Vector2(0, 24)
+texture = ExtResource("9_gk1dx")
+metadata/_edit_lock_ = true
 
-[node name="RightBrow" type="Sprite2D" parent="." unique_id=1848568379]
-position = Vector2(216, 40)
-texture = ExtResource("12_keuk3")
+[node name="LegL" type="Sprite2D" parent="Sprites" unique_id=2003937096]
+position = Vector2(42.160625, 75.362335)
+rotation = -0.0153354425
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("5_ao6dq")
+metadata/_edit_lock_ = true
 
-[node name="LeftBrow" type="Sprite2D" parent="." unique_id=1974990706]
-position = Vector2(280, 49)
-texture = ExtResource("12_keuk3")
+[node name="ShoeL" type="Sprite2D" parent="Sprites/LegL" unique_id=2095207613]
+z_index = -1
+position = Vector2(29, 90)
+texture = ExtResource("4_bj0dr")
+metadata/_edit_lock_ = true
+
+[node name="LegR" type="Sprite2D" parent="Sprites" unique_id=1641757782]
+position = Vector2(-39.891068, 72.62026)
+rotation = -0.0153354425
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("5_ao6dq")
 flip_h = true
+metadata/_edit_lock_ = true
+
+[node name="ShoeR" type="Sprite2D" parent="Sprites/LegR" unique_id=455446172]
+z_index = -1
+position = Vector2(-29, 89)
+texture = ExtResource("4_bj0dr")
+flip_h = true
+metadata/_edit_lock_ = true
+
+[node name="ArmL" type="Sprite2D" parent="Sprites" unique_id=647171048]
+z_index = -1
+position = Vector2(123.79437, -70.96336)
+rotation = 0.08799242
+texture = ExtResource("6_jkfj7")
+metadata/_edit_lock_ = true
+
+[node name="HandL" type="Sprite2D" parent="Sprites/ArmL" unique_id=663886908]
+z_index = -1
+position = Vector2(81.55625, 66.73513)
+texture = ExtResource("1_3frkd")
+metadata/_edit_lock_ = true
+
+[node name="ArmR" type="Sprite2D" parent="Sprites" unique_id=223483274]
+z_index = -1
+position = Vector2(-131.13684, -80.13284)
+rotation = 0.012508601
+texture = ExtResource("6_jkfj7")
+flip_h = true
+metadata/_edit_lock_ = true
+
+[node name="HandR" type="Sprite2D" parent="Sprites/ArmR" unique_id=211647257]
+z_index = -1
+position = Vector2(-67, 55)
+rotation = -1.9519665
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("1_3frkd")
+flip_h = true
+metadata/_edit_lock_ = true
+
+[node name="Shirt" type="Sprite2D" parent="Sprites" unique_id=1353165109]
+position = Vector2(-1.0000001, -63.000008)
+rotation = -0.0153354425
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("7_70fq8")
+metadata/_edit_lock_ = true
+
+[node name="Neck" type="Sprite2D" parent="Sprites/Shirt" unique_id=410946575]
+z_index = -1
+position = Vector2(0, -72)
+texture = ExtResource("2_x5x7k")
+metadata/_edit_lock_ = true
+
+[node name="Skeleton" type="Skeleton2D" parent="." unique_id=971880974]
+
+[node name="Hip" type="Bone2D" parent="Skeleton" unique_id=290964795]
+rotation = -0.0153354425
+scale = Vector2(0.99999994, 0.99999994)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+
+[node name="LegR" type="Bone2D" parent="Skeleton/Hip" unique_id=1872597654]
+position = Vector2(-41, 23)
+rest = Transform2D(1, 0, 0, 1, -41, 23)
+auto_calculate_length_and_angle = false
+length = 149.955
+bone_angle = 100.93499
+
+[node name="RemoteTransform" type="RemoteTransform2D" parent="Skeleton/Hip/LegR" unique_id=1127188028]
+position = Vector2(0, 49)
+remote_path = NodePath("../../../../Sprites/LegR")
+metadata/_edit_lock_ = true
+
+[node name="LegL" type="Bone2D" parent="Skeleton/Hip" unique_id=704892085]
+position = Vector2(42, 23)
+rest = Transform2D(1, 0, 0, 1, 42, 23)
+auto_calculate_length_and_angle = false
+length = 159.579
+bone_angle = 75.788994
+
+[node name="RemoteTransfor" type="RemoteTransform2D" parent="Skeleton/Hip/LegL" unique_id=729927467]
+position = Vector2(-1, 53)
+remote_path = NodePath("../../../../Sprites/LegL")
+metadata/_edit_lock_ = true
+
+[node name="Neck" type="Bone2D" parent="Skeleton/Hip" unique_id=1861512974]
+position = Vector2(2, -118)
+rotation = 0.023844285
+rest = Transform2D(1, 0, 0, 1, 0, -117)
+auto_calculate_length_and_angle = false
+length = 105.737
+bone_angle = -90.0
+
+[node name="ShoulderL" type="Bone2D" parent="Skeleton/Hip/Neck" unique_id=1651650776]
+position = Vector2(72, 0)
+rest = Transform2D(1, 0, 0, 1, 79, 9)
+auto_calculate_length_and_angle = false
+length = 195.579
+bone_angle = 37.894997
+
+[node name="RemoteTransfor" type="RemoteTransform2D" parent="Skeleton/Hip/Neck/ShoulderL" unique_id=613111102]
+position = Vector2(52, 46)
+rotation = 0.07948358
+remote_path = NodePath("../../../../../Sprites/ArmL")
+metadata/_edit_lock_ = true
+
+[node name="ShoulderR" type="Bone2D" parent="Skeleton/Hip/Neck" unique_id=526823811]
+position = Vector2(-67, 4)
+rest = Transform2D(1, 0, 0, 1, -76, 9)
+auto_calculate_length_and_angle = false
+length = 178.531
+bone_angle = 149.18799
+
+[node name="RemoteTransfor" type="RemoteTransform2D" parent="Skeleton/Hip/Neck/ShoulderR" unique_id=2141089405]
+position = Vector2(-64, 35)
+rotation = 0.003999758
+remote_path = NodePath("../../../../../Sprites/ArmR")
+metadata/_edit_lock_ = true
+
+[node name="Skull" type="Bone2D" parent="Skeleton/Hip/Neck" unique_id=208980965]
+position = Vector2(2, -24)
+rotation = 0.0032091883
+rest = Transform2D(1, 0, 0, 1, 0, -56)
+auto_calculate_length_and_angle = false
+length = 87.789
+bone_angle = -90.0
+
+[node name="Transform" type="RemoteTransform2D" parent="Skeleton/Hip/Neck/Skull" unique_id=1040914839]
+position = Vector2(-3, -69)
+remote_path = NodePath("../../../../../Sprites/Head")
+
+[node name="RemoteTransform" type="RemoteTransform2D" parent="Skeleton/Hip" unique_id=2101748339]
+position = Vector2(-0.03378743, -63.007935)
+remote_path = NodePath("../../../Sprites/Shirt")
+metadata/_edit_lock_ = true
