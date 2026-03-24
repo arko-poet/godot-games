@@ -32,7 +32,9 @@ func _ready() -> void:
 	for action in actions:
 		match action:
 			"attack":
-				description += ("Deals %s damage. " % int(actions[action]["value"]))
+				description += "Deals %s damage. " % int(actions[action]["value"])
+			"block":
+				description += "Adds %s block." % int(actions[action]["value"])
 			_:
 				push_error("unrecognised action name: %s" % action)
 	description_label.text = description

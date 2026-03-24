@@ -12,5 +12,7 @@ func get_card_copies() -> Array[Card]:
 	var cards: Array[Card] = []
 	for c in card_container.get_children():
 		if c is Card:
-			cards.append(c.duplicate())
+			var dup = c.duplicate()
+			dup.set_card_properties(c._properties)
+			cards.append(dup)
 	return cards

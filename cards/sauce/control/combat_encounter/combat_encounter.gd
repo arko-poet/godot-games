@@ -16,6 +16,10 @@ var monster_hp := 100:
 		monster_hp_label.text = "%s/%s" % [monster_hp, monster_max_hp]
 		if monster_hp == 0:
 			game_run.combat_finished()
+var block := 0:
+	set(value):
+		block = value
+		block_label.text = "BLOCK: %s" % value
 
 @onready var hand: Hand = $Hand
 @onready var mana_label: Label = $PlayerStatsBox/ManaLabel
@@ -23,6 +27,7 @@ var monster_hp := 100:
 @onready var discard_pile_label: Label = $PlayerStatsBox/DiscardPileLabel
 @onready var monster_hp_label: Label = $PlayerStatsBox/MonsterHPLabel
 @onready var end_turn_button: Button = $EndTurnButton
+@onready var block_label: Label = $PlayerStatsBox/BlockLabel
 
 
 func _ready() -> void:
@@ -66,6 +71,7 @@ func _shuffle_discard_pile() -> void:
 
 func _on_hand_card_played(card: Card) -> void:
 	assert(mana >= card.cost)
+	assert(card.actions != {})
 	mana -= card.cost
 	_execute_card_actions(card)
 	_discard_card(card)
@@ -78,10 +84,13 @@ func _discard_card(card: Card) -> void:
 
 func _execute_card_actions(card: Card) -> void:
 	var actions = card.actions
+	print(actions)
 	for action in actions:
 		match action:
 			"attack":
 				_attack(int(actions[action]["value"]))
+			"block":
+				block += int(actions[action]["value"])
 			_:
 				push_error("unknown action type: %s" % action)
 
@@ -111,8 +120,11 @@ func _on_end_turn_button_pressed() -> void:
 	for i in range(game_run.STARTING_HAND_SIZE):
 		draw_card()
 	mana = game_run.MAX_MANA
+	block = 0
 
 
 func _monster_turn() -> void:
-	var monster_damage = 10
-	game_run.hp -= monster_damage
+	var monster_damage = 10	
+	var damage_left = max(0, monster_damage - block)
+	block = max(0, block - monster_damage)
+	game_run.hp -= damage_left

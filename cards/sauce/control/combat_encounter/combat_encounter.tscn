@@ -56,6 +56,10 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "ABOBA"
 
+[node name="BlockLabel" type="Label" parent="PlayerStatsBox" unique_id=1003370089]
+layout_mode = 2
+text = "BLOCK"
+
 [node name="EndTurnButton" type="Button" parent="." unique_id=373659726]
 layout_mode = 1
 anchors_preset = 3
