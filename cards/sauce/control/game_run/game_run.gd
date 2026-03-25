@@ -13,7 +13,7 @@ const CARD_CHOICE_SIZE := 3
 var card_data: Dictionary
 var hp: int:
 	set(value):
-		hp = max(0, value)
+		hp = max(0, min(value, MAX_HP))
 		hp_label.text = "%s/%s" % [hp, MAX_HP]
 		if hp == 0:
 			player_died.emit()

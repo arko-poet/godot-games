@@ -84,7 +84,6 @@ func _discard_card(card: Card) -> void:
 
 func _execute_card_actions(card: Card) -> void:
 	var actions = card.actions
-	print(actions)
 	for action in actions:
 		match action:
 			"attack":
@@ -94,6 +93,8 @@ func _execute_card_actions(card: Card) -> void:
 			"draw":
 				for i in range(int(actions[action]["value"])):
 					draw_card()
+			"heal":
+				game_run.hp += int(actions[action]["value"])
 			_:
 				push_error("unknown action type: %s" % action)
 

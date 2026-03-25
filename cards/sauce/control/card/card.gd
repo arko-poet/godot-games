@@ -34,9 +34,11 @@ func _ready() -> void:
 			"attack":
 				description += "Deals %s damage. " % int(actions[action]["value"])
 			"block":
-				description += "Adds %s block." % int(actions[action]["value"])
+				description += "Adds %s block. " % int(actions[action]["value"])
 			"draw":
-				description += "Draw %s cards." % int(actions[action]["value"])
+				description += "Draw %s cards. " % int(actions[action]["value"])
+			"heal":
+				description += "Heals for %s. " % int(actions[action]["value"])
 			_:
 				push_error("unrecognised action name: %s" % action)
 	description_label.text = description
