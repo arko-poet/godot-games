@@ -60,6 +60,10 @@ text = "ABOBA"
 layout_mode = 2
 text = "BLOCK"
 
+[node name="StrengthLabel" type="Label" parent="PlayerStatsBox" unique_id=1631844962]
+layout_mode = 2
+text = "STRENGTH: XD"
+
 [node name="EndTurnButton" type="Button" parent="." unique_id=373659726]
 layout_mode = 1
 anchors_preset = 3

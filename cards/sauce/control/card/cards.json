@@ -38,8 +38,7 @@
   "Ramp Up": {
 	"name": "Ramp Up",
 	"actions": {
-	  "buff": {
-		"property": "strength",
+	  "strength": {
 		"value": 1
 	  }
 	},
@@ -76,8 +75,7 @@
   "Beef Up": {
 	"name": "Beef Up",
 	"actions": {
-	  "buff": {
-		"property": "max_hp",
+	  "max_hp": {
 		"value": 5
 	  }
 	},

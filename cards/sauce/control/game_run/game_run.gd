@@ -44,12 +44,12 @@ func combat_finished() -> void:
 func _starter_deck() -> void:
 	for i in range(6):
 		var card: Card = CardScene.instantiate()
-		card.set_card_properties(card_data["Bozo Attack"])
+		card.properties = card_data["Bozo Attack"]
 		_add_card(card)
 	
 	for i in range(6):
 		var card: Card = CardScene.instantiate()
-		card.set_card_properties(card_data["Bozo Block"])
+		card.properties = card_data["Bozo Block"]
 		_add_card(card)
 
 
@@ -72,7 +72,7 @@ func _choose_cards() -> void:
 	var cards: Array[Card] = []
 	for i in range(CARD_CHOICE_SIZE):
 		var card: Card = CardScene.instantiate()
-		card.set_card_properties(card_data[card_keys[i]])
+		card.properties = card_data[card_keys[i]]
 		cards.append(card)
 	card_choice.new_card_choice(cards)
 	card_choice.show()
@@ -83,10 +83,10 @@ func _add_card(card: Card) -> void:
 	deck.add_card(card)
 	_update_deck_label()
 
+
 func _update_deck_label() -> void:
 	deck_label.text = "DECK: %s" % deck.card_container.get_children().size()
 	
-
 
 func _on_deck_label_pressed() -> void:
 	if deck.visible:

@@ -6,7 +6,7 @@ signal card_exited(card: Card)
 
 const SHADOW_SIZE := 8
 
-var _properties: Dictionary
+var properties: Dictionary
 var cost: int:
 	set(value):
 		cost = value
@@ -23,29 +23,28 @@ var playable := false:
 
 
 func _ready() -> void:
-	if not _properties:
+	if not properties:
 		return
-	name_label.text = _properties["name"]
-	cost = int(_properties["cost"])
+	name_label.text = properties["name"]
+	cost = int(properties["cost"])
 	var description := ""
-	actions = _properties["actions"]
+	actions = properties["actions"]
 	for action in actions:
+		var val = int(actions[action]["value"])
 		match action:
 			"attack":
-				description += "Deals %s damage. " % int(actions[action]["value"])
+				description += "Deals %s damage. " % val
 			"block":
-				description += "Adds %s block. " % int(actions[action]["value"])
+				description += "Adds %s block. " % val
 			"draw":
-				description += "Draw %s cards. " % int(actions[action]["value"])
+				description += "Draw %s cards. " % val
 			"heal":
-				description += "Heals for %s. " % int(actions[action]["value"])
+				description += "Heals for %s. " % val
+			"strength":
+				description += "Increase strength by %s. " % val
 			_:
 				push_error("unrecognised action name: %s" % action)
 	description_label.text = description
-
-
-func set_card_properties(properties: Dictionary) -> void:
-	_properties = properties
 
 
 func _on_mouse_entered() -> void:

@@ -16,10 +16,14 @@ var monster_hp := 100:
 		monster_hp_label.text = "%s/%s" % [monster_hp, monster_max_hp]
 		if monster_hp == 0:
 			game_run.combat_finished()
-var block := 0:
+var block: int:
 	set(value):
 		block = value
 		block_label.text = "BLOCK: %s" % value
+var strength: int:
+	set(value):
+		strength = value
+		strength_label.text = "STRENGTH: %s" % value
 
 @onready var hand: Hand = $Hand
 @onready var mana_label: Label = $PlayerStatsBox/ManaLabel
@@ -28,17 +32,15 @@ var block := 0:
 @onready var monster_hp_label: Label = $PlayerStatsBox/MonsterHPLabel
 @onready var end_turn_button: Button = $EndTurnButton
 @onready var block_label: Label = $PlayerStatsBox/BlockLabel
-
-
-func _ready() -> void:
-	mana = game_run.MAX_MANA
+@onready var strength_label: Label = $PlayerStatsBox/StrengthLabel
 
 
 func new_encounter(hp: int) -> void:
 	monster_max_hp = hp
 	monster_hp = hp
-
 	mana = game_run.MAX_MANA
+	strength = 0
+	block = 0
 
 	hand.clear()
 	discard_pile.clear()
@@ -85,22 +87,26 @@ func _discard_card(card: Card) -> void:
 func _execute_card_actions(card: Card) -> void:
 	var actions = card.actions
 	for action in actions:
+		var val = int(actions[action]["value"])
 		match action:
 			"attack":
-				_attack(int(actions[action]["value"]))
+				_attack(val)
 			"block":
-				block += int(actions[action]["value"])
+				block += val
 			"draw":
-				for i in range(int(actions[action]["value"])):
+				for i in range(val):
 					draw_card()
 			"heal":
-				game_run.hp += int(actions[action]["value"])
+				game_run.hp += val
+			"strength":
+				strength += val
+				
 			_:
 				push_error("unknown action type: %s" % action)
 
 
 func _attack(damage: int):
-	monster_hp -= damage
+	monster_hp -= damage + strength
 
 
 func _on_hand_card_rejected(card: Card) -> void:
