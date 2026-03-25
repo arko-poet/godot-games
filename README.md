@@ -84,7 +84,7 @@ Dates: 2026-02-27 → 2026-03-12
 - baking navigation meshes
 ### New Godot Nodes learned
 PanelContainer, RichTextLabel, NavigationAgent2D, CPUParticles2D, GPUParticles2D, Polygon2D, CanvasLayer, NavigationRegion2D
-## 7. `cards` - based on Slay the Spire
+## 6. `cards` - based on Slay the Spire
 Dates: 2026-03-12 → WIP
 ![](screenshots/cards.png)
 ### What I learned
@@ -92,5 +92,7 @@ Dates: 2026-03-12 → WIP
 - running code in editor with @tool
 - msaa
 - turn based combat
+- 2D model rigging
+- 2D skeleton inverse kinematics
 ### New Godot Nodes learned
-Container,
+Container, Skeleton2D, Bone2D, ScrollContainer
