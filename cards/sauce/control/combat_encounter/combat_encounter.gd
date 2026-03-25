@@ -37,9 +37,9 @@ func _ready() -> void:
 func new_encounter(hp: int) -> void:
 	monster_max_hp = hp
 	monster_hp = hp
-	
+
 	mana = game_run.MAX_MANA
-	
+
 	hand.clear()
 	discard_pile.clear()
 	draw_pile = game_run.deck.get_card_copies()
@@ -57,7 +57,7 @@ func draw_card() -> void:
 		_shuffle_discard_pile()
 		if not draw_pile.is_empty():
 			draw_card()
-	
+
 	_update_pile_labels()
 
 
@@ -80,7 +80,7 @@ func _on_hand_card_played(card: Card) -> void:
 func _discard_card(card: Card) -> void:
 	discard_pile.append(card)
 	_update_pile_labels()
-	
+
 
 func _execute_card_actions(card: Card) -> void:
 	var actions = card.actions
@@ -91,6 +91,9 @@ func _execute_card_actions(card: Card) -> void:
 				_attack(int(actions[action]["value"]))
 			"block":
 				block += int(actions[action]["value"])
+			"draw":
+				for i in range(int(actions[action]["value"])):
+					draw_card()
 			_:
 				push_error("unknown action type: %s" % action)
 
@@ -124,7 +127,7 @@ func _on_end_turn_button_pressed() -> void:
 
 
 func _monster_turn() -> void:
-	var monster_damage = 10	
+	var monster_damage = 10
 	var damage_left = max(0, monster_damage - block)
 	block = max(0, block - monster_damage)
 	game_run.hp -= damage_left
