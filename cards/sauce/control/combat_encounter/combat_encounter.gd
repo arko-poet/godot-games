@@ -20,7 +20,7 @@ var block: int:
 	set(value):
 		block = value
 		block_label.text = "BLOCK: %s" % value
-var strength: int:
+var strength: int: # TODO update cards in hand to account for strength
 	set(value):
 		strength = value
 		strength_label.text = "STRENGTH: %s" % value
@@ -90,7 +90,11 @@ func _execute_card_actions(card: Card) -> void:
 		var val = int(actions[action]["value"])
 		match action:
 			"attack":
-				_attack(val)
+				var repeats = 0
+				if "repeats" in actions[action]:
+					repeats = int(actions[action]["repeats"])
+				for i in range(repeats):
+					_attack(val)
 			"block":
 				block += val
 			"draw":

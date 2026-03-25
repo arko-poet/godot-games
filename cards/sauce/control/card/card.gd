@@ -33,7 +33,11 @@ func _ready() -> void:
 		var val = int(actions[action]["value"])
 		match action:
 			"attack":
-				description += "Deals %s damage. " % val
+				if not "repeats" in actions[action]:
+					description += "Deals %s damage. " % val
+				else:
+					var repeats = int(actions[action]["repeats"])
+					description += "Deals %s damage %s times. " % [val, repeats]
 			"block":
 				description += "Adds %s block. " % val
 			"draw":
