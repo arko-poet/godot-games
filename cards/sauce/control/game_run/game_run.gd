@@ -5,16 +5,20 @@ signal player_died
 
 const CardScene := preload("res://sauce/control/card/card.tscn")
 
-const MAX_HP := 100
 const MAX_MANA := 3
 const STARTING_HAND_SIZE := 5
 const CARD_CHOICE_SIZE := 3
+const STARTING_MAX_HP := 100
 
+var max_hp: int:
+	set(value):
+		max_hp = value
+		_update_hp_label()
 var card_data: Dictionary
 var hp: int:
 	set(value):
-		hp = max(0, min(value, MAX_HP))
-		hp_label.text = "%s/%s" % [hp, MAX_HP]
+		hp = max(0, min(value, max_hp))
+		_update_hp_label()
 		if hp == 0:
 			player_died.emit()
 
@@ -28,7 +32,8 @@ var hp: int:
 
 
 func _ready() -> void:
-	hp = MAX_HP
+	max_hp = STARTING_MAX_HP
+	hp = max_hp
 	card_data = load("res://sauce/control/card/cards.json").get_data()
 	combat_encounter.game_run = self
 	_starter_deck()
@@ -93,3 +98,7 @@ func _on_deck_label_pressed() -> void:
 		deck.hide()
 	else:
 		deck.show()
+
+
+func _update_hp_label() -> void:
+	hp_label.text = "%s/%s" % [hp, max_hp]

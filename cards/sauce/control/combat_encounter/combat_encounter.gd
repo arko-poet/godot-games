@@ -104,7 +104,8 @@ func _execute_card_actions(card: Card) -> void:
 				game_run.hp += val
 			"strength":
 				strength += val
-				
+			"max_hp":
+				game_run.max_hp += val
 			_:
 				push_error("unknown action type: %s" % action)
 

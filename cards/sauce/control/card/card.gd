@@ -46,6 +46,8 @@ func _ready() -> void:
 				description += "Heals for %s. " % val
 			"strength":
 				description += "Increase strength by %s. " % val
+			"max_hp":
+				description += "Increase max hp by %s." % val
 			_:
 				push_error("unrecognised action name: %s" % action)
 	description_label.text = description
