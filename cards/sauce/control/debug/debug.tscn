@@ -32,7 +32,7 @@ text = "REMOVE MANA"
 
 [node name="DamageButton" type="Button" parent="." unique_id=1868077901]
 layout_mode = 2
-text = "10 DAMAGE"
+text = "100 DAMAGE"
 
 [connection signal="pressed" from="DrawCardButton" to="." method="_on_draw_card_button_pressed"]
 [connection signal="pressed" from="AddHPButton" to="." method="_on_add_hp_button_pressed"]

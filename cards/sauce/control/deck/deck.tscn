@@ -3,12 +3,21 @@
 [ext_resource type="Script" uid="uid://baytqiagysvqx" path="res://sauce/control/deck/deck.gd" id="1_2ew65"]
 
 [node name="Deck" type="ScrollContainer" unique_id=882760426]
-offset_right = 858.0
-offset_bottom = 900.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+draw_focus_border = true
 vertical_scroll_mode = 3
 script = ExtResource("1_2ew65")
 
-[node name="CardContainer" type="GridContainer" parent="." unique_id=786146267]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=353439914]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CardContainer" type="GridContainer" parent="CenterContainer" unique_id=786146267]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

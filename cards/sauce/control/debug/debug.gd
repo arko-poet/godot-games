@@ -24,4 +24,4 @@ func _on_draw_card_button_pressed() -> void:
 
 
 func _on_damage_button_pressed() -> void:
-	game_run.combat_encounter._attack(10)
+	game_run.combat_encounter._attack(100)

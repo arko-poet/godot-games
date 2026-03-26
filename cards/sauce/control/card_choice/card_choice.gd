@@ -3,7 +3,7 @@ extends Control
 
 signal card_chosen(card: Card)
 
-const CARD_HOVER_SCALE := Vector2(1.2, 1.2)
+const DEFAULT_CARD_SCALE := Vector2(0.8, 0.8)
 
 var selected_card: Card
 
@@ -11,21 +11,11 @@ var selected_card: Card
 @onready var skip_button: Button = $SkipButton
 
 
-#func _ready() -> void:
-	## TODO after implementing card choosing
-	#var card_scene: PackedScene = load("res://sauce/control/card/card.tscn")
-	#var cards: Array[Card] = []
-	#for i in range(3):
-		#var card: Card = card_scene.instantiate()
-		#cards.append(card)
-	#new_card_choice(cards)
-#
-
-
 func new_card_choice(cards: Array[Card]) -> void:
 	for card in cards:
 		card.card_entered.connect(_on_card_entered)
 		card.card_exited.connect(_on_card_exited)
+		
 		assert(card)
 		card_container.add_child(card)
 
@@ -36,12 +26,12 @@ func _on_skip_button_pressed() -> void:
 	
 	
 func _on_card_entered(card: Card) -> void:
-	card.scale = CARD_HOVER_SCALE
+	card.scale = Vector2.ONE
 	selected_card = card
 
 
 func _on_card_exited(card: Card) -> void:
-	card.scale = Vector2.ONE
+	card.scale = DEFAULT_CARD_SCALE
 	selected_card = null
 
 

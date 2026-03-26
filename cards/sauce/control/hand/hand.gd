@@ -5,7 +5,7 @@ extends Container
 signal card_played(card: Card)
 signal card_rejected(card: Card)
 
-const HOVER_SCALE := Vector2(1.2, 1.2)
+const HOVER_SCALE := Vector2(1.0, 1.0)
 const MAX_CARDS := 10
 
 @export var max_angle: float = 18.0 ## maximum card spread
@@ -56,9 +56,11 @@ func _arrange_cards() -> void:
 		var angle = deg_to_rad(lerp(-total_angle, total_angle, interpolation_weight))
 		var offset = Vector2(0.5 * (fan_radius - card_size.x), fan_radius)
 		
+		
 		fit_child_in_rect(card, Rect2(Vector2(sin(angle), -cos(angle)) * fan_radius + offset,  card_size))
 		card.rotation =  angle
 		card.z_index = 0 
+		card.scale = Vector2(0.8, 0.8)
 
 
 func add_card(card: Card) -> void:

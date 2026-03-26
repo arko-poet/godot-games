@@ -1,5 +1,5 @@
 class_name Card
-extends PanelContainer
+extends Control
 
 signal card_entered(card: Card)
 signal card_exited(card: Card)
@@ -27,9 +27,13 @@ func _ready() -> void:
 		return
 	name_label.text = properties["name"]
 	cost = int(properties["cost"])
+	_set_description()
+
+
+func _set_description() -> void:
 	var description := ""
 	actions = properties["actions"]
-	for action in actions:
+	for action in actions: ## TODO action order is not deterministic
 		var val = int(actions[action]["value"])
 		match action:
 			"attack":

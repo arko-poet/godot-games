@@ -90,7 +90,7 @@ func _execute_card_actions(card: Card) -> void:
 		var val = int(actions[action]["value"])
 		match action:
 			"attack":
-				var repeats = 0
+				var repeats = 1
 				if "repeats" in actions[action]:
 					repeats = int(actions[action]["repeats"])
 				for i in range(repeats):

@@ -1,7 +1,7 @@
 class_name Deck
 extends ScrollContainer
 
-@onready var card_container: GridContainer = $CardContainer
+@onready var card_container: GridContainer = $CenterContainer/CardContainer
 
 
 func add_card(card: Card) -> void:
