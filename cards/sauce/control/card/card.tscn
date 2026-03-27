@@ -40,7 +40,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ap2b3")
 script = ExtResource("1_ymebk")
 
 [node name="Border" type="Panel" parent="." unique_id=1883906765]
-clip_contents = true
 layout_mode = 0
 offset_left = 8.0
 offset_top = 40.0
@@ -49,22 +48,21 @@ offset_bottom = 176.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ymebk")
 
-[node name="Texture" type="TextureRect" parent="Border" unique_id=1843766925]
+[node name="Texture" type="TextureRect" parent="." unique_id=1843766925]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -88.0
-offset_top = -92.0
-offset_right = 88.0
-offset_bottom = 84.0
+offset_left = -84.0
+offset_top = -92.625
+offset_right = 84.0
+offset_bottom = 27.375
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_xtn7q")
-expand_mode = 5
-stretch_mode = 4
+expand_mode = 3
 
 [node name="CostLabel" type="Label" parent="." unique_id=168710372]
 layout_mode = 1
