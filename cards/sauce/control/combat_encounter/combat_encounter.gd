@@ -23,7 +23,6 @@ var monster: Monster
 @onready var mana_label: Label = $PlayerStatsBox/ManaLabel
 @onready var draw_pile_label: Label = $PlayerStatsBox/DrawPileLabel
 @onready var discard_pile_label: Label = $PlayerStatsBox/DiscardPileLabel
-@onready var monster_hp_label: Label = $PlayerStatsBox/MonsterHPLabel
 @onready var end_turn_button: Button = $EndTurnButton
 @onready var block_label: Label = $PlayerStatsBox/BlockLabel
 @onready var strength_label: Label = $PlayerStatsBox/StrengthLabel
@@ -123,7 +122,7 @@ func _mana_changed() -> void:
 
 
 func _on_end_turn_button_pressed() -> void:
-	_monster_turn()
+	monster.monster_turn()
 	for c in hand.clear():
 		discard_pile.append(c)
 	for i in range(game_run.STARTING_HAND_SIZE):
@@ -132,12 +131,12 @@ func _on_end_turn_button_pressed() -> void:
 	block = 0
 
 
-func _monster_turn() -> void:
-	var monster_damage = 10
-	var damage_left = max(0, monster_damage - block)
-	block = max(0, block - monster_damage)
-	game_run.hp -= damage_left
-
-
 func turn_dimmer(on: bool) -> void:
 	dimmer.visible = on
+
+
+func hit_player(damage: int) -> void:
+	print("hit")
+	var damage_left = max(0, damage - block)
+	block = max(0, block - damage)
+	game_run.hp -= damage_left

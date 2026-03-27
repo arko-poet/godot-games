@@ -11,6 +11,7 @@
 [node name="Turd" unique_id=422500346 instance=ExtResource("1_ey36a")]
 script = ExtResource("1_4lb6i")
 max_hp = 100
+damage = 10
 
 [node name="HPLabel" parent="." index="1" unique_id=528076717]
 offset_left = -35.0

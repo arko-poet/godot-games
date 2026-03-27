@@ -22,4 +22,5 @@ grow_vertical = 2
 layout_mode = 1
 
 [connection signal="enemies_defeated" from="World" to="." method="_on_world_enemies_defeated"]
+[connection signal="player_attacked" from="World" to="." method="_on_world_player_attacked"]
 [connection signal="rewards_claimed" from="UI/GameRun" to="." method="_on_game_run_rewards_claimed"]

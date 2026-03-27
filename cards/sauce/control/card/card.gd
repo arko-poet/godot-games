@@ -66,6 +66,6 @@ func _on_mouse_exited() -> void:
 
 
 func _switch_shadow(on: bool) -> void:
-	var sb : StyleBoxFlat = get_theme_stylebox("panel").duplicate()
+	var sb: StyleBoxFlat = get_theme_stylebox("panel").duplicate()
 	sb.shadow_size = SHADOW_SIZE if on else 0
 	add_theme_stylebox_override("panel", sb)

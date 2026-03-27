@@ -22,7 +22,7 @@ var hp: int:
 		_update_hp_label()
 		if hp == 0:
 			player_died.emit()
-var encounter_num := 1:
+var encounter_num := 0:
 	set(value):
 		encounter_num = value
 		encounter_label.text = "Encounter: %s" % encounter_num
