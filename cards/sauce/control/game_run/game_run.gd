@@ -67,6 +67,7 @@ func _on_card_choice_card_chosen(card: Card) -> void:
 		_add_card(card)
 		
 	card_choice.hide()
+	combat_encounter.turn_dimmer(false)
 	_next_encounter()
 
 
@@ -81,6 +82,7 @@ func _choose_cards() -> void:
 		cards.append(card)
 	card_choice.new_card_choice(cards)
 	card_choice.show()
+	combat_encounter.turn_dimmer(true)
 
 
 func _add_card(card: Card) -> void:
@@ -96,8 +98,10 @@ func _update_deck_label() -> void:
 func _on_deck_label_pressed() -> void:
 	if deck.visible:
 		deck.hide()
+		combat_encounter.turn_dimmer(false)
 	else:
 		deck.show()
+		combat_encounter.turn_dimmer(true)
 
 
 func _update_hp_label() -> void:

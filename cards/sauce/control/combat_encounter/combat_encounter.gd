@@ -33,6 +33,7 @@ var strength: int: # TODO update cards in hand to account for strength
 @onready var end_turn_button: Button = $EndTurnButton
 @onready var block_label: Label = $PlayerStatsBox/BlockLabel
 @onready var strength_label: Label = $PlayerStatsBox/StrengthLabel
+@onready var dimmer: ColorRect = $Dimmer
 
 
 func new_encounter(hp: int) -> void:
@@ -143,3 +144,7 @@ func _monster_turn() -> void:
 	var damage_left = max(0, monster_damage - block)
 	block = max(0, block - monster_damage)
 	game_run.hp -= damage_left
+
+
+func turn_dimmer(on: bool) -> void:
+	dimmer.visible = on
