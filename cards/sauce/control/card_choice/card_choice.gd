@@ -38,9 +38,10 @@ func _on_card_exited(card: Card) -> void:
 func _on_card_container_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and not event.pressed and selected_card:
 		var chosen_card = selected_card
+		selected_card.disconnect("card_entered", _on_card_entered)
+		selected_card.disconnect("card_exited", _on_card_exited)
 		card_container.remove_child(selected_card)
 		emit_signal("card_chosen", chosen_card)
-		assert(selected_card == null)
 		_clear()
 		
 

@@ -35,6 +35,7 @@ grow_vertical = 1
 [node name="Deck" parent="." unique_id=882760426 instance=ExtResource("5_n3l02")]
 visible = false
 layout_mode = 1
+offset_top = 40.0
 
 [node name="DeckLabel" type="Button" parent="." unique_id=2097977199]
 layout_mode = 1

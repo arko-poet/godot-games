@@ -4,7 +4,7 @@ extends Control
 signal card_entered(card: Card)
 signal card_exited(card: Card)
 
-const SHADOW_SIZE := 8
+const SHADOW_SIZE := 12
 
 var properties: Dictionary
 var cost: int:
@@ -67,5 +67,5 @@ func _on_mouse_exited() -> void:
 
 func _switch_shadow(on: bool) -> void:
 	var sb : StyleBoxFlat = get_theme_stylebox("panel").duplicate()
-	sb.shadow_size = 12 if on else 0
+	sb.shadow_size = SHADOW_SIZE if on else 0
 	add_theme_stylebox_override("panel", sb)
