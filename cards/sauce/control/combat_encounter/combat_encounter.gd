@@ -9,13 +9,6 @@ var mana: int:
 		_mana_changed()
 var draw_pile: Array[Card] = []
 var discard_pile: Array[Card] = []
-var monster_max_hp := 100
-var monster_hp := 100:
-	set(value):
-		monster_hp = max(value, 0)
-		monster_hp_label.text = "%s/%s" % [monster_hp, monster_max_hp]
-		if monster_hp == 0:
-			game_run.combat_finished()
 var block: int:
 	set(value):
 		block = value
@@ -24,6 +17,7 @@ var strength: int: # TODO update cards in hand to account for strength
 	set(value):
 		strength = value
 		strength_label.text = "STRENGTH: %s" % value
+var monster: Monster
 
 @onready var hand: Hand = $Hand
 @onready var mana_label: Label = $PlayerStatsBox/ManaLabel
@@ -36,9 +30,8 @@ var strength: int: # TODO update cards in hand to account for strength
 @onready var dimmer: ColorRect = $Dimmer
 
 
-func new_encounter(hp: int) -> void:
-	monster_max_hp = hp
-	monster_hp = hp
+func new_encounter(new_monster: Monster) -> void:
+	monster = new_monster
 	mana = game_run.MAX_MANA
 	strength = 0
 	block = 0
@@ -112,7 +105,7 @@ func _execute_card_actions(card: Card) -> void:
 
 
 func _attack(damage: int):
-	monster_hp -= damage + strength
+	monster.hp -= damage + strength
 
 
 func _on_hand_card_rejected(card: Card) -> void:

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dus0pdtsdlh2n"]
 
-[ext_resource type="PackedScene" uid="uid://bq03x1x31y0x" path="res://sauce/2d/monster/monster.tscn" id="1_a7ehd"]
+[ext_resource type="PackedScene" uid="uid://l4etchc72so5" path="res://sauce/2d/monster/turd.tscn" id="1_4nd25"]
+[ext_resource type="Script" uid="uid://b7xuxeml5u8q2" path="res://sauce/2d/world/world.gd" id="1_7v7j7"]
 [ext_resource type="PackedScene" uid="uid://sn7u6jx0iwkw" path="res://sauce/2d/player/player.tscn" id="2_4nd25"]
 
 [sub_resource type="Gradient" id="Gradient_21yxg"]
@@ -14,6 +15,9 @@ fill_to = Vector2(0.5, 1)
 metadata/_snap_enabled = true
 
 [node name="World" type="Node2D" unique_id=1249520300]
+script = ExtResource("1_7v7j7")
+metadata/_edit_horizontal_guides_ = [579.0]
+metadata/_edit_vertical_guides_ = [1280.0, 320.0]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2038444398]
 position = Vector2(0, 1.9073486e-06)
@@ -22,10 +26,12 @@ texture = SubResource("GradientTexture2D_a7ehd")
 centered = false
 region_rect = Rect2(0, 0, 1, 1)
 
-[node name="Monster" parent="." unique_id=422500346 instance=ExtResource("1_a7ehd")]
-position = Vector2(1088, 385)
+[node name="Turd" parent="." unique_id=1531761424 instance=ExtResource("1_4nd25")]
+position = Vector2(1280, 579)
 
 [node name="Character" parent="." unique_id=1947639501 instance=ExtResource("2_4nd25")]
 z_index = 2
-position = Vector2(296, 480)
+position = Vector2(319.99997, 485.99997)
 scale = Vector2(0.5, 0.5)
+
+[connection signal="monster_died" from="Turd" to="." method="_on_monster_died"]

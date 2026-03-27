@@ -21,8 +21,8 @@ joint_data/0/bone_index = 1
 joint_data/0/bone2d_node = NodePath("Hip/FemurR")
 joint_data/0/rotate_from_joint = false
 joint_data/0/enable_constraint = true
-joint_data/0/constraint_angle_min = -49.09099
-joint_data/0/constraint_angle_max = 98.18198
+joint_data/0/constraint_angle_min = -49.09098
+joint_data/0/constraint_angle_max = 98.18196
 joint_data/0/constraint_angle_invert = true
 joint_data/0/constraint_in_localspace = true
 joint_data/0/editor_draw_gizmo = false
@@ -32,8 +32,8 @@ bone_index = 2
 bone2d_node = NodePath("Hip/FemurR/FootR")
 target_nodepath = NodePath("../IKTargets/LegRTarget/FootRTarget")
 enable_constraint = true
-constraint_angle_min = 71.939995
-constraint_angle_max = -79.99999
+constraint_angle_min = 71.93998
+constraint_angle_max = -79.99998
 constraint_angle_invert = true
 constraint_in_localspace = true
 
@@ -45,8 +45,8 @@ joint_data/0/bone_index = 3
 joint_data/0/bone2d_node = NodePath("Hip/FemurL")
 joint_data/0/rotate_from_joint = false
 joint_data/0/enable_constraint = true
-joint_data/0/constraint_angle_min = 38.571995
-joint_data/0/constraint_angle_max = -137.14299
+joint_data/0/constraint_angle_min = 38.571987
+joint_data/0/constraint_angle_max = -137.14296
 joint_data/0/constraint_angle_invert = true
 joint_data/0/constraint_in_localspace = true
 joint_data/0/editor_draw_gizmo = true
@@ -56,7 +56,7 @@ bone_index = 4
 bone2d_node = NodePath("Hip/FemurL/FootL")
 target_nodepath = NodePath("../IKTargets/LegLTarget/FootLTarget")
 enable_constraint = true
-constraint_angle_min = -55.999996
+constraint_angle_min = -55.999992
 constraint_angle_max = 95.825
 constraint_angle_invert = true
 constraint_in_localspace = true
@@ -80,7 +80,7 @@ bone_index = 9
 bone2d_node = NodePath("Hip/Spine/ShoulderR/Wrist")
 target_nodepath = NodePath("../IKTargets/ArmRTarget/HandRTarget")
 enable_constraint = true
-constraint_angle_min = -55.999996
+constraint_angle_min = -55.999992
 constraint_angle_max = 59.86
 constraint_angle_invert = true
 constraint_in_localspace = true
@@ -94,7 +94,7 @@ joint_data/0/bone2d_node = NodePath("Hip/Spine/ShoulderL")
 joint_data/0/rotate_from_joint = false
 joint_data/0/enable_constraint = true
 joint_data/0/constraint_angle_min = 68.571
-joint_data/0/constraint_angle_max = -124.46098
+joint_data/0/constraint_angle_max = -124.46096
 joint_data/0/constraint_angle_invert = true
 joint_data/0/constraint_in_localspace = true
 joint_data/0/editor_draw_gizmo = true
@@ -160,14 +160,14 @@ _data = {
 }
 
 [node name="Player" type="Node2D" unique_id=1947639501]
+rotation = 0.0010745986
 
 [node name="Skeleton" type="Skeleton2D" parent="." unique_id=971880974]
 modification_stack = SubResource("SkeletonModificationStack2D_x5x7k")
-metadata/_edit_lock_ = true
 
 [node name="Hip" type="Bone2D" parent="Skeleton" unique_id=290964795]
-rotation = -0.015335445
-scale = Vector2(0.99999976, 0.99999976)
+rotation = -0.015335447
+scale = Vector2(0.99999964, 0.99999964)
 rest = Transform2D(0.99988234, -0.015334841, 0.015334841, 0.99988234, 0, 0)
 
 [node name="FemurR" type="Bone2D" parent="Skeleton/Hip" unique_id=1872597654]
@@ -188,8 +188,8 @@ flip_h = true
 
 [node name="FootR" type="Bone2D" parent="Skeleton/Hip/FemurR" unique_id=1001574901]
 position = Vector2(-0.58499146, 145.38043)
-rotation = 0.049217526
-scale = Vector2(0.99997497, 0.99997497)
+rotation = 0.049217522
+scale = Vector2(0.9999751, 0.9999751)
 rest = Transform2D(0.99876404, 0.049196426, -0.049196426, 0.99876404, -0.58499146, 145.38043)
 auto_calculate_length_and_angle = false
 length = 53.964
@@ -204,7 +204,9 @@ texture = ExtResource("4_bj0dr")
 flip_h = true
 
 [node name="FemurL" type="Bone2D" parent="Skeleton/Hip" unique_id=704892085]
-position = Vector2(42, 23)
+position = Vector2(42, 23.000002)
+rotation = 0.009893174
+scale = Vector2(1.2335451, 1.0112411)
 rest = Transform2D(1, 0, 0, 1, 42, 23)
 auto_calculate_length_and_angle = false
 length = 159.579
@@ -240,7 +242,6 @@ rest = Transform2D(0.99997616, 0.006893636, -0.006893636, 0.99997616, 2, -118)
 position = Vector2(-1.6546438, 55.00478)
 rotation = -0.006893692
 texture = ExtResource("7_70fq8")
-metadata/_edit_lock_ = true
 
 [node name="Neck" type="Sprite2D" parent="Skeleton/Hip/Spine/Shirt" unique_id=410946575]
 z_index = -1
@@ -253,7 +254,7 @@ position = Vector2(72, 0)
 rest = Transform2D(1, 0, 0, 1, 72, 0)
 auto_calculate_length_and_angle = false
 length = 195.579
-bone_angle = 37.89499
+bone_angle = 37.894985
 metadata/_local_pose_override_enabled_ = true
 
 [node name="ArmL" type="Sprite2D" parent="Skeleton/Hip/Spine/ShoulderL" unique_id=647171048]
@@ -261,16 +262,16 @@ z_index = -1
 position = Vector2(52, 46)
 rotation = 0.07948358
 texture = ExtResource("6_jkfj7")
-metadata/_edit_lock_ = true
 
 [node name="WristL" type="Bone2D" parent="Skeleton/Hip/Spine/ShoulderL" unique_id=1068289946]
 z_index = -2
 position = Vector2(117.975555, 99.62405)
-rotation = 0.98419803
+rotation = 1.250994
+scale = Vector2(0.9999994, 0.9999994)
 rest = Transform2D(0.55353117, 0.83282846, -0.83282846, 0.55353117, 117.975555, 99.62405)
 auto_calculate_length_and_angle = false
 length = 37.049
-bone_angle = -2.8689997
+bone_angle = -2.8689992
 metadata/_local_pose_override_enabled_ = true
 
 [node name="HandL" type="Sprite2D" parent="Skeleton/Hip/Spine/ShoulderL/WristL" unique_id=663886908]
@@ -281,11 +282,11 @@ texture = ExtResource("1_3frkd")
 [node name="ShoulderR" type="Bone2D" parent="Skeleton/Hip/Spine" unique_id=526823811]
 position = Vector2(-67, 4)
 rotation = -0.046374857
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.9999998, 0.9999998)
 rest = Transform2D(0.99892485, -0.046358235, 0.046358235, 0.99892485, -67, 4)
 auto_calculate_length_and_angle = false
 length = 178.531
-bone_angle = 149.18796
+bone_angle = 149.18793
 metadata/_local_pose_override_enabled_ = true
 
 [node name="ArmR" type="Sprite2D" parent="Skeleton/Hip/Spine/ShoulderR" unique_id=223483274]
@@ -295,12 +296,11 @@ rotation = 0.003999757
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_jkfj7")
 flip_h = true
-metadata/_edit_lock_ = true
 
 [node name="Wrist" type="Bone2D" parent="Skeleton/Hip/Spine/ShoulderR" unique_id=461847332]
 z_index = -2
 position = Vector2(-132.90085, 79.33228)
-rotation = 0.031057213
+rotation = 0.03116243
 scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.9995177, 0.031052217, -0.031052217, 0.9995177, -132.90085, 79.33228)
 auto_calculate_length_and_angle = false
@@ -326,43 +326,43 @@ bone_angle = -90.0
 [node name="Head" type="Sprite2D" parent="Skeleton/Hip/Spine/Skull" unique_id=770864577]
 position = Vector2(-3.0000005, -69.000015)
 texture = ExtResource("3_yi7tw")
-metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="EyeR" type="Sprite2D" parent="Skeleton/Hip/Spine/Skull/Head" unique_id=1628635989]
 position = Vector2(-24, -8)
 texture = ExtResource("11_p4o6a")
-metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="EyeL" type="Sprite2D" parent="Skeleton/Hip/Spine/Skull/Head" unique_id=140039816]
 position = Vector2(32, 3)
 texture = ExtResource("11_p4o6a")
-metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="BrowR" type="Sprite2D" parent="Skeleton/Hip/Spine/Skull/Head" unique_id=1848568379]
 position = Vector2(-32, -24)
 texture = ExtResource("12_keuk3")
-metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="BrowL" type="Sprite2D" parent="Skeleton/Hip/Spine/Skull/Head" unique_id=1974990706]
 position = Vector2(32, -15)
 texture = ExtResource("12_keuk3")
 flip_h = true
-metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Mouth" type="Sprite2D" parent="Skeleton/Hip/Spine/Skull/Head" unique_id=1573902444]
 position = Vector2(16, 48)
 texture = ExtResource("10_ochmo")
-metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Hair" type="Sprite2D" parent="Skeleton/Hip/Spine/Skull/Head" unique_id=1050846505]
 position = Vector2(0, -32)
 texture = ExtResource("8_7a41j")
-metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Nose" type="Sprite2D" parent="Skeleton/Hip/Spine/Skull/Head" unique_id=51672464]
 position = Vector2(0, 24)
 texture = ExtResource("9_gk1dx")
-metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="IKTargets" type="Node2D" parent="." unique_id=395038117]
 

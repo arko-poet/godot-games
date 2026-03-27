@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://d2fk7l66t14hv"]
 
 [ext_resource type="PackedScene" uid="uid://dus0pdtsdlh2n" path="res://sauce/2d/world/world.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://oe8sk17wijhj" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dftj8jcsyiyf" path="res://sauce/control/game_run/game_run.tscn" id="2_h2yge"]
 
 [node name="Main" type="Node" unique_id=1925447006]
+script = ExtResource("1_h2yge")
 
 [node name="World" parent="." unique_id=1249520300 instance=ExtResource("1_0xm2m")]
 
@@ -18,3 +20,6 @@ grow_vertical = 2
 
 [node name="GameRun" parent="UI" unique_id=647190758 instance=ExtResource("2_h2yge")]
 layout_mode = 1
+
+[connection signal="enemies_defeated" from="World" to="." method="_on_world_enemies_defeated"]
+[connection signal="rewards_claimed" from="UI/GameRun" to="." method="_on_game_run_rewards_claimed"]

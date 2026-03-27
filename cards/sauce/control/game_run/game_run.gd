@@ -2,6 +2,7 @@ class_name GameRun
 extends Control
 
 signal player_died
+signal rewards_claimed
 
 const CardScene := preload("res://sauce/control/card/card.tscn")
 
@@ -41,7 +42,6 @@ func _ready() -> void:
 	card_data = load("res://sauce/control/card/cards.json").get_data()
 	combat_encounter.game_run = self
 	_starter_deck()
-	_next_encounter()
 
 	debug.game_run = self
 
@@ -63,8 +63,8 @@ func _starter_deck() -> void:
 		_add_card(card)
 
 
-func _next_encounter() -> void:
-	combat_encounter.new_encounter(100)
+func next_encounter(monster: Monster) -> void:
+	combat_encounter.new_encounter(monster)
 	encounter_num += 1
 
 
@@ -74,7 +74,7 @@ func _on_card_choice_card_chosen(card: Card) -> void:
 		
 	card_choice.hide()
 	combat_encounter.turn_dimmer(false)
-	_next_encounter()
+	rewards_claimed.emit()
 
 
 func _choose_cards() -> void:

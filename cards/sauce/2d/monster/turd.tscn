@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://l4etchc72so5"]
+
+[ext_resource type="Script" uid="uid://bmhy8bhu4iahs" path="res://sauce/2d/monster/turd.gd" id="1_4lb6i"]
+[ext_resource type="PackedScene" uid="uid://bq03x1x31y0x" path="res://sauce/2d/monster/monster.tscn" id="1_ey36a"]
+[ext_resource type="Texture2D" uid="uid://bmew8456w3fgm" path="res://assets/kenney_monster-builder-pack/PNG/Default/body_darkD.png" id="2_k8bxt"]
+[ext_resource type="Texture2D" uid="uid://bh1538tp6xphw" path="res://assets/kenney_monster-builder-pack/PNG/Default/eye_yellow.png" id="3_ey36a"]
+[ext_resource type="Texture2D" uid="uid://c30u1ftxqptjq" path="res://assets/kenney_monster-builder-pack/PNG/Default/detail_white_horn_small.png" id="4_8cicv"]
+[ext_resource type="Texture2D" uid="uid://cx1d05705jm78" path="res://assets/kenney_monster-builder-pack/PNG/Double/mouth_closed_fangs.png" id="5_vwsoc"]
+[ext_resource type="Texture2D" uid="uid://ck3rq0uayoj07" path="res://assets/kenney_monster-builder-pack/PNG/Default/arm_darkE.png" id="6_j4y00"]
+
+[node name="Turd" unique_id=422500346 instance=ExtResource("1_ey36a")]
+script = ExtResource("1_4lb6i")
+max_hp = 100
+
+[node name="HPLabel" parent="." index="1" unique_id=528076717]
+offset_left = -35.0
+offset_right = 35.0
+
+[node name="Body" type="Sprite2D" parent="." index="2" unique_id=601502595]
+position = Vector2(3.5, -101)
+texture = ExtResource("2_k8bxt")
+metadata/_edit_group_ = true
+
+[node name="Eye" type="Sprite2D" parent="." index="3" unique_id=1720873863]
+position = Vector2(-8, -128)
+texture = ExtResource("3_ey36a")
+metadata/_edit_group_ = true
+
+[node name="LeftHorn" type="Sprite2D" parent="." index="4" unique_id=1402091575]
+position = Vector2(32, -168)
+texture = ExtResource("4_8cicv")
+metadata/_edit_group_ = true
+
+[node name="RightHorn" type="Sprite2D" parent="." index="5" unique_id=1727751737]
+position = Vector2(-36.5, -173)
+texture = ExtResource("4_8cicv")
+flip_h = true
+metadata/_edit_group_ = true
+
+[node name="Mouth" type="Sprite2D" parent="." index="6" unique_id=1146661774]
+position = Vector2(-8, -80)
+texture = ExtResource("5_vwsoc")
+metadata/_edit_group_ = true
+
+[node name="LeftArm" type="Sprite2D" parent="." index="7" unique_id=2006633591]
+position = Vector2(83.5, -77)
+texture = ExtResource("6_j4y00")
+metadata/_edit_group_ = true
+
+[node name="RightArm" type="Sprite2D" parent="." index="8" unique_id=614177231]
+position = Vector2(-76.5, -77)
+texture = ExtResource("6_j4y00")
+flip_h = true
+metadata/_edit_group_ = true
