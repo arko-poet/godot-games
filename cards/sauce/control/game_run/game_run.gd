@@ -21,14 +21,18 @@ var hp: int:
 		_update_hp_label()
 		if hp == 0:
 			player_died.emit()
+var encounter_num := 1:
+	set(value):
+		encounter_num = value
+		encounter_label.text = "Encounter: %s" % encounter_num
 
-
-@onready var hp_label: Label = $HPLabel
+@onready var hp_label: Label = $HBoxContainer/HPLabel
 @onready var debug: VBoxContainer = $Debug
 @onready var card_choice: CardChoice = $CardChoice
 @onready var combat_encounter: CombatEncounter = $CombatEncounter
 @onready var deck_label: Button = $DeckLabel
 @onready var deck: Deck = $Deck
+@onready var encounter_label: Label = $HBoxContainer/EncounterLabel
 
 
 func _ready() -> void:
@@ -40,6 +44,7 @@ func _ready() -> void:
 	_next_encounter()
 
 	debug.game_run = self
+
 
 func combat_finished() -> void:
 	# TODO hide/darken background
@@ -60,6 +65,7 @@ func _starter_deck() -> void:
 
 func _next_encounter() -> void:
 	combat_encounter.new_encounter(100)
+	encounter_num += 1
 
 
 func _on_card_choice_card_chosen(card: Card) -> void:
