@@ -22,7 +22,9 @@ func new_monster() -> Monster:
 
 func _on_monster_died() -> void:
 	enemies_defeated.emit()
-	monster.queue_free()
+	var t := create_tween()
+	t.tween_property(monster.model, "self_modulate:a", 0, 0.5)
+	t.finished.connect(monster.queue_free)
 
 
 func _on_player_attacked(damage: int) -> void:

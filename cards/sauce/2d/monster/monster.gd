@@ -11,13 +11,15 @@ var hp: int:
 	set(value):
 		hp = min(max(0, value), max_hp)
 		hp_bar.max_value = max_hp
-		hp_bar.value = hp
+		var t = create_tween()
+		t.tween_property(hp_bar, "value", value, 0.2)
 		hp_label.text = "%s / %s" % [hp, max_hp]
 		if hp == 0:
 			monster_died.emit()
 
 @onready var hp_bar: ProgressBar = $HPBar
 @onready var hp_label: Label = $HPLabel
+@onready var model: CanvasGroup = $Model
 
 
 func _ready() -> void:

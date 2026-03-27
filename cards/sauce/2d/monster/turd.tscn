@@ -17,38 +17,40 @@ damage = 10
 offset_left = -35.0
 offset_right = 35.0
 
-[node name="Body" type="Sprite2D" parent="." index="2" unique_id=601502595]
+[node name="Model" type="CanvasGroup" parent="." index="2" unique_id=481754170]
+
+[node name="Body" type="Sprite2D" parent="Model" index="0" unique_id=601502595]
 position = Vector2(3.5, -101)
 texture = ExtResource("2_k8bxt")
 metadata/_edit_group_ = true
 
-[node name="Eye" type="Sprite2D" parent="." index="3" unique_id=1720873863]
+[node name="Eye" type="Sprite2D" parent="Model" index="1" unique_id=1720873863]
 position = Vector2(-8, -128)
 texture = ExtResource("3_ey36a")
 metadata/_edit_group_ = true
 
-[node name="LeftHorn" type="Sprite2D" parent="." index="4" unique_id=1402091575]
+[node name="LeftHorn" type="Sprite2D" parent="Model" index="2" unique_id=1402091575]
 position = Vector2(32, -168)
 texture = ExtResource("4_8cicv")
 metadata/_edit_group_ = true
 
-[node name="RightHorn" type="Sprite2D" parent="." index="5" unique_id=1727751737]
+[node name="RightHorn" type="Sprite2D" parent="Model" index="3" unique_id=1727751737]
 position = Vector2(-36.5, -173)
 texture = ExtResource("4_8cicv")
 flip_h = true
 metadata/_edit_group_ = true
 
-[node name="Mouth" type="Sprite2D" parent="." index="6" unique_id=1146661774]
+[node name="Mouth" type="Sprite2D" parent="Model" index="4" unique_id=1146661774]
 position = Vector2(-8, -80)
 texture = ExtResource("5_vwsoc")
 metadata/_edit_group_ = true
 
-[node name="LeftArm" type="Sprite2D" parent="." index="7" unique_id=2006633591]
+[node name="LeftArm" type="Sprite2D" parent="Model" index="5" unique_id=2006633591]
 position = Vector2(83.5, -77)
 texture = ExtResource("6_j4y00")
 metadata/_edit_group_ = true
 
-[node name="RightArm" type="Sprite2D" parent="." index="8" unique_id=614177231]
+[node name="RightArm" type="Sprite2D" parent="Model" index="6" unique_id=614177231]
 position = Vector2(-76.5, -77)
 texture = ExtResource("6_j4y00")
 flip_h = true
