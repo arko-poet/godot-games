@@ -1,6 +1,8 @@
 class_name CombatEncounter
 extends Control
 
+signal monster_attacked(damage: int)
+
 var game_run: GameRun
 var mana: int:
 	set(value):
@@ -104,7 +106,7 @@ func _execute_card_actions(card: Card) -> void:
 
 
 func _attack(damage: int):
-	monster.hp -= damage + strength
+	emit_signal("monster_attacked", damage + strength)
 
 
 func _on_hand_card_rejected(card: Card) -> void:

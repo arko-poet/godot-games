@@ -35,3 +35,6 @@ color = Color(0.18431373, 0.16470589, 0.14901961, 1)
 [connection signal="enemies_defeated" from="World" to="." method="_on_world_enemies_defeated"]
 [connection signal="player_attacked" from="World" to="." method="_on_world_player_attacked"]
 [connection signal="encounter_finished" from="UI/GameRun" to="." method="_on_game_run_encounter_finished"]
+[connection signal="monster_attacked" from="UI/GameRun/CombatEncounter" to="." method="_on_combat_encounter_monster_attacked"]
+
+[editable path="UI/GameRun"]

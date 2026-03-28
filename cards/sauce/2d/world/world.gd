@@ -9,6 +9,7 @@ const TurdScene := preload("res://sauce/2d/monster/turd.tscn")
 const MONSTER_COORDIANTES := Vector2(1280, 580)
 
 @onready var monster: Monster = $Turd
+@onready var character: Node2D = $Character
 
 
 func new_monster() -> Monster:

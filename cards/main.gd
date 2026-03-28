@@ -33,3 +33,8 @@ func _on_game_run_encounter_finished() -> void:
 
 func _new_encounter() -> void:
 	game_run.next_encounter(world.new_monster())
+
+
+func _on_combat_encounter_monster_attacked(damage: int) -> void:
+	world.character.attack()
+	world.monster.hp -= damage
