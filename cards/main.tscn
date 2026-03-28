@@ -21,6 +21,17 @@ grow_vertical = 2
 [node name="GameRun" parent="UI" unique_id=647190758 instance=ExtResource("2_h2yge")]
 layout_mode = 1
 
+[node name="Curtain" type="ColorRect" parent="UI" unique_id=1737676904]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18431373, 0.16470589, 0.14901961, 1)
+
 [connection signal="enemies_defeated" from="World" to="." method="_on_world_enemies_defeated"]
 [connection signal="player_attacked" from="World" to="." method="_on_world_player_attacked"]
-[connection signal="rewards_claimed" from="UI/GameRun" to="." method="_on_game_run_rewards_claimed"]
+[connection signal="encounter_finished" from="UI/GameRun" to="." method="_on_game_run_encounter_finished"]

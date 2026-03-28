@@ -67,5 +67,21 @@ text = "ABOBA"
 layout_mode = 2
 text = "ENCOUTNER"
 
+[node name="NextButton" type="Button" parent="." unique_id=1284505562]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "NEXT ENCOUNTER"
+
 [connection signal="card_chosen" from="CardChoice" to="." method="_on_card_choice_card_chosen"]
 [connection signal="pressed" from="DeckLabel" to="." method="_on_deck_label_pressed"]
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]

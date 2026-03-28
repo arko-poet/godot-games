@@ -2,7 +2,7 @@ class_name GameRun
 extends Control
 
 signal player_died
-signal rewards_claimed
+signal encounter_finished
 
 const CardScene := preload("res://sauce/control/card/card.tscn")
 
@@ -34,6 +34,7 @@ var encounter_num := 0:
 @onready var deck_label: Button = $DeckLabel
 @onready var deck: Deck = $Deck
 @onready var encounter_label: Label = $HBoxContainer/EncounterLabel
+@onready var next_button: Button = $NextButton
 
 
 func _ready() -> void:
@@ -74,7 +75,7 @@ func _on_card_choice_card_chosen(card: Card) -> void:
 		
 	card_choice.hide()
 	combat_encounter.turn_dimmer(false)
-	rewards_claimed.emit()
+	next_button.show()
 
 
 func _choose_cards() -> void:
@@ -112,3 +113,8 @@ func _on_deck_label_pressed() -> void:
 
 func _update_hp_label() -> void:
 	hp_label.text = "%s/%s" % [hp, max_hp]
+
+
+func _on_next_button_pressed() -> void:
+	encounter_finished.emit()
+	next_button.hide()
