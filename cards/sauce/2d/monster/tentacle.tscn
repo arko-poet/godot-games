@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://dqg6jl0jxxhw4"]
+
+[ext_resource type="PackedScene" uid="uid://bq03x1x31y0x" path="res://sauce/2d/monster/monster.tscn" id="1_6rikr"]
+[ext_resource type="Script" uid="uid://ygcujjbhp2m6" path="res://sauce/2d/monster/tentacle.gd" id="2_oqw07"]
+[ext_resource type="Texture2D" uid="uid://br15l74npb2t1" path="res://assets/kenney_monster-builder-pack/PNG/Default/arm_greenA.png" id="3_vg0t3"]
+[ext_resource type="Texture2D" uid="uid://jmjn4cwxhmjs" path="res://assets/kenney_monster-builder-pack/PNG/Default/body_greenF.png" id="4_qtaqu"]
+
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_ti28l"]
+target_nodepath = NodePath("../../IKTarget")
+tip_nodepath = NodePath("RootBone/InnerBone/InnerBone2/InnerBone3/TipBone")
+ccdik_data_chain_length = 4
+joint_data/0/bone_index = 0
+joint_data/0/bone2d_node = NodePath("RootBone")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = true
+joint_data/0/constraint_angle_min = -30.0
+joint_data/0/constraint_angle_max = 30.0
+joint_data/0/constraint_angle_invert = true
+joint_data/0/constraint_in_localspace = true
+joint_data/0/editor_draw_gizmo = true
+joint_data/1/bone_index = 1
+joint_data/1/bone2d_node = NodePath("RootBone/InnerBone")
+joint_data/1/rotate_from_joint = false
+joint_data/1/enable_constraint = true
+joint_data/1/constraint_angle_min = -30.0
+joint_data/1/constraint_angle_max = 30.0
+joint_data/1/constraint_angle_invert = true
+joint_data/1/constraint_in_localspace = true
+joint_data/1/editor_draw_gizmo = true
+joint_data/2/bone_index = 2
+joint_data/2/bone2d_node = NodePath("RootBone/InnerBone/InnerBone2")
+joint_data/2/rotate_from_joint = false
+joint_data/2/enable_constraint = true
+joint_data/2/constraint_angle_min = -30.0
+joint_data/2/constraint_angle_max = 30.0
+joint_data/2/constraint_angle_invert = true
+joint_data/2/constraint_in_localspace = true
+joint_data/2/editor_draw_gizmo = true
+joint_data/3/bone_index = 3
+joint_data/3/bone2d_node = NodePath("RootBone/InnerBone/InnerBone2/InnerBone3")
+joint_data/3/rotate_from_joint = false
+joint_data/3/enable_constraint = true
+joint_data/3/constraint_angle_min = -30.0
+joint_data/3/constraint_angle_max = 30.0
+joint_data/3/constraint_angle_invert = true
+joint_data/3/constraint_in_localspace = true
+joint_data/3/editor_draw_gizmo = true
+
+[sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_wyj16"]
+bone_index = 4
+bone2d_node = NodePath("RootBone/InnerBone/InnerBone2/InnerBone3/TipBone")
+target_nodepath = NodePath("../../IKTarget/TipTarget")
+enable_constraint = true
+constraint_angle_min = -102.856995
+constraint_angle_max = 102.81199
+constraint_angle_invert = true
+constraint_in_localspace = true
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_3d6el"]
+modification_count = 3
+modifications/0 = SubResource("SkeletonModification2DCCDIK_ti28l")
+modifications/1 = SubResource("SkeletonModification2DLookAt_wyj16")
+
+[node name="Tentacle" unique_id=422500346 instance=ExtResource("1_6rikr")]
+script = ExtResource("2_oqw07")
+
+[node name="Model" type="CanvasGroup" parent="." index="2" unique_id=1439519802]
+
+[node name="Skeleton" type="Skeleton2D" parent="Model" index="0" unique_id=455601432]
+modification_stack = SubResource("SkeletonModificationStack2D_3d6el")
+
+[node name="RootBone" type="Bone2D" parent="Model/Skeleton" index="0" unique_id=727477689]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+
+[node name="InnerBone" type="Bone2D" parent="Model/Skeleton/RootBone" index="0" unique_id=1960930053]
+position = Vector2(1, -79)
+rest = Transform2D(1, 0, 0, 1, 1, -79)
+
+[node name="InnerBone2" type="Bone2D" parent="Model/Skeleton/RootBone/InnerBone" index="0" unique_id=1514815564]
+position = Vector2(0, -78)
+rest = Transform2D(1, 0, 0, 1, 0, -78)
+
+[node name="InnerBone3" type="Bone2D" parent="Model/Skeleton/RootBone/InnerBone/InnerBone2" index="0" unique_id=1167915746]
+position = Vector2(0, -77)
+rest = Transform2D(1, 0, 0, 1, 0, -77)
+
+[node name="TipBone" type="Bone2D" parent="Model/Skeleton/RootBone/InnerBone/InnerBone2/InnerBone3" index="0" unique_id=2069292292]
+position = Vector2(-37, -82)
+rest = Transform2D(1, 0, 0, 1, -37, -82)
+auto_calculate_length_and_angle = false
+length = 79.541
+bone_angle = 180.0
+
+[node name="Claw" type="Polygon2D" parent="Model/Skeleton/RootBone/InnerBone/InnerBone2/InnerBone3/TipBone" index="0" unique_id=2084081507]
+position = Vector2(-40.574997, -3.5433655)
+rotation = -0.94540805
+scale = Vector2(1, -1)
+offset = Vector2(-49.24237, -136.74303)
+texture = ExtResource("3_vg0t3")
+polygon = PackedVector2Array(69.11039, 102.54169, 58.624626, 99.771866, 42.401367, 103.72876, 28.552238, 112.829605, 26.178104, 118.17142, 16.088028, 125.689514, 8.17337, 141.12193, 9.558281, 154.37657, 15.889313, 159.3227, 27.957832, 154.57442, 21.626808, 163.87311, 22.815582, 172.57701, 35.675484, 177.91882, 52.88797, 175.34683, 67.13279, 163.67401, 78.02253, 144.0752, 82.979385, 126.06857, 82.18801, 115.58281, 78.23112, 106.6798)
+uv = PackedVector2Array(69.11039, 102.54169, 58.624626, 99.771866, 42.401367, 103.72876, 28.552238, 112.829605, 26.178104, 118.17142, 16.088028, 125.689514, 8.17337, 141.12193, 9.558281, 154.37657, 15.889313, 159.3227, 27.957832, 154.57442, 21.626808, 163.87311, 22.815582, 172.57701, 35.675484, 177.91882, 52.88797, 175.34683, 67.13279, 163.67401, 78.02253, 144.0752, 82.979385, 126.06857, 82.18801, 115.58281, 78.23112, 106.6798)
+
+[node name="ClawArm" type="Polygon2D" parent="Model/Skeleton/RootBone/InnerBone/InnerBone2/InnerBone3" index="1" unique_id=864796380]
+position = Vector2(8.424988, 30.45665)
+rotation = -0.996765
+scale = Vector2(1, -1)
+texture = ExtResource("3_vg0t3")
+polygon = PackedVector2Array(58.67955, 98.43747, 64.2199, 99.24825, 73.408775, 103.30217, 78.00321, 107.89661, 79.89504, 98.03208, 79.88773, 83.838745, 78.53643, 77.08222, 75.56356, 65.59612, 66.65243, 49.107, 51.793343, 30.72491, 49.63125, 29.373608, 50.036644, 18.833426, 47.069126, 10.459692, 41.799034, 4.1085577, 35.177635, -0.75614154, 28.01572, -1.7020552, 17.475536, -0.621011, 9.773098, 1.2708163, 3.2868328, 7.2165594, -1.8481274, 17.216219, -1.0325127, 31.136639, 3.9647064, 42.758335, 13.558973, 49.2446, 29.098986, 51.406685, 38.0176, 47.4879, 55.180153, 72.62195)
+uv = PackedVector2Array(58.67955, 98.43747, 64.2199, 99.24825, 73.408775, 103.30217, 78.00321, 107.89661, 79.89504, 98.03208, 79.88773, 83.838745, 78.53643, 77.08222, 75.56356, 65.59612, 66.65243, 49.107, 51.793343, 30.72491, 49.63125, 29.373608, 50.036644, 18.833426, 47.069126, 10.459692, 41.799034, 4.1085577, 35.177635, -0.75614154, 28.01572, -1.7020552, 17.475536, -0.621011, 9.773098, 1.2708163, 3.2868328, 7.2165594, -1.8481274, 17.216219, -1.0325127, 31.136639, 3.9647064, 42.758335, 13.558973, 49.2446, 29.098986, 51.406685, 38.0176, 47.4879, 55.180153, 72.62195)
+
+[node name="Body3" type="Sprite2D" parent="Model/Skeleton/RootBone/InnerBone/InnerBone2" index="1" unique_id=686088806]
+position = Vector2(0, -41)
+rotation = -3.1415925
+scale = Vector2(0.19120604, -0.35187867)
+texture = ExtResource("4_qtaqu")
+
+[node name="Body2" type="Sprite2D" parent="Model/Skeleton/RootBone/InnerBone" index="1" unique_id=1301539854]
+position = Vector2(-1, -41)
+rotation = -3.1415925
+scale = Vector2(0.19120604, -0.35187867)
+texture = ExtResource("4_qtaqu")
+
+[node name="Body" type="Sprite2D" parent="Model/Skeleton/RootBone" index="1" unique_id=1832023924]
+position = Vector2(0, -42)
+rotation = -3.1415925
+scale = Vector2(0.19120604, -0.35187867)
+texture = ExtResource("4_qtaqu")
+
+[node name="IKTarget" type="Node2D" parent="." index="3" unique_id=1742426421]
+position = Vector2(-36, -316)
+
+[node name="TipTarget" type="Node2D" parent="IKTarget" index="0" unique_id=1587471301]
+position = Vector2(-83, 0)
