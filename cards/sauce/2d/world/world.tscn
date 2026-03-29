@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dus0pdtsdlh2n"]
 
-[ext_resource type="PackedScene" uid="uid://l4etchc72so5" path="res://sauce/2d/monster/turd.tscn" id="1_4nd25"]
 [ext_resource type="Script" uid="uid://b7xuxeml5u8q2" path="res://sauce/2d/world/world.gd" id="1_7v7j7"]
 [ext_resource type="PackedScene" uid="uid://sn7u6jx0iwkw" path="res://sauce/2d/player/player.tscn" id="2_4nd25"]
+[ext_resource type="PackedScene" uid="uid://dqg6jl0jxxhw4" path="res://sauce/2d/monster/tentacle.tscn" id="2_7v7j7"]
 
 [sub_resource type="Gradient" id="Gradient_21yxg"]
 offsets = PackedFloat32Array(0, 0.9819277)
@@ -26,7 +26,7 @@ texture = SubResource("GradientTexture2D_a7ehd")
 centered = false
 region_rect = Rect2(0, 0, 1, 1)
 
-[node name="Turd" parent="." unique_id=1531761424 instance=ExtResource("1_4nd25")]
+[node name="Tentacle" parent="." unique_id=422500346 instance=ExtResource("2_7v7j7")]
 position = Vector2(1280, 579)
 
 [node name="Character" parent="." unique_id=1947639501 instance=ExtResource("2_4nd25")]
@@ -34,5 +34,5 @@ z_index = 2
 position = Vector2(319.99997, 485.99997)
 scale = Vector2(0.5, 0.5)
 
-[connection signal="monster_died" from="Turd" to="." method="_on_monster_died"]
-[connection signal="player_attacked" from="Turd" to="." method="_on_player_attacked"]
+[connection signal="monster_died" from="Tentacle" to="." method="_on_monster_died"]
+[connection signal="player_attacked" from="Tentacle" to="." method="_on_player_attacked"]

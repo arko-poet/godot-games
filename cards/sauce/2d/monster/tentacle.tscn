@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dqg6jl0jxxhw4"]
 
 [ext_resource type="PackedScene" uid="uid://bq03x1x31y0x" path="res://sauce/2d/monster/monster.tscn" id="1_6rikr"]
-[ext_resource type="Script" uid="uid://ygcujjbhp2m6" path="res://sauce/2d/monster/tentacle.gd" id="2_oqw07"]
 [ext_resource type="Texture2D" uid="uid://br15l74npb2t1" path="res://assets/kenney_monster-builder-pack/PNG/Default/arm_greenA.png" id="3_vg0t3"]
 [ext_resource type="Texture2D" uid="uid://jmjn4cwxhmjs" path="res://assets/kenney_monster-builder-pack/PNG/Default/body_greenF.png" id="4_qtaqu"]
 
@@ -51,18 +50,79 @@ bone_index = 4
 bone2d_node = NodePath("RootBone/InnerBone/InnerBone2/InnerBone3/TipBone")
 target_nodepath = NodePath("../../IKTarget/TipTarget")
 enable_constraint = true
-constraint_angle_min = -102.856995
-constraint_angle_max = 102.81199
+constraint_angle_min = -102.85699
+constraint_angle_max = 102.81198
 constraint_angle_invert = true
 constraint_in_localspace = true
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_3d6el"]
+enabled = true
 modification_count = 3
 modifications/0 = SubResource("SkeletonModification2DCCDIK_ti28l")
 modifications/1 = SubResource("SkeletonModification2DLookAt_wyj16")
 
-[node name="Tentacle" unique_id=422500346 instance=ExtResource("1_6rikr")]
-script = ExtResource("2_oqw07")
+[sub_resource type="Animation" id="Animation_hs1bc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-36, -316)]
+}
+
+[sub_resource type="Animation" id="Animation_oqw07"]
+resource_name = "attack"
+length = 3.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96, 1.4333333, 3.0333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-36.000004, -316), Vector2(197, -158), Vector2(-343, -129), Vector2(-36, -316)]
+}
+
+[sub_resource type="Animation" id="Animation_6rikr"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTarget:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.98, 2.03, 3.0333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 2,
+"values": [Vector2(-36, -316), Vector2(-48, -283), Vector2(44.999996, -287), Vector2(-36, -316)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oqw07"]
+_data = {
+&"RESET": SubResource("Animation_hs1bc"),
+&"attack": SubResource("Animation_oqw07"),
+&"idle": SubResource("Animation_6rikr")
+}
+
+[node name="Tentacle" unique_id=422500346 node_paths=PackedStringArray("animations") instance=ExtResource("1_6rikr")]
+max_hp = 100
+damage = 10
+animations = NodePath("Animations")
+metadata/_edit_horizontal_guides_ = [-316.0]
+metadata/_edit_vertical_guides_ = [-36.0]
 
 [node name="Model" type="CanvasGroup" parent="." index="2" unique_id=1439519802]
 
@@ -71,18 +131,22 @@ modification_stack = SubResource("SkeletonModificationStack2D_3d6el")
 
 [node name="RootBone" type="Bone2D" parent="Model/Skeleton" index="0" unique_id=727477689]
 rest = Transform2D(1, 0, 0, 1, 0, 0)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="InnerBone" type="Bone2D" parent="Model/Skeleton/RootBone" index="0" unique_id=1960930053]
 position = Vector2(1, -79)
 rest = Transform2D(1, 0, 0, 1, 1, -79)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="InnerBone2" type="Bone2D" parent="Model/Skeleton/RootBone/InnerBone" index="0" unique_id=1514815564]
 position = Vector2(0, -78)
 rest = Transform2D(1, 0, 0, 1, 0, -78)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="InnerBone3" type="Bone2D" parent="Model/Skeleton/RootBone/InnerBone/InnerBone2" index="0" unique_id=1167915746]
 position = Vector2(0, -77)
 rest = Transform2D(1, 0, 0, 1, 0, -77)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="TipBone" type="Bone2D" parent="Model/Skeleton/RootBone/InnerBone/InnerBone2/InnerBone3" index="0" unique_id=2069292292]
 position = Vector2(-37, -82)
@@ -90,6 +154,7 @@ rest = Transform2D(1, 0, 0, 1, -37, -82)
 auto_calculate_length_and_angle = false
 length = 79.541
 bone_angle = 180.0
+metadata/_local_pose_override_enabled_ = true
 
 [node name="Claw" type="Polygon2D" parent="Model/Skeleton/RootBone/InnerBone/InnerBone2/InnerBone3/TipBone" index="0" unique_id=2084081507]
 position = Vector2(-40.574997, -3.5433655)
@@ -131,3 +196,7 @@ position = Vector2(-36, -316)
 
 [node name="TipTarget" type="Node2D" parent="IKTarget" index="0" unique_id=1587471301]
 position = Vector2(-83, 0)
+
+[node name="Animations" type="AnimationPlayer" parent="." index="4" unique_id=1337107203]
+libraries/ = SubResource("AnimationLibrary_oqw07")
+autoplay = &"idle"

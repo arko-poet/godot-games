@@ -48,7 +48,6 @@ func _ready() -> void:
 
 
 func combat_finished() -> void:
-	# TODO hide/darken background
 	_choose_cards()
 
 

@@ -4,6 +4,8 @@
 
 [node name="Monster" type="Node2D" unique_id=422500346]
 script = ExtResource("1_f16vp")
+max_hp = 1
+damage = 1
 metadata/_edit_group_ = true
 
 [node name="HPBar" type="ProgressBar" parent="." unique_id=911383205]
