@@ -43,6 +43,8 @@ func new_encounter(new_monster: Monster) -> void:
 	draw_pile.shuffle()
 	for i in range(game_run.STARTING_HAND_SIZE):
 		draw_card()
+	
+	show()
 
 
 func draw_card() -> void:

@@ -48,6 +48,7 @@ func _ready() -> void:
 
 
 func combat_finished() -> void:
+	combat_encounter.hide()
 	_choose_cards()
 
 
