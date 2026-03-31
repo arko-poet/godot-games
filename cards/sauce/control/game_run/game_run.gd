@@ -35,6 +35,7 @@ var encounter_num := 0:
 @onready var deck: Deck = $Deck
 @onready var encounter_label: Label = $HBoxContainer/EncounterLabel
 @onready var next_button: Button = $NextButton
+@onready var relic_manager: RelicManager = $RelicManager
 
 
 func _ready() -> void:

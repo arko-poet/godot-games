@@ -1,6 +1,6 @@
 {
   "Bozo Attack": {
-	"name": "Bozo Attack",
+	"name": "Attack",
 	"actions": [
 	  {
 		"type": "attack",
@@ -10,7 +10,7 @@
 	"cost": 1
   },
   "Bozo Block": {
-	"name": "Bozo Block",
+	"name": "Block",
 	"actions": [
 	  {
 		"type": "block",

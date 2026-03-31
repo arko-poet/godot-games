@@ -72,7 +72,7 @@ func _on_hand_card_played(card: Card) -> void:
 	assert(mana >= card.cost)
 	assert(card.actions != [])
 	mana -= card.cost
-	_execute_card_actions(card)
+	_execute_card_actions(game_run.relic_manager.process_actions(card.actions))
 	_discard_card(card)
 
 
@@ -81,8 +81,7 @@ func _discard_card(card: Card) -> void:
 	_update_pile_labels()
 
 
-func _execute_card_actions(card: Card) -> void:
-	var actions := card.actions
+func _execute_card_actions(actions: Array[Action]) -> void:
 	for action in actions:
 		var val = action.value
 		match action.type:

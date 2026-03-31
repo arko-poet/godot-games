@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://blqln82cjsfq2" path="res://sauce/control/card_choice/card_choice.tscn" id="4_1qspq"]
 [ext_resource type="PackedScene" uid="uid://0aas2n2fuqs2" path="res://sauce/control/combat_encounter/combat_encounter.tscn" id="4_t4wxh"]
 [ext_resource type="PackedScene" uid="uid://bxcsjvs0mwci1" path="res://sauce/control/deck/deck.tscn" id="5_n3l02"]
-[ext_resource type="PackedScene" uid="uid://ckmt2n5pxela2" path="res://sauce/control/relics/RelicManager.tscn" id="6_b1sxn"]
+[ext_resource type="PackedScene" uid="uid://ckmt2n5pxela2" path="res://sauce/control/relic_manager/relic_manager.tscn" id="6_b1sxn"]
 
 [node name="GameRun" type="Control" unique_id=647190758]
 layout_mode = 3
@@ -89,7 +89,7 @@ text = "NEXT ENCOUNTER"
 [node name="RelicManager" parent="." unique_id=923894477 instance=ExtResource("6_b1sxn")]
 layout_mode = 1
 offset_top = 32.0
-offset_bottom = 32.0
+offset_bottom = -804.0
 
 [node name="RelicLabel" type="Label" parent="." unique_id=1464590331]
 layout_mode = 1

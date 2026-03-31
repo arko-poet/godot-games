@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://ct5b4arwvw03c"]
 
-[ext_resource type="PackedScene" uid="uid://c38a8wa3yrmv8" path="res://sauce/control/relics/Relic.tscn" id="1_nissa"]
+[ext_resource type="PackedScene" uid="uid://c38a8wa3yrmv8" path="res://sauce/control/relics/relic.tscn" id="1_nissa"]
+[ext_resource type="Script" uid="uid://dqbnwyfwbe1gm" path="res://sauce/control/relics/whetstone/whetstone.gd" id="2_0pgue"]
 
 [node name="Whetstone" unique_id=560864765 instance=ExtResource("1_nissa")]
+script = ExtResource("2_0pgue")
+damage = 2
 
 [node name="Icon" parent="." index="0" unique_id=304410559]
 tooltip_text = "Whetstone: deal +2 damage with attacks"

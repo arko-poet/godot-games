@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ckmt2n5pxela2"]
 
-[ext_resource type="Script" uid="uid://b28nsvtl0t83m" path="res://sauce/control/relics/relic_manager.gd" id="1_h81ut"]
+[ext_resource type="Script" uid="uid://b28nsvtl0t83m" path="res://sauce/control/relic_manager/relic_manager.gd" id="1_h81ut"]
 [ext_resource type="PackedScene" uid="uid://ct5b4arwvw03c" path="res://sauce/control/relics/whetstone/whetstone.tscn" id="2_x4oa6"]
 
 [node name="RelicManager" type="Control" unique_id=923894477]
@@ -19,7 +19,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -800.0
 offset_right = 800.0
-offset_bottom = 32.0
+offset_bottom = 64.0
 grow_horizontal = 2
 columns = 5
 
