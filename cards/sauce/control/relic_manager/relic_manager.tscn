@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b28nsvtl0t83m" path="res://sauce/control/relic_manager/relic_manager.gd" id="1_h81ut"]
 [ext_resource type="PackedScene" uid="uid://ct5b4arwvw03c" path="res://sauce/control/relics/whetstone/whetstone.tscn" id="2_x4oa6"]
+[ext_resource type="PackedScene" uid="uid://bwfpehgmnvhkl" path="res://sauce/control/relics/nunchaku/nunchaku.tscn" id="3_pyn04"]
 
 [node name="RelicManager" type="Control" unique_id=923894477]
 layout_mode = 3
@@ -24,4 +25,7 @@ grow_horizontal = 2
 columns = 5
 
 [node name="Whetstone" parent="RelicGrid" unique_id=560864765 instance=ExtResource("2_x4oa6")]
+layout_mode = 2
+
+[node name="Nunchaku" parent="RelicGrid" unique_id=1226305185 instance=ExtResource("3_pyn04")]
 layout_mode = 2

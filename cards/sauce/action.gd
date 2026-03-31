@@ -14,10 +14,11 @@ const STRING_TO_ACTION := {
 
 var type: ActionType
 var value: int
-var repeats: int
+var repeats: int = 1
 
 
-func _init(action: Dictionary) -> void:
-	type = STRING_TO_ACTION.get(action["type"], ActionType.ATTACK)
-	value = action.get("value", 0)
-	repeats = action.get("repeats", 1)
+func _init(action: Dictionary = {}) -> void:
+	if action != {}:
+		type = STRING_TO_ACTION.get(action["type"])
+		value = action.get("value")
+		repeats = action.get("repeats", 1)

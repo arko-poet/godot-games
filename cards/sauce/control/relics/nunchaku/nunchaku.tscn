@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bwfpehgmnvhkl"]
+
+[ext_resource type="PackedScene" uid="uid://c38a8wa3yrmv8" path="res://sauce/control/relics/relic.tscn" id="1_1omhf"]
+[ext_resource type="Script" uid="uid://bjjyllwtomnlj" path="res://sauce/control/relics/nunchaku/nunchaku.gd" id="2_dm3o2"]
+
+[node name="Nunchaku" unique_id=1226305185 instance=ExtResource("1_1omhf")]
+script = ExtResource("2_dm3o2")
+block = 2

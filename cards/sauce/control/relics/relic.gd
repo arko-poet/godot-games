@@ -12,5 +12,5 @@ func _set_tooltip():
 	push_error("Base class Relic function needs to be overidden.")
 
 
-func _process_action(action: Action) -> Action:
-	return action
+func process_action(action: Action) -> Array[Action]:
+	return [action]
