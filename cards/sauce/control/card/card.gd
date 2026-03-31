@@ -11,7 +11,7 @@ var cost: int:
 	set(value):
 		cost = value
 		cost_label.text = "%s" % value
-var actions: Dictionary
+var actions: Array[Action] = []
 var playable := false:
 	set(value):
 		playable = value
@@ -27,30 +27,33 @@ func _ready() -> void:
 		return
 	name_label.text = properties["name"]
 	cost = int(properties["cost"])
+	
+	for action in properties["actions"]:
+		actions.append(Action.new(action))
+	
 	_set_description()
 
 
 func _set_description() -> void:
 	var description := ""
-	actions = properties["actions"]
-	for action in actions: ## TODO action order is not deterministic
-		var val = int(actions[action]["value"])
-		match action:
-			"attack":
-				if not "repeats" in actions[action]:
-					description += "Deals %s damage. " % val
+	for action in actions:
+		var val = action.value
+		match action.type:
+			Action.ActionType.ATTACK:
+				if action.repeats == 1:
+					description += "Deals %s damage. " % action.value
 				else:
 					var repeats = int(actions[action]["repeats"])
 					description += "Deals %s damage %s times. " % [val, repeats]
-			"block":
+			Action.ActionType.BLOCK:
 				description += "Adds %s block. " % val
-			"draw":
+			Action.ActionType.DRAW:
 				description += "Draw %s cards. " % val
-			"heal":
+			Action.ActionType.HEAL:
 				description += "Heals for %s. " % val
-			"strength":
+			Action.ActionType.STRENGTH:
 				description += "Increase strength by %s. " % val
-			"max_hp":
+			Action.ActionType.MAX_HP:
 				description += "Increase max hp by %s." % val
 			_:
 				push_error("unrecognised action name: %s" % action)

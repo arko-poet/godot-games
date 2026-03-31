@@ -1,84 +1,95 @@
 {
   "Bozo Attack": {
 	"name": "Bozo Attack",
-	"actions": {
-	  "attack": {
+	"actions": [
+	  {
+		"type": "attack",
 		"value": 10
 	  }
-	},
+	],
 	"cost": 1
   },
   "Bozo Block": {
 	"name": "Bozo Block",
-	"actions": {
-	  "block": {
+	"actions": [
+	  {
+		"type": "block",
 		"value": 5
 	  }
-	},
+	],
 	"cost": 1
   },
   "Draw": {
 	"name": "Draw",
-	"actions": {
-	  "draw": {
+	"actions": [
+	  {
+		"type": "draw",
 		"value": 2
 	  }
-	},
+	],
 	"cost": 1
   },
   "Bandage": {
 	"name": "Bandage",
-	"actions": {
-	  "heal": {
+	"actions": [
+	  {
+		"type": "heal",
 		"value": 3
 	  }
-	},
+	],
 	"cost": 0
   },
   "Ramp Up": {
 	"name": "Ramp Up",
-	"actions": {
-	  "strength": {
+	"actions": [
+	  {
+		"type": "strength",
 		"value": 1
 	  }
-	},
+	],
 	"cost": 2
   },
   "Savagery": {
 	"name": "Savagery",
-	"actions": {
-	  "attack": {
+	"actions": [
+	  {
+		"type": "attack",
 		"value": 8,
 		"repeats": 3
 	  }
-	},
+	],
 	"cost": 3
   },
   "ABOBA": {
 	"name": "ABOBA",
-	"actions": {
-	  "attack": {
+	"actions": [
+	  {
+		"type": "attack",
 		"value": 9
 	  },
-	  "block": {
+	  {
+		"type": "block",
 		"value": 9
 	  },
-	  "draw": {
+	  {
+		"type": "draw",
 		"value": 1
 	  },
-	  "heal": {
+	  {
+		"type": "heal",
 		"value": 5
 	  }
-	},
+	],
 	"cost": 3
   },
   "Beef Up": {
 	"name": "Beef Up",
-	"actions": {
-	  "max_hp": {
+	"actions": [
+	  {
+		"type": "max_hp",
 		"value": 5
 	  }
-	},
+	],
 	"cost": 2
   }
 }

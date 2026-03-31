@@ -70,7 +70,7 @@ func _shuffle_discard_pile() -> void:
 
 func _on_hand_card_played(card: Card) -> void:
 	assert(mana >= card.cost)
-	assert(card.actions != {})
+	assert(card.actions != [])
 	mana -= card.cost
 	_execute_card_actions(card)
 	_discard_card(card)
@@ -82,26 +82,23 @@ func _discard_card(card: Card) -> void:
 
 
 func _execute_card_actions(card: Card) -> void:
-	var actions = card.actions
+	var actions := card.actions
 	for action in actions:
-		var val = int(actions[action]["value"])
-		match action:
-			"attack":
-				var repeats = 1
-				if "repeats" in actions[action]:
-					repeats = int(actions[action]["repeats"])
-				for i in range(repeats):
+		var val = action.value
+		match action.type:
+			Action.ActionType.ATTACK:
+				for i in range(action.repeats):
 					_attack(val)
-			"block":
+			Action.ActionType.BLOCK:
 				block += val
-			"draw":
+			Action.ActionType.DRAW:
 				for i in range(val):
 					draw_card()
-			"heal":
+			Action.ActionType.HEAL:
 				game_run.hp += val
-			"strength":
+			Action.ActionType.STRENGTH:
 				strength += val
-			"max_hp":
+			Action.ActionType.MAX_HP:
 				game_run.max_hp += val
 			_:
 				push_error("unknown action type: %s" % action)
