@@ -13,4 +13,8 @@ func _set_tooltip():
 
 
 func process_action(action: Action) -> Array[Action]:
-	return [action]
+	return []
+
+
+func turn_started() -> Array[Action]:
+	return []

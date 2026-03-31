@@ -2,6 +2,7 @@ class_name CombatEncounter
 extends Control
 
 signal monster_attacked(damage: int)
+signal turn_started
 
 var game_run: GameRun
 var mana: int:
@@ -72,7 +73,7 @@ func _on_hand_card_played(card: Card) -> void:
 	assert(mana >= card.cost)
 	assert(card.actions != [])
 	mana -= card.cost
-	_execute_card_actions(game_run.relic_manager.process_actions(card.actions))
+	_execute_actions(game_run.relic_manager.process_actions(card.actions))
 	_discard_card(card)
 
 
@@ -81,7 +82,7 @@ func _discard_card(card: Card) -> void:
 	_update_pile_labels()
 
 
-func _execute_card_actions(actions: Array[Action]) -> void:
+func _execute_actions(actions: Array[Action]) -> void:
 	for action in actions:
 		var val = action.value
 		match action.type:
@@ -99,6 +100,8 @@ func _execute_card_actions(actions: Array[Action]) -> void:
 				strength += val
 			Action.ActionType.MAX_HP:
 				game_run.max_hp += val
+			Action.ActionType.MANA:
+				mana += val
 			_:
 				push_error("unknown action type: %s" % action)
 
@@ -129,6 +132,8 @@ func _on_end_turn_button_pressed() -> void:
 		draw_card()
 	mana = game_run.MAX_MANA
 	block = 0
+	
+	turn_started.emit()
 
 
 func turn_dimmer(on: bool) -> void:
@@ -140,3 +145,7 @@ func hit_player(damage: int) -> void:
 	var damage_left = max(0, damage - block)
 	block = max(0, block - damage)
 	game_run.hp -= damage_left
+
+
+func _on_relic_manager_relic_actions_created(actions: Array[Action]) -> void:
+	_execute_actions(actions)

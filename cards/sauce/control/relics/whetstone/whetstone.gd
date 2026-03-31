@@ -10,4 +10,4 @@ func _set_tooltip():
 func process_action(action: Action) -> Array[Action]:
 	if action.type == Action.ActionType.ATTACK:
 		action.value += damage
-	return [action]
+	return []

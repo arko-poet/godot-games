@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cq80myuiwa5a4"]
+
+[ext_resource type="PackedScene" uid="uid://c38a8wa3yrmv8" path="res://sauce/control/relics/relic.tscn" id="1_0hnfi"]
+[ext_resource type="Script" uid="uid://dia1gqecwmm4a" path="res://sauce/control/relics/hermes_boots/hermes_boots.gd" id="2_nim5n"]
+
+[node name="HermesBoots" unique_id=1226305185 instance=ExtResource("1_0hnfi")]
+script = ExtResource("2_nim5n")
+mana = 1

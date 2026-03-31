@@ -1,7 +1,7 @@
 class_name Action
 extends RefCounted
 
-enum ActionType {ATTACK, BLOCK, DRAW, HEAL, STRENGTH, MAX_HP}
+enum ActionType {ATTACK, BLOCK, DRAW, HEAL, STRENGTH, MAX_HP, MANA}
 
 const STRING_TO_ACTION := {
 	"attack": ActionType.ATTACK,
@@ -9,7 +9,8 @@ const STRING_TO_ACTION := {
 	"draw": ActionType.DRAW,
 	"heal": ActionType.HEAL,
 	"strength": ActionType.STRENGTH,
-	"max_hp": ActionType.MAX_HP
+	"max_hp": ActionType.MAX_HP,
+	"mana": ActionType.MANA
 }
 
 var type: ActionType
