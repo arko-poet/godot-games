@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c38a8wa3yrmv8"]
+
+[ext_resource type="Texture2D" uid="uid://b8iqdf5sjq0cu" path="res://assets/icon.svg" id="1_sr73n"]
+
+[node name="Relic" type="Control" unique_id=1226305185]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Icon" type="TextureRect" parent="." unique_id=304410559]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_sr73n")
+expand_mode = 3
+stretch_mode = 4
