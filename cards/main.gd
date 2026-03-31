@@ -38,3 +38,11 @@ func _new_encounter() -> void:
 func _on_combat_encounter_monster_attacked(damage: int) -> void:
 	world.character.attack()
 	world.monster.hp -= damage
+
+
+func _on_game_run_player_died() -> void:
+	world.character.die()
+
+
+func _on_character_player_died() -> void:
+	get_tree().reload_current_scene()

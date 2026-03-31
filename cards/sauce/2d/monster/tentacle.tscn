@@ -50,8 +50,8 @@ bone_index = 4
 bone2d_node = NodePath("RootBone/InnerBone/InnerBone2/InnerBone3/TipBone")
 target_nodepath = NodePath("../../IKTarget/TipTarget")
 enable_constraint = true
-constraint_angle_min = -102.85699
-constraint_angle_max = 102.81198
+constraint_angle_min = -102.85698
+constraint_angle_max = 102.81197
 constraint_angle_invert = true
 constraint_in_localspace = true
 
@@ -118,8 +118,8 @@ _data = {
 }
 
 [node name="Tentacle" unique_id=422500346 node_paths=PackedStringArray("animations") instance=ExtResource("1_6rikr")]
-max_hp = 100
-damage = 10
+max_hp = 50
+damage = 15
 animations = NodePath("Animations")
 metadata/_edit_horizontal_guides_ = [-316.0]
 metadata/_edit_vertical_guides_ = [-36.0]

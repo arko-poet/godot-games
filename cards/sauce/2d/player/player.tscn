@@ -22,8 +22,8 @@ joint_data/0/bone_index = 1
 joint_data/0/bone2d_node = NodePath("Hip/FemurR")
 joint_data/0/rotate_from_joint = false
 joint_data/0/enable_constraint = true
-joint_data/0/constraint_angle_min = -49.090977
-joint_data/0/constraint_angle_max = 98.18195
+joint_data/0/constraint_angle_min = -49.090973
+joint_data/0/constraint_angle_max = 98.181946
 joint_data/0/constraint_angle_invert = true
 joint_data/0/constraint_in_localspace = true
 joint_data/0/editor_draw_gizmo = false
@@ -33,7 +33,7 @@ bone_index = 2
 bone2d_node = NodePath("Hip/FemurR/FootR")
 target_nodepath = NodePath("../IKTargets/LegRTarget/FootRTarget")
 enable_constraint = true
-constraint_angle_min = 71.93997
+constraint_angle_min = 71.939964
 constraint_angle_max = -79.99997
 constraint_angle_invert = true
 constraint_in_localspace = true
@@ -148,6 +148,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(191, -19)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_yi7tw"]
 resource_name = "attack"
@@ -177,6 +189,21 @@ tracks/1/keys = {
 "values": [Vector2(191, -19), Vector2(461.64728, -328.4963), Vector2(865.0221, 20.070496), Vector2(191, -19)]
 }
 
+[sub_resource type="Animation" id="Animation_bj0dr"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1432.8693, 122.53984)]
+}
+
 [sub_resource type="Animation" id="Animation_3frkd"]
 resource_name = "idle"
 length = 2.0
@@ -198,6 +225,7 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_x5x7k"),
 &"attack": SubResource("Animation_yi7tw"),
+&"death": SubResource("Animation_bj0dr"),
 &"idle": SubResource("Animation_3frkd")
 }
 
@@ -209,8 +237,8 @@ script = ExtResource("1_x5x7k")
 modification_stack = SubResource("SkeletonModificationStack2D_x5x7k")
 
 [node name="Hip" type="Bone2D" parent="Skeleton" unique_id=290964795]
-rotation = -0.015335448
-scale = Vector2(0.9999996, 0.9999996)
+rotation = -0.015335449
+scale = Vector2(0.9999995, 0.9999995)
 rest = Transform2D(0.99988234, -0.015334841, 0.015334841, 0.99988234, 0, 0)
 
 [node name="FemurR" type="Bone2D" parent="Skeleton/Hip" unique_id=1872597654]
@@ -232,7 +260,7 @@ flip_h = true
 [node name="FootR" type="Bone2D" parent="Skeleton/Hip/FemurR" unique_id=1001574901]
 position = Vector2(-0.58499146, 145.38043)
 rotation = 0.049217522
-scale = Vector2(0.99997514, 0.99997514)
+scale = Vector2(0.9999752, 0.9999752)
 rest = Transform2D(0.99876404, 0.049196426, -0.049196426, 0.99876404, -0.58499146, 145.38043)
 auto_calculate_length_and_angle = false
 length = 53.964
@@ -294,7 +322,7 @@ metadata/_edit_lock_ = true
 [node name="ShoulderL" type="Bone2D" parent="Skeleton/Hip/Spine" unique_id=1651650776]
 position = Vector2(71.98274, -0.0073623657)
 rotation = -0.06236965
-scale = Vector2(0.99996966, 0.99996966)
+scale = Vector2(0.9999696, 0.9999696)
 rest = Transform2D(1, 0, 0, 1, 72, 0)
 auto_calculate_length_and_angle = false
 length = 195.579
@@ -315,7 +343,7 @@ scale = Vector2(0.9999994, 0.9999994)
 rest = Transform2D(0.55353117, 0.83282846, -0.83282846, 0.55353117, 117.975555, 99.62405)
 auto_calculate_length_and_angle = false
 length = 37.049
-bone_angle = -2.868999
+bone_angle = -2.8689988
 metadata/_local_pose_override_enabled_ = true
 
 [node name="HandL" type="Sprite2D" parent="Skeleton/Hip/Spine/ShoulderL/WristL" unique_id=663886908]
@@ -326,7 +354,7 @@ texture = ExtResource("1_3frkd")
 [node name="ShoulderR" type="Bone2D" parent="Skeleton/Hip/Spine" unique_id=526823811]
 position = Vector2(-67, 4)
 rotation = -0.046374857
-scale = Vector2(0.99999976, 0.99999976)
+scale = Vector2(0.9999997, 0.9999997)
 rest = Transform2D(0.99892485, -0.046358235, 0.046358235, 0.99892485, -67, 4)
 auto_calculate_length_and_angle = false
 length = 178.531
@@ -344,7 +372,7 @@ flip_h = true
 [node name="Wrist" type="Bone2D" parent="Skeleton/Hip/Spine/ShoulderR" unique_id=461847332]
 z_index = -2
 position = Vector2(-132.90085, 79.33228)
-rotation = 0.031162428
+rotation = 0.031162426
 scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.9995177, 0.031052217, -0.031052217, 0.9995177, -132.90085, 79.33228)
 auto_calculate_length_and_angle = false
