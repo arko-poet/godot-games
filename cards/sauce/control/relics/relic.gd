@@ -18,3 +18,11 @@ func process_action(action: Action) -> Array[Action]:
 
 func turn_started() -> Array[Action]:
 	return []
+	
+	
+func turn_ended() -> Array[Action]:
+	return []
+
+
+func card_played() -> Array[Action]:
+	return []

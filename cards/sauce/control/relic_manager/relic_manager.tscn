@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ct5b4arwvw03c" path="res://sauce/control/relics/whetstone/whetstone.tscn" id="2_x4oa6"]
 [ext_resource type="PackedScene" uid="uid://bwfpehgmnvhkl" path="res://sauce/control/relics/nunchaku/nunchaku.tscn" id="3_pyn04"]
 [ext_resource type="PackedScene" uid="uid://cq80myuiwa5a4" path="res://sauce/control/relics/hermes_boots/hermes_boots.tscn" id="4_jo1fe"]
+[ext_resource type="PackedScene" uid="uid://ckdt4wanpy67u" path="res://sauce/control/relics/herb_pouch/herb_pouch.tscn" id="5_mn1q6"]
 
 [node name="RelicManager" type="Control" unique_id=923894477]
 layout_mode = 3
@@ -32,4 +33,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="HermesBoots" parent="RelicGrid" unique_id=873002335 instance=ExtResource("4_jo1fe")]
+layout_mode = 2
+
+[node name="HerbPouch" parent="RelicGrid" unique_id=1446111627 instance=ExtResource("5_mn1q6")]
 layout_mode = 2

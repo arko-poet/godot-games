@@ -97,6 +97,8 @@ offset_right = 126.0
 offset_bottom = 23.0
 text = "Relics:"
 
+[connection signal="card_played" from="CombatEncounter" to="RelicManager" method="_on_combat_encounter_card_played"]
+[connection signal="turn_ended" from="CombatEncounter" to="RelicManager" method="_on_combat_encounter_turn_ended"]
 [connection signal="turn_started" from="CombatEncounter" to="RelicManager" method="_on_combat_encounter_turn_started"]
 [connection signal="card_chosen" from="CardChoice" to="." method="_on_card_choice_card_chosen"]
 [connection signal="pressed" from="DeckLabel" to="." method="_on_deck_label_pressed"]

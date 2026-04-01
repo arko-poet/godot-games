@@ -3,13 +3,15 @@ extends Control
 
 signal monster_attacked(damage: int)
 signal turn_started
+signal card_played
+signal turn_ended
 
 var game_run: GameRun
 var mana: int:
 	set(value):
 		mana = value
 		mana_label.text = "%s/%s" % [mana, game_run.MAX_MANA]
-		_mana_changed()
+		_update_card_playability()
 var draw_pile: Array[Card] = []
 var discard_pile: Array[Card] = []
 var block: int:
@@ -51,8 +53,8 @@ func new_encounter(new_monster: Monster) -> void:
 func draw_card() -> void:
 	if not draw_pile.is_empty():
 		var card: Card = draw_pile.pop_at(0)
-		hand.add_card(card)
 		card.playable = mana >= card.cost
+		hand.add_card(card)
 	else:
 		_shuffle_discard_pile()
 		if not draw_pile.is_empty():
@@ -75,6 +77,8 @@ func _on_hand_card_played(card: Card) -> void:
 	mana -= card.cost
 	_execute_actions(game_run.relic_manager.process_actions(card.actions))
 	_discard_card(card)
+	hand.set_to_default_card_properties()
+	card_played.emit()
 
 
 func _discard_card(card: Card) -> void:
@@ -102,6 +106,8 @@ func _execute_actions(actions: Array[Action]) -> void:
 				game_run.max_hp += val
 			Action.ActionType.MANA:
 				mana += val
+			Action.ActionType.COST:
+				hand.reduce_card_costs(val)
 			_:
 				push_error("unknown action type: %s" % action)
 
@@ -119,12 +125,9 @@ func _update_pile_labels() -> void:
 	discard_pile_label.text = "discard pile: %s" % discard_pile.size()
 
 
-func _mana_changed() -> void:
-	for card: Card in hand.get_children():
-		card.playable = mana >= card.cost
-
-
 func _on_end_turn_button_pressed() -> void:
+	turn_ended.emit()
+	
 	monster.monster_turn()
 	for c in hand.clear():
 		discard_pile.append(c)
@@ -149,3 +152,12 @@ func hit_player(damage: int) -> void:
 
 func _on_relic_manager_relic_actions_created(actions: Array[Action]) -> void:
 	_execute_actions(actions)
+
+
+func _on_hand_cost_changed() -> void:
+	_update_card_playability()
+
+
+func _update_card_playability() -> void:
+	for card: Card in hand.get_children():
+		card.playable = mana >= card.cost

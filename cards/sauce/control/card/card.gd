@@ -6,11 +6,11 @@ signal card_exited(card: Card)
 
 const SHADOW_SIZE := 12
 
-var properties: Dictionary
+var properties: Dictionary ## default card properties, before any modifications
 var cost: int:
 	set(value):
-		cost = value
-		cost_label.text = "%s" % value
+		cost = max(0, value)
+		cost_label.text = "%s" % cost
 var actions: Array[Action] = []
 var playable := false:
 	set(value):
@@ -32,6 +32,10 @@ func _ready() -> void:
 		actions.append(Action.new(action))
 	
 	_set_description()
+
+
+func set_to_default_properties() -> void:
+	cost = int(properties["cost"])
 
 
 func _set_description() -> void:

@@ -4,6 +4,7 @@ extends Container
 
 signal card_played(card: Card)
 signal card_rejected(card: Card)
+signal cost_changed
 
 const HOVER_SCALE := Vector2(1.0, 1.0)
 const MAX_CARDS := 10
@@ -77,6 +78,22 @@ func pop_card() -> void:
 	for i in count:
 		remove_child(get_child(i))
 		return
+
+
+func reduce_card_costs(cost_reduction: int):
+	for child in get_children():
+		if child is not Card:
+			continue
+		(child as Card).cost -= cost_reduction
+	cost_changed.emit()
+
+
+func set_to_default_card_properties() -> void:
+	for c in get_children():
+		if c is not Card:
+			continue
+		(c as Card).set_to_default_properties()
+	cost_changed.emit()
 
 
 func _on_sort_children() -> void:
@@ -165,3 +182,13 @@ func remove_card(card: Card) -> void:
 	remove_child(card)
 	card.disconnect("card_entered", _on_card_entered)
 	card.disconnect("card_exited", _on_card_exited)
+
+
+func _on_combat_encounter_turn_ended() -> void:
+	# set default card properties
+	for child in get_children():
+		if child is not Card:
+			continue
+		child.set_to_default_properties()
+		
+	
