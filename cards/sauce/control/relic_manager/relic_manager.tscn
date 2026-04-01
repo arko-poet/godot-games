@@ -25,6 +25,7 @@ offset_left = -800.0
 offset_right = 800.0
 offset_bottom = 64.0
 grow_horizontal = 2
+theme_override_constants/h_separation = 16
 columns = 5
 
 [node name="Whetstone" parent="RelicGrid" unique_id=560864765 instance=ExtResource("2_x4oa6")]

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dqbnwyfwbe1gm" path="res://sauce/control/relics/whetstone/whetstone.gd" id="2_0pgue"]
 
 [node name="Whetstone" unique_id=560864765 instance=ExtResource("1_nissa")]
+modulate = Color(0.60784316, 0.34901962, 0.7137255, 1)
 script = ExtResource("2_0pgue")
 damage = 2
 

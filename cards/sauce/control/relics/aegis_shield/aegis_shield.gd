@@ -19,4 +19,5 @@ func process_action(action: Action) -> Array[Action]:
 		if not used:
 			used = true
 			action.value -= damage_reductin
+			_trigger_effect()
 	return []

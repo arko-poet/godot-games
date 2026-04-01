@@ -88,7 +88,9 @@ text = "NEXT ENCOUNTER"
 
 [node name="RelicManager" parent="." unique_id=923894477 instance=ExtResource("6_b1sxn")]
 layout_mode = 1
+offset_left = 16.0
 offset_top = 32.0
+offset_right = 16.0
 offset_bottom = -804.0
 
 [node name="RelicLabel" type="Label" parent="." unique_id=1464590331]

@@ -9,6 +9,11 @@ var card_played_counter := 0
 
 func card_played() -> Array[Action]:
 	card_played_counter += 1
+	if card_played_counter == 0:
+		_trigger_effect()
+		_ready_effect(false)
+	elif card_played_counter == 2:
+		_ready_effect(true)
 	if card_played_counter == trigger_at:
 		card_played_counter = -1
 		var action := Action.new()

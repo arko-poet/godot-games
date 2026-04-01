@@ -4,5 +4,6 @@
 [ext_resource type="Script" uid="uid://cs3jnp8e1uuxs" path="res://sauce/control/relics/herb_pouch/herb_pouch.gd" id="2_8chdh"]
 
 [node name="HerbPouch" unique_id=1226305185 instance=ExtResource("1_my67o")]
+modulate = Color(0.18039216, 0.8, 0.44313726, 1)
 script = ExtResource("2_8chdh")
 trigger_at = 2

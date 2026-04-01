@@ -4,5 +4,6 @@
 [ext_resource type="Script" uid="uid://dia1gqecwmm4a" path="res://sauce/control/relics/hermes_boots/hermes_boots.gd" id="2_nim5n"]
 
 [node name="HermesBoots" unique_id=1226305185 instance=ExtResource("1_0hnfi")]
+modulate = Color(0.20392157, 0.59607846, 0.85882354, 1)
 script = ExtResource("2_nim5n")
 mana = 1

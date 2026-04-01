@@ -13,4 +13,5 @@ func process_action(action: Action) -> Array[Action]:
 		new_action.type = Action.ActionType.BLOCK
 		new_action.value = block
 		new_actions.append(new_action)
+		_trigger_effect()
 	return new_actions

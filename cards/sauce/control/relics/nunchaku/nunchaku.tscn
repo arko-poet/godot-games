@@ -4,5 +4,9 @@
 [ext_resource type="Script" uid="uid://bjjyllwtomnlj" path="res://sauce/control/relics/nunchaku/nunchaku.gd" id="2_dm3o2"]
 
 [node name="Nunchaku" unique_id=1226305185 instance=ExtResource("1_1omhf")]
+modulate = Color(0.90588236, 0.29803923, 0.23529412, 1)
 script = ExtResource("2_dm3o2")
 block = 2
+
+[node name="Icon" parent="." index="0" unique_id=304410559]
+pivot_offset_ratio = Vector2(0, 0)

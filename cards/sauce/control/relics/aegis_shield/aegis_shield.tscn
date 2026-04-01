@@ -4,5 +4,6 @@
 [ext_resource type="Script" uid="uid://b4dakw4f6ffat" path="res://sauce/control/relics/aegis_shield/aegis_shield.gd" id="2_e77g4"]
 
 [node name="AegisShield" unique_id=1226305185 instance=ExtResource("1_38d0m")]
+modulate = Color(0.94509804, 0.76862746, 0.05882353, 1)
 script = ExtResource("2_e77g4")
 damage_reductin = 6

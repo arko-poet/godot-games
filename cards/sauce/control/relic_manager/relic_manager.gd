@@ -29,6 +29,7 @@ func _on_combat_encounter_turn_started() -> void:
 	var actions: Array[Action] = []
 	for relic in relics:
 		for action in relic.turn_started():
+			relic.call()
 			actions.append(action)
 	
 	_pass_relic_actions(actions)
