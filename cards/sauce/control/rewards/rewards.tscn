@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bpdp86nh212aa"]
+
+[ext_resource type="Script" uid="uid://ba4vi7p72yxjk" path="res://sauce/control/rewards/rewards.gd" id="1_3foda"]
+[ext_resource type="Texture2D" uid="uid://b8iqdf5sjq0cu" path="res://assets/icon.svg" id="1_f51cb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_druxa"]
+bg_color = Color(0.18039216, 0.14117648, 0.10980392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6901961, 0.5411765, 0.34117648, 1)
+shadow_color = Color(0.07058824, 0.05490196, 0.043137256, 0.4)
+shadow_size = 8
+
+[node name="Rewards" type="Control" unique_id=2071829638]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1400.0
+offset_bottom = -600.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3foda")
+
+[node name="Panel" type="Panel" parent="." unique_id=777009741]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_druxa")
+
+[node name="RewardChoices" type="VBoxContainer" parent="Panel" unique_id=990217003]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -95.0
+offset_right = 95.0
+offset_bottom = 93.0
+grow_horizontal = 2
+
+[node name="Title" type="Label" parent="Panel/RewardChoices" unique_id=960948392]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.8745098, 0.75686276, 1)
+text = "REWARDS"
+horizontal_alignment = 1
+
+[node name="CardChoice" type="Button" parent="Panel/RewardChoices" unique_id=1776390936]
+layout_mode = 2
+text = "Card"
+icon = ExtResource("1_f51cb")
+alignment = 0
+expand_icon = true
+
+[node name="RelicChoice" type="Button" parent="Panel/RewardChoices" unique_id=886802722]
+layout_mode = 2
+text = "Relic"
+icon = ExtResource("1_f51cb")
+alignment = 0
+expand_icon = true
+
+[connection signal="pressed" from="Panel/RewardChoices/CardChoice" to="." method="_on_card_choice_pressed"]
+[connection signal="pressed" from="Panel/RewardChoices/RelicChoice" to="." method="_on_relic_choice_pressed"]

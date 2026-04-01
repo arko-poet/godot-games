@@ -47,8 +47,7 @@ func _set_description() -> void:
 				if action.repeats == 1:
 					description += "Deals %s damage. " % action.value
 				else:
-					var repeats = int(actions[action]["repeats"])
-					description += "Deals %s damage %s times. " % [val, repeats]
+					description += "Deals %s damage %s times. " % [val, action.repeats]
 			Action.ActionType.BLOCK:
 				description += "Adds %s block. " % val
 			Action.ActionType.DRAW:

@@ -1,11 +1,6 @@
 [gd_scene format=3 uid="uid://ckmt2n5pxela2"]
 
 [ext_resource type="Script" uid="uid://b28nsvtl0t83m" path="res://sauce/control/relic_manager/relic_manager.gd" id="1_h81ut"]
-[ext_resource type="PackedScene" uid="uid://ct5b4arwvw03c" path="res://sauce/control/relics/whetstone/whetstone.tscn" id="2_x4oa6"]
-[ext_resource type="PackedScene" uid="uid://bwfpehgmnvhkl" path="res://sauce/control/relics/nunchaku/nunchaku.tscn" id="3_pyn04"]
-[ext_resource type="PackedScene" uid="uid://cq80myuiwa5a4" path="res://sauce/control/relics/hermes_boots/hermes_boots.tscn" id="4_jo1fe"]
-[ext_resource type="PackedScene" uid="uid://ckdt4wanpy67u" path="res://sauce/control/relics/herb_pouch/herb_pouch.tscn" id="5_mn1q6"]
-[ext_resource type="PackedScene" uid="uid://d3c3audj3illw" path="res://sauce/control/relics/aegis_shield/aegis_shield.tscn" id="6_8jyig"]
 
 [node name="RelicManager" type="Control" unique_id=923894477]
 layout_mode = 3
@@ -27,18 +22,3 @@ offset_bottom = 64.0
 grow_horizontal = 2
 theme_override_constants/h_separation = 16
 columns = 5
-
-[node name="Whetstone" parent="RelicGrid" unique_id=560864765 instance=ExtResource("2_x4oa6")]
-layout_mode = 2
-
-[node name="Nunchaku" parent="RelicGrid" unique_id=1226305185 instance=ExtResource("3_pyn04")]
-layout_mode = 2
-
-[node name="HermesBoots" parent="RelicGrid" unique_id=873002335 instance=ExtResource("4_jo1fe")]
-layout_mode = 2
-
-[node name="HerbPouch" parent="RelicGrid" unique_id=1446111627 instance=ExtResource("5_mn1q6")]
-layout_mode = 2
-
-[node name="AegisShield" parent="RelicGrid" unique_id=1689037569 instance=ExtResource("6_8jyig")]
-layout_mode = 2

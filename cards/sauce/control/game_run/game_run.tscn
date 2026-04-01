@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://0aas2n2fuqs2" path="res://sauce/control/combat_encounter/combat_encounter.tscn" id="4_t4wxh"]
 [ext_resource type="PackedScene" uid="uid://bxcsjvs0mwci1" path="res://sauce/control/deck/deck.tscn" id="5_n3l02"]
 [ext_resource type="PackedScene" uid="uid://ckmt2n5pxela2" path="res://sauce/control/relic_manager/relic_manager.tscn" id="6_b1sxn"]
+[ext_resource type="PackedScene" uid="uid://bpdp86nh212aa" path="res://sauce/control/rewards/rewards.tscn" id="7_avjqj"]
 
 [node name="GameRun" type="Control" unique_id=647190758]
 layout_mode = 3
@@ -99,6 +100,17 @@ offset_right = 126.0
 offset_bottom = 23.0
 text = "Relics:"
 
+[node name="Rewards" parent="." unique_id=2071829638 instance=ExtResource("7_avjqj")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 0.0
+offset_bottom = 0.0
+
 [connection signal="card_played" from="CombatEncounter" to="RelicManager" method="_on_combat_encounter_card_played"]
 [connection signal="turn_ended" from="CombatEncounter" to="RelicManager" method="_on_combat_encounter_turn_ended"]
 [connection signal="turn_started" from="CombatEncounter" to="RelicManager" method="_on_combat_encounter_turn_started"]
@@ -106,3 +118,6 @@ text = "Relics:"
 [connection signal="pressed" from="DeckLabel" to="." method="_on_deck_label_pressed"]
 [connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="relic_actions_created" from="RelicManager" to="CombatEncounter" method="_on_relic_manager_relic_actions_created"]
+[connection signal="card_choice_requested" from="Rewards" to="." method="_on_rewards_card_choice_requested"]
+[connection signal="relic_claimed" from="Rewards" to="." method="_on_rewards_relic_claimed"]
+[connection signal="rewards_claimed" from="Rewards" to="." method="_on_rewards_rewards_claimed"]

@@ -9,7 +9,7 @@ const TRIGGER_SIZE = Vector2(1.1, 1.1)
 
 func _ready() -> void:
 	_set_tooltip()
-	
+
 
 func _set_tooltip():
 	push_error("Base class Relic function needs to be overidden.")

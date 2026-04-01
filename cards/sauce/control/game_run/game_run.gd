@@ -36,6 +36,7 @@ var encounter_num := 0:
 @onready var encounter_label: Label = $HBoxContainer/EncounterLabel
 @onready var next_button: Button = $NextButton
 @onready var relic_manager: RelicManager = $RelicManager
+@onready var rewards: RewardsPanel = $Rewards
 
 
 func _ready() -> void:
@@ -50,7 +51,12 @@ func _ready() -> void:
 
 func combat_finished() -> void:
 	combat_encounter.hide()
-	_choose_cards()
+	_get_rewards()
+
+
+func _get_rewards() -> void:
+	rewards.new_rewards(relic_manager.get_new_relic())
+	rewards.show()
 
 
 func execute_monster_actions(actions: Array[Action]) -> void:
@@ -81,8 +87,8 @@ func _on_card_choice_card_chosen(card: Card) -> void:
 		_add_card(card)
 		
 	card_choice.hide()
-	combat_encounter.turn_dimmer(false)
-	next_button.show()
+	rewards.show()
+	rewards.card_chosen()
 
 
 func _choose_cards() -> void:
@@ -125,3 +131,19 @@ func _update_hp_label() -> void:
 func _on_next_button_pressed() -> void:
 	encounter_finished.emit()
 	next_button.hide()
+
+
+func _on_rewards_rewards_claimed() -> void:
+	print("yep")
+	rewards.hide()
+	combat_encounter.turn_dimmer(false)
+	next_button.show()
+
+
+func _on_rewards_card_choice_requested() -> void:
+	rewards.hide()
+	_choose_cards()
+
+
+func _on_rewards_relic_claimed(relic: Relic) -> void:
+	relic_manager.add_relic(relic)
