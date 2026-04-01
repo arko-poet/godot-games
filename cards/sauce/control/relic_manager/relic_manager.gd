@@ -7,10 +7,12 @@ var relics: Array[Relic] = []
 
 
 func _ready() -> void:
-	relics.append($RelicGrid/Whetstone) # TODO remove once adding relics is possible
+	# TODO remove once adding relics is possible
+	relics.append($RelicGrid/Whetstone)
 	relics.append($RelicGrid/Nunchaku)
 	relics.append($RelicGrid/HermesBoots)
 	relics.append($RelicGrid/HerbPouch)
+	relics.append($RelicGrid/AegisShield)
 
 
 func process_actions(actions: Array[Action]) -> Array[Action]:

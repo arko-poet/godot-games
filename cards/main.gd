@@ -32,7 +32,9 @@ func _on_game_run_encounter_finished() -> void:
 
 
 func _new_encounter() -> void:
-	game_run.next_encounter(world.new_monster())
+	var monster := world.new_monster()
+	game_run.next_encounter(monster)
+	monster.monster_acted.connect(_on_monster_acted)
 
 
 func _on_combat_encounter_monster_attacked(damage: int) -> void:
@@ -46,3 +48,9 @@ func _on_game_run_player_died() -> void:
 
 func _on_character_player_died() -> void:
 	get_tree().reload_current_scene()
+
+
+func _on_monster_acted(actions: Array[Action]) -> void:
+	print("monster acted ")
+	var new_actions := game_run.relic_manager.process_actions(actions)
+	game_run.execute_monster_actions(new_actions)

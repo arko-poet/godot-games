@@ -2,7 +2,7 @@ class_name Monster
 extends Node2D
 
 signal monster_died
-signal player_attacked(damage: int)
+signal monster_acted(actions: Array[Action])
 signal turn_finished
 
 @export_range(0, 1000) var max_hp: int
@@ -41,4 +41,11 @@ func _attack() -> void:
 	animations.play("attack")
 	await animations.animation_finished
 	animations.play("idle")
-	emit_signal("player_attacked", damage)
+	
+	var action := Action.new()
+	action.type = Action.ActionType.ATTACK
+	action.value = damage
+	action.monster_action = true
+	var actions: Array[Action] = []
+	actions.append(action)
+	emit_signal("monster_acted", actions)

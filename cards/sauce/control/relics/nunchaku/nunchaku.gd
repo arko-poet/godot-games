@@ -8,7 +8,7 @@ func _set_tooltip():
 
 func process_action(action: Action) -> Array[Action]:
 	var new_actions: Array[Action] = []
-	if action.type == Action.ActionType.ATTACK:
+	if action.type == Action.ActionType.ATTACK and not action.monster_action:
 		var new_action := Action.new()
 		new_action.type = Action.ActionType.BLOCK
 		new_action.value = block

@@ -33,7 +33,7 @@ grow_vertical = 2
 color = Color(0.18431373, 0.16470589, 0.14901961, 1)
 
 [connection signal="enemies_defeated" from="World" to="." method="_on_world_enemies_defeated"]
-[connection signal="player_attacked" from="World" to="." method="_on_world_player_attacked"]
+[connection signal="monster_acted" from="World/Tentacle" to="." method="_on_monster_acted"]
 [connection signal="player_died" from="World/Character" to="." method="_on_character_player_died"]
 [connection signal="encounter_finished" from="UI/GameRun" to="." method="_on_game_run_encounter_finished"]
 [connection signal="player_died" from="UI/GameRun" to="." method="_on_game_run_player_died"]

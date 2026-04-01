@@ -53,6 +53,12 @@ func combat_finished() -> void:
 	_choose_cards()
 
 
+func execute_monster_actions(actions: Array[Action]) -> void:
+	for action in actions:
+		if action.type == Action.ActionType.ATTACK:
+			hp -= action.value
+
+
 func _starter_deck() -> void:
 	for i in range(6):
 		var card: Card = CardScene.instantiate()

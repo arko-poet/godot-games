@@ -15,8 +15,11 @@ const STRING_TO_ACTION := {
 }
 
 var type: ActionType
-var value: int
+var value: int:
+	set(new_val):
+		value = max(0, new_val)
 var repeats: int = 1
+var monster_action := false ## otherwise player action is assumed
 
 
 func _init(action: Dictionary = {}) -> void:

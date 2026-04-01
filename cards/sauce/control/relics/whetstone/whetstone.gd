@@ -8,6 +8,6 @@ func _set_tooltip():
 
 
 func process_action(action: Action) -> Array[Action]:
-	if action.type == Action.ActionType.ATTACK:
+	if action.type == Action.ActionType.ATTACK and not action.monster_action:
 		action.value += damage
 	return []

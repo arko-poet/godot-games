@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d3c3audj3illw"]
+
+[ext_resource type="PackedScene" uid="uid://c38a8wa3yrmv8" path="res://sauce/control/relics/relic.tscn" id="1_38d0m"]
+[ext_resource type="Script" uid="uid://b4dakw4f6ffat" path="res://sauce/control/relics/aegis_shield/aegis_shield.gd" id="2_e77g4"]
+
+[node name="AegisShield" unique_id=1226305185 instance=ExtResource("1_38d0m")]
+script = ExtResource("2_e77g4")
+damage_reductin = 6
