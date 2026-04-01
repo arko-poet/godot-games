@@ -26,22 +26,11 @@ func process_actions(actions: Array[Action]) -> Array[Action]:
 
 
 func _on_combat_encounter_turn_started() -> void:
-	var actions: Array[Action] = []
-	for relic in relics:
-		for action in relic.turn_started():
-			relic.call()
-			actions.append(action)
-	
-	_pass_relic_actions(actions)
+	_on_event("turn_started")
 
 
 func _on_combat_encounter_card_played() -> void:
-	var actions: Array[Action] = []
-	for relic in relics:
-		for action in relic.card_played():
-			actions.append(action)
-	
-	_pass_relic_actions(actions)
+	_on_event("card_played")
 
 
 func _pass_relic_actions(actions: Array[Action]) -> void:
@@ -50,9 +39,13 @@ func _pass_relic_actions(actions: Array[Action]) -> void:
 
 
 func _on_combat_encounter_turn_ended() -> void:
+	_on_event("turn_ended")
+
+
+func _on_event(relic_function: String) -> void:
 	var actions: Array[Action] = []
 	for relic in relics:
-		for action in relic.turn_ended():
+		for action in relic.call(relic_function):
 			actions.append(action)
 	
 	_pass_relic_actions(actions)
