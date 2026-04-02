@@ -1,3 +1,4 @@
+## everything needed for processing combat
 class_name CombatEncounter
 extends Control
 
@@ -18,7 +19,7 @@ var block: int:
 	set(value):
 		block = value
 		block_label.text = "BLOCK: %s" % value
-var strength: int: # TODO update cards in hand to account for strength
+var strength: int:
 	set(value):
 		strength = value
 		strength_label.text = "STRENGTH: %s" % value
@@ -34,8 +35,9 @@ var monster: Monster
 @onready var dimmer: ColorRect = $Dimmer
 
 
-func new_encounter(new_monster: Monster) -> void:
-	monster = new_monster
+## initialise new encounter by resetting to base state
+func new_encounter(spawn_monster: Monster) -> void:
+	monster = spawn_monster
 	mana = game_run.MAX_MANA
 	strength = 0
 	block = 0
@@ -63,17 +65,24 @@ func draw_card() -> void:
 	_update_pile_labels()
 
 
+func turn_dimmer(on: bool) -> void:
+	dimmer.visible = on
+
+
+func hit_player(damage: int) -> void:
+	var damage_left = max(0, damage - block)
+	block = max(0, block - damage)
+	game_run.hp -= damage_left
+
+
 func _shuffle_discard_pile() -> void:
 	for i in discard_pile.size():
 		var card: Card = discard_pile.pop_front()
 		draw_pile.append(card)
 	draw_pile.shuffle()
-	assert(discard_pile.is_empty())
 
 
 func _on_hand_card_played(card: Card) -> void:
-	assert(mana >= card.cost)
-	assert(card.actions != [])
 	mana -= card.cost
 	_execute_actions(game_run.relic_manager.process_actions(card.actions))
 	_discard_card(card)
@@ -86,27 +95,28 @@ func _discard_card(card: Card) -> void:
 	_update_pile_labels()
 
 
+## called after actions have been processed by relic manager
 func _execute_actions(actions: Array[Action]) -> void:
 	for action in actions:
 		var val = action.value
 		match action.type:
-			Action.ActionType.ATTACK:
+			Action.Type.ATTACK:
 				for i in range(action.repeats):
 					_attack(val)
-			Action.ActionType.BLOCK:
+			Action.Type.BLOCK:
 				block += val
-			Action.ActionType.DRAW:
+			Action.Type.DRAW:
 				for i in range(val):
 					draw_card()
-			Action.ActionType.HEAL:
+			Action.Type.HEAL:
 				game_run.hp += val
-			Action.ActionType.STRENGTH:
+			Action.Type.STRENGTH:
 				strength += val
-			Action.ActionType.MAX_HP:
+			Action.Type.MAX_HP:
 				game_run.max_hp += val
-			Action.ActionType.MANA:
+			Action.Type.MANA:
 				mana += val
-			Action.ActionType.COST:
+			Action.Type.COST:
 				hand.reduce_card_costs(val)
 			_:
 				push_error("unknown action type: %s" % action)
@@ -137,17 +147,6 @@ func _on_end_turn_button_pressed() -> void:
 	block = 0
 	
 	turn_started.emit()
-
-
-func turn_dimmer(on: bool) -> void:
-	dimmer.visible = on
-
-
-func hit_player(damage: int) -> void:
-	print("hit")
-	var damage_left = max(0, damage - block)
-	block = max(0, block - damage)
-	game_run.hp -= damage_left
 
 
 func _on_relic_manager_relic_actions_created(actions: Array[Action]) -> void:

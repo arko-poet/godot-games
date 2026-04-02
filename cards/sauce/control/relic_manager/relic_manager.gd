@@ -15,6 +15,7 @@ var remaining_relics := [
 @onready var relic_grid: GridContainer = $RelicGrid
 
 
+## generally all combat actions should be passed through this function before they are executed
 func process_actions(actions: Array[Action]) -> Array[Action]:
 	var new_actions: Array[Action] = []
 	for action in actions:
@@ -25,6 +26,7 @@ func process_actions(actions: Array[Action]) -> Array[Action]:
 	return new_actions
 
 
+## only 1 relic of each kind can exist in a game run
 func get_new_relic() -> Relic:
 	if remaining_relics.is_empty():
 		return null

@@ -43,7 +43,7 @@ func _attack() -> void:
 	animations.play(&"idle")
 	
 	var action := Action.new()
-	action.type = Action.ActionType.ATTACK
+	action.type = Action.Type.ATTACK
 	action.value = damage
 	action.monster_action = true
 	var actions: Array[Action] = []

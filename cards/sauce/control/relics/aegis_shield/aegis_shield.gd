@@ -1,23 +1,23 @@
 extends Relic
 
-@export_range(0, 100) var damage_reductin: int
+@export_range(0, 100) var damage_reduction: int
 
-var used := false
-
-
-func _set_tooltip():
-	icon.tooltip_text = "AegisShield: the first time you take damage each turn, reduce it by %s" % damage_reductin
+var effect_consumed := false
 
 
 func turn_ended() -> Array[Action]:
-	used = false
+	effect_consumed = false
 	return []
 
 
 func process_action(action: Action) -> Array[Action]:
-	if action.type == Action.ActionType.ATTACK and action.monster_action:
-		if not used:
-			used = true
-			action.value -= damage_reductin
+	if action.type == Action.Type.ATTACK and action.monster_action:
+		if not effect_consumed:
+			effect_consumed = true
+			action.value -= damage_reduction
 			_trigger_effect()
 	return []
+
+
+func _set_tooltip():
+	icon.tooltip_text = "AegisShield: the first time you take damage each turn, reduce it by %s" % damage_reduction

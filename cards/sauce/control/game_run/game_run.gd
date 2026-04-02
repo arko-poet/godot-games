@@ -1,3 +1,5 @@
+## owns game properties that persist across encounters
+## also responsible for managing flow between ui scenes
 class_name GameRun
 extends Control
 
@@ -36,7 +38,7 @@ var encounter_num := 0:
 @onready var encounter_label: Label = $HBoxContainer/EncounterLabel
 @onready var next_button: Button = $NextButton
 @onready var relic_manager: RelicManager = $RelicManager
-@onready var rewards: RewardsPanel = $Rewards
+@onready var rewards_panel: RewardsPanel = $RewardsPanel
 
 
 func _ready() -> void:
@@ -54,32 +56,32 @@ func combat_finished() -> void:
 	_get_rewards()
 
 
-func _get_rewards() -> void:
-	rewards.new_rewards(relic_manager.get_new_relic())
-	rewards.show()
-
-
 func execute_monster_actions(actions: Array[Action]) -> void:
 	for action in actions:
-		if action.type == Action.ActionType.ATTACK:
+		if action.type == Action.Type.ATTACK:
 			hp -= action.value
+			
+			
+func next_encounter(monster: Monster) -> void:
+	combat_encounter.new_encounter(monster)
+	encounter_num += 1
+			
+			
+func _get_rewards() -> void:
+	rewards_panel.new_rewards(relic_manager.get_new_relic())
+	rewards_panel.show()
 
 
 func _starter_deck() -> void:
 	for i in range(6):
 		var card: Card = CardScene.instantiate()
-		card.properties = card_data["Bozo Attack"]
+		card.default_properties = card_data["Bozo Attack"]
 		_add_card(card)
 	
 	for i in range(6):
 		var card: Card = CardScene.instantiate()
-		card.properties = card_data["Bozo Block"]
+		card.default_properties = card_data["Bozo Block"]
 		_add_card(card)
-
-
-func next_encounter(monster: Monster) -> void:
-	combat_encounter.new_encounter(monster)
-	encounter_num += 1
 
 
 func _on_card_choice_card_chosen(card: Card) -> void:
@@ -87,18 +89,17 @@ func _on_card_choice_card_chosen(card: Card) -> void:
 		_add_card(card)
 		
 	card_choice.hide()
-	rewards.show()
-	rewards.card_chosen()
+	rewards_panel.show()
+	rewards_panel.card_chosen()
 
 
 func _choose_cards() -> void:
-	# TODO prevent hand from interacting 
 	var card_keys = card_data.keys()
 	card_keys.shuffle()
 	var cards: Array[Card] = []
 	for i in range(CARD_CHOICE_SIZE):
 		var card: Card = CardScene.instantiate()
-		card.properties = card_data[card_keys[i]]
+		card.default_properties = card_data[card_keys[i]]
 		cards.append(card)
 	card_choice.new_card_choice(cards)
 	card_choice.show()
@@ -106,7 +107,6 @@ func _choose_cards() -> void:
 
 
 func _add_card(card: Card) -> void:
-	assert(card)
 	deck.add_card(card)
 	_update_deck_label()
 
@@ -134,13 +134,13 @@ func _on_next_button_pressed() -> void:
 
 
 func _on_rewards_rewards_claimed() -> void:
-	rewards.hide()
+	rewards_panel.hide()
 	combat_encounter.turn_dimmer(false)
 	next_button.show()
 
 
 func _on_rewards_card_choice_requested() -> void:
-	rewards.hide()
+	rewards_panel.hide()
 	_choose_cards()
 
 

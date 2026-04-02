@@ -5,15 +5,15 @@ signal enemies_defeated
 
 const TurdScene := preload("res://sauce/2d/monster/turd.tscn")
 
-const MONSTER_COORDIANTES := Vector2(1280, 580)
+const MONSTER_COORDINATES := Vector2(1280, 580)
 
 @onready var monster: Monster = $Tentacle
 @onready var character: Node2D = $Character
 
 
-func new_monster() -> Monster:
+func spawn_monster() -> Monster:
 	monster = TurdScene.instantiate()
-	monster.position = MONSTER_COORDIANTES
+	monster.position = MONSTER_COORDINATES
 	monster.monster_died.connect(_on_monster_died)
 	add_child(monster)
 	return monster

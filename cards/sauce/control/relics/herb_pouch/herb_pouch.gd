@@ -17,7 +17,7 @@ func card_played() -> Array[Action]:
 	if card_played_counter == trigger_at:
 		card_played_counter = -1
 		var action := Action.new()
-		action.type = Action.ActionType.COST
+		action.type = Action.Type.COST
 		action.value = COST_REDUCTION
 		return [action]
 	return []

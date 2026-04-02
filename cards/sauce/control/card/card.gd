@@ -6,7 +6,7 @@ signal card_exited(card: Card)
 
 const SHADOW_SIZE := 12
 
-var properties: Dictionary ## default card properties, before any modifications
+var default_properties: Dictionary ## used for initialization and resetting to defaults
 var cost: int:
 	set(value):
 		cost = max(0, value)
@@ -23,19 +23,19 @@ var playable := false:
 
 
 func _ready() -> void:
-	if not properties:
+	if not default_properties:
 		return
-	name_label.text = properties["name"]
-	cost = int(properties["cost"])
+	name_label.text = default_properties["name"]
+	cost = int(default_properties["cost"])
 	
-	for action in properties["actions"]:
+	for action in default_properties["actions"]:
 		actions.append(Action.new(action))
 	
 	_set_description()
 
 
 func set_to_default_properties() -> void:
-	cost = int(properties["cost"])
+	cost = int(default_properties["cost"])
 
 
 func _set_description() -> void:
@@ -43,20 +43,20 @@ func _set_description() -> void:
 	for action in actions:
 		var val = action.value
 		match action.type:
-			Action.ActionType.ATTACK:
+			Action.Type.ATTACK:
 				if action.repeats == 1:
 					description += "Deals %s damage. " % action.value
 				else:
 					description += "Deals %s damage %s times. " % [val, action.repeats]
-			Action.ActionType.BLOCK:
+			Action.Type.BLOCK:
 				description += "Adds %s block. " % val
-			Action.ActionType.DRAW:
+			Action.Type.DRAW:
 				description += "Draw %s cards. " % val
-			Action.ActionType.HEAL:
+			Action.Type.HEAL:
 				description += "Heals for %s. " % val
-			Action.ActionType.STRENGTH:
+			Action.Type.STRENGTH:
 				description += "Increase strength by %s. " % val
-			Action.ActionType.MAX_HP:
+			Action.Type.MAX_HP:
 				description += "Increase max hp by %s." % val
 			_:
 				push_error("unrecognised action name: %s" % action)

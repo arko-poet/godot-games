@@ -1,5 +1,5 @@
 class_name RewardsPanel
-extends Control
+extends Panel
 
 signal rewards_claimed
 signal relic_claimed(relic: Relic)
@@ -7,9 +7,9 @@ signal card_choice_requested
 
 var relic: Relic
 
-@onready var card_choice: Button = $Panel/RewardChoices/CardChoice
-@onready var relic_choice: Button = $Panel/RewardChoices/RelicChoice
-@onready var reward_choices: VBoxContainer = $Panel/RewardChoices
+@onready var card_choice: Button = $RewardChoices/CardChoice
+@onready var relic_choice: Button = $RewardChoices/RelicChoice
+@onready var reward_choices: VBoxContainer = $RewardChoices
 
 
 func new_rewards(new_relic: Relic) -> void:

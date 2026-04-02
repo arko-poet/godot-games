@@ -2,16 +2,16 @@ extends Node2D
 
 signal player_died
 
-@onready var animation: AnimationPlayer = $Animation
+@onready var animations: AnimationPlayer = $Animation
+
 
 func attack() -> void:
-	if animation.current_animation != &"attack":
-		animation.animation_set_next(&"attack", &"idle")
-		animation.play(&"attack")
+	if animations.current_animation != &"attack":
+		animations.animation_set_next(&"attack", &"idle")
+		animations.play(&"attack")
 	
 
 func die() -> void:
-	animation.play(&"death")
-	await animation.animation_finished
+	animations.play(&"death")
+	await animations.animation_finished
 	player_died.emit()
-	

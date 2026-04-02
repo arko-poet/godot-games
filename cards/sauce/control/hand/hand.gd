@@ -44,26 +44,6 @@ func _get_minimum_size() -> Vector2:
 	return card_size
 
 
-func _arrange_cards() -> void:
-	var fan_radius := size.x
-	var count = get_child_count()
-	var total_angle = min(max_angle, angle_per_card * (count - 1))
-	for i in count:
-		var card: Control = get_child(i)
-		
-		var interpolation_weight = 0.5
-		if count > 1:
-			interpolation_weight = float(i) / (count - 1)
-		var angle = deg_to_rad(lerp(-total_angle, total_angle, interpolation_weight))
-		var offset = Vector2(0.5 * (fan_radius - card_size.x), fan_radius)
-		
-		
-		fit_child_in_rect(card, Rect2(Vector2(sin(angle), -cos(angle)) * fan_radius + offset,  card_size))
-		card.rotation =  angle
-		card.z_index = 0 
-		card.scale = Vector2(0.8, 0.8)
-
-
 func add_card(card: Card) -> void:
 	if get_child_count() == 10:
 		_reject_card(card)
@@ -80,12 +60,20 @@ func pop_card() -> void:
 		return
 
 
-func reduce_card_costs(cost_reduction: int):
-	for child in get_children():
-		if child is not Card:
-			continue
-		(child as Card).cost -= cost_reduction
-	cost_changed.emit()
+func clear() -> Array[Card]:
+	var cards: Array[Card] = []
+	for c in get_children():
+		cards.append(c)
+		remove_card(c)
+	active_card = null
+	next_candidate = null
+	return cards
+
+
+func remove_card(card: Card) -> void:
+	remove_child(card)
+	card.disconnect("card_entered", _on_card_entered)
+	card.disconnect("card_exited", _on_card_exited)
 
 
 func set_to_default_card_properties() -> void:
@@ -96,18 +84,37 @@ func set_to_default_card_properties() -> void:
 	cost_changed.emit()
 
 
+## cards are arranged in a fan shape
+func _arrange_cards() -> void:
+	var fan_radius := size.x
+	var count = get_child_count()
+	var total_angle = min(max_angle, angle_per_card * (count - 1))
+	for i in count:
+		var card: Control = get_child(i)
+		
+		var interpolation_weight = 0.5
+		if count > 1:
+			interpolation_weight = float(i) / (count - 1)
+		var angle = deg_to_rad(lerp(-total_angle, total_angle, interpolation_weight))
+		var offset = Vector2(0.5 * (fan_radius - card_size.x), fan_radius)
+		
+		
+		fit_child_in_rect(card, Rect2(Vector2(sin(angle), -cos(angle)) * fan_radius + offset, card_size))
+		card.rotation = angle
+		card.z_index = 0
+		card.scale = Vector2(0.8, 0.8)
+
+
+func reduce_card_costs(cost_reduction: int):
+	for child in get_children():
+		if child is not Card:
+			continue
+		(child as Card).cost -= cost_reduction
+	cost_changed.emit()
+
+
 func _on_sort_children() -> void:
 	_arrange_cards()
-
-
-func clear() -> Array[Card]:
-	var cards: Array[Card] = []
-	for c in get_children():
-		cards.append(c)
-		remove_card(c)
-	active_card = null
-	next_candidate = null
-	return cards
 
 
 func _on_card_entered(card: Card) -> void:
@@ -133,8 +140,10 @@ func _on_gui_input(event: InputEvent) -> void:
 		_stop_dragging(event.button_index != MOUSE_BUTTON_RIGHT)
 
 
-## play is true if intent is to play a card, otherwise intent is to drop it
+## called when card is released
+## play is true if intent is to play a card, otherwise back to hand
 func _stop_dragging(play: bool) -> void:
+	# check if card above hand and play if so, otherwise drop it back to hand
 	if active_card.global_position.y + active_card.size.y < global_position.y and play:
 		_play_card(active_card)
 		is_dragging = false
@@ -152,7 +161,6 @@ func _stop_dragging(play: bool) -> void:
 
 
 func _play_card(card: Card) -> void:
-	assert(card in get_children())
 	remove_card(card)
 	card_played.emit(card)
 
@@ -178,17 +186,8 @@ func _reject_card(card: Card) -> void:
 	card_rejected.emit(card)
 
 
-func remove_card(card: Card) -> void:
-	remove_child(card)
-	card.disconnect("card_entered", _on_card_entered)
-	card.disconnect("card_exited", _on_card_exited)
-
-
 func _on_combat_encounter_turn_ended() -> void:
-	# set default card properties
 	for child in get_children():
 		if child is not Card:
 			continue
 		child.set_to_default_properties()
-		
-	

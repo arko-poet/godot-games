@@ -16,12 +16,11 @@ func new_card_choice(cards: Array[Card]) -> void:
 		card.card_entered.connect(_on_card_entered)
 		card.card_exited.connect(_on_card_exited)
 		
-		assert(card)
 		card_container.add_child(card)
 
 
 func _on_skip_button_pressed() -> void:
-	emit_signal("card_chosen", null)
+	card_chosen.emit(null)
 	_clear()
 	
 	
@@ -41,7 +40,7 @@ func _on_card_container_gui_input(event: InputEvent) -> void:
 		selected_card.disconnect("card_entered", _on_card_entered)
 		selected_card.disconnect("card_exited", _on_card_exited)
 		card_container.remove_child(selected_card)
-		emit_signal("card_chosen", chosen_card)
+		card_chosen.emit(chosen_card)
 		_clear()
 		
 
