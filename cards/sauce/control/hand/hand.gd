@@ -154,7 +154,7 @@ func _stop_dragging(play: bool) -> void:
 func _play_card(card: Card) -> void:
 	assert(card in get_children())
 	remove_card(card)
-	emit_signal("card_played", card)
+	card_played.emit(card)
 
 
 func _is_hovering(card: Card) -> bool:
@@ -175,7 +175,7 @@ func _start_hovering() -> void:
 
 
 func _reject_card(card: Card) -> void:
-	emit_signal("card_rejected", card)
+	card_rejected.emit(card)
 
 
 func remove_card(card: Card) -> void:

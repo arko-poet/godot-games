@@ -64,11 +64,11 @@ func _set_description() -> void:
 
 
 func _on_mouse_entered() -> void:
-	emit_signal("card_entered", self)
+	card_entered.emit(self)
 
 
 func _on_mouse_exited() -> void:
-	emit_signal("card_exited", self)
+	card_exited.emit(self)
 
 
 func _switch_shadow(on: bool) -> void:

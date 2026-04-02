@@ -34,7 +34,7 @@ func _on_card_choice_pressed() -> void:
 
 
 func _on_relic_choice_pressed() -> void:
-	emit_signal("relic_claimed", relic)
+	relic_claimed.emit(relic)
 	relic = null
 	reward_choices.remove_child(relic_choice)
 	_reward_claimed()

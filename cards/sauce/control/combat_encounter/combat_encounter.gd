@@ -113,7 +113,7 @@ func _execute_actions(actions: Array[Action]) -> void:
 
 
 func _attack(damage: int):
-	emit_signal("monster_attacked", damage + strength)
+	monster_attacked.emit(damage + strength)
 
 
 func _on_hand_card_rejected(card: Card) -> void:

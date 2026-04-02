@@ -49,7 +49,7 @@ func _on_combat_encounter_card_played() -> void:
 
 func _pass_relic_actions(actions: Array[Action]) -> void:
 	if not actions.is_empty():
-		emit_signal("relic_actions_created", actions)
+		relic_actions_created.emit(actions)
 
 
 func _on_combat_encounter_turn_ended() -> void:
