@@ -93,6 +93,8 @@ Dates: 2026-03-12 → WIP
 - msaa
 - turn based combat
 - 2D model rigging
-- 2D skeleton inverse kinematics
+- inverse kinematics
+- Control components for debugging
+- utilising StringName and NodePath instead of String for efficiency
 ### New Godot Nodes learned
-Container, Skeleton2D, Bone2D, ScrollContainer
+Container, Skeleton2D, Bone2D, ScrollContainer, Panel

@@ -33,8 +33,8 @@ func card_played() -> Array[Action]:
 
 func _trigger_effect() -> void:
 	var t = create_tween()
-	t.tween_property(self, "scale", TRIGGER_SIZE, 0.1)
-	t.tween_property(self, "scale", Vector2.ONE, 0.3)
+	t.tween_property(self, ^"scale", TRIGGER_SIZE, 0.1)
+	t.tween_property(self, ^"scale", Vector2.ONE, 0.3)
 	
 
 func _ready_effect(on: bool) -> void:

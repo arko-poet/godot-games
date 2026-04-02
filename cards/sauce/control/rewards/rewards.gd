@@ -15,9 +15,9 @@ var relic: Relic
 func new_rewards(new_relic: Relic) -> void:
 	if new_relic:
 		relic = new_relic
-		relic_choice.add_theme_color_override("icon_normal_color", relic.modulate)
-		relic_choice.add_theme_color_override("icon_hover_color", relic.modulate)
-		relic_choice.add_theme_color_override("icon_pressed_color", relic.modulate)
+		relic_choice.add_theme_color_override(&"icon_normal_color", relic.modulate)
+		relic_choice.add_theme_color_override(&"icon_hover_color", relic.modulate)
+		relic_choice.add_theme_color_override(&"icon_pressed_color", relic.modulate)
 	if reward_choices.get_child_count() == 1:
 		reward_choices.add_child(card_choice)
 		if relic:

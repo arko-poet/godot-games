@@ -40,11 +40,11 @@ func add_relic(relic: Relic) -> void:
 
 
 func _on_combat_encounter_turn_started() -> void:
-	_on_event("turn_started")
+	_on_event(&"turn_started")
 
 
 func _on_combat_encounter_card_played() -> void:
-	_on_event("card_played")
+	_on_event(&"card_played")
 
 
 func _pass_relic_actions(actions: Array[Action]) -> void:
@@ -53,10 +53,10 @@ func _pass_relic_actions(actions: Array[Action]) -> void:
 
 
 func _on_combat_encounter_turn_ended() -> void:
-	_on_event("turn_ended")
+	_on_event(&"turn_ended")
 
 
-func _on_event(relic_function: String) -> void:
+func _on_event(relic_function: StringName) -> void:
 	var actions: Array[Action] = []
 	for relic in relics:
 		for action in relic.call(relic_function):

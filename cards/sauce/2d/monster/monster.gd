@@ -14,13 +14,13 @@ var hp: int:
 		hp = min(max(0, value), max_hp)
 		hp_bar.max_value = max_hp
 		var hp_t = create_tween()
-		hp_t.tween_property(hp_bar, "value", value, 0.2)
+		hp_t.tween_property(hp_bar, ^"value", value, 0.2)
 		hp_label.text = "%s / %s" % [hp, max_hp]
 		if hp == 0:
 			monster_died.emit()
 			var death_t := create_tween()
 			death_t.finished.connect(queue_free)
-			death_t.tween_property(model, "self_modulate:a", 0, 0.5)
+			death_t.tween_property(model, ^"self_modulate:a", 0, 0.5)
 
 
 @onready var hp_bar: ProgressBar = $HPBar
@@ -38,9 +38,9 @@ func monster_turn() -> void:
 
 
 func _attack() -> void:
-	animations.play("attack")
+	animations.play(&"attack")
 	await animations.animation_finished
-	animations.play("idle")
+	animations.play(&"idle")
 	
 	var action := Action.new()
 	action.type = Action.ActionType.ATTACK
@@ -48,4 +48,4 @@ func _attack() -> void:
 	action.monster_action = true
 	var actions: Array[Action] = []
 	actions.append(action)
-	emit_signal("monster_acted", actions)
+	monster_acted.emit(actions)

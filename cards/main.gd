@@ -21,13 +21,13 @@ func _on_game_run_encounter_finished() -> void:
 	curtain.show()
 	
 	var t := create_tween()
-	t.tween_property(curtain, "modulate:a", 1.0, 0.8)
+	t.tween_property(curtain, ^"modulate:a", 1.0, 0.8)
 	await t.finished
 	_new_encounter()
 	
 	t = create_tween()
 	t.tween_interval(0.4)
-	t.tween_property(curtain, "modulate:a", 0.0, 0.8)
+	t.tween_property(curtain, ^"modulate:a", 0.0, 0.8)
 	t.finished.connect(curtain.hide)
 
 
@@ -51,6 +51,5 @@ func _on_character_player_died() -> void:
 
 
 func _on_monster_acted(actions: Array[Action]) -> void:
-	print("monster acted ")
 	var new_actions := game_run.relic_manager.process_actions(actions)
 	game_run.execute_monster_actions(new_actions)

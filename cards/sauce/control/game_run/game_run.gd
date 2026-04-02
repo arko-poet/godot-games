@@ -134,7 +134,6 @@ func _on_next_button_pressed() -> void:
 
 
 func _on_rewards_rewards_claimed() -> void:
-	print("yep")
 	rewards.hide()
 	combat_encounter.turn_dimmer(false)
 	next_button.show()
