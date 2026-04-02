@@ -39,6 +39,7 @@ var encounter_num := 0:
 @onready var next_button: Button = $NextButton
 @onready var relic_manager: RelicManager = $RelicManager
 @onready var rewards_panel: RewardsPanel = $RewardsPanel
+@onready var curtain: ColorRect = $Curtain
 
 
 func _ready() -> void:
@@ -129,7 +130,17 @@ func _update_hp_label() -> void:
 
 
 func _on_next_button_pressed() -> void:
+	curtain.show()
+	
+	var t := create_tween()
+	t.tween_property(curtain, ^"modulate:a", 1.0, 0.8)
+	await t.finished
 	encounter_finished.emit()
+	
+	t = create_tween()
+	t.tween_interval(0.4)
+	t.tween_property(curtain, ^"modulate:a", 0.0, 0.8)
+	t.finished.connect(curtain.hide)
 	next_button.hide()
 
 
