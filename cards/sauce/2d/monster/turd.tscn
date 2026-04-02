@@ -19,9 +19,10 @@ _data = {
 &"idle": SubResource("Animation_ey36a")
 }
 
-[node name="Turd" unique_id=422500346 instance=ExtResource("1_ey36a")]
+[node name="Turd" unique_id=422500346 node_paths=PackedStringArray("animations") instance=ExtResource("1_ey36a")]
 max_hp = 100
 damage = 10
+animations = NodePath("Animations")
 
 [node name="HPLabel" parent="." index="1" unique_id=528076717]
 offset_left = -35.0
@@ -66,5 +67,5 @@ texture = ExtResource("6_j4y00")
 flip_h = true
 metadata/_edit_group_ = true
 
-[node name="Animations" parent="." index="3" unique_id=205958896]
+[node name="Animations" type="AnimationPlayer" parent="." index="3" unique_id=1000833814]
 libraries/ = SubResource("AnimationLibrary_8cicv")
