@@ -4,6 +4,7 @@ extends Node2D
 signal enemies_defeated
 
 const TurdScene := preload("res://sauce/2d/monster/turd.tscn")
+const TentacleScene := preload("res://sauce/2d/monster/tentacle.tscn")
 
 const MONSTER_COORDINATES := Vector2(1280, 580)
 
@@ -11,8 +12,11 @@ const MONSTER_COORDINATES := Vector2(1280, 580)
 @onready var character: Node2D = $Character
 
 
-func spawn_monster() -> Monster:
-	monster = TurdScene.instantiate()
+func spawn_monster(encounter_number: int) -> Monster:
+	if encounter_number % 2 == 0:
+		monster = TurdScene.instantiate()
+	else:
+		monster = TentacleScene.instantiate()
 	monster.position = MONSTER_COORDINATES
 	monster.monster_died.connect(_on_monster_died)
 	add_child(monster)

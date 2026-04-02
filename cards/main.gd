@@ -32,7 +32,7 @@ func _on_game_run_encounter_finished() -> void:
 
 
 func _new_encounter() -> void:
-	var monster := world.spawn_monster()
+	var monster := world.spawn_monster(game_run.encounter_num + 1)
 	game_run.next_encounter(monster)
 	monster.monster_acted.connect(_on_monster_acted)
 
