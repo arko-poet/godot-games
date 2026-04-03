@@ -64,6 +64,16 @@ func draw_card() -> void:
 	_update_pile_labels()
 
 
+func start_turn() -> void:
+	turn_started.emit()
+	for c in hand.clear():
+		discard_pile.append(c)
+	for i in range(game_run.STARTING_HAND_SIZE):
+		draw_card()
+	mana = game_run.MAX_MANA
+	block = 0
+
+
 func hit_player(damage: int) -> void:
 	var damage_left = max(0, damage - block)
 	block = max(0, block - damage)
@@ -132,16 +142,7 @@ func _update_pile_labels() -> void:
 
 func _on_end_turn_button_pressed() -> void:
 	turn_ended.emit()
-	
 	monster.monster_turn()
-	for c in hand.clear():
-		discard_pile.append(c)
-	for i in range(game_run.STARTING_HAND_SIZE):
-		draw_card()
-	mana = game_run.MAX_MANA
-	block = 0
-	
-	turn_started.emit()
 
 
 func _on_relic_manager_relic_actions_created(actions: Array[Action]) -> void:

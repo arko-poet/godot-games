@@ -61,7 +61,8 @@ func combat_finished() -> void:
 func execute_monster_actions(actions: Array[Action]) -> void:
 	for action in actions:
 		if action.type == Action.Type.ATTACK:
-			hp -= action.value
+			combat_encounter.hit_player(action.value)
+	combat_encounter.start_turn()
 			
 			
 func next_encounter(monster: Monster) -> void:
