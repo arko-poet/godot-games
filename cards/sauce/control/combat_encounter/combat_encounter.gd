@@ -45,8 +45,6 @@ func new_encounter(spawn_monster: Monster) -> void:
 	discard_pile.clear()
 	draw_pile = game_run.deck.get_card_copies()
 	draw_pile.shuffle()
-	for i in range(game_run.STARTING_HAND_SIZE):
-		draw_card()
 	
 	show()
 	start_turn()
@@ -66,12 +64,11 @@ func draw_card() -> void:
 
 
 func start_turn() -> void:
-	for c in hand.clear():
-		discard_pile.append(c)
 	for i in range(game_run.STARTING_HAND_SIZE):
 		draw_card()
 	mana = game_run.MAX_MANA
 	block = 0
+	end_turn_button.show()
 	turn_started.emit()
 
 
@@ -142,6 +139,9 @@ func _update_pile_labels() -> void:
 
 
 func _on_end_turn_button_pressed() -> void:
+	end_turn_button.hide()
+	for c in hand.clear():
+		discard_pile.append(c)
 	turn_ended.emit()
 	monster.monster_turn()
 
