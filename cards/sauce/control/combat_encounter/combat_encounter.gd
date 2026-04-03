@@ -32,7 +32,6 @@ var monster: Monster
 @onready var end_turn_button: Button = $EndTurnButton
 @onready var block_label: Label = $PlayerStatsBox/BlockLabel
 @onready var strength_label: Label = $PlayerStatsBox/StrengthLabel
-@onready var dimmer: ColorRect = $Dimmer
 
 
 ## initialise new encounter by resetting to base state
@@ -63,10 +62,6 @@ func draw_card() -> void:
 			draw_card()
 
 	_update_pile_labels()
-
-
-func turn_dimmer(on: bool) -> void:
-	dimmer.visible = on
 
 
 func hit_player(damage: int) -> void:

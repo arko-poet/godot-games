@@ -40,6 +40,7 @@ var encounter_num := 0:
 @onready var relic_manager: RelicManager = $RelicManager
 @onready var rewards_panel: RewardsPanel = $RewardsPanel
 @onready var curtain: ColorRect = $Curtain
+@onready var dimmer: ColorRect = $Dimmer
 
 
 func _ready() -> void:
@@ -68,7 +69,12 @@ func next_encounter(monster: Monster) -> void:
 	encounter_num += 1
 			
 			
+func turn_dimmer(on: bool) -> void:
+	dimmer.visible = on
+			
+			
 func _get_rewards() -> void:
+	turn_dimmer(true)
 	rewards_panel.new_rewards(relic_manager.get_new_relic())
 	rewards_panel.show()
 
@@ -104,7 +110,6 @@ func _choose_cards() -> void:
 		cards.append(card)
 	card_choice.new_card_choice(cards)
 	card_choice.show()
-	combat_encounter.turn_dimmer(true)
 
 
 func _add_card(card: Card) -> void:
@@ -119,10 +124,10 @@ func _update_deck_label() -> void:
 func _on_deck_label_pressed() -> void:
 	if deck.visible:
 		deck.hide()
-		combat_encounter.turn_dimmer(false)
+		turn_dimmer(false)
 	else:
 		deck.show()
-		combat_encounter.turn_dimmer(true)
+		turn_dimmer(true)
 
 
 func _update_hp_label() -> void:
@@ -146,7 +151,7 @@ func _on_next_button_pressed() -> void:
 
 func _on_rewards_rewards_claimed() -> void:
 	rewards_panel.hide()
-	combat_encounter.turn_dimmer(false)
+	turn_dimmer(false)
 	next_button.show()
 
 

@@ -72,16 +72,6 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "END TURN"
 
-[node name="Dimmer" type="ColorRect" parent="." unique_id=1196509942]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.4509804)
-
 [connection signal="turn_ended" from="." to="Hand" method="_on_combat_encounter_turn_ended"]
 [connection signal="card_played" from="Hand" to="." method="_on_hand_card_played"]
 [connection signal="card_rejected" from="Hand" to="." method="_on_hand_card_rejected"]
