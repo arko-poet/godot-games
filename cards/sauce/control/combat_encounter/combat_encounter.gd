@@ -49,6 +49,7 @@ func new_encounter(spawn_monster: Monster) -> void:
 		draw_card()
 	
 	show()
+	start_turn()
 
 
 func draw_card() -> void:
@@ -65,13 +66,13 @@ func draw_card() -> void:
 
 
 func start_turn() -> void:
-	turn_started.emit()
 	for c in hand.clear():
 		discard_pile.append(c)
 	for i in range(game_run.STARTING_HAND_SIZE):
 		draw_card()
 	mana = game_run.MAX_MANA
 	block = 0
+	turn_started.emit()
 
 
 func hit_player(damage: int) -> void:
