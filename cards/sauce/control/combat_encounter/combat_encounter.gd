@@ -65,6 +65,7 @@ func draw_card() -> void:
 
 func start_turn() -> void:
 	for i in range(game_run.STARTING_HAND_SIZE):
+		await get_tree().create_timer(0.2).timeout
 		draw_card()
 	mana = game_run.MAX_MANA
 	block = 0

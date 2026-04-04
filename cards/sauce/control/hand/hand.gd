@@ -86,11 +86,14 @@ func set_to_default_card_properties() -> void:
 
 ## cards are arranged in a fan shape
 func _arrange_cards() -> void:
+	print("arrange")
+	if active_card and _is_hovering(active_card):
+		return
 	var fan_radius := size.x
 	var count = get_child_count()
 	var total_angle = min(max_angle, angle_per_card * (count - 1))
 	for i in count:
-		var card: Control = get_child(i)
+		var card: Card = get_child(i)
 		
 		var interpolation_weight = 0.5
 		if count > 1:
@@ -99,8 +102,19 @@ func _arrange_cards() -> void:
 		var offset = Vector2(0.5 * (fan_radius - card_size.x), fan_radius)
 		
 		
-		fit_child_in_rect(card, Rect2(Vector2(sin(angle), -cos(angle)) * fan_radius + offset, card_size))
-		card.rotation = angle
+		#fit_child_in_rect(card, Rect2(Vector2(sin(angle), -cos(angle)) * fan_radius + offset, card_size))
+		#card.rotation = angle
+		#card.position = Vector2(sin(angle), -cos(angle)) * fan_radius + offset
+		var target_position = Vector2(sin(angle), -cos(angle)) * fan_radius + offset
+		if card == active_card or card.position == target_position:
+			continue
+		var t := card.transform_tween
+		if t and t.is_running():
+			t.stop()
+		t = create_tween()
+		t.set_parallel()
+		t.tween_property(card, ^"rotation", angle, 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		t.tween_property(card, ^"position", target_position, 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		card.z_index = 0
 		card.scale = Vector2(0.8, 0.8)
 
@@ -171,6 +185,8 @@ func _is_hovering(card: Card) -> bool:
 
 
 func _start_hovering() -> void:
+	if active_card.transform_tween and active_card.transform_tween.is_running():
+		active_card.transform_tween.stop()
 	if is_dragging:
 		return
 	active_card.z_index = 1

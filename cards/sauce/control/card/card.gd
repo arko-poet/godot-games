@@ -16,6 +16,7 @@ var playable := false:
 	set(value):
 		playable = value
 		_switch_shadow(value)
+var transform_tween: Tween
 
 @onready var cost_label: Label = $CostLabel
 @onready var name_label: Label = $NameLabel
@@ -64,10 +65,15 @@ func _set_description() -> void:
 
 
 func _on_mouse_entered() -> void:
+	print("entered")
 	card_entered.emit(self)
 
 
 func _on_mouse_exited() -> void:
+	print("why")
+	#print(get_global_rect())
+	#if not get_global_rect().has_point(get_global_mouse_position()):
+		#print("exit")
 	card_exited.emit(self)
 
 
