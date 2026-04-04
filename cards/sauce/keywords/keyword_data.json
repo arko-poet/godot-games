@@ -1,0 +1,8 @@
+{
+	"strength": {
+		"description": "Increases hit damage by 1."
+	},
+	"block": {
+		"description": "Absorbs 1 unit of damage. Removed at the beginning of turn."
+	}
+}

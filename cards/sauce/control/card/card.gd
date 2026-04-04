@@ -19,7 +19,7 @@ var playable := false:
 
 @onready var cost_label: Label = $CostLabel
 @onready var name_label: Label = $NameLabel
-@onready var description_label: Label = $DescriptionLabel
+@onready var description_label: RichTextLabel = $DescriptionLabel
 
 
 func _ready() -> void:
@@ -60,7 +60,7 @@ func _set_description() -> void:
 				description += "Increase max hp by %s." % val
 			_:
 				push_error("unrecognised action name: %s" % action)
-	description_label.text = description
+	description_label.text = KeywordService.parse_text(description)
 
 
 func _on_mouse_entered() -> void:
@@ -75,3 +75,11 @@ func _switch_shadow(on: bool) -> void:
 	var sb: StyleBoxFlat = get_theme_stylebox(&"panel").duplicate()
 	sb.shadow_size = SHADOW_SIZE if on else 0
 	add_theme_stylebox_override(&"panel", sb)
+
+
+func _on_description_label_meta_hover_started(meta: Variant) -> void:
+	description_label.tooltip_text = KeywordService.get_description(meta)
+
+
+func _on_description_label_meta_hover_ended(_meta: Variant) -> void:
+	description_label.tooltip_text = ""

@@ -92,19 +92,19 @@ theme_override_font_sizes/font_size = 16
 text = "Long Card Name EEE"
 horizontal_alignment = 1
 
-[node name="DescriptionLabel" type="Label" parent="." unique_id=1437024395]
+[node name="DescriptionLabel" type="RichTextLabel" parent="." unique_id=16730898]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 184.0
 offset_right = 192.0
 offset_bottom = 272.0
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.9607843, 0.96862745, 0.98039216, 1)
-theme_override_font_sizes/font_size = 14
+mouse_filter = 1
+bbcode_enabled = true
 text = "Deal 10 damage 3 times. Draw a card. Heal for 5."
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="meta_hover_ended" from="DescriptionLabel" to="." method="_on_description_label_meta_hover_ended"]
+[connection signal="meta_hover_started" from="DescriptionLabel" to="." method="_on_description_label_meta_hover_started"]

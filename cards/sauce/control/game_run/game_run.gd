@@ -46,7 +46,7 @@ var encounter_num := 0:
 func _ready() -> void:
 	max_hp = STARTING_MAX_HP
 	hp = max_hp
-	card_data = load("res://sauce/control/card/cards.json").get_data()
+	card_data = load("res://sauce/control/card/cards.json").data
 	combat_encounter.game_run = self
 	_starter_deck()
 
