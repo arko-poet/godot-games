@@ -22,6 +22,7 @@ var is_dragging := false:
 			_arrange_cards()
 var drag_offset: Vector2 ## cursor offset relative to cursor when starting to drag
 var active_card: Card ## card that user is interacting with
+var active_index: int ## previous card index before it became active
 var next_candidate: Card ## most recent card hovered over thats not active_card
 
 
@@ -134,6 +135,9 @@ func _on_sort_children() -> void:
 func _on_card_entered(card: Card) -> void:
 	if not active_card:
 		active_card = card
+		active_index = active_card.get_index()
+		move_child(active_card, get_child_count() - 1)
+		print("start hovering")
 		_start_hovering()
 	else:
 		next_candidate = card
@@ -141,6 +145,7 @@ func _on_card_entered(card: Card) -> void:
 
 func _on_card_exited(card: Card) -> void:
 	if card == active_card and not is_dragging:
+		move_child(active_card, active_index)
 		active_card = null
 		_arrange_cards()
 

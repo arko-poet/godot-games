@@ -70,7 +70,7 @@ func _on_mouse_entered() -> void:
 
 
 func _on_mouse_exited() -> void:
-	print("why")
+	print("exited")
 	#print(get_global_rect())
 	#if not get_global_rect().has_point(get_global_mouse_position()):
 		#print("exit")
