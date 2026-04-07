@@ -17,6 +17,7 @@ func spawn_monster(encounter_number: int) -> Monster:
 		monster = TurdScene.instantiate()
 	else:
 		monster = TentacleScene.instantiate()
+	monster.combat_num = encounter_number
 	monster.position = MONSTER_COORDINATES
 	monster.monster_died.connect(_on_monster_died)
 	add_child(monster)

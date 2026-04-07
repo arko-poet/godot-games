@@ -18,7 +18,7 @@ func _on_world_player_attacked(damage: int) -> void:
 
 func _on_combat_encounter_monster_attacked(damage: int) -> void:
 	world.character.attack()
-	world.monster.hp -= damage
+	world.monster.hit(damage)
 
 
 func _on_game_run_player_died() -> void:

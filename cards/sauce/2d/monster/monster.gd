@@ -21,7 +21,10 @@ var hp: int:
 			var death_t := create_tween()
 			death_t.finished.connect(queue_free)
 			death_t.tween_property(model, ^"self_modulate:a", 0, 0.5)
-
+var block := 0
+var turn := 0
+var strength := 0
+var combat_num: int
 
 @onready var hp_bar: ProgressBar = $HPBar
 @onready var hp_label: Label = $HPLabel
@@ -29,7 +32,15 @@ var hp: int:
 
 
 func _ready() -> void:
+	max_hp += 10 * combat_num
 	hp = max_hp
+	damage += combat_num
+
+
+func hit(hit_damage: int) -> void:
+	var damage_left = max(0, hit_damage - block)
+	block = max(0, block - hit_damage)
+	hp -= damage_left
 
 
 func monster_turn() -> void:
@@ -44,7 +55,7 @@ func _attack() -> void:
 	
 	var action := Action.new()
 	action.type = Action.Type.ATTACK
-	action.value = damage
+	action.value = damage + strength
 	action.monster_action = true
 	var actions: Array[Action] = []
 	actions.append(action)

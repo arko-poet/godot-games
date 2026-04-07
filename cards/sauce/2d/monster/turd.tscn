@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://l4etchc72so5"]
 
 [ext_resource type="PackedScene" uid="uid://bq03x1x31y0x" path="res://sauce/2d/monster/monster.tscn" id="1_ey36a"]
+[ext_resource type="Script" uid="uid://bmhy8bhu4iahs" path="res://sauce/2d/monster/turd.gd" id="2_ey36a"]
 [ext_resource type="Texture2D" uid="uid://bmew8456w3fgm" path="res://assets/kenney_monster-builder-pack/PNG/Default/body_darkD.png" id="2_k8bxt"]
 [ext_resource type="Texture2D" uid="uid://bh1538tp6xphw" path="res://assets/kenney_monster-builder-pack/PNG/Default/eye_yellow.png" id="3_ey36a"]
 [ext_resource type="Texture2D" uid="uid://c30u1ftxqptjq" path="res://assets/kenney_monster-builder-pack/PNG/Default/detail_white_horn_small.png" id="4_8cicv"]
@@ -20,6 +21,7 @@ _data = {
 }
 
 [node name="Turd" unique_id=422500346 node_paths=PackedStringArray("animations") instance=ExtResource("1_ey36a")]
+script = ExtResource("2_ey36a")
 max_hp = 100
 damage = 10
 animations = NodePath("Animations")

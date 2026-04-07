@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dqg6jl0jxxhw4"]
 
 [ext_resource type="PackedScene" uid="uid://bq03x1x31y0x" path="res://sauce/2d/monster/monster.tscn" id="1_6rikr"]
+[ext_resource type="Script" uid="uid://pjrlkk7hd7qx" path="res://sauce/2d/monster/tentacle.gd" id="2_6rikr"]
 [ext_resource type="Texture2D" uid="uid://br15l74npb2t1" path="res://assets/kenney_monster-builder-pack/PNG/Default/arm_greenA.png" id="3_vg0t3"]
 [ext_resource type="Texture2D" uid="uid://jmjn4cwxhmjs" path="res://assets/kenney_monster-builder-pack/PNG/Default/body_greenF.png" id="4_qtaqu"]
 
@@ -50,7 +51,7 @@ bone_index = 4
 bone2d_node = NodePath("RootBone/InnerBone/InnerBone2/InnerBone3/TipBone")
 target_nodepath = NodePath("../../IKTarget/TipTarget")
 enable_constraint = true
-constraint_angle_min = -102.85697
+constraint_angle_min = -102.856964
 constraint_angle_max = 102.81197
 constraint_angle_invert = true
 constraint_in_localspace = true
@@ -118,6 +119,7 @@ _data = {
 }
 
 [node name="Tentacle" unique_id=422500346 node_paths=PackedStringArray("animations") instance=ExtResource("1_6rikr")]
+script = ExtResource("2_6rikr")
 max_hp = 50
 damage = 15
 animations = NodePath("Animations")
