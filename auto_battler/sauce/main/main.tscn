@@ -1,3 +1,27 @@
 [gd_scene format=3 uid="uid://cbvq8476axeuk"]
 
+[ext_resource type="PackedScene" uid="uid://dhvxcoqjnxbr" path="res://sauce/inventory/inventory.tscn" id="1_8ckbp"]
+
 [node name="Main" type="Node" unique_id=438263722]
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=377305203]
+
+[node name="UI" type="Control" parent="UILayer" unique_id=250529519]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Inventory" parent="UILayer/UI" unique_id=543163270 instance=ExtResource("1_8ckbp")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -74.0
+offset_right = -144.0
+offset_bottom = -74.0
