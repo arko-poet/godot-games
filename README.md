@@ -109,3 +109,10 @@ PanelContainer, RichTextLabel, NavigationAgent2D, CPUParticles2D, GPUParticles2D
 - global keyword highlighting with tooltips
 ### New Godot Nodes learned
 Container, Skeleton2D, Bone2D, ScrollContainer, Panel
+
+## 6. `Auto Battler` - based on Backpack Battles
+2026-04-08 -> WIP
+![](screenshots/auto-battler.png)
+### What I learned
+- 
+### New Godot Nodes learned
