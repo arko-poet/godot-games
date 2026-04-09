@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://cbvq8476axeuk"]
 
 [ext_resource type="PackedScene" uid="uid://dhvxcoqjnxbr" path="res://sauce/inventory/inventory.tscn" id="1_8ckbp"]
+[ext_resource type="Script" uid="uid://bk25fwts4x76a" path="res://sauce/main/main.gd" id="1_f2htl"]
 [ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/item/item.tscn" id="2_opodc"]
 
 [node name="Main" type="Node" unique_id=438263722]
+script = ExtResource("1_f2htl")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=377305203]
 
