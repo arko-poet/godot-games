@@ -1,9 +1,12 @@
 class_name Item
 extends Control
 
+signal used(effect: Dictionary) ## items create effects which are executed during combat
+
 var footprint: Array[Vector2i] = []
 
 @onready var sprite: ColorRect = $Sprite
+@onready var effect_timer: Timer = $EffectTimer
 
 
 func _ready() -> void:
@@ -22,6 +25,10 @@ func _on_gui_input(event: InputEvent) -> void:
 		assert(event.pressed)
 		
 		_start_dragging()
+
+
+func _on_effect_timer_timeout() -> void:
+	used.emit(_get_effect())
 
 
 func _start_dragging() -> void:
@@ -44,3 +51,8 @@ func _start_dragging() -> void:
 
 func _set_footprint() -> void:
 	footprint.append(Vector2i.ZERO)
+
+
+func _get_effect() -> Dictionary:
+	push_error("_get_effect must be overidden")
+	return {}
