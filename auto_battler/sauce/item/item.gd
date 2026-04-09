@@ -1,7 +1,13 @@
 class_name Item
 extends Control
 
+var footprint: Array[Vector2i] = []
+
 @onready var sprite: ColorRect = $Sprite
+
+
+func _ready() -> void:
+	_set_footprint()
 
 
 func _notification(what: int) -> void:
@@ -34,3 +40,7 @@ func _start_dragging() -> void:
 	
 	force_drag.call_deferred(drag_data, preview)
 	hide()
+
+
+func _set_footprint() -> void:
+	footprint.append(Vector2i.ZERO)
