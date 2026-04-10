@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bk25fwts4x76a" path="res://sauce/main/main.gd" id="1_f2htl"]
 [ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/items/item.tscn" id="2_opodc"]
 [ext_resource type="PackedScene" uid="uid://c6nwrbu2rteqe" path="res://sauce/combat/combat.tscn" id="4_udgcr"]
+[ext_resource type="PackedScene" uid="uid://chs2sw3ug0bth" path="res://sauce/character/character.tscn" id="5_jiijf"]
 
 [node name="Main" type="Node" unique_id=438263722]
 script = ExtResource("1_f2htl")
@@ -36,6 +37,13 @@ offset_left = 183.0
 offset_top = 75.0
 offset_right = -39.0
 offset_bottom = -80.0
+
+[node name="Character" parent="UILayer/UI" unique_id=1945052062 instance=ExtResource("5_jiijf")]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 109.0
+offset_right = 142.0
+offset_bottom = 109.0
 
 [connection signal="item_used" from="UILayer/UI/Inventory" to="UILayer/UI/Combat" method="_on_inventory_item_used"]
 [connection signal="used" from="UILayer/UI/Item" to="UILayer/UI/Inventory" method="_on_item_used"]
