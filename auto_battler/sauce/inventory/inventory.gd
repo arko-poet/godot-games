@@ -69,11 +69,13 @@ func _on_item_used(effect: Dictionary) -> void:
 
 func _on_combat_started() -> void:
 	for item in items:
+		item.used.connect(_on_item_used)
 		item.effect_timer.start()
 
 
 func _on_combat_finished() -> void:
 	for item in items:
+		item.used.disconnect(_on_item_used)
 		item.effect_timer.stop()
 
 
