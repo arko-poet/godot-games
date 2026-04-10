@@ -1,3 +1,4 @@
+class_name Character
 extends Control
 
 signal died
@@ -6,10 +7,10 @@ signal died
 
 var hp: int:
 	set(val):
-		hp = max(val, 0)
+		hp = min(max_hp, max(val, 0))
 		hp_bar.value = hp
 		hp_bar.max_value = max_hp
-		hp_label.text = "%s/%s" % [hp, max_hp]
+		hp_label.text = "%s / %s" % [hp, max_hp]
 		if hp == 0:
 			died.emit()
 		

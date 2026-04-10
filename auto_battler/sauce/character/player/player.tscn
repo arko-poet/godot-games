@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://tnft4nng5yf3"]
+
+[ext_resource type="PackedScene" uid="uid://chs2sw3ug0bth" path="res://sauce/character/character.tscn" id="1_q2gr1"]
+[ext_resource type="Script" uid="uid://dgitwn0beaqnw" path="res://sauce/character/player/player.gd" id="2_bfhdk"]
+
+[node name="Player" unique_id=1945052062 instance=ExtResource("1_q2gr1")]
+script = ExtResource("2_bfhdk")
+max_hp = 0
