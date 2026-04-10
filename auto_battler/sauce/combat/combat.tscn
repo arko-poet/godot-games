@@ -7,17 +7,19 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -222.0
-offset_bottom = -155.0
+offset_right = -191.0
+offset_bottom = -149.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yrc45")
 
 [node name="CombatButton" type="Button" parent="." unique_id=1672615705]
 layout_mode = 1
-offset_right = 98.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 12
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "START COMBAT"
 
 [connection signal="pressed" from="CombatButton" to="." method="_on_combat_button_pressed"]

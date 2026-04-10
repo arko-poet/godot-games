@@ -25,11 +25,14 @@ window/size/window_height_override=720
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="uid://b5bqsk1xow1rd"
 
+[gui]
+
+theme/custom_font="uid://cq8pajv5as3ho"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
