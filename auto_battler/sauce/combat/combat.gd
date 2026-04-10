@@ -1,7 +1,7 @@
 extends Control
 
-signal combat_started
-signal combat_finished
+signal started
+signal finished
 
 @onready var combat_button: Button = $CombatButton
 @onready var player: Character = $"../Player"
@@ -9,17 +9,17 @@ signal combat_finished
 
 
 func _on_inventory_item_used(effect: Dictionary) -> void:
-	# TODO apply item effect
-	print(effect)
+	var damage: int = effect.get("attack", 0)
+	enemy.hp -= damage
 
 
 func _on_combat_button_pressed() -> void:
-	combat_started.emit()
+	started.emit()
 	combat_button.disabled = true
 
 
 func _on_enemy_died() -> void:
-	combat_finished.emit()
+	finished.emit()
 	combat_button.disabled = false
 
 

@@ -62,6 +62,21 @@ func _on_mouse_exited() -> void:
 		queue_redraw()
 
 
+func _on_item_used(effect: Dictionary) -> void:
+	# TODO process item effect based on other items in the grid
+	item_used.emit(effect)
+
+
+func _on_combat_started() -> void:
+	for item in items:
+		item.effect_timer.start()
+
+
+func _on_combat_finished() -> void:
+	for item in items:
+		item.effect_timer.stop()
+
+
 ## helper function because godot shows warning when performing integer division
 func _position_to_cell(at_position: Vector2) -> Vector2i:
 	var cell := Vector2i(
@@ -83,18 +98,3 @@ func _remove_item(item: Item) -> void:
 			if item == row[col_i]:
 				items.erase(row[col_i])
 				row[col_i] = null
-
-
-func _on_item_used(effect: Dictionary) -> void:
-	# TODO process item effect based on other items in the grid
-	item_used.emit(effect)
-
-
-func _on_combat_combat_started() -> void:
-	for item in items:
-		item.effect_timer.start()
-
-
-func _on_combat_combat_finished() -> void:
-	for item in items:
-		item.effect_timer.stop()

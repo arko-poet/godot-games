@@ -14,11 +14,12 @@ func _on_attack_timer_timeout() -> void:
 	attacked.emit(attack_damage)
 
 
-func _on_combat_combat_started() -> void:
+func _on_combat_started() -> void:
+	show()
 	attack_timer.start()
 
 
-func _on_combat_combat_finished() -> void:
+func _on_combat_finished() -> void:
 	attack_timer.stop()
 	hide()
 	attack_damage += 1

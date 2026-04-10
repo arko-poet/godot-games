@@ -8,8 +8,8 @@ signal died
 var hp: int:
 	set(val):
 		hp = min(max_hp, max(val, 0))
-		hp_bar.value = hp
 		hp_bar.max_value = max_hp
+		hp_bar.value = hp
 		hp_label.text = "%s / %s" % [hp, max_hp]
 		if hp == 0:
 			died.emit()
