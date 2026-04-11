@@ -29,7 +29,7 @@ func _on_player_died() -> void:
 
 
 func _on_combat_finished() -> void:
-	#var item := ITEM_SCENES[randi() % ITEM_SCENES.size()].instantiate()
-	var item := ITEM_SCENES[3].instantiate()
+	var item := ITEM_SCENES[randi() % ITEM_SCENES.size()].instantiate()
+	#var item := ITEM_SCENES[3].instantiate()
 	item.position = NEW_ITEM_POSITION
 	ui.add_child(item)

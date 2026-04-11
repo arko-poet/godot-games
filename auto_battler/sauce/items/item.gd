@@ -48,7 +48,7 @@ func _start_dragging() -> void:
 	sprite_preview.position = offset
 	
 	var preview := Control.new()
-	preview.size = size
+	preview.size = sprite_preview.size
 	preview.add_child(sprite_preview)
 	preview.mouse_default_cursor_shape = Control.CURSOR_DRAG
 	
