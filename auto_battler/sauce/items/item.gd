@@ -27,6 +27,16 @@ func _on_gui_input(event: InputEvent) -> void:
 		_start_dragging()
 
 
+## for overriding, should return an effect item produces when added to inventory
+func get_passive_effect() -> Dictionary:
+	return {}
+
+
+## for overriding, should return an effect item produces on cooldown
+func _get_active_effect() -> Dictionary:
+	return {}
+
+
 func _on_effect_timer_timeout() -> void:
 	used.emit(_get_active_effect())
 
@@ -51,13 +61,3 @@ func _start_dragging() -> void:
 
 func _set_footprint() -> void:
 	footprint.append(Vector2i.ZERO)
-
-
-## for overriding, should return an effect item produces on cooldown
-func _get_active_effect() -> Dictionary:
-	return {}
-
-
-## for overriding, should return an effect item produces when added to inventory
-func get_passive_effect() -> Dictionary:
-	return {}

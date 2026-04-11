@@ -5,7 +5,6 @@ const ITEM_SCENES: Array[PackedScene] = [
 	preload("res://sauce/items/flower/flower.tscn"),
 	preload("res://sauce/items/beef/beef.tscn")
 ]
-
 const DRAG_CURSOR := preload(
 	"res://assets/kenney_cursor-pack/PNG/Outline/Default/hand_closed.png"
 )
