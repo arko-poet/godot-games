@@ -54,19 +54,18 @@ func _start_dragging() -> void:
 	
 	var drag_data := {}
 	drag_data["item"] = self
-	drag_data["index_held"] = _get_index_held()
+	drag_data["cell_held"] = _get_cell_held()
 	
 	force_drag.call_deferred(drag_data, preview)
 	hide()
 
 
-func _get_index_held() -> Vector2i:
+func _get_cell_held() -> Vector2i:
 	var mp := get_local_mouse_position()
 	var cell := Vector2i(
 		floori(mp.x / Globals.CELL_SIZE),
 		floori(mp.y / Globals.CELL_SIZE)
 	)
-	print(cell)
 	return cell
 
 

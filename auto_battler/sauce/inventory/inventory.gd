@@ -12,6 +12,7 @@ const CAN_DROP_BG_COLOR := Color(0.0, 0.608, 0.0, 1.0)
 const CANT_DROP_BG_COLOR := Color(0.69, 0.0, 0.0, 1.0)
 
 var item_grid: Array[Array] = [] ## Item if cell occupied, null otherwise
+var last_hovered_cell: Vector2i ## a cell cursor is hovering over
 var hovered_cells: Array[Vector2i] = [] ## currently hovered cells, used for redrawing grid
 var items: Array[Item] = []
 var hover_color: Color ## changes depending on if drop is allowed or not
@@ -44,24 +45,43 @@ func _draw():
 			draw_rect(rect2i, BORDER_COLOR, false, 1)
 
 
-func _can_drop_data(at_position: Vector2, _data: Variant) -> bool:
-	var hovered_cell := _position_to_cell(at_position)
-	var can_hover = item_grid[hovered_cell.y][hovered_cell.x] == null
-	hover_color = CAN_DROP_BG_COLOR if can_hover else CANT_DROP_BG_COLOR
-	if hovered_cell not in hovered_cells:
-		hovered_cells.clear()
-		hovered_cells.append(hovered_cell)
-		queue_redraw()
-	return can_hover
-
-
-func _drop_data(at_position: Vector2, data: Variant) -> void:
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	var item_cell_held: Vector2i = data["cell_held"]
 	var item: Item = data["item"]
-	var cell := _position_to_cell(at_position)
+	
+	# check if cursor moved to other cell in which case hovered cells changed -> redraw needed
+	var redraw_needed: bool = false
+	var hovered_cell := _position_to_cell(at_position)
+	if _position_to_cell(at_position) != last_hovered_cell:
+		redraw_needed = true
+		hovered_cells.clear()
+		for item_cell in item.footprint:
+			hovered_cells.append(hovered_cell + item_cell - item_cell_held)
+		last_hovered_cell = hovered_cell
+	
+	var can_drop: bool = true
+	for hc in hovered_cells:
+		if (
+			hc.y < 0 or hc.x < 0
+			or hc.y >= INVENTORY_SIZE or hc.x >= INVENTORY_SIZE
+			or item_grid[hc.y][hc.x] != null
+		):
+			can_drop = false
+			break
+	
+	if redraw_needed:
+		hover_color = CAN_DROP_BG_COLOR if can_drop else CANT_DROP_BG_COLOR
+		queue_redraw()
+	
+	return can_drop
+
+
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	var item: Item = data["item"]
 	if item in items:
-		_move_item(item, cell)
+		_move_item(item)
 	else:
-		_add_item(item, cell)
+		_add_item(item)
 	hovered_cells.clear()
 	queue_redraw()
 
@@ -100,15 +120,21 @@ func _position_to_cell(at_position: Vector2) -> Vector2i:
 	return cell
 
 
-func _add_item(item: Item, cell: Vector2i) -> void:
-	_place_item(item, cell)
+func _add_item(item: Item) -> void:
+	_place_item(item)
 	items.append(item)
 	item_added.emit(item)
 
 
-func _place_item(item: Item, cell: Vector2i) -> void:
-	item_grid[cell.y][cell.x] = item
-	item.position = Vector2i(position) + Globals.CELL_SIZE * cell
+func _place_item(item: Item) -> void:
+	var column: int = INVENTORY_SIZE
+	var row: int = INVENTORY_SIZE
+	for cell in hovered_cells:
+		column = min(column, cell.x)
+		row = min(row, cell.y)
+		item_grid[cell.y][cell.x] = item
+		
+	item.position = Vector2i(position) + Vector2i(column, row) * Globals.CELL_SIZE
 
 
 func _remove_item(item: Item) -> void:
@@ -120,9 +146,9 @@ func _remove_item(item: Item) -> void:
 	item_removed.emit(item)
 
 
-func _move_item(item: Item, cell: Vector2i) -> void:
+func _move_item(item: Item) -> void:
 	for row in item_grid:
 		for col_i in range(len(row)):
 			if item == row[col_i]:
 				row[col_i] = null
-	_place_item(item, cell)
+	_place_item(item)

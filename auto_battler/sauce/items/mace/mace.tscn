@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cruowy067dcmj"]
+
+[ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/items/item.tscn" id="1_mlx7s"]
+[ext_resource type="Script" uid="uid://ct4vxd6d8ayo8" path="res://sauce/items/mace/mace.gd" id="2_2l5x4"]
+
+[node name="Mace" unique_id=544253172 instance=ExtResource("1_mlx7s")]
+offset_right = 16.0
+offset_bottom = 48.0
+tooltip_text = "Mace"
+script = ExtResource("2_2l5x4")
+attack_damage = 10
+
+[node name="Sprite" parent="." index="0" unique_id=443896673]
+offset_right = -1.0
+offset_bottom = -1.0
+color = Color(0.28333315, 0.0009975579, 0.5811897, 1)
+
+[node name="EffectTimer" parent="." index="1" unique_id=632830717]
+wait_time = 2.0

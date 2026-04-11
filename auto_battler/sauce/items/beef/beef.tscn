@@ -4,6 +4,12 @@
 [ext_resource type="Script" uid="uid://bhv0uhp0fsv6p" path="res://sauce/items/beef/beef.gd" id="2_bl8du"]
 
 [node name="Beef" unique_id=544253172 instance=ExtResource("1_w00gh")]
+offset_right = 16.0
+offset_bottom = 16.0
 tooltip_text = "Beef"
 script = ExtResource("2_bl8du")
 max_hp = 10
+
+[node name="Sprite" parent="." index="0" unique_id=443896673]
+offset_right = -1.0
+offset_bottom = -1.0
