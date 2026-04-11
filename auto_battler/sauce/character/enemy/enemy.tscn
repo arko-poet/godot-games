@@ -9,4 +9,8 @@ max_hp = 0
 
 [node name="AttackTimer" type="Timer" parent="." index="2" unique_id=239156757]
 
+[node name="BlockTimer" type="Timer" parent="." index="4" unique_id=988734126]
+wait_time = 1.5
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="BlockTimer" to="." method="_on_block_timer_timeout"]

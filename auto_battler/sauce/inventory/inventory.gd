@@ -98,7 +98,7 @@ func _on_item_used(effect: Dictionary) -> void:
 	item_used.emit(effect)
 
 
-func _on_combat_started() -> void:
+func _on_combat_started(_combat_number: int) -> void:
 	for item in items:
 		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		item.used.connect(_on_item_used)
