@@ -47,3 +47,12 @@ offset_right = 144.0
 offset_bottom = 128.0
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_nvptp")
+
+[node name="ArmourLabel" type="Label" parent="." unique_id=1411860993]
+visible = false
+layout_mode = 0
+offset_left = 3.0
+offset_top = 38.0
+offset_right = 46.0
+offset_bottom = 51.0
+text = "B: 0"

@@ -17,6 +17,7 @@ var hovered_cells: Array[Vector2i] = [] ## currently hovered cells, used for red
 var items: Array[Item] = []
 var hover_color: Color ## changes depending on if drop is allowed or not
 
+
 func _ready() -> void:
 	custom_minimum_size = Globals.CELL_SIZE * Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 	
