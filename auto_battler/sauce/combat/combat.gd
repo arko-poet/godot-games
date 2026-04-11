@@ -11,6 +11,9 @@ signal finished
 func _on_inventory_item_used(effect: Dictionary) -> void:
 	var damage: int = effect.get("attack", 0)
 	enemy.hp -= damage
+	
+	var heal: int = effect.get("heal", 0)
+	player.hp += heal
 
 
 func _on_combat_button_pressed() -> void:

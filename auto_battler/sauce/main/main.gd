@@ -1,6 +1,9 @@
 extends Node
 
-const Stone := preload("res://sauce/items/stone/stone.tscn")
+const ITEM_SCENES: Array[PackedScene] = [
+	preload("res://sauce/items/stone/stone.tscn"),
+	preload("res://sauce/items/flower/flower.tscn")
+]
 
 const DRAG_CURSOR := preload(
 	"res://assets/kenney_cursor-pack/PNG/Outline/Default/hand_closed.png"
@@ -25,7 +28,6 @@ func _on_player_died() -> void:
 
 
 func _on_combat_finished() -> void:
-	#TODO choose random item here instead
-	var item := Stone.instantiate()
+	var item := ITEM_SCENES[randi() % ITEM_SCENES.size()].instantiate()
 	item.position = NEW_ITEM_POSITION
 	ui.add_child(item)
