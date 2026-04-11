@@ -2,7 +2,8 @@ extends Node
 
 const ITEM_SCENES: Array[PackedScene] = [
 	preload("res://sauce/items/stone/stone.tscn"),
-	preload("res://sauce/items/flower/flower.tscn")
+	preload("res://sauce/items/flower/flower.tscn"),
+	preload("res://sauce/items/beef/beef.tscn")
 ]
 
 const DRAG_CURSOR := preload(

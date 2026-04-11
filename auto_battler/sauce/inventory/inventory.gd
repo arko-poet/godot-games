@@ -2,6 +2,8 @@
 extends Control
 
 signal item_used(effect: Dictionary)
+signal item_added(item: Item)
+signal item_removed(item: Item)
 
 const INVENTORY_SIZE := 8 ## height and width in number of cells
 const CELL_SIZE := Vector2i(16, 16)
@@ -50,8 +52,11 @@ func _can_drop_data(at_position: Vector2, _data: Variant) -> bool:
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var item: Item = data["item"]
-	_remove_item(item)
-	_add_item(item, _position_to_cell(at_position))
+	var cell_index := _position_to_cell(at_position)
+	if item in items:
+		_move_item(item, cell_index)
+	else:
+		_add_item(item, cell_index)
 	hovered_cells.clear()
 	queue_redraw()
 
@@ -88,10 +93,15 @@ func _position_to_cell(at_position: Vector2) -> Vector2i:
 	return cell
 
 
-func _add_item(item: Item, grid_index: Vector2i) -> void:
-	item_grid[grid_index.y][grid_index.x] = item
-	item.position = Vector2i(position) + CELL_SIZE * grid_index
+func _add_item(item: Item, cell_index: Vector2i) -> void:
+	_place_item(item, cell_index)
 	items.append(item)
+	item_added.emit(item)
+
+
+func _place_item(item: Item, cell_index: Vector2i) -> void:
+	item_grid[cell_index.y][cell_index.x] = item
+	item.position = Vector2i(position) + CELL_SIZE * cell_index
 
 
 func _remove_item(item: Item) -> void:
@@ -100,3 +110,12 @@ func _remove_item(item: Item) -> void:
 			if item == row[col_i]:
 				items.erase(row[col_i])
 				row[col_i] = null
+	item_removed.emit(item)
+
+
+func _move_item(item: Item, cell_index: Vector2i) -> void:
+	for row in item_grid:
+		for col_i in range(len(row)):
+			if item == row[col_i]:
+				row[col_i] = null
+	_place_item(item, cell_index)

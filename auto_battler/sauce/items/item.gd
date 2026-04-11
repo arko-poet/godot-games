@@ -28,7 +28,7 @@ func _on_gui_input(event: InputEvent) -> void:
 
 
 func _on_effect_timer_timeout() -> void:
-	used.emit(_get_effect())
+	used.emit(_get_active_effect())
 
 
 func _start_dragging() -> void:
@@ -53,6 +53,11 @@ func _set_footprint() -> void:
 	footprint.append(Vector2i.ZERO)
 
 
-func _get_effect() -> Dictionary:
-	push_error("_get_effect must be overidden")
+## for overriding, should return an effect item produces on cooldown
+func _get_active_effect() -> Dictionary:
+	return {}
+
+
+## for overriding, should return an effect item produces when added to inventory
+func get_passive_effect() -> Dictionary:
 	return {}

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ieanibm7aaum" path="res://sauce/items/stone/stone.gd" id="2_ksvvp"]
 
 [node name="Stone" unique_id=544253172 instance=ExtResource("1_hjup5")]
+tooltip_text = "Stone"
 script = ExtResource("2_ksvvp")
 attack_damage = 5
 
