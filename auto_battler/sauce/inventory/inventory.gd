@@ -52,7 +52,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	# check if cursor moved to other cell in which case hovered cells changed -> redraw needed
 	var redraw_needed: bool = false
 	var hovered_cell := _position_to_cell(at_position)
-	if hovered_cell != last_hovered_cell:
+	if hovered_cell != last_hovered_cell or hovered_cells.is_empty():
 		redraw_needed = true
 		hovered_cells.clear()
 		for item_cell in item.footprint:
@@ -76,9 +76,8 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return can_drop
 
 
-func _drop_data(at_position: Vector2, data: Variant) -> void:
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var item: Item = data["item"]
-		
 	if item in items:
 		_move_item(item)
 	else:
