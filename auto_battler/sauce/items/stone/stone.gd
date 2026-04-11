@@ -4,7 +4,7 @@ extends Item
 
 
 func _get_active_effect() -> Dictionary:
-	return {"attack": attack_damage}
+	return {"attack_damage": attack_damage}
 
 
 func _set_footprint() -> void:

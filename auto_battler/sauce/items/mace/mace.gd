@@ -1,10 +1,11 @@
 extends Item
 
 @export_range(1, 100) var attack_damage: int
+@export_range(1, 100) var block_damage: int
 ## TODO add armour breaking
 
 func _get_active_effect() -> Dictionary:
-	return {"attack": attack_damage}
+	return {"attack_damage": attack_damage, "block_damage": block_damage}
 
 
 func _set_footprint() -> void:

@@ -11,8 +11,11 @@ var combat_counter := 0
 
 
 func _on_inventory_item_used(effect: Dictionary) -> void:
-	var damage: int = effect.get("attack", 0)
-	enemy.hit(damage)
+	var block_damage: int = effect.get("block_damage", 0)
+	enemy.block -= block_damage
+	
+	var attack_damage: int = effect.get("attack_damage", 0)
+	enemy.hit(attack_damage)
 	
 	var heal: int = effect.get("heal", 0)
 	player.hp += heal
