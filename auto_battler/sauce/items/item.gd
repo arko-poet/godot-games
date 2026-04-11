@@ -3,6 +3,7 @@ extends Control
 
 signal used(effect: Dictionary) ## items create effects which are executed during combat
 
+## which cells is item going to occupy
 var footprint: Array[Vector2i] = []
 
 @onready var sprite: ColorRect = $Sprite
@@ -52,12 +53,22 @@ func _start_dragging() -> void:
 	preview.mouse_default_cursor_shape = Control.CURSOR_DRAG
 	
 	var drag_data := {}
-	drag_data["offset"] = offset
 	drag_data["item"] = self
+	drag_data["index_held"] = _get_index_held()
 	
 	force_drag.call_deferred(drag_data, preview)
 	hide()
 
 
+func _get_index_held() -> Vector2i:
+	var mp := get_local_mouse_position()
+	var cell := Vector2i(
+		floori(mp.x / Globals.CELL_SIZE),
+		floori(mp.y / Globals.CELL_SIZE)
+	)
+	print(cell)
+	return cell
+
+
 func _set_footprint() -> void:
-	footprint.append(Vector2i.ZERO)
+	push_error("Each item must override _set_footprint")

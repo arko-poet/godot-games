@@ -6,7 +6,6 @@ signal item_added(item: Item)
 signal item_removed(item: Item)
 
 const INVENTORY_SIZE := 8 ## height and width in number of cells
-const CELL_SIZE := Vector2i(16, 16)
 const BORDER_COLOR := Color("#5A6270")
 const BG_COLOR := Color("#252A33")
 const CAN_DROP_BG_COLOR := Color(0.0, 0.608, 0.0, 1.0)
@@ -18,7 +17,7 @@ var items: Array[Item] = []
 var hover_color: Color ## changes depending on if drop is allowed or not
 
 func _ready() -> void:
-	custom_minimum_size = Vector2i(CELL_SIZE * INVENTORY_SIZE)
+	custom_minimum_size = Globals.CELL_SIZE * Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 	
 	for y in range(INVENTORY_SIZE):
 		var row: Array[Item] = []
@@ -38,7 +37,9 @@ func _draw():
 	for y in range(INVENTORY_SIZE):
 		for x in range(INVENTORY_SIZE):
 			var cell := Vector2i(x, y)
-			var rect2i := Rect2i(cell * CELL_SIZE, CELL_SIZE)
+			var cell_position := cell * Globals.CELL_SIZE
+			var cell_size := Vector2i(Globals.CELL_SIZE, Globals.CELL_SIZE)
+			var rect2i := Rect2i(cell_position, cell_size)
 			draw_rect(rect2i, hover_color if cell in hovered_cells else BG_COLOR)
 			draw_rect(rect2i, BORDER_COLOR, false, 1)
 
@@ -93,8 +94,8 @@ func _on_combat_finished() -> void:
 ## helper function because godot shows warning when performing integer division
 func _position_to_cell(at_position: Vector2) -> Vector2i:
 	var cell := Vector2i(
-		floori(at_position.x / CELL_SIZE.x),
-		floori(at_position.y / CELL_SIZE.y)
+		floori(at_position.x / Globals.CELL_SIZE),
+		floori(at_position.y / Globals.CELL_SIZE)
 	)
 	return cell
 
@@ -107,7 +108,7 @@ func _add_item(item: Item, cell: Vector2i) -> void:
 
 func _place_item(item: Item, cell: Vector2i) -> void:
 	item_grid[cell.y][cell.x] = item
-	item.position = Vector2i(position) + CELL_SIZE * cell
+	item.position = Vector2i(position) + Globals.CELL_SIZE * cell
 
 
 func _remove_item(item: Item) -> void:

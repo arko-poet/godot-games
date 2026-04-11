@@ -5,3 +5,7 @@ extends Item
 
 func _get_active_effect() -> Dictionary:
 	return {"attack": attack_damage}
+
+
+func _set_footprint() -> void:
+	footprint.append(Vector2i.ZERO)
