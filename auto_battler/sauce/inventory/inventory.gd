@@ -56,7 +56,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if hovered_cell != last_hovered_cell or hovered_cells.is_empty():
 		redraw_needed = true
 		hovered_cells.clear()
-		for item_cell in item.footprint:
+		for item_cell in item.get_footprint():
 			hovered_cells.append(hovered_cell + item_cell - item_cell_held)
 		last_hovered_cell = hovered_cell
 	

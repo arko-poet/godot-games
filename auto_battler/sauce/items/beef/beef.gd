@@ -7,6 +7,6 @@ func get_passive_effect() -> Dictionary:
 	return {"max_hp": max_hp}
 
 
-func _set_footprint() -> void:
-	footprint.append(Vector2i.ZERO)
+func _set_footprints() -> void:
+	footprints.append([Vector2i.ZERO])
 	

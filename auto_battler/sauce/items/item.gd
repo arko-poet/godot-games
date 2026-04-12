@@ -3,20 +3,54 @@ extends Control
 
 signal used(effect: Dictionary) ## items create effects which are executed during combat
 
-## which cells is item going to occupy
-var footprint: Array[Vector2i] = []
+## which cells is item going to occupy at each rotation state
+var footprints: Array[Array] = [] # Array[Array[Vector2i]] is not supported
+var footprint_index := 0
+var preview: Control
 
 @onready var sprite: ColorRect = $Sprite
 @onready var effect_timer: Timer = $EffectTimer
 
 
 func _ready() -> void:
-	_set_footprint()
+	_set_footprints()
 
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
 		show()
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			get_viewport().set_input_as_handled()
+			if not event.pressed and get_viewport().gui_is_dragging():
+				rotate()
+				#var drag_data: Dictionary = get_viewport().gui_get_drag_data()
+				#var item: Item = drag_data["item"]
+
+## for overriding, should return an effect item produces when added to inventory
+func get_passive_effect() -> Dictionary:
+	return {}
+
+
+func get_footprint() -> Array[Vector2i]:
+	# have to convert to Array[Vector2i] cause godot doesnt support nested generics
+	var footprint: Array[Vector2i] = []
+	for cell in footprints[footprint_index]:
+		footprint.append(cell)
+	return footprint
+
+
+func rotate() -> void:
+	print("rotate")
+	print(pivot_offset)
+	print(position)
+	print(preview.position)
+	rotation += PI / 2
+	preview.rotation += PI / 2
+	footprint_index = (footprint_index + 1) % footprints.size()
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -26,11 +60,6 @@ func _on_gui_input(event: InputEvent) -> void:
 		assert(event.pressed)
 		
 		_start_dragging()
-
-
-## for overriding, should return an effect item produces when added to inventory
-func get_passive_effect() -> Dictionary:
-	return {}
 
 
 ## for overriding, should return an effect item produces on cooldown
@@ -44,13 +73,16 @@ func _on_effect_timer_timeout() -> void:
 
 func _start_dragging() -> void:
 	var sprite_preview := sprite.duplicate()
-	var offset = global_position - get_global_mouse_position()
+	var offset = global_position - get_global_mouse_position() # TODO local mosue position could do
 	sprite_preview.position = offset
+	print(offset)
 	
-	var preview := Control.new()
+	pivot_offset = get_local_mouse_position()
+	preview = Control.new()
 	preview.size = sprite_preview.size
 	preview.add_child(sprite_preview)
 	preview.mouse_default_cursor_shape = Control.CURSOR_DRAG
+	preview.pivot_offset = offset
 	
 	var drag_data := {}
 	drag_data["item"] = self
@@ -69,5 +101,5 @@ func _get_cell_held() -> Vector2i:
 	return cell
 
 
-func _set_footprint() -> void:
+func _set_footprints() -> void:
 	push_error("Each item must override _set_footprint")

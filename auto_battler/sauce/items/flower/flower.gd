@@ -7,5 +7,5 @@ func _get_active_effect() -> Dictionary:
 	return {"heal": heal}
 
 
-func _set_footprint() -> void:
-	footprint.append(Vector2i.ZERO)
+func _set_footprints() -> void:
+	footprints.append([Vector2i.ZERO])
