@@ -45,9 +45,9 @@ func get_footprint() -> Array[Vector2i]:
 
 func rotate() -> void:
 	print("rotate")
-	print(pivot_offset)
-	print(position)
-	print(preview.position)
+	#print(pivot_offset)
+	#print(position)
+	print(preview.pivot_offset)
 	rotation += PI / 2
 	preview.rotation += PI / 2
 	footprint_index = (footprint_index + 1) % footprints.size()
@@ -72,17 +72,17 @@ func _on_effect_timer_timeout() -> void:
 
 
 func _start_dragging() -> void:
-	var sprite_preview := sprite.duplicate()
+	preview = sprite.duplicate()
 	var offset = global_position - get_global_mouse_position() # TODO local mosue position could do
-	sprite_preview.position = offset
+	preview.position += offset
 	print(offset)
 	
-	pivot_offset = get_local_mouse_position()
-	preview = Control.new()
-	preview.size = sprite_preview.size
-	preview.add_child(sprite_preview)
-	preview.mouse_default_cursor_shape = Control.CURSOR_DRAG
-	preview.pivot_offset = offset
+	#pivot_offset = get_local_mouse_position()
+	#preview = Control.new()
+	#preview.size = sprite.size
+	#preview.add_child(sprite_preview)
+	#preview.mouse_default_cursor_shape = Control.CURSOR_DRAG
+	preview.pivot_offset = get_local_mouse_position()
 	
 	var drag_data := {}
 	drag_data["item"] = self
