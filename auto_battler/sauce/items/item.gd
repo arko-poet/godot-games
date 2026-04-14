@@ -25,14 +25,6 @@ func _notification(what: int) -> void:
 		show()
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT:
-			get_viewport().set_input_as_handled()
-			if not event.pressed and get_viewport().gui_is_dragging():
-				rotate()
-
-
 ## for overriding, should return an effect item produces when added to inventory
 func get_passive_effect() -> Dictionary:
 	return {}
