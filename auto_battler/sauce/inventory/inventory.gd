@@ -67,7 +67,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		if (
 			hc.y < 0 or hc.x < 0
 			or hc.y >= INVENTORY_SIZE or hc.x >= INVENTORY_SIZE
-			or item_grid[hc.y][hc.x] != null
+			or not (item_grid[hc.y][hc.x] == null or item_grid[hc.y][hc.x] == item)
 		):
 			can_drop = false
 			break
