@@ -6,7 +6,7 @@ signal used(effect: Dictionary) ## items create effects which are executed durin
 ## which cells is item going to occupy at each rotation state
 var footprints: Array[Array] = [] # Array[Array[Vector2i]] is not supported
 var footprint_index := 0
-var preview: Control
+var preview_sprite: Control
 
 @onready var sprite: ColorRect = $Sprite
 @onready var effect_timer: Timer = $EffectTimer
@@ -47,9 +47,9 @@ func rotate() -> void:
 	print("rotate")
 	#print(pivot_offset)
 	#print(position)
-	print(preview.pivot_offset)
+	print(preview_sprite.pivot_offset)
 	rotation += PI / 2
-	preview.rotation += PI / 2
+	preview_sprite.rotation += PI / 2
 	footprint_index = (footprint_index + 1) % footprints.size()
 
 
@@ -72,17 +72,13 @@ func _on_effect_timer_timeout() -> void:
 
 
 func _start_dragging() -> void:
-	preview = sprite.duplicate()
-	var offset = global_position - get_global_mouse_position() # TODO local mosue position could do
-	preview.position += offset
-	print(offset)
+	preview_sprite = sprite.duplicate()
+	preview_sprite.position -= get_local_mouse_position()
 	
-	#pivot_offset = get_local_mouse_position()
-	#preview = Control.new()
-	#preview.size = sprite.size
-	#preview.add_child(sprite_preview)
-	#preview.mouse_default_cursor_shape = Control.CURSOR_DRAG
-	preview.pivot_offset = get_local_mouse_position()
+	var preview := Control.new()
+	preview.size = preview_sprite.size
+	preview.add_child(preview_sprite)
+	preview_sprite.pivot_offset = get_local_mouse_position()
 	
 	var drag_data := {}
 	drag_data["item"] = self
