@@ -139,8 +139,8 @@ func _place_item(item: Item) -> void:
 		row = min(row, cell.y)
 		item_grid[cell.y][cell.x] = item
 		
-	item.position = Vector2i(position) + Vector2i(column, row) * Globals.CELL_SIZE
-
+	item.position = Vector2i(position) + Vector2i(column, row) * Globals.CELL_SIZE - item.get_rotation_offset()
+	print(item.position)
 
 func _remove_item(item: Item) -> void:
 	for row in item_grid:

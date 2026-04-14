@@ -6,6 +6,7 @@ signal used(effect: Dictionary) ## items create effects which are executed durin
 ## which cells is item going to occupy at each rotation state
 var footprints: Array[Array] = [] # Array[Array[Vector2i]] is not supported
 var footprint_index := 0
+var rotation_offsets: Array[Vector2i] = [] ## actual item position after rotation
 var preview_sprite: Control
 
 @onready var sprite: ColorRect = $Sprite
@@ -14,6 +15,7 @@ var preview_sprite: Control
 
 func _ready() -> void:
 	_set_footprints()
+	_set_rotation_offsets()
 
 
 func _notification(what: int) -> void:
@@ -41,6 +43,10 @@ func get_footprint() -> Array[Vector2i]:
 	for cell in footprints[footprint_index]:
 		footprint.append(cell)
 	return footprint
+
+
+func get_rotation_offset() -> Vector2i:
+	return rotation_offsets[footprint_index]
 
 
 func rotate() -> void:
@@ -98,4 +104,8 @@ func _get_cell_held() -> Vector2i:
 
 
 func _set_footprints() -> void:
-	push_error("Each item must override _set_footprint")
+	push_error("Each Item must override _set_footprint")
+	
+
+func _set_rotation_offsets() -> void:
+	push_error("Each Item must override _set_rotation_offsets")
