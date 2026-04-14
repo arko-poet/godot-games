@@ -15,6 +15,7 @@ const HOVER_CURSOR := preload(
 const NEW_ITEM_POSITION := Vector2i(82, 1)
 
 @onready var ui: Control = $UILayer/UI
+@onready var inventory: Inventory = $UILayer/UI/Inventory
 
 
 func _ready() -> void:
@@ -23,7 +24,7 @@ func _ready() -> void:
 	Input.set_custom_mouse_cursor(DRAG_CURSOR, Input.CURSOR_FORBIDDEN)
 	Input.set_custom_mouse_cursor(HOVER_CURSOR, Input.CURSOR_POINTING_HAND)
 
-	#_on_combat_finished() # TODO remove this
+	_on_combat_finished() # TODO remove this
 
 func _on_player_died() -> void:
 	get_tree().reload_current_scene()
@@ -31,6 +32,11 @@ func _on_player_died() -> void:
 
 func _on_combat_finished() -> void:
 	#var item := ITEM_SCENES[randi() % ITEM_SCENES.size()].instantiate()
-	var item := ITEM_SCENES[3].instantiate()
+	var item: Item = ITEM_SCENES[3].instantiate()
+	item.rotated.connect(_on_item_rotated)
 	item.position = NEW_ITEM_POSITION
 	ui.add_child(item)
+
+
+func _on_item_rotated() -> void:
+	inventory.rotate_hovered_cells()

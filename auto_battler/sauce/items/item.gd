@@ -2,6 +2,7 @@ class_name Item
 extends Control
 
 signal used(effect: Dictionary) ## items create effects which are executed during combat
+signal rotated
 
 ## which cells is item going to occupy at each rotation state
 var footprints: Array[Array] = [] # Array[Array[Vector2i]] is not supported
@@ -54,6 +55,7 @@ func rotate() -> void:
 	preview_sprite.rotation += PI / 2
 	footprint_index = (footprint_index + 1) % footprints.size()
 	cell_held = Vector2i(-cell_held.y, cell_held.x)
+	rotated.emit()
 
 
 func _on_gui_input(event: InputEvent) -> void:

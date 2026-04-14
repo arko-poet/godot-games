@@ -1,4 +1,5 @@
 @tool
+class_name Inventory
 extends Control
 
 signal item_used(effect: Dictionary)
@@ -16,6 +17,7 @@ var last_hovered_cell: Vector2i ## a cell cursor is hovering over
 var hovered_cells: Array[Vector2i] = [] ## currently hovered cells, used for redrawing grid
 var items: Array[Item] = []
 var hover_color: Color ## changes depending on if drop is allowed or not
+var update_rotation: bool = false ## hovered cells need changing if true
 
 
 func _ready() -> void:
@@ -52,7 +54,8 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	# check if cursor moved to other cell in which case hovered cells changed -> redraw needed
 	var redraw_needed: bool = false
 	var hovered_cell := _position_to_cell(at_position)
-	if hovered_cell != last_hovered_cell or hovered_cells.is_empty():
+	if hovered_cell != last_hovered_cell or hovered_cells.is_empty() or update_rotation:
+		update_rotation = false
 		redraw_needed = true
 		hovered_cells.clear()
 		for item_cell in item.get_footprint():
@@ -84,6 +87,11 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 		_add_item(item)
 	hovered_cells.clear()
 	queue_redraw()
+
+
+func rotate_hovered_cells() -> void:
+	update_rotation = true
+	_can_drop_data(get_local_mouse_position(), get_viewport().gui_get_drag_data())
 
 
 func _on_mouse_exited() -> void:
