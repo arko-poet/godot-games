@@ -26,6 +26,15 @@ func _ready() -> void:
 
 	_on_combat_finished() # TODO remove this
 
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			get_viewport().set_input_as_handled()
+			if not event.pressed and get_viewport().gui_is_dragging():
+				var item: Item = get_viewport().gui_get_drag_data()["item"]
+				item.rotate()
+
 func _on_player_died() -> void:
 	get_tree().reload_current_scene()
 
@@ -40,12 +49,3 @@ func _on_combat_finished() -> void:
 
 func _on_item_rotated() -> void:
 	inventory.rotate_hovered_cells()
-
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT:
-			get_viewport().set_input_as_handled()
-			if not event.pressed and get_viewport().gui_is_dragging():
-				var item: Item = get_viewport().gui_get_drag_data()["item"]
-				item.rotate()
