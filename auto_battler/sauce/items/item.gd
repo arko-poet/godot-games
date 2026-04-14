@@ -8,6 +8,7 @@ var footprints: Array[Array] = [] # Array[Array[Vector2i]] is not supported
 var footprint_index := 0
 var rotation_offsets: Array[Vector2i] = [] ## actual item position after rotation
 var preview_sprite: Control
+var cell_held: Vector2i
 
 @onready var sprite: ColorRect = $Sprite
 @onready var effect_timer: Timer = $EffectTimer
@@ -29,8 +30,7 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			if not event.pressed and get_viewport().gui_is_dragging():
 				rotate()
-				#var drag_data: Dictionary = get_viewport().gui_get_drag_data()
-				#var item: Item = drag_data["item"]
+
 
 ## for overriding, should return an effect item produces when added to inventory
 func get_passive_effect() -> Dictionary:
@@ -50,13 +50,10 @@ func get_rotation_offset() -> Vector2i:
 
 
 func rotate() -> void:
-	print("rotate")
-	#print(pivot_offset)
-	#print(position)
-	print(preview_sprite.pivot_offset)
 	rotation += PI / 2
 	preview_sprite.rotation += PI / 2
 	footprint_index = (footprint_index + 1) % footprints.size()
+	cell_held = Vector2i(-cell_held.y, cell_held.x)
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -82,25 +79,27 @@ func _start_dragging() -> void:
 	preview_sprite.position -= get_local_mouse_position()
 	
 	var preview := Control.new()
+	preview.rotation = rotation
 	preview.size = preview_sprite.size
 	preview.add_child(preview_sprite)
 	preview_sprite.pivot_offset = get_local_mouse_position()
 	
 	var drag_data := {}
 	drag_data["item"] = self
-	drag_data["cell_held"] = _get_cell_held()
+	_set_cell_held()
 	
 	force_drag.call_deferred(drag_data, preview)
 	hide()
 
 
-func _get_cell_held() -> Vector2i:
+func _set_cell_held() -> void:
 	var mp := get_local_mouse_position()
-	var cell := Vector2i(
+	cell_held = Vector2i(
 		floori(mp.x / Globals.CELL_SIZE),
 		floori(mp.y / Globals.CELL_SIZE)
 	)
-	return cell
+	for i in range(footprint_index):
+		cell_held = Vector2i(-cell_held.y, cell_held.x) # (0, 2) -> (-2, 0)
 
 
 func _set_footprints() -> void:

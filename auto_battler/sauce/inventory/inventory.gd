@@ -47,7 +47,6 @@ func _draw():
 
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	var item_cell_held: Vector2i = data["cell_held"]
 	var item: Item = data["item"]
 	
 	# check if cursor moved to other cell in which case hovered cells changed -> redraw needed
@@ -57,7 +56,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		redraw_needed = true
 		hovered_cells.clear()
 		for item_cell in item.get_footprint():
-			hovered_cells.append(hovered_cell + item_cell - item_cell_held)
+			hovered_cells.append(hovered_cell + item_cell - item.cell_held)
 		last_hovered_cell = hovered_cell
 	
 	var can_drop: bool = true
