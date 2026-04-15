@@ -16,6 +16,7 @@ const NEW_ITEM_POSITION := Vector2i(82, 1)
 
 @onready var ui: Control = $UILayer/UI
 @onready var inventory: Inventory = $UILayer/UI/Inventory
+@onready var combat_log: RichTextLabel = $UILayer/UI/CombatLog
 
 
 func _ready() -> void:
@@ -25,6 +26,7 @@ func _ready() -> void:
 	Input.set_custom_mouse_cursor(HOVER_CURSOR, Input.CURSOR_POINTING_HAND)
 
 	_on_combat_finished() # TODO remove this
+	LogManager.combat_log = combat_log
 
 
 func _input(event: InputEvent) -> void:

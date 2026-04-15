@@ -2,5 +2,8 @@ class_name LogManager
 extends RefCounted
 
 
-static func log_action(action: Dictionary) -> void:
-	print(action)
+static var combat_log: RichTextLabel
+
+
+static func log_action() -> void:
+	combat_log.append_text("ABOBA\n")

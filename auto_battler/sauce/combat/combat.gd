@@ -19,7 +19,7 @@ func _on_inventory_item_used(effect: Dictionary) -> void:
 	
 	var heal: int = effect.get("heal", 0)
 	player.hp += heal
-
+	LogManager.log_action()
 
 func _on_combat_button_pressed() -> void:
 	combat_counter += 1
