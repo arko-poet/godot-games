@@ -1,3 +1,4 @@
+@abstract
 class_name Item
 extends Control
 
@@ -96,9 +97,9 @@ func _set_cell_held() -> void:
 		cell_held = Vector2i(-cell_held.y, cell_held.x) # (0, 2) -> (-2, 0)
 
 
-func _set_footprints() -> void:
-	push_error("Each Item must override _set_footprint")
+@abstract
+func _set_footprints() -> void
 	
-
-func _set_rotation_offsets() -> void:
-	push_error("Each Item must override _set_rotation_offsets")
+	
+@abstract
+func _set_rotation_offsets() -> void
