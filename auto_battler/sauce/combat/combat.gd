@@ -51,4 +51,4 @@ func _process_action(effect: Dictionary) -> void:
 		target = enemy if effect["producer"] == enemy else player
 		target.block += effect["block"]
 	
-	LogManager.log_action()
+	LogManager.log_action(effect)
