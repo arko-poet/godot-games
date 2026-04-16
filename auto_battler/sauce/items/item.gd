@@ -84,6 +84,7 @@ func _start_dragging() -> void:
 	
 	var drag_data := {}
 	drag_data["item"] = self
+	drag_data["offset"] = get_local_mouse_position()
 	_set_cell_held()
 	
 	force_drag.call_deferred(drag_data, preview)

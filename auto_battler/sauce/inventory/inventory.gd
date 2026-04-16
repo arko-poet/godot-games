@@ -6,7 +6,7 @@ signal item_used(effect: Dictionary)
 signal item_added(item: Item)
 signal item_removed(item: Item)
 
-const INVENTORY_SIZE := 8 ## height and width in number of cells
+const INVENTORY_SIZE := 6 ## height and width in number of cells
 const BORDER_COLOR := Color("#5A6270")
 const BG_COLOR := Color("#252A33")
 const CAN_DROP_BG_COLOR := Color(0.0, 0.608, 0.0, 1.0)
@@ -94,6 +94,15 @@ func rotate_hovered_cells() -> void:
 	_can_drop_data(get_local_mouse_position(), get_viewport().gui_get_drag_data())
 
 
+func remove_item(item: Item) -> void:
+	for row in item_grid:
+		for col_i in range(len(row)):
+			if item == row[col_i]:
+				items.erase(row[col_i])
+				row[col_i] = null
+	item_removed.emit(item)
+
+
 func _on_mouse_exited() -> void:
 	if get_viewport().gui_is_dragging():
 		hovered_cells.clear()
@@ -129,6 +138,7 @@ func _position_to_cell(at_position: Vector2) -> Vector2i:
 
 
 func _add_item(item: Item) -> void:
+	item.reparent(self)
 	_place_item(item)
 	items.append(item)
 	item_added.emit(item)
@@ -146,16 +156,7 @@ func _place_item(item: Item) -> void:
 		row = min(row, cell.y)
 		item_grid[cell.y][cell.x] = item
 		
-	item.position = Vector2i(position) + Vector2i(column, row) * Globals.CELL_SIZE - item.get_rotation_offset()
-	print(item.position)
-
-func _remove_item(item: Item) -> void:
-	for row in item_grid:
-		for col_i in range(len(row)):
-			if item == row[col_i]:
-				items.erase(row[col_i])
-				row[col_i] = null
-	item_removed.emit(item)
+	item.position = Vector2i(column, row) * Globals.CELL_SIZE - item.get_rotation_offset()
 
 
 func _move_item(item: Item) -> void:
