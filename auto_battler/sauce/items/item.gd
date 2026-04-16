@@ -95,7 +95,7 @@ func _set_cell_held() -> void:
 		floori(mp.y / Globals.CELL_SIZE)
 	)
 	for i in range(footprint_index):
-		cell_held = Vector2i(-cell_held.y, cell_held.x) # (0, 2) -> (-2, 0)
+		cell_held = Vector2i(-cell_held.y, cell_held.x)
 
 
 @abstract

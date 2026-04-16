@@ -1,6 +1,6 @@
 extends Character
 
-signal attacked(damage: int)
+signal acted(effect: Dictionary)
 
 const HP_SCALING := 10
 const DAMAGE_SCALING := 1
@@ -15,7 +15,10 @@ var block_generation := 1
 
 
 func _on_attack_timer_timeout() -> void:
-	attacked.emit(attack_damage)
+	var effect := {}
+	effect["attack_damage"] = attack_damage
+	effect["producer"] = self
+	acted.emit(effect)
 
 
 func _on_combat_started(combat_number: int) -> void:
@@ -40,4 +43,7 @@ func _on_combat_finished() -> void:
 
 
 func _on_block_timer_timeout() -> void:
-	block += block_generation
+	var effect := {}
+	effect["block"] = block_generation
+	effect["producer"] = self
+	acted.emit(effect)

@@ -92,6 +92,6 @@ scroll_following_visible_characters = true
 [connection signal="started" from="UILayer/UI/Combat" to="UILayer/UI/Inventory" method="_on_combat_started"]
 [connection signal="started" from="UILayer/UI/Combat" to="UILayer/UI/Enemy" method="_on_combat_started"]
 [connection signal="died" from="UILayer/UI/Player" to="." method="_on_player_died"]
-[connection signal="attacked" from="UILayer/UI/Enemy" to="UILayer/UI/Combat" method="_on_enemy_attacked"]
+[connection signal="acted" from="UILayer/UI/Enemy" to="UILayer/UI/Combat" method="_on_enemy_acted"]
 [connection signal="died" from="UILayer/UI/Enemy" to="UILayer/UI/Combat" method="_on_enemy_died"]
 [connection signal="rotated" from="UILayer/UI/Stone" to="." method="_on_item_rotated"]

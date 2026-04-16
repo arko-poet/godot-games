@@ -11,15 +11,8 @@ var combat_counter := 0
 
 
 func _on_inventory_item_used(effect: Dictionary) -> void:
-	var block_damage: int = effect.get("block_damage", 0)
-	enemy.block -= block_damage
-	
-	var attack_damage: int = effect.get("attack_damage", 0)
-	enemy.hit(attack_damage)
-	
-	var heal: int = effect.get("heal", 0)
-	player.hp += heal
-	LogManager.log_action()
+	_process_action(effect)
+
 
 func _on_combat_button_pressed() -> void:
 	combat_counter += 1
@@ -34,3 +27,28 @@ func _on_enemy_died() -> void:
 
 func _on_enemy_attacked(damage: int) -> void:
 	player.hit(damage)
+
+
+func _on_enemy_acted(effect: Dictionary) -> void:
+	_process_action(effect)
+
+
+func _process_action(effect: Dictionary) -> void:
+	var target: Character
+	if "block_damage" in effect:
+		target = player if effect["producer"] == enemy else enemy
+		target.block -= effect["block_damage"]
+	
+	if "attack_damage" in effect:
+		target = player if effect["producer"] == enemy else enemy
+		target.hit(effect["attack_damage"])
+	
+	if "heal" in effect:
+		target = enemy if effect["producer"] == enemy else player
+		target.hp += effect["heal"]
+	
+	if "block" in effect:
+		target = enemy if effect["producer"] == enemy else player
+		target.block += effect["block"]
+	
+	LogManager.log_action()

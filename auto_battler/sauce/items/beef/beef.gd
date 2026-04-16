@@ -4,7 +4,10 @@ extends Item
 
 
 func get_passive_effect() -> Dictionary:
-	return {"max_hp": max_hp}
+	var effect := {}
+	effect["max_hp"] = max_hp
+	effect["producer"] = self
+	return effect
 
 
 func _set_footprints() -> void:

@@ -4,7 +4,10 @@ extends Item
 
 
 func _get_active_effect() -> Dictionary:
-	return {"attack_damage": attack_damage}
+	var effect := {}
+	effect["attack_damage"] = attack_damage
+	effect["producer"] = self
+	return effect
 
 
 func _set_footprints() -> void:
