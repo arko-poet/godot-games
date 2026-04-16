@@ -7,3 +7,4 @@
 tooltip_text = "Beef"
 script = ExtResource("2_bl8du")
 max_hp = 10
+display_name = "Beef"

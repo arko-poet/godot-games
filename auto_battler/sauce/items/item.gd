@@ -5,6 +5,8 @@ extends Control
 signal used(effect: Dictionary) ## items create effects which are executed during combat
 signal rotated
 
+@export var display_name: String
+
 ## which cells is item going to occupy at each rotation state
 var footprints: Array[Array] = [] # Array[Array[Vector2i]] is not supported
 var footprint_index := 0

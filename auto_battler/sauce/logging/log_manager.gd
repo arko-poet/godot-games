@@ -5,7 +5,7 @@ static var combat_log: RichTextLabel
 
 
 static func log_action(action: Dictionary) -> void:
-	var producer: String = action["producer"].name
+	var producer: String = action["producer"].display_name
 	var message: String
 	var enemy_action := true if producer == "Enemy" else false
 	var value: int

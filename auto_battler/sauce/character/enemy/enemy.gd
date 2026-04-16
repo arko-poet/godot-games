@@ -10,6 +10,7 @@ const START_BLOCKING := 5
 
 var attack_damage := 0
 var block_generation := 1
+var display_name := "Enemy"
 
 @onready var attack_timer: Timer = $AttackTimer
 @onready var block_timer: Timer = $BlockTimer

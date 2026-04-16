@@ -9,6 +9,7 @@ tooltip_text = "Mace"
 script = ExtResource("2_2l5x4")
 attack_damage = 8
 block_damage = 5
+display_name = "Mace"
 
 [node name="Sprite" parent="." index="0" unique_id=443896673]
 offset_bottom = 46.0
