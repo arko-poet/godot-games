@@ -8,7 +8,8 @@ signal rotated
 ## which cells is item going to occupy at each rotation state
 var footprints: Array[Array] = [] # Array[Array[Vector2i]] is not supported
 var footprint_index := 0
-var rotation_offsets: Array[Vector2i] = [] ## actual item position after rotation
+## actual item position after rotation
+var rotation_offsets: Array[Vector2i] = [] 
 var preview_sprite: Control
 var cell_held: Vector2i
 
