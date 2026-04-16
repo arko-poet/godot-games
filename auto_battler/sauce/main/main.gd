@@ -12,11 +12,11 @@ const DRAG_CURSOR := preload(
 const HOVER_CURSOR := preload(
 	"res://assets/kenney_cursor-pack/PNG/Outline/Default/gauntlet_point.png"
 )
-const NEW_ITEM_POSITION := Vector2i(82, 1)
 
 @onready var ui: Control = $UILayer/UI
 @onready var inventory: Inventory = $UILayer/UI/Inventory
 @onready var combat_log: RichTextLabel = $UILayer/UI/CombatLog
+@onready var item_box: Control = $UILayer/UI/ItemBox
 
 
 func _ready() -> void:
@@ -45,8 +45,8 @@ func _on_combat_finished() -> void:
 	#var item := ITEM_SCENES[randi() % ITEM_SCENES.size()].instantiate()
 	var item: Item = ITEM_SCENES[3].instantiate()
 	item.rotated.connect(_on_item_rotated)
-	item.position = NEW_ITEM_POSITION
-	ui.add_child(item)
+	item.position = Vector2.ZERO
+	item_box.add_child(item)
 
 
 func _on_item_rotated() -> void:
