@@ -51,3 +51,7 @@ func _on_combat_finished() -> void:
 
 func _on_item_rotated() -> void:
 	inventory.rotate_hovered_cells()
+
+
+func _on_combat_started(_combat_number: int) -> void:
+	combat_log.clear()
