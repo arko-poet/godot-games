@@ -16,3 +16,15 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	for i in range(item.footprint_index):
 		offset = Vector2(-offset.y, offset.x)
 	item.position = at_position - offset
+
+
+func _on_combat_started(_combat_number: int) -> void:
+	for c in get_children():
+		if c is Item:
+			c.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+func _on_combat_finished() -> void:
+	for c in get_children():
+		if c is Item:
+			c.mouse_filter = Control.MOUSE_FILTER_STOP
