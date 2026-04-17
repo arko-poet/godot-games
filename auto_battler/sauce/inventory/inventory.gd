@@ -11,10 +11,12 @@ const BORDER_COLOR := Color("#5A6270")
 const BG_COLOR := Color("#252A33")
 const CAN_DROP_BG_COLOR := Color(0.0, 0.608, 0.0, 1.0)
 const CANT_DROP_BG_COLOR := Color(0.69, 0.0, 0.0, 1.0)
+const BONUS_BG_COLOR := Color.GOLD
 
 var item_grid: Array[Array] = [] ## Item if cell occupied, null otherwise
 var last_hovered_cell: Vector2i ## a cell cursor is hovering over
 var hovered_cells: Array[Vector2i] = [] ## currently hovered cells, used for redrawing grid
+var bonus_cells: Array[Vector2i] = []
 var items: Array[Item] = []
 var hover_color: Color ## changes depending on if drop is allowed or not
 var update_rotation: bool = false ## hovered cells need changing if true
@@ -33,6 +35,7 @@ func _ready() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
 		hovered_cells.clear()
+		bonus_cells.clear()
 		queue_redraw()
 		
 
@@ -44,7 +47,12 @@ func _draw():
 			var cell_position := cell * Globals.CELL_SIZE
 			var cell_size := Vector2i(Globals.CELL_SIZE, Globals.CELL_SIZE)
 			var rect2i := Rect2i(cell_position, cell_size)
-			draw_rect(rect2i, hover_color if cell in hovered_cells else BG_COLOR)
+			var bg_color: Color = BG_COLOR
+			if cell in hovered_cells:
+				bg_color = hover_color
+			elif cell in bonus_cells:
+				bg_color = BONUS_BG_COLOR
+			draw_rect(rect2i, bg_color)
 			draw_rect(rect2i, BORDER_COLOR, false, 1)
 
 
@@ -58,9 +66,12 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		update_rotation = false
 		redraw_needed = true
 		hovered_cells.clear()
+		bonus_cells.clear()
 		for item_cell in item.get_footprint():
 			hovered_cells.append(hovered_cell + item_cell - item.cell_held)
 		last_hovered_cell = hovered_cell
+		for item_cell in item.bonus_cells:
+			bonus_cells.append(hovered_cell + item_cell - item.cell_held)
 	
 	var can_drop: bool = true
 	for hc in hovered_cells:
@@ -86,6 +97,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	else:
 		_add_item(item)
 	hovered_cells.clear()
+	bonus_cells.clear()
 	queue_redraw()
 
 
@@ -118,6 +130,7 @@ func _clear_hovered() -> void:
 func _on_mouse_exited() -> void:
 	if get_viewport().gui_is_dragging():
 		hovered_cells.clear()
+		bonus_cells.clear()
 		queue_redraw()
 
 
