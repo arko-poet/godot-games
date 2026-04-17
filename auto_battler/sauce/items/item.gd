@@ -14,6 +14,8 @@ var footprint_index := 0
 var rotation_offsets: Array[Vector2i] = [] 
 var preview_sprite: Control
 var cell_held: Vector2i
+var bonus_cells: Array[Vector2i] = []
+var bonus: Dictionary
 
 @onready var sprite: ColorRect = $Sprite
 @onready var effect_timer: Timer = $EffectTimer
@@ -22,6 +24,7 @@ var cell_held: Vector2i
 func _ready() -> void:
 	_set_footprints()
 	_set_rotation_offsets()
+	_set_bonus_cells()
 
 
 func _notification(what: int) -> void:
@@ -109,3 +112,11 @@ func _set_footprints() -> void
 	
 @abstract
 func _set_rotation_offsets() -> void
+
+
+func _set_bonus_cells() -> void:
+	pass
+	
+
+func _get_bonus() -> Dictionary:
+	return {}

@@ -4,7 +4,8 @@ const ITEM_SCENES: Array[PackedScene] = [
 	preload("res://sauce/items/stone/stone.tscn"),
 	preload("res://sauce/items/flower/flower.tscn"),
 	preload("res://sauce/items/beef/beef.tscn"),
-	preload("res://sauce/items/mace/mace.tscn")
+	preload("res://sauce/items/mace/mace.tscn"),
+	preload("res://sauce/items/gloves/gloves.tscn")
 ]
 const DRAG_CURSOR := preload(
 	"res://assets/kenney_cursor-pack/PNG/Outline/Default/hand_closed.png"
@@ -43,7 +44,7 @@ func _on_player_died() -> void:
 
 func _on_combat_finished() -> void:
 	#var item := ITEM_SCENES[randi() % ITEM_SCENES.size()].instantiate()
-	var item: Item = ITEM_SCENES[3].instantiate()
+	var item: Item = ITEM_SCENES[4].instantiate()
 	item.rotated.connect(_on_item_rotated)
 	item.position = Vector2.ZERO
 	item_box.add_child(item)

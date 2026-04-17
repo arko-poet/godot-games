@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bhn5w8551mxks"]
+
+[ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/items/item.tscn" id="1_n7klb"]
+[ext_resource type="Script" uid="uid://brkq1gd3ctq25" path="res://sauce/items/gloves/gloves.gd" id="2_4ym6f"]
+
+[node name="Gloves" unique_id=544253172 instance=ExtResource("1_n7klb")]
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("2_4ym6f")
+display_name = "Gloves"
+
+[node name="Sprite" parent="." index="0" unique_id=443896673]
+offset_right = 31.0
+offset_bottom = 31.0
+color = Color(0.8777824, 0.52083, 0.26252583, 1)
