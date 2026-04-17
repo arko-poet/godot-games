@@ -28,3 +28,8 @@ func _on_combat_finished() -> void:
 	for c in get_children():
 		if c is Item:
 			c.mouse_filter = Control.MOUSE_FILTER_STOP
+
+
+func _on_inventory_item_removed(item: Item) -> void:
+	item.reparent(self)
+	item.position = Vector2.ZERO

@@ -67,7 +67,6 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		if (
 			hc.y < 0 or hc.x < 0
 			or hc.y >= INVENTORY_SIZE or hc.x >= INVENTORY_SIZE
-			or not (item_grid[hc.y][hc.x] == null or item_grid[hc.y][hc.x] == item)
 		):
 			can_drop = false
 			break
@@ -81,6 +80,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var item: Item = data["item"]
+	_clear_hovered()
 	if item in items:
 		_move_item(item)
 	else:
@@ -101,6 +101,18 @@ func remove_item(item: Item) -> void:
 				items.erase(row[col_i])
 				row[col_i] = null
 	item_removed.emit(item)
+
+
+## remove items present in hovered cells
+func _clear_hovered() -> void:
+	var overlapping_items: Array[Item] = []
+	for hc in hovered_cells:
+		var item: Item = item_grid[hc.y][hc.x]
+		if item != null and item not in overlapping_items:
+			overlapping_items.append(item)
+	
+	for item in overlapping_items:
+		remove_item(item)
 
 
 func _on_mouse_exited() -> void:
