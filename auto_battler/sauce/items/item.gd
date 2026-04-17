@@ -2,7 +2,7 @@
 class_name Item
 extends Control
 
-signal used(effect: Dictionary) ## items create effects which are executed during combat
+signal used(action: CombatAction)
 signal rotated
 
 @export var display_name: String
@@ -63,13 +63,13 @@ func _on_gui_input(event: InputEvent) -> void:
 		_start_dragging()
 
 
-## for overriding, should return an effect item produces on cooldown
-func _get_active_effect() -> Dictionary:
-	return {}
+func _get_actions() -> Array[CombatAction]:
+	return []
 
 
 func _on_effect_timer_timeout() -> void:
-	used.emit(_get_active_effect())
+	for action in _get_actions():
+		used.emit(action)
 
 
 func _start_dragging() -> void:

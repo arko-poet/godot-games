@@ -10,8 +10,8 @@ var combat_counter := 0
 @onready var enemy: Character = $"../Enemy"
 
 
-func _on_inventory_item_used(effect: Dictionary) -> void:
-	_process_action(effect)
+func _on_inventory_item_used(action: CombatAction) -> void:
+	_process_action(action)
 
 
 func _on_combat_button_pressed() -> void:
@@ -25,30 +25,26 @@ func _on_enemy_died() -> void:
 	combat_button.disabled = false
 
 
-func _on_enemy_attacked(damage: int) -> void:
-	player.hit(damage)
+func _on_enemy_acted(action: CombatAction) -> void:
+	_process_action(action)
 
 
-func _on_enemy_acted(effect: Dictionary) -> void:
-	_process_action(effect)
-
-
-func _process_action(effect: Dictionary) -> void:
+func _process_action(action: CombatAction) -> void:
 	var target: Character
-	if "block_damage" in effect:
-		target = player if effect.producer == enemy else enemy
-		target.block -= effect.block_damage
-	
-	if "attack_damage" in effect:
-		target = player if effect["producer"] == enemy else enemy
-		target.hit(effect["attack_damage"])
-	
-	if "heal" in effect:
-		target = enemy if effect["producer"] == enemy else player
-		target.hp += effect["heal"]
-	
-	if "block" in effect:
-		target = enemy if effect["producer"] == enemy else player
-		target.block += effect["block"]
-	
-	LogManager.log_action(effect)
+	match action.type:
+		CombatAction.Type.BREAK:
+			target = player if action.source is Enemy else enemy
+			target.block -= action.value
+		CombatAction.Type.ATTACK:
+			target = player if action.source == enemy else enemy
+			target.hit(action.value)
+		CombatAction.Type.HEAL:
+			target = enemy if action.source == enemy else player
+			target.hp += action.value
+		CombatAction.Type.BLOCK:
+			target = enemy if action.source == enemy else player
+			target.block += action.value
+		_:
+			push_error("Unknown CombatAction.Type")
+
+	LogManager.log_action(action)

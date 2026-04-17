@@ -2,7 +2,7 @@
 class_name Inventory
 extends Control
 
-signal item_used(effect: Dictionary)
+signal item_used(action: CombatAction)
 signal item_added(item: Item)
 signal item_removed(item: Item)
 
@@ -109,9 +109,9 @@ func _on_mouse_exited() -> void:
 		queue_redraw()
 
 
-func _on_item_used(effect: Dictionary) -> void:
+func _on_item_used(action: CombatAction) -> void:
 	# TODO process item effect based on other items in the grid
-	item_used.emit(effect)
+	item_used.emit(action)
 
 
 func _on_combat_started(_combat_number: int) -> void:
