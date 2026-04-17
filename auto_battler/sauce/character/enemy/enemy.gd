@@ -17,10 +17,10 @@ var display_name := "Enemy"
 
 
 func _on_attack_timer_timeout() -> void:
-	var effect := {}
-	effect["attack_damage"] = attack_damage
-	effect["producer"] = self
-	acted.emit(effect)
+	acted.emit({
+		"attack_damage": attack_damage,
+		"producer": self
+	})
 
 
 func _on_combat_started(combat_number: int) -> void:
@@ -45,7 +45,7 @@ func _on_combat_finished() -> void:
 
 
 func _on_block_timer_timeout() -> void:
-	var effect := {}
-	effect["block"] = block_generation
-	effect["producer"] = self
-	acted.emit(effect)
+	acted.emit({
+		"block": block_generation,
+		"producer": self
+	})

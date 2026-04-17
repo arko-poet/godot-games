@@ -36,8 +36,8 @@ func _on_enemy_acted(effect: Dictionary) -> void:
 func _process_action(effect: Dictionary) -> void:
 	var target: Character
 	if "block_damage" in effect:
-		target = player if effect["producer"] == enemy else enemy
-		target.block -= effect["block_damage"]
+		target = player if effect.producer == enemy else enemy
+		target.block -= effect.block_damage
 	
 	if "attack_damage" in effect:
 		target = player if effect["producer"] == enemy else enemy

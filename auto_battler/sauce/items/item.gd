@@ -73,18 +73,20 @@ func _on_effect_timer_timeout() -> void:
 
 
 func _start_dragging() -> void:
+	var mp := get_local_mouse_position()
 	preview_sprite = sprite.duplicate()
-	preview_sprite.position -= get_local_mouse_position()
+	preview_sprite.position -= mp
 	
 	var preview := Control.new()
 	preview.rotation = rotation
 	preview.size = preview_sprite.size
 	preview.add_child(preview_sprite)
-	preview_sprite.pivot_offset = get_local_mouse_position()
+	preview_sprite.pivot_offset = mp
 	
-	var drag_data := {}
-	drag_data["item"] = self
-	drag_data["offset"] = get_local_mouse_position()
+	var drag_data := {
+		"item": self,
+		"offset": mp
+	}
 	_set_cell_held()
 	
 	force_drag.call_deferred(drag_data, preview)
