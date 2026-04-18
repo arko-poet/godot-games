@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://tnft4nng5yf3" path="res://sauce/character/player/player.tscn" id="5_5t0sr"]
 [ext_resource type="PackedScene" uid="uid://cl5ntef5qhred" path="res://sauce/items/stone/stone.tscn" id="6_5t0sr"]
 [ext_resource type="PackedScene" uid="uid://lcvfg2c6lxj8" path="res://sauce/character/enemy/enemy.tscn" id="6_qdlrn"]
-[ext_resource type="PackedScene" uid="uid://7e70n3ftqehs" path="res://sauce/item_box/ItemBox.tscn" id="7_qdlrn"]
+[ext_resource type="PackedScene" uid="uid://7e70n3ftqehs" path="res://sauce/item_box/item_box.tscn" id="7_qdlrn"]
 
 [node name="Main" type="Node" unique_id=438263722]
 script = ExtResource("1_f2htl")
@@ -24,7 +24,6 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="Inventory" parent="UILayer/UI" unique_id=543163270 instance=ExtResource("1_8ckbp")]
-custom_minimum_size = Vector2(96, 96)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5

@@ -16,12 +16,15 @@ var preview_sprite: Control
 var cell_held: Vector2i
 var bonus_cells: Array[Vector2i] = []
 var bonus: Dictionary
+var base_cooldown: float
+var cdr := 0.0
 
 @onready var sprite: ColorRect = $Sprite
 @onready var effect_timer: Timer = $EffectTimer
 
 
 func _ready() -> void:
+	base_cooldown = effect_timer.wait_time
 	_set_footprints()
 	_set_rotation_offsets()
 	_set_bonus_cells()
@@ -34,6 +37,10 @@ func _notification(what: int) -> void:
 
 ## for overriding, should return an effect item produces when added to inventory
 func get_passive_effect() -> Dictionary:
+	return {}
+
+
+func get_bonus() -> Dictionary:
 	return {}
 
 
@@ -55,6 +62,23 @@ func rotate() -> void:
 	footprint_index = (footprint_index + 1) % footprints.size()
 	cell_held = Vector2i(-cell_held.y, cell_held.x)
 	rotated.emit()
+
+
+func apply_bonus(item: Item) -> void:
+	print("apply to %s" % display_name)
+	if item.get_bonus().has("cooldown"):
+		cdr += item.get_bonus()["cooldown"]
+		effect_timer.wait_time = base_cooldown / (1.0 + cdr)
+	print(effect_timer.wait_time)
+		
+
+
+func remove_bonus(item: Item) -> void:
+	print("remove from %s" % display_name)
+	if item.get_bonus().has("cooldown"):
+		cdr -= item.get_bonus()["cooldown"]
+		effect_timer.wait_time = base_cooldown / (1.0 + cdr)
+	print(effect_timer.wait_time)
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -117,6 +141,3 @@ func _set_rotation_offsets() -> void
 func _set_bonus_cells() -> void:
 	pass
 	
-
-func _get_bonus() -> Dictionary:
-	return {}

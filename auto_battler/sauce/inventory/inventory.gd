@@ -104,8 +104,8 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var item: Item = data["item"]
-	_clear_hovered()
-	if item in items:
+	_clear_hovered(item)
+	if items.has(item):
 		_move_item(item)
 	else:
 		_add_item(item)
@@ -121,21 +121,17 @@ func rotate_hovered_cells() -> void:
 
 
 func remove_item(item: Item) -> void:
-	for row in item_grid:
-		for col_i in row.size():
-			if item == row[col_i]:
-				items.erase(row[col_i])
-				row[col_i] = null
-				
 	for row_i in INVENTORY_SIZE:
 		for col_i in INVENTORY_SIZE:
-			bonuses[row_i][col_i].erase(item)
-	
+			_remove_bonuses(item)
+			if item == item_grid[row_i][col_i]:
+				items.erase(item)
+				item_grid[row_i][col_i] = null
 	item_removed.emit(item)
 
 
-## remove items present in hovered cells
-func _clear_hovered() -> void:
+## remove items present in hovered cells except the specified one (typically one dragging)
+func _clear_hovered(except_item: Item) -> void:
 	var overlapping_items: Array[Item] = []
 	for hc in hovered_cells:
 		var item: Item = item_grid[hc.y][hc.x]
@@ -143,7 +139,8 @@ func _clear_hovered() -> void:
 			overlapping_items.append(item)
 	
 	for item in overlapping_items:
-		remove_item(item)
+		if item != except_item:
+			remove_item(item)
 
 
 func _on_mouse_exited() -> void:
@@ -154,19 +151,6 @@ func _on_mouse_exited() -> void:
 
 
 func _on_item_used(action: CombatAction) -> void:
-	print("item used")
-	var occupied_cells: Array[Vector2i] = []
-	for row_i in INVENTORY_SIZE:
-		for col_i in INVENTORY_SIZE:
-			if item_grid[row_i][col_i] == action.source and action.source not in occupied_cells:
-				occupied_cells.append(Vector2i(col_i, row_i))
-	print(occupied_cells)
-	var bonus_items: Array[Item] = []
-	for oc in occupied_cells:
-		for item in bonuses[oc.y][oc.x]:
-			if not bonus_items.has(item):
-				bonus_items.append(item)
-	print(bonus_items)
 	item_used.emit(action)
 
 
@@ -212,16 +196,84 @@ func _place_item(item: Item) -> void:
 		row = min(row, cell.y)
 		item_grid[cell.y][cell.x] = item
 	
-	for bc in bonus_cells:
-		if item not in bonuses[bc.y][bc.x]:
-			bonuses[bc.y][bc.x].append(item)
-	print(bonuses)
 	item.position = Vector2i(column, row) * Globals.CELL_SIZE - item.get_rotation_offset()
+	
+	_apply_bonuses(item)
 
 
 func _move_item(item: Item) -> void:
+	print("move")
+	_remove_bonuses(item)
+	# clear previous item references
 	for row in item_grid:
 		for col_i in INVENTORY_SIZE:
 			if item == row[col_i]:
 				row[col_i] = null
+	
+	
 	_place_item(item)
+
+
+func _remove_bonuses(item: Item) -> void:
+	print("removing")
+	for ai in _get_affecting_items(_get_occupied_cells(item)):
+		item.remove_bonus(ai)
+	
+	# find cell where the item applies bonus
+	var array_name: Array[Vector2i] = [] # TODO find better name
+	for row_i in INVENTORY_SIZE:
+		for col_i in INVENTORY_SIZE:
+			if bonuses[row_i][col_i].has(item) and not array_name.has(Vector2i(col_i, row_i)):
+				array_name.append(Vector2i(col_i, row_i))
+	print(array_name)
+	
+	# find items which have the item's bonus applied
+	var bonus_items = []
+	for xd in array_name:
+		var item_in_grid: Item = item_grid[xd.y][xd.x]
+		if item_in_grid != null and item_in_grid != item and not bonus_items.has(item_in_grid):
+			bonus_items.append(item_in_grid)
+	
+	# remove the item's bonus from other items
+	for bi in bonus_items:
+		bi.remove_bonus(item)
+	
+	# clear bonuses:
+	for row_i in INVENTORY_SIZE:
+		for col_i in INVENTORY_SIZE:
+			bonuses[row_i][col_i].erase(item)
+
+
+func _apply_bonuses(item: Item) -> void:
+	for ai in _get_affecting_items(_get_occupied_cells(item)):
+		item.apply_bonus(ai)
+	
+	var array_name2: Array[Item] = []
+	for bc in bonus_cells:
+		assert(item not in bonuses[bc.y][bc.x])
+		bonuses[bc.y][bc.x].append(item)
+		var item_name: Item = item_grid[bc.y][bc.x]
+		if item_name != null and not array_name2.has(item_name):
+			array_name2.append(item_name)
+	
+	for i in array_name2:
+		i.apply_bonus(item)
+
+
+func _get_occupied_cells(item: Item) -> Array[Vector2i]:
+	var occupied_cells: Array[Vector2i] = []
+	for row_i in INVENTORY_SIZE:
+		for col_i in INVENTORY_SIZE:
+			if item_grid[row_i][col_i] == item:
+				occupied_cells.append(Vector2i(col_i, row_i))
+	return occupied_cells
+
+
+## get all items that are providing bonus to the given cells
+func _get_affecting_items(cells: Array[Vector2i]) -> Array[Item]:
+	var affecting_items: Array[Item] = []
+	for cell in cells:
+		for bonus in bonuses[cell.y][cell.x]:
+			if not affecting_items.has(bonus):
+				affecting_items.append(bonus)
+	return affecting_items
