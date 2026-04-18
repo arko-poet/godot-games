@@ -110,9 +110,11 @@ PanelContainer, RichTextLabel, NavigationAgent2D, CPUParticles2D, GPUParticles2D
 ### New Godot Nodes learned
 Container, Skeleton2D, Bone2D, ScrollContainer, Panel
 
-## 6. `Auto Battler` - based on Backpack Battles
+## 7. `Auto Battler` - based on Backpack Battles
 2026-04-08 -> WIP
 ![](screenshots/auto-battler.png)
 ### What I learned
-- 
+- godot drag and drop api
+- grid inventory system supporting items of various shapes and sizes
+- combat log
 ### New Godot Nodes learned
