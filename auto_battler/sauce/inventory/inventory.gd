@@ -84,7 +84,12 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 			hovered_cells.append(hovered_cell + item_cell - item.cell_held)
 		last_hovered_cell = hovered_cell
 		for item_cell in item.bonus_cells:
-			bonus_cells.append(hovered_cell + item_cell - item.cell_held)
+			var bonus_cell: Vector2i = hovered_cell + item_cell - item.cell_held
+			if (
+				bonus_cell.x >= 0 and bonus_cell.y >= 0 
+				and bonus_cell.x < INVENTORY_SIZE and bonus_cell.y < INVENTORY_SIZE
+			):
+				bonus_cells.append(hovered_cell + item_cell - item.cell_held)
 	
 	var can_drop: bool = true
 	for hc in hovered_cells:
