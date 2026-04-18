@@ -13,7 +13,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	item.reparent(self)
 	
 	var offset: Vector2 = data["offset"]
-	for i in range(item.footprint_index):
+	for i in item.footprint_index:
 		offset = Vector2(-offset.y, offset.x)
 	item.position = at_position - offset
 

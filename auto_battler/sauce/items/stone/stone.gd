@@ -4,6 +4,7 @@ extends Item
 
 
 func _get_actions() -> Array[CombatAction]:
+	
 	return [CombatAction.new(CombatAction.Type.ATTACK, attack_damage, self)]
 
 func _set_footprints() -> void:

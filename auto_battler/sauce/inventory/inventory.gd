@@ -13,23 +13,36 @@ const CAN_DROP_BG_COLOR := Color(0.0, 0.608, 0.0, 1.0)
 const CANT_DROP_BG_COLOR := Color(0.69, 0.0, 0.0, 1.0)
 const BONUS_BG_COLOR := Color.GOLD
 
-var item_grid: Array[Array] = [] ## Item if cell occupied, null otherwise
-var last_hovered_cell: Vector2i ## a cell cursor is hovering over
-var hovered_cells: Array[Vector2i] = [] ## currently hovered cells, used for redrawing grid
+## Item if cell occupied, null otherwise
+var item_grid: Array[Array] = [] 
+## a cell cursor is hovering over
+var last_hovered_cell: Vector2i
+## currently hovered cells, used for redrawing grid
+var hovered_cells: Array[Vector2i] = []
+## hover only
 var bonus_cells: Array[Vector2i] = []
 var items: Array[Item] = []
-var hover_color: Color ## changes depending on if drop is allowed or not
-var update_rotation: bool = false ## hovered cells need changing if true
-
+## changes depending on if drop is allowed or not
+var hover_color: Color 
+## hovered cells need changing if true
+var update_rotation: bool = false 
+## Array[Array[Array[Item]]] - each grid cell has list of Items which contribute bonus to that cell
+var bonuses: Array[Array] = [] 
 
 func _ready() -> void:
 	custom_minimum_size = Globals.CELL_SIZE * Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 	
-	for y in range(INVENTORY_SIZE):
+	for y in INVENTORY_SIZE:
 		var row: Array[Item] = []
-		for x in range(INVENTORY_SIZE):
+		for x in INVENTORY_SIZE:
 			row.append(null)
 		item_grid.append(row)
+	
+	for y in INVENTORY_SIZE:
+		var row: Array[Array] = []
+		for x in INVENTORY_SIZE:
+			row.append([])
+		bonuses.append(row)
 
 
 func _notification(what: int) -> void:
@@ -41,8 +54,8 @@ func _notification(what: int) -> void:
 
 func _draw():
 	# inventory grid
-	for y in range(INVENTORY_SIZE):
-		for x in range(INVENTORY_SIZE):
+	for y in INVENTORY_SIZE:
+		for x in INVENTORY_SIZE:
 			var cell := Vector2i(x, y)
 			var cell_position := cell * Globals.CELL_SIZE
 			var cell_size := Vector2i(Globals.CELL_SIZE, Globals.CELL_SIZE)
@@ -98,6 +111,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 		_add_item(item)
 	hovered_cells.clear()
 	bonus_cells.clear()
+	
 	queue_redraw()
 
 
@@ -108,10 +122,15 @@ func rotate_hovered_cells() -> void:
 
 func remove_item(item: Item) -> void:
 	for row in item_grid:
-		for col_i in range(len(row)):
+		for col_i in row.size():
 			if item == row[col_i]:
 				items.erase(row[col_i])
 				row[col_i] = null
+				
+	for row_i in INVENTORY_SIZE:
+		for col_i in INVENTORY_SIZE:
+			bonuses[row_i][col_i].erase(item)
+	
 	item_removed.emit(item)
 
 
@@ -135,7 +154,19 @@ func _on_mouse_exited() -> void:
 
 
 func _on_item_used(action: CombatAction) -> void:
-	# TODO process item effect based on other items in the grid
+	print("item used")
+	var occupied_cells: Array[Vector2i] = []
+	for row_i in INVENTORY_SIZE:
+		for col_i in INVENTORY_SIZE:
+			if item_grid[row_i][col_i] == action.source and action.source not in occupied_cells:
+				occupied_cells.append(Vector2i(col_i, row_i))
+	print(occupied_cells)
+	var bonus_items: Array[Item] = []
+	for oc in occupied_cells:
+		for item in bonuses[oc.y][oc.x]:
+			if not bonus_items.has(item):
+				bonus_items.append(item)
+	print(bonus_items)
 	item_used.emit(action)
 
 
@@ -180,13 +211,17 @@ func _place_item(item: Item) -> void:
 		column = min(column, cell.x)
 		row = min(row, cell.y)
 		item_grid[cell.y][cell.x] = item
-		
+	
+	for bc in bonus_cells:
+		if item not in bonuses[bc.y][bc.x]:
+			bonuses[bc.y][bc.x].append(item)
+	print(bonuses)
 	item.position = Vector2i(column, row) * Globals.CELL_SIZE - item.get_rotation_offset()
 
 
 func _move_item(item: Item) -> void:
 	for row in item_grid:
-		for col_i in range(len(row)):
+		for col_i in INVENTORY_SIZE:
 			if item == row[col_i]:
 				row[col_i] = null
 	_place_item(item)
