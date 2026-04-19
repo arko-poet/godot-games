@@ -25,7 +25,6 @@ var cdr := 0.0
 func _ready() -> void:
 	base_cooldown = effect_timer.wait_time
 	_set_footprints()
-	_set_rotation_offsets()
 	_set_bonus_cells()
 
 
@@ -51,8 +50,11 @@ func get_footprint() -> Array[Vector2i]:
 	return footprint
 
 
-func get_rotation_offset() -> Vector2i:
-	return rotation_offsets[footprint_index]
+## return visual top left corner of the Item while respecting rotation
+func get_top_left_corner() -> Vector2:
+	var local_transform = Transform2D(rotation, Vector2.ZERO)
+	var local_rect = Rect2(Vector2.ZERO, get_rect().size)
+	return (local_transform * local_rect).position
 
 
 func rotate() -> void:
@@ -64,20 +66,16 @@ func rotate() -> void:
 
 
 func apply_bonus(item: Item) -> void:
-	print("apply to %s" % display_name)
 	if item.get_bonus().has("cooldown"):
 		cdr += item.get_bonus()["cooldown"]
 		effect_timer.wait_time = base_cooldown / (1.0 + cdr)
-	print(effect_timer.wait_time)
 		
 
 
 func remove_bonus(item: Item) -> void:
-	print("remove from %s" % display_name)
 	if item.get_bonus().has("cooldown"):
 		cdr -= item.get_bonus()["cooldown"]
 		effect_timer.wait_time = base_cooldown / (1.0 + cdr)
-	print(effect_timer.wait_time)
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -131,10 +129,6 @@ func _set_cell_held() -> void:
 
 @abstract
 func _set_footprints() -> void
-	
-	
-@abstract
-func _set_rotation_offsets() -> void
 
 
 func _set_bonus_cells() -> void:

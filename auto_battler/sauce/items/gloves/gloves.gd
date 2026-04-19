@@ -14,14 +14,6 @@ func _set_footprints() -> void:
 	footprints.append([Vector2i.ZERO, Vector2i(0, 1), Vector2i(1, 0), Vector2i(1, 1)])
 	footprints.append([Vector2i.ZERO, Vector2i(0, 1), Vector2i(1, 0), Vector2i(1, 1)])
 
-
-func _set_rotation_offsets() -> void:
-	rotation_offsets.append(Vector2i.ZERO)
-	rotation_offsets.append(Vector2i(-32, 0))
-	rotation_offsets.append(Vector2i(-32, -32))
-	rotation_offsets.append(Vector2i(0, 32))
-	
-
 func _set_bonus_cells() -> void:
 	bonus_cells.append(Vector2i(0, -1))
 	bonus_cells.append(Vector2i(1, -1))

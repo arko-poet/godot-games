@@ -158,7 +158,7 @@ func _place_item(item: Item) -> void:
 		row = min(row, cell.y)
 		item_grid[cell.y][cell.x] = item
 	
-	item.position = Vector2i(column, row) * Globals.CELL_SIZE - item.get_rotation_offset()
+	item.position = Vector2(column, row) * Globals.CELL_SIZE - item.get_top_left_corner()
 	
 	for bc in hovered_bonus_cells:
 		assert(item not in bonus_providers[bc.y][bc.x])
