@@ -109,17 +109,8 @@ func _start_dragging() -> void:
 
 
 func _set_cell_held() -> void:
-	#print(get_local_mouse_position())
-	var mp := get_local_mouse_position() * Transform2D(-rotation, Vector2.ZERO)
-	#print(mp)
-	#print(Transform2D(rotation, Vector2.ZERO))
-	#print(rotation)
-	#print(mp)
-	cell_held = Vector2i(
-		floori(mp.x / Globals.CELL_SIZE),
-		floori(mp.y / Globals.CELL_SIZE)
-	)
-	#print(cell_held)
+	var mp := get_local_mouse_position() / Globals.CELL_SIZE
+	cell_held = Vector2i(mp * Transform2D(-rotation, Vector2.ZERO))
 
 
 @abstract
