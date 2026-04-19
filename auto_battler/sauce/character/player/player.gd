@@ -1,5 +1,4 @@
-class_name Player
-extends Character
+class_name Player extends Character
 
 
 func _on_combat_finished() -> void:

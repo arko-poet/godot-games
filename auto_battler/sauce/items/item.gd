@@ -1,6 +1,5 @@
 @abstract
-class_name Item
-extends Control
+class_name Item extends Control
 
 signal used(action: CombatAction)
 signal rotated

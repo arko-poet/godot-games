@@ -1,5 +1,4 @@
-class_name LogManager
-extends RefCounted
+class_name LogManager extends RefCounted
 
 static var combat_log: RichTextLabel
 

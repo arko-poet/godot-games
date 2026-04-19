@@ -1,6 +1,5 @@
 @abstract
-class_name Character
-extends Control
+class_name Character extends Control
 
 signal died
 

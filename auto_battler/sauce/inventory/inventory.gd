@@ -1,6 +1,5 @@
 @tool
-class_name Inventory
-extends Control
+class_name Inventory extends Control
 
 signal item_used(action: CombatAction)
 signal item_added(item: Item)
