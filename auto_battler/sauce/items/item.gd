@@ -52,6 +52,7 @@ func rotate() -> void:
 	cell_held = Vector2i(-cell_held.y, cell_held.x)
 	for i in footprint.size():
 		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
+	print(footprint)
 	rotated.emit()
 
 
@@ -108,13 +109,17 @@ func _start_dragging() -> void:
 
 
 func _set_cell_held() -> void:
-	print(get_local_mouse_position())
-	var mp := get_local_mouse_position() * Transform2D(rotation, Vector2.ZERO)
+	#print(get_local_mouse_position())
+	var mp := get_local_mouse_position() * Transform2D(-rotation, Vector2.ZERO)
+	#print(mp)
+	#print(Transform2D(rotation, Vector2.ZERO))
+	#print(rotation)
+	#print(mp)
 	cell_held = Vector2i(
 		floori(mp.x / Globals.CELL_SIZE),
 		floori(mp.y / Globals.CELL_SIZE)
 	)
-	print(cell_held)
+	#print(cell_held)
 
 
 @abstract
