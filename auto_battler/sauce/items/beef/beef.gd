@@ -10,8 +10,5 @@ func get_passive_effect() -> Dictionary:
 	}
 
 
-func _set_footprints() -> void:
-	footprints.append([Vector2i.ZERO])
-	footprints.append([Vector2i.ZERO])
-	footprints.append([Vector2i.ZERO])
-	footprints.append([Vector2i.ZERO])
+func _set_footprint() -> void:
+	footprint = [Vector2.ZERO]

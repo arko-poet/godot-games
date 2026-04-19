@@ -7,10 +7,7 @@ signal rotated
 @export var display_name: String
 
 ## which cells is item going to occupy at each rotation state
-var footprints: Array[Array] = [] # Array[Array[Vector2i]] is not supported
-var footprint_index := 0
-## actual item position after rotation
-var rotation_offsets: Array[Vector2i] = [] 
+var footprint: Array[Vector2i] = []
 var preview_sprite: Control
 var cell_held: Vector2i
 var bonus_cells: Array[Vector2i] = []
@@ -24,7 +21,7 @@ var cdr := 0.0
 
 func _ready() -> void:
 	base_cooldown = effect_timer.wait_time
-	_set_footprints()
+	_set_footprint()
 	_set_bonus_cells()
 
 
@@ -42,14 +39,6 @@ func get_bonus() -> Dictionary:
 	return {}
 
 
-func get_footprint() -> Array[Vector2i]:
-	# have to convert to Array[Vector2i] cause godot doesnt support nested generics
-	var footprint: Array[Vector2i] = []
-	for cell in footprints[footprint_index]:
-		footprint.append(cell)
-	return footprint
-
-
 ## return visual top left corner of the Item while respecting rotation
 func get_top_left_corner() -> Vector2:
 	var local_transform = Transform2D(rotation, Vector2.ZERO)
@@ -60,8 +49,9 @@ func get_top_left_corner() -> Vector2:
 func rotate() -> void:
 	rotation += PI / 2
 	preview_sprite.rotation += PI / 2
-	footprint_index = (footprint_index + 1) % footprints.size()
 	cell_held = Vector2i(-cell_held.y, cell_held.x)
+	for i in footprint.size():
+		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
 	rotated.emit()
 
 
@@ -118,19 +108,19 @@ func _start_dragging() -> void:
 
 
 func _set_cell_held() -> void:
-	var mp := get_local_mouse_position()
+	print(get_local_mouse_position())
+	var mp := get_local_mouse_position() * Transform2D(rotation, Vector2.ZERO)
 	cell_held = Vector2i(
 		floori(mp.x / Globals.CELL_SIZE),
 		floori(mp.y / Globals.CELL_SIZE)
 	)
-	for i in footprint_index:
-		cell_held = Vector2i(-cell_held.y, cell_held.x)
+	print(cell_held)
 
 
 @abstract
-func _set_footprints() -> void
+func _set_footprint() -> void
 
 
-func _set_bonus_cells() -> void:
+func _set_bonus_cells() -> void: # TODO this should be called bonus footprint
 	pass
 	
