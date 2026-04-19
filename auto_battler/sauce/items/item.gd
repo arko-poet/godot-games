@@ -7,10 +7,10 @@ signal rotated
 @export var display_name: String
 
 ## which cells is item going to occupy at each rotation state
-var footprint: Array[Vector2i] = []
+var footprint: Array[Vector2i]
 var preview_sprite: Control
 var cell_held: Vector2i
-var bonus_cells: Array[Vector2i] = []
+var bonus_cells: Array[Vector2i]
 var bonus: Dictionary
 var base_cooldown: float
 var cdr := 0.0
@@ -52,6 +52,8 @@ func rotate() -> void:
 	cell_held = Vector2i(-cell_held.y, cell_held.x)
 	for i in footprint.size():
 		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
+	for i in bonus_cells.size():
+		bonus_cells[i] = Vector2i(-bonus_cells[i].y, bonus_cells[i].x)
 	print(footprint)
 	rotated.emit()
 
@@ -100,7 +102,7 @@ func _start_dragging() -> void:
 	
 	var drag_data := {
 		"item": self,
-		"offset": mp
+		"offset": mp * Transform2D(-rotation, Vector2.ZERO)
 	}
 	_set_cell_held()
 	

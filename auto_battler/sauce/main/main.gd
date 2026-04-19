@@ -35,8 +35,11 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			get_viewport().set_input_as_handled()
 			if not event.pressed and get_viewport().gui_is_dragging():
-				var item: Item = get_viewport().gui_get_drag_data()["item"]
+				var data: Dictionary = get_viewport().gui_get_drag_data()
+				var item: Item = data["item"]
 				item.rotate()
+				data["offset"] = Vector2(-data["offset"].y, data["offset"].x)
+				
 
 func _on_player_died() -> void:
 	get_tree().reload_current_scene()
