@@ -2,6 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/items/item.tscn" id="1_hjup5"]
 [ext_resource type="Script" uid="uid://ieanibm7aaum" path="res://sauce/items/stone/stone.gd" id="2_ksvvp"]
+[ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/items/progress_fill.gdshader" id="3_ksvvp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0mdbo"]
+resource_local_to_scene = true
+shader = ExtResource("3_ksvvp")
+shader_parameter/progress = 1.0
 
 [node name="Stone" unique_id=544253172 instance=ExtResource("1_hjup5")]
 tooltip_text = "Stone"
@@ -10,4 +16,5 @@ attack_damage = 5
 display_name = "Stone"
 
 [node name="Sprite" parent="." index="0" unique_id=443896673]
+material = SubResource("ShaderMaterial_0mdbo")
 color = Color(1, 0, 0, 1)

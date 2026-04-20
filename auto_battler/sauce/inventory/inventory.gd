@@ -273,12 +273,12 @@ func _on_combat_started(_combat_number: int) -> void:
 	for item in items:
 		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		item.used.connect(_on_item_used)
-		item.effect_timer.start()
+		item.start()
 
 
 func _on_combat_finished() -> void:
 	for item in items:
 		item.mouse_filter = Control.MOUSE_FILTER_STOP
 		item.used.disconnect(_on_item_used)
-		item.effect_timer.stop()
+		item.stop()
 #endregion

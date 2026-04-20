@@ -9,7 +9,6 @@ signal rotated
 @export var bonus_cells: Array[Vector2i] = []
 
 ## which cells is item going to occupy at each rotation state
-#var footprint: Array[Vector2i]
 var preview_sprite: Control
 var cell_held: Vector2i
 var bonus: Dictionary
@@ -17,16 +16,26 @@ var base_cooldown: float
 var cdr := 0.0
 
 @onready var sprite: ColorRect = $Sprite
-@onready var effect_timer: Timer = $EffectTimer
+@onready var _effect_timer: Timer = $EffectTimer
 
 
 func _ready() -> void:
-	base_cooldown = effect_timer.wait_time
+	base_cooldown = _effect_timer.wait_time
 
-
+	
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
 		show()
+
+
+func start() -> void:
+	#sprite.material.set_shader_parameter("progress", 0.0)
+	_effect_timer.start()
+	_animate_progress()
+	
+	
+func stop() -> void:
+	_effect_timer.stop()
 
 
 ## for overriding, should return an effect item produces when added to inventory
@@ -53,21 +62,20 @@ func rotate() -> void:
 		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
 	for i in bonus_cells.size():
 		bonus_cells[i] = Vector2i(-bonus_cells[i].y, bonus_cells[i].x)
-	print(footprint)
 	rotated.emit()
 
 
 func apply_bonus(item: Item) -> void:
 	if item.get_bonus().has("cooldown"):
 		cdr += item.get_bonus()["cooldown"]
-		effect_timer.wait_time = base_cooldown / (1.0 + cdr)
+		_effect_timer.wait_time = base_cooldown / (1.0 + cdr)
 		
 
 
 func remove_bonus(item: Item) -> void:
 	if item.get_bonus().has("cooldown"):
 		cdr -= item.get_bonus()["cooldown"]
-		effect_timer.wait_time = base_cooldown / (1.0 + cdr)
+		_effect_timer.wait_time = base_cooldown / (1.0 + cdr)
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -86,6 +94,22 @@ func _get_actions() -> Array[CombatAction]:
 func _on_effect_timer_timeout() -> void:
 	for action in _get_actions():
 		used.emit(action)
+
+
+func _animate_progress() -> void:
+	sprite.material.set_shader_parameter("progress", 0.0)
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(sprite.material, "shader_parameter/progress", 1.0, _effect_timer.wait_time)
+	tween.finished.connect(_animation_helper)
+
+
+func _animation_helper() -> void:
+	if not _effect_timer.is_stopped():
+		_animate_progress()
+	else:
+		sprite.material.set_shader_parameter("progress", 1.0)
 
 
 func _start_dragging() -> void:

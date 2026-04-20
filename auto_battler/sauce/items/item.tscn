@@ -1,5 +1,12 @@
 [gd_scene format=3 uid="uid://bu30q0ftvxekp"]
 
+[ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/items/progress_fill.gdshader" id="1_lluxc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tcjyt"]
+resource_local_to_scene = true
+shader = ExtResource("1_lluxc")
+shader_parameter/progress = 1.0
+
 [node name="Item" type="Control" unique_id=544253172]
 layout_mode = 3
 anchors_preset = 0
@@ -9,6 +16,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 2
 
 [node name="Sprite" type="ColorRect" parent="." unique_id=443896673]
+material = SubResource("ShaderMaterial_tcjyt")
 layout_mode = 1
 offset_left = 1.0
 offset_top = 1.0
