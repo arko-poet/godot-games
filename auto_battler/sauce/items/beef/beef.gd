@@ -8,7 +8,3 @@ func get_passive_effect() -> Dictionary:
 		"max_hp": max_hp,
 		"producer": self
 	}
-
-
-func _set_footprint() -> void:
-	footprint = [Vector2.ZERO]

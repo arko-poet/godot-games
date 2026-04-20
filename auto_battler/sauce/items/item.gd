@@ -5,12 +5,13 @@ signal used(action: CombatAction)
 signal rotated
 
 @export var display_name: String
+@export var footprint: Array[Vector2i] = [Vector2i.ZERO]
+@export var bonus_cells: Array[Vector2i] = []
 
 ## which cells is item going to occupy at each rotation state
-var footprint: Array[Vector2i]
+#var footprint: Array[Vector2i]
 var preview_sprite: Control
 var cell_held: Vector2i
-var bonus_cells: Array[Vector2i]
 var bonus: Dictionary
 var base_cooldown: float
 var cdr := 0.0
@@ -21,8 +22,6 @@ var cdr := 0.0
 
 func _ready() -> void:
 	base_cooldown = effect_timer.wait_time
-	_set_footprint()
-	_set_bonus_cells()
 
 
 func _notification(what: int) -> void:
@@ -113,12 +112,3 @@ func _start_dragging() -> void:
 func _set_cell_held() -> void:
 	var mp := get_local_mouse_position() / Globals.CELL_SIZE
 	cell_held = Vector2i(mp * Transform2D(-rotation, Vector2.ZERO))
-
-
-@abstract
-func _set_footprint() -> void
-
-
-func _set_bonus_cells() -> void: # TODO this should be called bonus footprint
-	pass
-	

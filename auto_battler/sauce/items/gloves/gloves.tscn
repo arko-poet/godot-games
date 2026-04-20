@@ -8,6 +8,8 @@ offset_right = 32.0
 offset_bottom = 32.0
 script = ExtResource("2_4ym6f")
 display_name = "Gloves"
+footprint = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, 1), Vector2i(1, 0), Vector2i(1, 1)])
+bonus_cells = Array[Vector2i]([Vector2i(1, -1), Vector2i(2, 0), Vector2i(2, 1), Vector2i(0, 2), Vector2i(1, 2), Vector2i(-1, 0), Vector2i(-1, 1), Vector2i(0, -1)])
 
 [node name="Sprite" parent="." index="0" unique_id=443896673]
 offset_right = 31.0
