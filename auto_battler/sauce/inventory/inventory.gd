@@ -28,6 +28,7 @@ var update_rotation: bool = false
 ## Array[Array[Array[Item]]] - each grid cell has list of Items which contribute bonus to that cell
 var bonus_providers: Array[Array] = [] 
 
+
 func _ready() -> void:
 	custom_minimum_size = Globals.CELL_SIZE * Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 	
@@ -162,7 +163,8 @@ func _place_item(item: Item) -> void:
 	
 	for bc in hovered_bonus_cells:
 		assert(item not in bonus_providers[bc.y][bc.x])
-		bonus_providers[bc.y][bc.x].append(item)
+		@warning_ignore("unsafe_cast") # bonus_providers cant be typed properly
+		(bonus_providers[bc.y][bc.x] as Array).append(item)
 	
 	_apply_bonuses(item)
 
@@ -201,7 +203,8 @@ func _remove_bonuses(item: Item) -> void:
 	
 	for row in INVENTORY_SIZE:
 		for col in INVENTORY_SIZE:
-			bonus_providers[row][col].erase(item)
+			@warning_ignore("unsafe_cast") # bonus_providers cant be typed properly
+			(bonus_providers[row][col] as Array).erase(item)
 
 
 func _apply_bonuses(item: Item) -> void:	
@@ -227,7 +230,7 @@ func _get_occupied_cells(item: Item) -> Array[Vector2i]:
 func _get_affecting_items(cells: Array[Vector2i]) -> Array[Item]:
 	var affecting_items: Array[Item] = []
 	for cell in cells:
-		for bonus in bonus_providers[cell.y][cell.x]:
+		for bonus: Item in bonus_providers[cell.y][cell.x]:
 			if not affecting_items.has(bonus):
 				affecting_items.append(bonus)
 	return affecting_items
@@ -239,7 +242,8 @@ func _get_affected_cells(item: Item) -> Array[Vector2i]:
 	for row in INVENTORY_SIZE:
 		for col in INVENTORY_SIZE:
 			var cell := Vector2i(col, row)
-			if bonus_providers[row][col].has(item) and not affected_cells.has(cell):
+			@warning_ignore("unsafe_cast") # bonus_providers cant be typed properly
+			if (bonus_providers[row][col] as Array).has(item) and not affected_cells.has(cell):
 				affected_cells.append(cell)
 	return affected_cells
 

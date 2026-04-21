@@ -49,8 +49,8 @@ func get_bonus() -> Dictionary:
 
 ## return visual top left corner of the Item while respecting rotation
 func get_top_left_corner() -> Vector2:
-	var local_transform = Transform2D(rotation, Vector2.ZERO)
-	var local_rect = Rect2(Vector2.ZERO, get_rect().size)
+	var local_transform := Transform2D(rotation, Vector2.ZERO)
+	var local_rect := Rect2(Vector2.ZERO, get_rect().size)
 	return (local_transform * local_rect).position
 
 
@@ -79,10 +79,11 @@ func remove_bonus(item: Item) -> void:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index != MOUSE_BUTTON_LEFT:
+	var mb := event as InputEventMouseButton
+	if mb != null:
+		if mb.button_index != MOUSE_BUTTON_LEFT:
 			return
-		assert(event.pressed)
+		assert(mb.pressed)
 		
 		_start_dragging()
 
@@ -97,8 +98,8 @@ func _on_effect_timer_timeout() -> void:
 
 
 func _animate_progress() -> void:
-	sprite.material.set_shader_parameter("progress", 0.0)
-	var tween = create_tween()
+	(sprite.material as ShaderMaterial).set_shader_parameter("progress", 0.0)
+	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(sprite.material, "shader_parameter/progress", 1.0, _effect_timer.wait_time)
@@ -109,7 +110,7 @@ func _animation_helper() -> void:
 	if not _effect_timer.is_stopped():
 		_animate_progress()
 	else:
-		sprite.material.set_shader_parameter("progress", 1.0)
+		(sprite.material as ShaderMaterial).set_shader_parameter("progress", 1.0)
 
 
 func _start_dragging() -> void:

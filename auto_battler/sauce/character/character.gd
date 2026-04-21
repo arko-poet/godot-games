@@ -34,6 +34,6 @@ func _ready() -> void:
 
 
 func hit(damage: int) -> void:
-	var damage_left = max(0, damage - block)
+	var damage_left: int = max(0, damage - block)
 	block -= damage
 	hp -= damage_left

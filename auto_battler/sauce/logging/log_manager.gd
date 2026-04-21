@@ -4,7 +4,7 @@ static var combat_log: RichTextLabel
 
 
 static func log_action(action: CombatAction) -> void:
-	var message_arguments := [action.source.display_name, action.value]
+	var message_arguments := [(action.source as Variant).display_name, action.value]
 	var message: String
 	match action.type:
 		CombatAction.Type.BREAK:
