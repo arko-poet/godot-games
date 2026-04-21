@@ -1,5 +1,4 @@
-@tool
-class_name Bag extends Control
+@tool class_name Bag extends Control
 
 @export_range(1, Inventory.INVENTORY_SIZE) var columns: int = 1
 @export_range(1, Inventory.INVENTORY_SIZE) var rows: int = 1
@@ -7,13 +6,17 @@ class_name Bag extends Control
 @export var border_color: Color = Color("#C4955A")
 
 var footprint: Array[Vector2i]
+var items: Dictionary[Vector2i, Item]
 
 
 func _ready() -> void:
-	size = Vector2(columns, rows) * Globals.CELL_SIZE
+	custom_minimum_size = Vector2(columns, rows) * Globals.CELL_SIZE
 	for row in rows:
 		for column in columns:
-			footprint.append(Vector2i(column, row))
+			var cell := Vector2i(column, row)
+			footprint.append(cell)
+			items[cell] = null
+	queue_redraw()
 
 
 func _draw() -> void:
