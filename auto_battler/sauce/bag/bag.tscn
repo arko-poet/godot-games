@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://yh5u66bvma21"]
+
+[ext_resource type="Script" uid="uid://v88m7qfwrqtt" path="res://sauce/bag/bag.gd" id="1_7q30l"]
+
+[node name="Bag" type="Control" unique_id=106018777]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7q30l")
