@@ -28,3 +28,37 @@ func _draw() -> void:
 			var rect2i := Rect2i(cell_position, cell_size)
 			draw_rect(rect2i, bg_color)
 			draw_rect(rect2i, border_color, false, 1)
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_DRAG_END:
+		show()
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	var mb := event as InputEventMouseButton
+	if mb != null:
+		if mb.button_index != MOUSE_BUTTON_LEFT:
+			return
+		assert(mb.pressed)
+		
+		_start_dragging()
+
+
+func _start_dragging() -> void:
+	var mp := get_local_mouse_position()
+	
+	var preview_display: Bag = duplicate()
+	preview_display.position = -mp
+	
+	var preview := Control.new()
+	preview.size = preview_display.size
+	preview.add_child(preview_display)
+
+	
+	var drag_data := {
+		"bag": self,
+		"offset": mp
+	}
+	force_drag.call_deferred(drag_data, preview)
+	hide()

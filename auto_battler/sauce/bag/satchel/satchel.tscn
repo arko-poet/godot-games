@@ -3,5 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://yh5u66bvma21" path="res://sauce/bag/bag.tscn" id="1_rrciw"]
 
 [node name="Satchel" unique_id=106018777 instance=ExtResource("1_rrciw")]
+custom_minimum_size = Vector2(32, 32)
+mouse_default_cursor_shape = 2
 columns = 2
 rows = 2

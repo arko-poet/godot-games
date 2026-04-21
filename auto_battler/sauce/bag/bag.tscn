@@ -7,3 +7,5 @@ custom_minimum_size = Vector2(16, 16)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_7q30l")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

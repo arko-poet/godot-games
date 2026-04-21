@@ -7,6 +7,9 @@ const ITEM_SCENES: Array[PackedScene] = [
 	preload("res://sauce/items/mace/mace.tscn"),
 	preload("res://sauce/items/gloves/gloves.tscn")
 ]
+const BAG_SCENES: Array[PackedScene] = [
+	preload("res://sauce/bag/satchel/satchel.tscn")
+]
 const DRAG_CURSOR := preload(
 	"res://assets/kenney_cursor-pack/PNG/Outline/Default/hand_closed.png"
 )
@@ -52,6 +55,11 @@ func _on_combat_finished() -> void:
 	item.rotated.connect(_on_item_rotated)
 	item.position = Vector2.ZERO
 	item_box.add_child(item)
+	
+	var bag: Bag = BAG_SCENES[0].instantiate()
+	#item.rotated.connect(_on_item_rotated)
+	#item.position = Vector2.ZERO
+	item_box.add_child(bag)
 
 
 func _on_item_rotated() -> void:
