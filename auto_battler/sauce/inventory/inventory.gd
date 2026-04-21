@@ -5,6 +5,7 @@ signal item_used(action: CombatAction)
 signal item_added(item: Item)
 signal item_removed(item: Item)
 
+const CELL_SIZE := 16
 const INVENTORY_SIZE := 6 ## height and width in number of cells
 const BORDER_COLOR := Color("#5A6270")
 const BG_COLOR := Color("#252A33")
@@ -30,7 +31,7 @@ var bonus_providers: Array[Array] = []
 
 
 func _ready() -> void:
-	custom_minimum_size = Globals.CELL_SIZE * Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
+	custom_minimum_size = CELL_SIZE * Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 	
 	for y in INVENTORY_SIZE:
 		var grid_row: Array[Item] = []
@@ -54,8 +55,8 @@ func _draw() -> void:
 	for y in INVENTORY_SIZE:
 		for x in INVENTORY_SIZE:
 			var cell := Vector2i(x, y)
-			var cell_position := cell * Globals.CELL_SIZE
-			var cell_size := Vector2i(Globals.CELL_SIZE, Globals.CELL_SIZE)
+			var cell_position := cell * CELL_SIZE
+			var cell_size := Vector2i(CELL_SIZE, CELL_SIZE)
 			var rect2i := Rect2i(cell_position, cell_size)
 			var bg_color: Color = BG_COLOR
 			if cell in hovered_cells:
@@ -159,7 +160,7 @@ func _place_item(item: Item) -> void:
 		row = min(row, cell.y)
 		item_grid[cell.y][cell.x] = item
 	
-	item.position = Vector2(column, row) * Globals.CELL_SIZE - item.get_top_left_corner()
+	item.position = Vector2(column, row) * CELL_SIZE - item.get_top_left_corner()
 	
 	for bc in hovered_bonus_cells:
 		assert(item not in bonus_providers[bc.y][bc.x])
@@ -261,8 +262,8 @@ func _get_affected_items(cells: Array[Vector2i]) -> Array[Item]:
 ## helper function because godot shows warning when performing integer division
 func _position_to_cell(at_position: Vector2) -> Vector2i:
 	var cell := Vector2i(
-		floori(at_position.x / Globals.CELL_SIZE),
-		floori(at_position.y / Globals.CELL_SIZE)
+		floori(at_position.x / CELL_SIZE),
+		floori(at_position.y / CELL_SIZE)
 	)
 	return cell
 #endregion

@@ -10,7 +10,7 @@ var items: Dictionary[Vector2i, Item]
 
 
 func _ready() -> void:
-	custom_minimum_size = Vector2(columns, rows) * Globals.CELL_SIZE
+	custom_minimum_size = Vector2(columns, rows) * Inventory.CELL_SIZE
 	for row in rows:
 		for column in columns:
 			var cell := Vector2i(column, row)
@@ -23,8 +23,8 @@ func _draw() -> void:
 	for row in rows:
 		for column in columns:
 			var cell := Vector2i(column, row)
-			var cell_position := cell * Globals.CELL_SIZE
-			var cell_size := Vector2i(Globals.CELL_SIZE, Globals.CELL_SIZE)
+			var cell_position := cell * Inventory.CELL_SIZE
+			var cell_size := Vector2i(Inventory.CELL_SIZE, Inventory.CELL_SIZE)
 			var rect2i := Rect2i(cell_position, cell_size)
 			draw_rect(rect2i, bg_color)
 			draw_rect(rect2i, border_color, false, 1)

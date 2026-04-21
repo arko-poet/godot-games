@@ -135,5 +135,5 @@ func _start_dragging() -> void:
 
 
 func _set_cell_held() -> void:
-	var mp := get_local_mouse_position() / Globals.CELL_SIZE
+	var mp := get_local_mouse_position() / Inventory.CELL_SIZE
 	cell_held = Vector2i(mp * Transform2D(-rotation, Vector2.ZERO))
