@@ -7,6 +7,7 @@
 
 var footprint: Array[Vector2i]
 var items: Dictionary[Vector2i, Item]
+var cell_held: Vector2i ## TODO perhaps not needed, could be part of preview data
 
 
 func _ready() -> void:
@@ -62,3 +63,9 @@ func _start_dragging() -> void:
 	}
 	force_drag.call_deferred(drag_data, preview)
 	hide()
+	_set_cell_held()
+
+
+func _set_cell_held() -> void:
+	var mp := get_local_mouse_position() / Inventory.CELL_SIZE
+	cell_held = Vector2i(mp * Transform2D(-rotation, Vector2.ZERO))

@@ -28,19 +28,23 @@ var hover_color: Color
 var update_rotation: bool = false 
 ## Array[Array[Array[Item]]] - each grid cell has list of Items which contribute bonus to that cell
 var bonus_providers: Array[Array] = [] 
-
+var bags: Array[Bag] = []
+var bag_grid: Array[Array] = []
 
 func _ready() -> void:
 	custom_minimum_size = CELL_SIZE * Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 	
 	for y in INVENTORY_SIZE:
 		var grid_row: Array[Item] = []
+		var bag_grid_row: Array[Bag] = []
 		var bonus_row: Array[Array] = []
 		for x in INVENTORY_SIZE:
 			grid_row.append(null)
 			bonus_row.append([])
+			bag_grid_row.append(null)
 		item_grid.append(grid_row)
 		bonus_providers.append(bonus_row)
+		bag_grid.append(bag_grid_row)
 
 
 func _notification(what: int) -> void:
@@ -68,8 +72,14 @@ func _draw() -> void:
 
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	if data.has("item"): # TODO make it better
+		return _can_drop_item(at_position, data)
+	else:
+		return _can_drop_bag(at_position, data)	
+
+
+func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
 	var item: Item = data["item"]
-	
 	# check if cursor moved to other cell in which case hovered cells changed -> redraw needed
 	var redraw_needed: bool = false
 	var hovered_cell := _position_to_cell(at_position)
@@ -105,11 +115,48 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return can_drop
 
 
+func _can_drop_bag(at_position: Vector2, data: Dictionary) -> bool:
+	var bag: Bag = data["bag"]
+	## check if cursor moved to other cell in which case hovered cells changed -> redraw needed
+	var redraw_needed: bool = false
+	var hovered_cell := _position_to_cell(at_position)
+	if hovered_cell != last_hovered_cell or hovered_cells.is_empty() or update_rotation:
+		update_rotation = false
+		redraw_needed = true
+		hovered_cells.clear()
+		hovered_bonus_cells.clear()
+		for bag_cell in bag.footprint:
+			hovered_cells.append(hovered_cell + bag_cell - bag.cell_held)
+		last_hovered_cell = hovered_cell
+	
+	var can_drop: bool = true
+	for hc in hovered_cells:
+		if (
+			hc.y < 0 or hc.x < 0
+			or hc.y >= INVENTORY_SIZE or hc.x >= INVENTORY_SIZE
+		):
+			can_drop = false
+			break
+	
+	if redraw_needed:
+		hover_color = CAN_DROP_BG_COLOR if can_drop else CANT_DROP_BG_COLOR
+		queue_redraw()
+		
+	return can_drop
+
+
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	var item: Item = data["item"]
-	_clear_hovered(item)
-	if items.has(item): _move_item(item)
-	else: _add_item(item)
+	var drop_object: Control
+	if data.has("item"):
+		drop_object = data["item"]
+		_clear_hovered(drop_object)
+		if items.has(drop_object): _move_item(drop_object)
+		else: _add_item(drop_object)
+
+	else:
+		drop_object = data["bag"]
+		if bags.has(drop_object): _move_bag(drop_object)
+		else: _add_bag(drop_object)
 
 	hovered_cells.clear()
 	hovered_bonus_cells.clear()
@@ -178,6 +225,39 @@ func _move_item(item: Item) -> void:
 			if item == row[col_i]:
 				row[col_i] = null
 	_place_item(item)
+
+#region Bag Placement
+func _place_bag(bag: Bag) -> void:
+	# without this check item would be palced outside of grid
+	if hovered_cells.is_empty():
+		return
+		
+	# find top left corner of item
+	var column: int = INVENTORY_SIZE
+	var row: int = INVENTORY_SIZE
+	for cell in hovered_cells:
+		column = min(column, cell.x)
+		row = min(row, cell.y)
+		bag_grid[cell.y][cell.x] = bag
+	
+	bag.position = Vector2(column, row) * CELL_SIZE# - bag.get_top_left_corner()
+
+
+func _move_bag(bag: Bag) -> void:
+	# clear previous bag references
+	for row in bag_grid:
+		for col_i in INVENTORY_SIZE:
+			if bag == row[col_i]:
+				row[col_i] = null
+	_place_bag(bag)
+	
+	
+func _add_bag(bag: Bag) -> void:
+	bag.reparent(self)
+	_place_bag(bag)
+	bags.append(bag)
+	#item_added.emit(item)
+#endregion
 
 
 ## remove items present in hovered cells except the specified one (typically one dragging)
