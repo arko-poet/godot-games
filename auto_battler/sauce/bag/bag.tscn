@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://v88m7qfwrqtt" path="res://sauce/bag/bag.gd" id="1_7q30l"]
 
 [node name="Bag" type="Control" unique_id=106018777]
+z_index = -1
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 1
 script = ExtResource("1_7q30l")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
