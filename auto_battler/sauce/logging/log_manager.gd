@@ -2,19 +2,15 @@ class_name LogManager extends RefCounted
 
 static var combat_log: RichTextLabel
 
+const MESSAGES := {
+	CombatAction.Type.BREAK: "%s breaks %s block.\n",
+	CombatAction.Type.ATTACK: "%s hits for %s.\n",
+	CombatAction.Type.HEAL: "%s heals for %s.\n",
+	CombatAction.Type.BLOCK: "%s generates %s block.\n",
+}
+
 
 static func log_action(action: CombatAction) -> void:
 	var message_arguments := [(action.source as Variant).display_name, action.value]
-	var message: String
-	match action.type:
-		CombatAction.Type.BREAK:
-			message = ("%s breaks %s block.\n" % message_arguments)
-		CombatAction.Type.ATTACK:
-			message = ("%s hits for %s.\n" % message_arguments)
-		CombatAction.Type.HEAL:
-			message = ("%s heals for %s.\n" % message_arguments)
-		CombatAction.Type.BLOCK:
-			message = ("%s generates %s block.\n" % message_arguments)
-		_:
-			push_error("Unknown CombatAction.Type")
+	var message: String = MESSAGES[action.type] % message_arguments
 	combat_log.append_text("[color=red]%s[/color]" % message if action.source is Enemy else message)
