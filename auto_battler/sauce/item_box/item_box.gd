@@ -22,6 +22,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 		item.position = at_position - dict["offset"]
 	else:
 		var bag: Bag = dict["bag"]
+		inventory.remove_bag(bag)
 		bag.reparent(self)
 		bag.position = at_position - dict["offset"]
 
