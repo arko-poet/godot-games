@@ -4,6 +4,7 @@ class_name Inventory extends Control
 signal item_used(action: CombatAction)
 signal item_added(item: Item)
 signal item_removed(item: Item)
+signal bag_removed(bag: Bag)
 
 const CELL_SIZE := 16
 const INVENTORY_SIZE := 6 ## height and width in number of cells
@@ -149,12 +150,13 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var drop_object: Control
 	if data.has("item"):
 		drop_object = data["item"]
-		_clear_hovered(drop_object)
+		_clear_hovered_items(drop_object)
 		if items.has(drop_object): _move_item(drop_object)
 		else: _add_item(drop_object)
 
 	else:
 		drop_object = data["bag"]
+		_clear_hovered_bags(drop_object)
 		if bags.has(drop_object): _move_bag(drop_object)
 		else: _add_bag(drop_object)
 
@@ -173,6 +175,14 @@ func remove_item(item: Item) -> void:
 				item_grid[row][col] = null
 	item_removed.emit(item)
 
+
+func remove_bag(bag: Bag) -> void:
+	for row in INVENTORY_SIZE:
+		for col in INVENTORY_SIZE:
+			if bag == bag_grid[row][col]:
+				bags.erase(bag)
+				bag_grid[row][col] = null
+	bag_removed.emit(bag)
 
 func rotate_hovered_cells() -> void:
 	update_rotation = true
@@ -261,7 +271,7 @@ func _add_bag(bag: Bag) -> void:
 
 
 ## remove items present in hovered cells except the specified one (typically one dragging)
-func _clear_hovered(except_item: Item) -> void:
+func _clear_hovered_items(except_item: Item) -> void:
 	var overlapping_items: Array[Item] = []
 	for hc in hovered_cells:
 		var item: Item = item_grid[hc.y][hc.x]
@@ -271,8 +281,18 @@ func _clear_hovered(except_item: Item) -> void:
 	overlapping_items.erase(except_item)
 	for item in overlapping_items:
 		remove_item(item)
-#endregion
-
+		
+		
+func _clear_hovered_bags(except_bag: Bag) -> void:
+	var overlapping_bags: Array[Bag] = []
+	for hc in hovered_cells:
+		var bag: Bag = bag_grid[hc.y][hc.x]
+		if bag != null and bag not in overlapping_bags:
+			overlapping_bags.append(bag)
+	
+	overlapping_bags.erase(except_bag)
+	for bag in overlapping_bags:
+		remove_bag(bag)
 
 #region Bonuses
 func _remove_bonuses(item: Item) -> void:

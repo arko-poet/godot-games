@@ -60,6 +60,11 @@ func _on_combat_finished() -> void:
 	#item.rotated.connect(_on_item_rotated)
 	#item.position = Vector2.ZERO
 	item_box.add_child(bag)
+	
+	bag = BAG_SCENES[0].instantiate()
+	#item.rotated.connect(_on_item_rotated)
+	#item.position = Vector2.ZERO
+	item_box.add_child(bag)
 
 
 func _on_item_rotated() -> void:

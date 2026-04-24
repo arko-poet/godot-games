@@ -85,6 +85,7 @@ layout_mode = 1
 offset_right = 14.0
 offset_bottom = 14.0
 
+[connection signal="bag_removed" from="UILayer/UI/Inventory" to="UILayer/UI/ItemBox" method="_on_inventory_bag_removed"]
 [connection signal="item_added" from="UILayer/UI/Inventory" to="UILayer/UI/Player" method="_on_inventory_item_added"]
 [connection signal="item_removed" from="UILayer/UI/Inventory" to="UILayer/UI/Player" method="_on_inventory_item_removed"]
 [connection signal="item_removed" from="UILayer/UI/Inventory" to="UILayer/UI/ItemBox" method="_on_inventory_item_removed"]

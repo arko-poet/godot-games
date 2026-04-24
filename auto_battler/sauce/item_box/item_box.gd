@@ -43,3 +43,8 @@ func _on_combat_finished() -> void:
 func _on_inventory_item_removed(item: Item) -> void:
 	item.reparent(self)
 	item.position = -item.get_top_left_corner()
+
+
+func _on_inventory_bag_removed(bag: Bag) -> void:
+	bag.reparent(self)
+	bag.position = Vector2.ZERO
