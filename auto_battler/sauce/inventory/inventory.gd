@@ -74,6 +74,7 @@ func _draw() -> void:
 
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	assert(data is Dictionary)
 	if data.has("item"): # TODO make it better
 		return _can_drop_item(at_position, data)
 	else:
@@ -159,9 +160,11 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var drop_object: Control
 	if data.has("item"):
 		drop_object = data["item"]
+		
 		for bag in bags:
 			bag.items.erase(drop_object)
 		_clear_hovered_items(drop_object)
+		
 		if items.has(drop_object): _move_item(drop_object)
 		else: _add_item(drop_object)
 
@@ -179,6 +182,8 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 
 func remove_item(item: Item) -> void:
 	_remove_bonuses(item)
+	for bag in bags:
+		bag.items.erase(item)
 	for row in INVENTORY_SIZE:
 		for col in INVENTORY_SIZE:
 			if item == item_grid[row][col]:
