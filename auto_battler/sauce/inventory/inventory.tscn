@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c8g87xmarnbld" path="res://sauce/inventory/inventory.gd" id="1_fbhci"]
 
 [node name="Inventory" type="Control" unique_id=543163270]
+z_index = 1
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 3
 anchors_preset = 0

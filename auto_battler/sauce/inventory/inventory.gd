@@ -69,7 +69,8 @@ func _draw() -> void:
 			elif cell in hovered_bonus_cells:
 				bg_color = BONUS_BG_COLOR
 			draw_rect(rect2i, bg_color)
-			draw_rect(rect2i, BORDER_COLOR, false, 1) # TODO maybe dont draw if bag is here
+			#if bag_grid[y][x] == null:
+				#draw_rect(rect2i, BORDER_COLOR, false, 1) # TODO maybe dont draw if bag is here
 
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
@@ -107,11 +108,12 @@ func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
 				hovered_bonus_cells.append(bonus_cell)
 	
 	var can_drop: bool = true
+	if item.footprint.size() != hovered_cells.size():
+		can_drop = false
 	for hc in hovered_cells:
 		if (
 			hc.y < 0 or hc.x < 0
 			or hc.y >= INVENTORY_SIZE or hc.x >= INVENTORY_SIZE
-			or item.footprint.size() != hovered_cells.size()
 		):
 			can_drop = false
 			break
@@ -120,6 +122,9 @@ func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
 		hover_color = CAN_DROP_BG_COLOR if can_drop else CANT_DROP_BG_COLOR
 		queue_redraw()
 	
+	print(item.footprint.size())
+	print(hovered_cells.size())
+	print(can_drop)
 	return can_drop
 
 
