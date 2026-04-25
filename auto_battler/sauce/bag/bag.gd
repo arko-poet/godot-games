@@ -40,8 +40,12 @@ func _on_gui_input(event: InputEvent) -> void:
 	if mb != null:
 		if mb.button_index != MOUSE_BUTTON_LEFT:
 			return
-		assert(mb.pressed)
 		
+		for item in items:
+			if items[item] == false:
+				return
+		
+		assert(mb.pressed)
 		_start_dragging()
 
 
