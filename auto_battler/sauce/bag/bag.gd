@@ -6,7 +6,10 @@
 @export var border_color: Color = Color("#C4955A")
 
 var footprint: Array[Vector2i]
-var items: Dictionary[Item, bool]
+## items which are partially contained in the bag
+var partial_items: Array[Item]
+## items which are fully contained in the bag with the top left cell they occupy
+var full_items: Dictionary[Item, Vector2i]
 var cell_held: Vector2i ## TODO perhaps not needed, could be part of preview data
 
 
@@ -41,9 +44,8 @@ func _on_gui_input(event: InputEvent) -> void:
 		if mb.button_index != MOUSE_BUTTON_LEFT:
 			return
 		
-		for item in items:
-			if items[item] == false:
-				return
+		if not partial_items.is_empty():
+			return
 		
 		assert(mb.pressed)
 		_start_dragging()
@@ -58,11 +60,16 @@ func _start_dragging() -> void:
 	var preview := Control.new()
 	preview.size = preview_display.size
 	preview.add_child(preview_display)
+	for item in full_items:
+		var d_item: Item = item.duplicate()
+		d_item.position = position - item.position -mp
+		preview.add_child(d_item)
 
 	
 	var drag_data := {
 		"bag": self,
-		"offset": mp
+		"offset": mp,
+		"items": full_items.keys()
 	}
 	force_drag.call_deferred(drag_data, preview)
 	hide()

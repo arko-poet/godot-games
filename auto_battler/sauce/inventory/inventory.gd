@@ -162,7 +162,9 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 		drop_object = data["item"]
 		
 		for bag in bags:
-			bag.items.erase(drop_object)
+			bag.full_items.erase(drop_object)
+			bag.partial_items.erase(drop_object)
+		print("clear hovered items?")
 		_clear_hovered_items(drop_object)
 		
 		if items.has(drop_object): _move_item(drop_object)
@@ -183,7 +185,8 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 func remove_item(item: Item) -> void:
 	_remove_bonuses(item)
 	for bag in bags:
-		bag.items.erase(item)
+		bag.full_items.erase(item)
+		bag.partial_items.erase(item)
 	for row in INVENTORY_SIZE:
 		for col in INVENTORY_SIZE:
 			if item == item_grid[row][col]:
@@ -230,16 +233,33 @@ func _place_item(item: Item) -> void:
 	var row: int = INVENTORY_SIZE
 	var hovered_bags: Array[Bag] = []
 	for cell in hovered_cells:
+		item_grid[cell.y][cell.x] = item
+		
 		column = min(column, cell.x)
 		row = min(row, cell.y)
-		item_grid[cell.y][cell.x] = item
 		
 		var bag: Bag = bag_grid[cell.y][cell.x]
 		if not hovered_bags.has(bag):
 			hovered_bags.append(bag)
+			
 	
 	for hb in hovered_bags:
-		hb.items[item] = hovered_bags.size() == 1
+		if hovered_bags.size() == 1:
+			# find bag position
+			var bag_row: int = INVENTORY_SIZE
+			var bag_column: int = INVENTORY_SIZE
+			for b_row in bag_grid.size():
+				for b_column in bag_grid.size():
+					if bag_grid[b_row][b_column] == hb:
+						bag_row = min(bag_row, b_row)
+						bag_column = min(bag_column, b_column)
+			print(bag_row)
+			print(bag_column)
+			print(item)
+			print(hb.full_items)
+			hb.full_items[item] = Vector2i(bag_column, bag_row)
+		else:
+			hb.partial_items.append(item)
 	
 	item.position = Vector2(column, row) * CELL_SIZE - item.get_top_left_corner()
 	
@@ -275,6 +295,14 @@ func _place_bag(bag: Bag) -> void:
 		bag_grid[cell.y][cell.x] = bag
 	
 	bag.position = Vector2(column, row) * CELL_SIZE# - bag.get_top_left_corner()
+		
+	hovered_cells.clear()
+	for item in bag.full_items:
+		hovered_cells.clear()
+		for cell in item.footprint:
+			hovered_cells.append(cell + Vector2i(column, row))
+			
+		_move_item(item)
 
 
 func _move_bag(bag: Bag) -> void:
