@@ -122,9 +122,6 @@ func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
 		hover_color = CAN_DROP_BG_COLOR if can_drop else CANT_DROP_BG_COLOR
 		queue_redraw()
 	
-	print(item.footprint.size())
-	print(hovered_cells.size())
-	print(can_drop)
 	return can_drop
 
 
@@ -162,6 +159,8 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var drop_object: Control
 	if data.has("item"):
 		drop_object = data["item"]
+		for bag in bags:
+			bag.items.erase(drop_object)
 		_clear_hovered_items(drop_object)
 		if items.has(drop_object): _move_item(drop_object)
 		else: _add_item(drop_object)
@@ -224,10 +223,18 @@ func _place_item(item: Item) -> void:
 	# find top left corner of item
 	var column: int = INVENTORY_SIZE
 	var row: int = INVENTORY_SIZE
+	var hovered_bags: Array[Bag] = []
 	for cell in hovered_cells:
 		column = min(column, cell.x)
 		row = min(row, cell.y)
 		item_grid[cell.y][cell.x] = item
+		
+		var bag: Bag = bag_grid[cell.y][cell.x]
+		if not hovered_bags.has(bag):
+			hovered_bags.append(bag)
+	
+	for hb in hovered_bags:
+		hb.items[item] = hovered_bags.size() == 1
 	
 	item.position = Vector2(column, row) * CELL_SIZE - item.get_top_left_corner()
 	

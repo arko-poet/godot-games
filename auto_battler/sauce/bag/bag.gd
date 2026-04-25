@@ -6,7 +6,7 @@
 @export var border_color: Color = Color("#C4955A")
 
 var footprint: Array[Vector2i]
-var items: Dictionary[Vector2i, Item]
+var items: Dictionary[Item, bool]
 var cell_held: Vector2i ## TODO perhaps not needed, could be part of preview data
 
 
@@ -16,7 +16,6 @@ func _ready() -> void:
 		for column in columns:
 			var cell := Vector2i(column, row)
 			footprint.append(cell)
-			items[cell] = null
 	queue_redraw()
 
 
