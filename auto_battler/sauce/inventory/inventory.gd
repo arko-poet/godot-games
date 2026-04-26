@@ -432,6 +432,10 @@ func _on_combat_started(_combat_number: int) -> void:
 		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		item.used.connect(_on_item_used)
 		item.start()
+	
+	for bag in bags:
+		bag.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		
 
 
 func _on_combat_finished() -> void:
@@ -439,4 +443,7 @@ func _on_combat_finished() -> void:
 		item.mouse_filter = Control.MOUSE_FILTER_STOP
 		item.used.disconnect(_on_item_used)
 		item.stop()
+		
+	for bag in bags:
+		bag.mouse_filter = Control.MOUSE_FILTER_STOP
 #endregion
