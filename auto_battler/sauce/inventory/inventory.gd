@@ -280,6 +280,7 @@ func _move_item(item: Item) -> void:
 				row[col_i] = null
 	_place_item(item)
 
+
 #region Bag Placement
 func _place_bag(bag: Bag) -> void:
 	# without this check item would be palced outside of grid
