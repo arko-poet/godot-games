@@ -46,6 +46,7 @@ func clear_items() -> void:
 
 
 func _on_gui_input(event: InputEvent) -> void:
+	print("Bag click, partial_items: ", partial_items.size(), " full_items: ", full_items.size())
 	var mb := event as InputEventMouseButton
 	if mb != null:
 		if mb.button_index != MOUSE_BUTTON_LEFT:
@@ -59,6 +60,7 @@ func _on_gui_input(event: InputEvent) -> void:
 
 
 func _start_dragging() -> void:
+	print("start bag %s" % self)
 	var mp := get_local_mouse_position()
 	
 	var preview_display: Bag = duplicate()

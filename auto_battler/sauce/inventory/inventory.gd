@@ -272,6 +272,7 @@ func _place_item(item: Item) -> void:
 			hb.partial_items.append(item)
 	
 	item.position = Vector2(column, row) * CELL_SIZE - item.get_top_left_corner()
+	item.move_to_front()
 	
 	for bc in hovered_bonus_cells:
 		assert(item not in bonus_providers[bc.y][bc.x])
@@ -451,7 +452,7 @@ func _on_combat_started(_combat_number: int) -> void:
 
 func _on_combat_finished() -> void:
 	for item in items:
-		item.mouse_filter = Control.MOUSE_FILTER_STOP
+		item.mouse_filter = Control.MOUSE_FILTER_PASS
 		item.used.disconnect(_on_item_used)
 		item.stop()
 		

@@ -39,7 +39,7 @@ func _on_combat_finished() -> void:
 	for c in get_children():
 		var item := c as Item
 		if item != null:
-			item.mouse_filter = Control.MOUSE_FILTER_STOP
+			item.mouse_filter = Control.MOUSE_FILTER_PASS
 
 
 func _on_inventory_item_removed(item: Item) -> void:
