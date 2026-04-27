@@ -239,7 +239,7 @@ func _place_item(item: Item) -> void:
 		row = min(row, cell.y)
 		
 		var bag: Bag = bag_grid[cell.y][cell.x]
-		if not hovered_bags.has(bag):
+		if not hovered_bags.has(bag) and bag != null:
 			hovered_bags.append(bag)
 			
 	
@@ -256,7 +256,7 @@ func _place_item(item: Item) -> void:
 			print(bag_row)
 			print(bag_column)
 			print(item)
-			print(hb.full_items)
+			#print(hb.full_items)
 			hb.full_items[item] = Vector2i(bag_column - column, bag_row - row)
 		else:
 			hb.partial_items.append(item)
@@ -283,11 +283,11 @@ func _move_item(item: Item) -> void:
 
 #region Bag Placement
 func _place_bag(bag: Bag) -> void:
-	# without this check item would be palced outside of grid
+	# without this check bag would be palced outside of grid
 	if hovered_cells.is_empty():
 		return
 		
-	# find top left corner of item
+	# find top left corner ofbag
 	var column: int = INVENTORY_SIZE
 	var row: int = INVENTORY_SIZE
 	for cell in hovered_cells:
@@ -301,7 +301,7 @@ func _place_bag(bag: Bag) -> void:
 	for item in bag.full_items:
 		hovered_cells.clear()
 		for cell in item.footprint:
-			hovered_cells.append(cell + Vector2i(column, row))
+			hovered_cells.append(cell + Vector2i(column, row) - bag.full_items[item])
 			
 		_move_item(item)
 
