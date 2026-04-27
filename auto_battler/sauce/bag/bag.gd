@@ -40,6 +40,11 @@ func _notification(what: int) -> void:
 			item.show()
 
 
+func clear_items() -> void:
+	partial_items.clear()
+	full_items.clear()
+
+
 func _on_gui_input(event: InputEvent) -> void:
 	var mb := event as InputEventMouseButton
 	if mb != null:

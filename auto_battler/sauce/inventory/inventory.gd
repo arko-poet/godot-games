@@ -357,6 +357,7 @@ func _clear_hovered_bags(except_bag: Bag) -> void:
 	for bag in overlapping_bags:
 		remove_bag(bag)
 
+
 #region Bonuses
 func _remove_bonuses(item: Item) -> void:
 	for i in _get_affecting_items(_get_occupied_cells(item)):
@@ -446,7 +447,6 @@ func _on_combat_started(_combat_number: int) -> void:
 	for bag in bags:
 		bag.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		
-
 
 func _on_combat_finished() -> void:
 	for item in items:
