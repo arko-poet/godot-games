@@ -55,14 +55,14 @@ func _start_dragging() -> void:
 	var mp := get_local_mouse_position()
 	
 	var preview_display: Bag = duplicate()
-	preview_display.position = -mp
-	
+	preview_display.position = -mp 
+
 	var preview := Control.new()
 	preview.size = preview_display.size
 	preview.add_child(preview_display)
 	for item in full_items:
 		var d_item: Item = item.duplicate()
-		d_item.position = position - item.position -mp
+		d_item.position = - Vector2(full_items[item]) * Inventory.CELL_SIZE - mp
 		preview.add_child(d_item)
 
 	

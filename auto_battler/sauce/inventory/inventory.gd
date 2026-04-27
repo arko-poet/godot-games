@@ -251,13 +251,13 @@ func _place_item(item: Item) -> void:
 			for b_row in bag_grid.size():
 				for b_column in bag_grid.size():
 					if bag_grid[b_row][b_column] == hb:
-						bag_row = min(bag_row, b_row)
+						bag_row = min(bag_row, b_row) ## TODO change these names, confusing
 						bag_column = min(bag_column, b_column)
 			print(bag_row)
 			print(bag_column)
 			print(item)
 			print(hb.full_items)
-			hb.full_items[item] = Vector2i(bag_column, bag_row)
+			hb.full_items[item] = Vector2i(bag_column - column, bag_row - row)
 		else:
 			hb.partial_items.append(item)
 	
