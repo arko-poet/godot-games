@@ -201,7 +201,11 @@ func remove_bag(bag: Bag) -> void:
 			if bag == bag_grid[row][col]:
 				bags.erase(bag)
 				bag_grid[row][col] = null
+	
+	for item in bag.full_items:
+		remove_item(item)
 	bag_removed.emit(bag)
+	
 
 func rotate_hovered_cells() -> void:
 	update_rotation = true

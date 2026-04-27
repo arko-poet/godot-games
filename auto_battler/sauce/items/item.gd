@@ -84,7 +84,7 @@ func _on_gui_input(event: InputEvent) -> void:
 		if mb.button_index != MOUSE_BUTTON_LEFT:
 			return
 		assert(mb.pressed)
-		
+		print("??")
 		_start_dragging()
 
 
