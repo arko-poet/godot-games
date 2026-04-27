@@ -36,6 +36,8 @@ func _draw() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
 		show()
+		for item in full_items:
+			item.show()
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -73,6 +75,8 @@ func _start_dragging() -> void:
 	}
 	force_drag.call_deferred(drag_data, preview)
 	hide()
+	for item in full_items:
+		item.hide()
 	_set_cell_held()
 
 

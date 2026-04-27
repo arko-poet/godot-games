@@ -204,6 +204,7 @@ func remove_bag(bag: Bag) -> void:
 	
 	for item in bag.full_items:
 		remove_item(item)
+	bag.z_index = 0
 	bag_removed.emit(bag)
 	
 
@@ -300,6 +301,7 @@ func _place_bag(bag: Bag) -> void:
 		bag_grid[cell.y][cell.x] = bag
 	
 	bag.position = Vector2(column, row) * CELL_SIZE# - bag.get_top_left_corner()
+	bag.z_index = -1
 		
 	hovered_cells.clear()
 	for item in bag.full_items:
