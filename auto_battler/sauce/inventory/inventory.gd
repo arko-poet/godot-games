@@ -85,7 +85,9 @@ func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
 	var item: Item = data["item"]
 	# check if cursor moved to other cell in which case hovered cells changed -> redraw needed
 	var redraw_needed: bool = false
+	print(at_position)
 	var hovered_cell := _position_to_cell(at_position)
+	#print(hovered_cell)
 	if hovered_cell != last_hovered_cell or hovered_cells.is_empty() or update_rotation:
 		update_rotation = false
 		redraw_needed = true
@@ -93,10 +95,12 @@ func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
 		hovered_bonus_cells.clear()
 		for item_cell in item.footprint:
 			var cell: Vector2i = hovered_cell + item_cell - item.cell_held
+			#print(cell)
 			if (
 				cell.y >= 0 and cell.x >= 0
 				and cell.y < INVENTORY_SIZE and cell.x < INVENTORY_SIZE
 			):
+				print(bag_grid[cell.y][cell.x])
 				if bag_grid[cell.y][cell.x] != null:
 					hovered_cells.append(cell)
 		last_hovered_cell = hovered_cell
@@ -451,5 +455,5 @@ func _on_combat_finished() -> void:
 		item.stop()
 		
 	for bag in bags:
-		bag.mouse_filter = Control.MOUSE_FILTER_STOP
+		bag.mouse_filter = Control.MOUSE_FILTER_PASS
 #endregion
