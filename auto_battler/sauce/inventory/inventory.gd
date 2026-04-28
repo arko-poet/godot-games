@@ -306,7 +306,8 @@ func _place_bag(bag: Bag) -> void:
 		row = min(row, cell.y)
 		bag_grid[cell.y][cell.x] = bag
 	
-	bag.position = Vector2(column, row) * CELL_SIZE# - bag.get_top_left_corner()
+	bag.position = Vector2(column, row) * CELL_SIZE - bag.get_top_left_corner()
+	#bag.position = Vector2(column, row) * CELL_SIZE# - bag.get_top_left_corner()
 	bag.z_index = -1
 		
 	hovered_cells.clear()

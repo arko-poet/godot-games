@@ -1,5 +1,7 @@
 @tool class_name Bag extends Control
 
+signal rotated
+
 @export_range(1, Inventory.INVENTORY_SIZE) var columns: int = 1
 @export_range(1, Inventory.INVENTORY_SIZE) var rows: int = 1
 @export var bg_color: Color = Color("#6B3F1E")
@@ -11,6 +13,7 @@ var partial_items: Array[Item]
 ## items which are fully contained in the bag with the top left cell they occupy
 var full_items: Dictionary[Item, Vector2i]
 var cell_held: Vector2i ## TODO perhaps not needed, could be part of preview data
+var preview: Control
 
 
 func _ready() -> void:
@@ -45,6 +48,22 @@ func clear_items() -> void:
 	full_items.clear()
 
 
+func rotate() -> void:
+	rotation += PI / 2
+	preview.rotation += PI / 2
+	cell_held = Vector2i(-cell_held.y, cell_held.x)
+	for i in footprint.size():
+		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
+	rotated.emit()
+
+
+## return visual top left corner of the Item while respecting rotation
+func get_top_left_corner() -> Vector2:
+	var local_transform := Transform2D(rotation, Vector2.ZERO)
+	var local_rect := Rect2(Vector2.ZERO, get_rect().size)
+	return (local_transform * local_rect).position
+
+
 func _on_gui_input(event: InputEvent) -> void:
 	print("Bag click, partial_items: ", partial_items.size(), " full_items: ", full_items.size())
 	var mb := event as InputEventMouseButton
@@ -65,26 +84,31 @@ func _start_dragging() -> void:
 	
 	var preview_display: Bag = duplicate()
 	preview_display.position = -mp 
+	preview_display.rotation = 0
 
-	var preview := Control.new()
+	preview = Control.new()
+	preview.rotation = rotation
 	preview.size = preview_display.size
 	preview.add_child(preview_display)
+	preview_display.pivot_offset = mp
 	for item in full_items:
 		var d_item: Item = item.duplicate()
 		d_item.position = - Vector2(full_items[item]) * Inventory.CELL_SIZE - mp
 		preview.add_child(d_item)
 
-	
 	var drag_data := {
 		"bag": self,
-		"offset": mp,
+		"offset": mp * Transform2D(-rotation, Vector2.ZERO),
 		"items": full_items.keys()
 	}
+
+
+	_set_cell_held()
+
 	force_drag.call_deferred(drag_data, preview)
 	hide()
 	for item in full_items:
 		item.hide()
-	_set_cell_held()
 
 
 func _set_cell_held() -> void:

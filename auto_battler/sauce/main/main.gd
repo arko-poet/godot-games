@@ -40,10 +40,14 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			if not mb.pressed and get_viewport().gui_is_dragging():
 				var data: Dictionary = get_viewport().gui_get_drag_data()
-				var item: Item = data["item"]
-				item.rotate()
+				if data.has("item"):
+					var item: Item = data["item"]
+					item.rotate()
+
+				else:
+					var bag: Bag = data["bag"]
+					bag.rotate()
 				data["offset"] = Vector2(-data["offset"].y, data["offset"].x)
-				
 
 func _on_player_died() -> void:
 	get_tree().reload_current_scene()
@@ -57,17 +61,21 @@ func _on_combat_finished() -> void:
 	item_box.add_child(item)
 	
 	var bag: Bag = BAG_SCENES[0].instantiate()
-	#item.rotated.connect(_on_item_rotated)
+	bag.rotated.connect(_on_bag_rotated)
 	#item.position = Vector2.ZERO
 	item_box.add_child(bag)
 	
 	bag = BAG_SCENES[0].instantiate()
-	#item.rotated.connect(_on_item_rotated)
+	bag.rotated.connect(_on_bag_rotated)
 	#item.position = Vector2.ZERO
 	item_box.add_child(bag)
 
 
 func _on_item_rotated() -> void:
+	inventory.rotate_hovered_cells()
+
+
+func _on_bag_rotated() -> void:
 	inventory.rotate_hovered_cells()
 
 
