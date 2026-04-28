@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bu30q0ftvxekp"]
 
 [ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/items/progress_fill.gdshader" id="1_lluxc"]
+[ext_resource type="Script" uid="uid://n1m1dolhe4uv" path="res://sauce/items/item.gd" id="1_tcjyt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tcjyt"]
 resource_local_to_scene = true
@@ -15,6 +16,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
+script = ExtResource("1_tcjyt")
 
 [node name="Sprite" type="ColorRect" parent="." unique_id=443896673]
 material = SubResource("ShaderMaterial_tcjyt")
@@ -29,4 +31,6 @@ color = Color(1, 0, 1, 1)
 [node name="EffectTimer" type="Timer" parent="." unique_id=632830717]
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="EffectTimer" to="." method="_on_effect_timer_timeout"]

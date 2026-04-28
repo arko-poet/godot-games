@@ -1,4 +1,3 @@
-@abstract
 class_name Item extends Control
 
 signal used(action: CombatAction)
@@ -79,7 +78,6 @@ func remove_bonus(item: Item) -> void:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	print("Item click")
 	var mb := event as InputEventMouseButton
 	if mb != null:
 		if mb.button_index != MOUSE_BUTTON_LEFT:
@@ -139,3 +137,15 @@ func _start_dragging() -> void:
 func _set_cell_held() -> void:
 	var mp := get_local_mouse_position() / Inventory.CELL_SIZE
 	cell_held = Vector2i(mp * Transform2D(-rotation, Vector2.ZERO))
+
+
+func _on_mouse_entered() -> void:
+	print("entered")
+	#print(color)
+	modulate = Color(1.1, 1.1, 1.1)
+	print(modulate)
+	
+
+
+func _on_mouse_exited() -> void:
+	modulate = Color(1.0, 1.0, 1.0)

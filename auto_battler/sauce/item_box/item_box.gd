@@ -20,6 +20,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 		inventory.remove_item(item)
 		item.reparent(self)
 		item.position = at_position - dict["offset"]
+		item.move_to_front()
 	else:
 		var bag: Bag = dict["bag"]
 		inventory.remove_bag(bag)

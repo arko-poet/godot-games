@@ -90,3 +90,11 @@ func _start_dragging() -> void:
 func _set_cell_held() -> void:
 	var mp := get_local_mouse_position() / Inventory.CELL_SIZE
 	cell_held = Vector2i(mp * Transform2D(-rotation, Vector2.ZERO))
+
+
+func _on_mouse_entered() -> void:
+	self_modulate = Color(1.1, 1.1, 1.1)
+
+
+func _on_mouse_exited() -> void:
+	self_modulate = Color(1.0, 1.0, 1.0)
