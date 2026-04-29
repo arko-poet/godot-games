@@ -57,7 +57,7 @@ func rotate() -> void:
 		
 	for item in full_items:
 		item.rotate()
-		#full_items[item] = Vector2i(-full_items[item].y, full_items[item].x)
+		full_items[item] = Vector2i(-full_items[item].y, full_items[item].x)
 	
 	rotated.emit()
 

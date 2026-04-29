@@ -244,7 +244,7 @@ func _place_item(item: Item) -> void:
 	for cell in hovered_cells:
 		item_grid[cell.y][cell.x] = item
 		
-		column = min(column, cell.x)
+		column = min(column, cell.x) # TODO this name sucks, what column?
 		row = min(row, cell.y)
 		
 		var bag: Bag = bag_grid[cell.y][cell.x]
@@ -257,16 +257,28 @@ func _place_item(item: Item) -> void:
 			# find bag position
 			var bag_row: int = INVENTORY_SIZE
 			var bag_column: int = INVENTORY_SIZE
-			for b_row in bag_grid.size():
+			for b_row in bag_grid.size(): # TODO this is just INVENTORY_SIZE
 				for b_column in bag_grid.size():
 					if bag_grid[b_row][b_column] == hb:
-						bag_row = min(bag_row, b_row) ## TODO change these names, confusing
+						bag_row = min(bag_row, b_row) # TODO change these names, confusing
 						bag_column = min(bag_column, b_column)
 			#print(bag_row)
 			#print(bag_column)
 			#print(item)
 			#print(hb.full_items)
-			hb.full_items[item] = Vector2i(bag_column - column, bag_row - row)
+			
+			var min_item_offset := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
+			for f in item.footprint:
+				min_item_offset = Vector2i(min(min_item_offset.x, f.x), min(min_item_offset.y, f.y))
+			var item_origin := Vector2i(column, row) - min_item_offset
+			
+			
+			var min_bag_offset := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
+			for f in hb.footprint:
+				min_bag_offset = Vector2i(min(min_bag_offset.x, f.x), min(min_bag_offset.y, f.y))
+			
+			hb.full_items[item] = item_origin - (Vector2i(bag_column, bag_row) - min_bag_offset)# Vector2i(column - bag_column, row - bag_row)
+			print(hb.full_items[item])
 		else:
 			hb.partial_items.append(item)
 	
@@ -318,16 +330,18 @@ func _place_bag(bag: Bag) -> void:
 		hovered_cells.clear()
 		for cell in item.footprint:
 			#hovered_cells.append(cell + Vector2i(Vector2(column, row) * Transform2D(bag.rotation, Vector2.ZERO)) - bag.full_items[item])
-			print("---")
-			print(cr)
-			print(cell)
-			print(Vector2i(column, row))
-			print(bag.full_items[item])
-			print(bag.footprint)
-			#print(Vector2i(Vector2(bag.full_items[item]) * Transform2D(bag.rotation, Vector2.ZERO)))
+			#print("---")
+			#print(cr)
+			#print(cell)
+			#print(Vector2i(column, row))
+			#print(bag.full_items[item])
+			#print(bag.footprint)
+			##print(Vector2i(Vector2(bag.full_items[item]) * Transform2D(bag.rotation, Vector2.ZERO)))
 			#hovered_cells.append(cell + Vector2i(column, row) - Vector2i(Vector2(bag.full_items[item]) * Transform2D(-bag.rotation, Vector2.ZERO)))
 			#print(cell + Vector2i(column, row) - Vector2i(Vector2(bag.full_items[item]) * Transform2D(-bag.rotation, Vector2.ZERO)))
+			
 			hovered_cells.append(cell - cr + Vector2i(column, row) + bag.full_items[item])
+			#hovered_cells.append(Vector2i(column, row) + bag.full_items[item] + cell)
 			
 		_move_item(item)
 
