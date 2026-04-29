@@ -55,7 +55,8 @@ func get_top_left_corner() -> Vector2:
 
 func rotate() -> void:
 	rotation += PI / 2
-	preview_sprite.rotation += PI / 2
+	if preview_sprite:
+		preview_sprite.rotation += PI / 2
 	cell_held = Vector2i(-cell_held.y, cell_held.x)
 	for i in footprint.size():
 		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
@@ -83,7 +84,7 @@ func _on_gui_input(event: InputEvent) -> void:
 		if mb.button_index != MOUSE_BUTTON_LEFT:
 			return
 		assert(mb.pressed)
-		print("??")
+		#print("??")
 		_start_dragging()
 
 
@@ -113,7 +114,7 @@ func _animation_helper() -> void:
 
 
 func _start_dragging() -> void:
-	print("start item %s" % self)
+	#print("start item %s" % self)
 	var mp := get_local_mouse_position()
 	preview_sprite = sprite.duplicate()
 	preview_sprite.position -= mp
@@ -140,10 +141,10 @@ func _set_cell_held() -> void:
 
 
 func _on_mouse_entered() -> void:
-	print("entered")
+	#print("entered")
 	#print(color)
 	modulate = Color(1.1, 1.1, 1.1)
-	print(modulate)
+	#print(modulate)
 	
 
 

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ble5mhtlkghxc"]
+
+[ext_resource type="PackedScene" uid="uid://yh5u66bvma21" path="res://sauce/bag/bag.tscn" id="1_bj26i"]
+
+[node name="Knapsack" unique_id=106018777 instance=ExtResource("1_bj26i")]
+columns = 2
+rows = 3

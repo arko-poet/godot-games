@@ -54,6 +54,11 @@ func rotate() -> void:
 	cell_held = Vector2i(-cell_held.y, cell_held.x)
 	for i in footprint.size():
 		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
+		
+	for item in full_items:
+		item.rotate()
+		#full_items[item] = Vector2i(-full_items[item].y, full_items[item].x)
+	
 	rotated.emit()
 
 
@@ -65,7 +70,7 @@ func get_top_left_corner() -> Vector2:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	print("Bag click, partial_items: ", partial_items.size(), " full_items: ", full_items.size())
+	#print("Bag click, partial_items: ", partial_items.size(), " full_items: ", full_items.size())
 	var mb := event as InputEventMouseButton
 	if mb != null:
 		if mb.button_index != MOUSE_BUTTON_LEFT:
@@ -79,7 +84,7 @@ func _on_gui_input(event: InputEvent) -> void:
 
 
 func _start_dragging() -> void:
-	print("start bag %s" % self)
+	#print("start bag %s" % self)
 	var mp := get_local_mouse_position()
 	
 	var preview_display: Bag = duplicate()
@@ -94,6 +99,7 @@ func _start_dragging() -> void:
 	for item in full_items:
 		var d_item: Item = item.duplicate()
 		d_item.position = - Vector2(full_items[item]) * Inventory.CELL_SIZE - mp
+		d_item.rotation = rotation
 		preview.add_child(d_item)
 
 	var drag_data := {
