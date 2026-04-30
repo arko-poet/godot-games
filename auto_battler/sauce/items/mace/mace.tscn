@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ct4vxd6d8ayo8" path="res://sauce/items/mace/mace.gd" id="2_2l5x4"]
 [ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/items/progress_fill.gdshader" id="3_hkg47"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kkp6u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hkg47"]
 resource_local_to_scene = true
 shader = ExtResource("3_hkg47")
 shader_parameter/progress = 1.0
@@ -19,7 +19,7 @@ display_name = "Mace"
 footprint = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2)])
 
 [node name="Sprite" parent="." index="0" unique_id=443896673]
-material = SubResource("ShaderMaterial_kkp6u")
+material = SubResource("ShaderMaterial_hkg47")
 offset_bottom = 46.0
 color = Color(0.28333315, 0.0009975579, 0.5811897, 1)
 
