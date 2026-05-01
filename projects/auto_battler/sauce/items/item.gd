@@ -113,6 +113,7 @@ func _on_effect_timer_timeout() -> void:
 
 
 func _animate_progress() -> void:
+	(sprite.material as ShaderMaterial).set_shader_parameter("item_rotation", rotation)
 	(sprite.material as ShaderMaterial).set_shader_parameter("progress", 0.0)
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
