@@ -115,6 +115,6 @@ Container, Skeleton2D, Bone2D, ScrollContainer, Panel
 ![](screenshots/auto-battler.png)
 ### What I learned
 - godot drag and drop api
-- grid inventory system supporting items of various shapes and sizes
+- grid inventory system supporting items of various shapes and sizes, item rotations
 - combat log
 ### New Godot Nodes learned
