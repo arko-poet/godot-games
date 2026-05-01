@@ -13,6 +13,7 @@ var cell_held: Vector2i
 var bonus: Dictionary
 var base_cooldown: float
 var cdr := 0.0
+var preview_rotations = 0.0
 
 @onready var sprite: ColorRect = $Sprite
 @onready var _effect_timer: Timer = $EffectTimer
@@ -24,6 +25,10 @@ func _ready() -> void:
 	
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
+		if not get_viewport().gui_is_drag_successful():
+			unrotate()
+		preview_rotations = 0.0
+		
 		show()
 
 
@@ -54,6 +59,7 @@ func get_top_left_corner() -> Vector2:
 
 
 func rotate() -> void:
+	preview_rotations += PI / 2
 	rotation += PI / 2
 	if preview_sprite:
 		preview_sprite.rotation += PI / 2
@@ -63,6 +69,15 @@ func rotate() -> void:
 	for i in bonus_cells.size():
 		bonus_cells[i] = Vector2i(-bonus_cells[i].y, bonus_cells[i].x)
 	rotated.emit()
+
+
+func unrotate() -> void:
+	while preview_rotations > 0.0:
+		preview_rotations -= PI / 2
+		rotation -= PI / 2
+		for i in footprint.size():
+			footprint[i] = Vector2i(footprint[i].y, -footprint[i].x)
+
 
 
 func apply_bonus(item: Item) -> void:

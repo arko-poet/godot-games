@@ -14,6 +14,7 @@ var partial_items: Array[Item]
 var full_items: Dictionary[Item, Vector2i]
 var cell_held: Vector2i ## TODO perhaps not needed, could be part of preview data
 var preview: Control
+var preview_rotations := 0.0
 
 
 func _ready() -> void:
@@ -38,6 +39,10 @@ func _draw() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
+		if not get_viewport().gui_is_drag_successful():
+			unrotate()
+		preview_rotations = 0.0
+		
 		show()
 		for item in full_items:
 			item.show()
@@ -49,6 +54,7 @@ func clear_items() -> void:
 
 
 func rotate() -> void:
+	preview_rotations += PI / 2
 	rotation += PI / 2
 	preview.rotation += PI / 2
 	cell_held = Vector2i(-cell_held.y, cell_held.x)
@@ -60,6 +66,20 @@ func rotate() -> void:
 		full_items[item] = Vector2i(-full_items[item].y, full_items[item].x)
 	
 	rotated.emit()
+
+
+func unrotate() -> void:
+	while preview_rotations > 0.0:
+		preview_rotations -= PI / 2
+		rotation -= PI / 2
+		#preview.rotation -= PI / 2
+		#cell_held = Vector2i(cell_held.y, -cell_held.x) # (x, y) -> (-y, x) -> (y, -x)
+		for i in footprint.size():
+			footprint[i] = Vector2i(footprint[i].y, -footprint[i].x)
+			
+		for item in full_items:
+			item.unrotate()
+			full_items[item] = Vector2i(full_items[item].y, -full_items[item].x)
 
 
 ## return visual top left corner of the Item while respecting rotation
