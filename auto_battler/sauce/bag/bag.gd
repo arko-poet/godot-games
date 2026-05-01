@@ -84,55 +84,26 @@ func _on_gui_input(event: InputEvent) -> void:
 
 
 func _start_dragging() -> void:
-	#print("start bag %s" % self)
 	var mp := get_local_mouse_position()
 	
 	var preview_display: Bag = duplicate()
-	preview_display.position = -mp 
-	preview_display.rotation = 0
+	preview_display.position = -mp
+	preview_display.rotation = rotation
 
 	preview = Control.new()
-	preview.rotation = rotation
-	preview.size = preview_display.size
+	preview.size = preview_display.size # TODO is this even needed?
 	preview.add_child(preview_display)
 	preview_display.pivot_offset = mp
 	for item in full_items:
 		
 		var d_item: Item = item.duplicate()
-		d_item.rotation -= rotation
+		d_item.rotation = item.rotation
+		
+		# TODO explain how this works
+		var item_relative_to_bag := get_transform().inverse() * item.get_transform()
+		var final_item_transform := preview_display.get_transform() * item_relative_to_bag
+		d_item.position = final_item_transform.origin
 
-		#var item_cell_pos := Vector2(full_items[item]) * Inventory.CELL_SIZE
-		#var visual_pos := (item_cell_pos - mp).rotated(rotation)
-#
-		#d_item.rotation = item.rotation
-		#d_item.position = visual_pos - d_item.get_top_left_corner()
-		
-		var min_item_offset := Vector2i(Inventory.INVENTORY_SIZE, Inventory.INVENTORY_SIZE)
-		for f in item.footprint:
-			min_item_offset = Vector2i(min(min_item_offset.x, f.x), min(min_item_offset.y, f.y))
-		#var item_origin := Vector2i(column, row) - min_item_offset
-		
-		var min_bag_offset := Vector2i(Inventory.INVENTORY_SIZE, Inventory.INVENTORY_SIZE)
-		for f in footprint:
-			min_bag_offset = Vector2i(min(min_bag_offset.x, f.x), min(min_bag_offset.y, f.y))
-		print("----")
-		print(item.position)
-		print(position)
-		print(footprint)
-		print(item.footprint)
-		print(full_items[item])
-		print(Vector2(full_items[item]) * Inventory.CELL_SIZE)
-		#assert(item.rotation == rotation)
-		#print(mp)
-		#print(d_item.position)
-		print(item.rotation)
-		print(d_item.rotation)
-		print(item.get_top_left_corner())
-		#d_item.position = Vector2(full_items[item]) * Inventory.CELL_SIZE -item.get_top_left_corner() - mp
-		d_item.position = -mp #Vector2(full_items[item]) * Inventory.CELL_SIZE - mp#d_item.position = Vector2(full_items[item]) * Inventory.CELL_SIZE -mp
-		print(d_item.position)
-		#d_item.rotation = item.rotation
-		
 		preview.add_child(d_item)
 
 	var drag_data := {
@@ -140,8 +111,7 @@ func _start_dragging() -> void:
 		"offset": mp * Transform2D(-rotation, Vector2.ZERO),
 		"items": full_items.keys()
 	}
-
-
+	
 	_set_cell_held()
 
 	force_drag.call_deferred(drag_data, preview)

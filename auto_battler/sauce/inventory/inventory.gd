@@ -339,7 +339,7 @@ func _place_bag(bag: Bag) -> void:
 			##print(Vector2i(Vector2(bag.full_items[item]) * Transform2D(bag.rotation, Vector2.ZERO)))
 			#hovered_cells.append(cell + Vector2i(column, row) - Vector2i(Vector2(bag.full_items[item]) * Transform2D(-bag.rotation, Vector2.ZERO)))
 			#print(cell + Vector2i(column, row) - Vector2i(Vector2(bag.full_items[item]) * Transform2D(-bag.rotation, Vector2.ZERO)))
-			
+			# TODO explain how this works
 			hovered_cells.append(cell - cr + Vector2i(column, row) + bag.full_items[item])
 			#hovered_cells.append(Vector2i(column, row) + bag.full_items[item] + cell)
 			
