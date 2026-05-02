@@ -30,7 +30,7 @@ func _ready() -> void:
 	Input.set_custom_mouse_cursor(DRAG_CURSOR, Input.CURSOR_FORBIDDEN)
 	Input.set_custom_mouse_cursor(HOVER_CURSOR, Input.CURSOR_POINTING_HAND)
 
-	_on_combat_finished() # TODO remove this once debugging finished
+	_on_combat_finished() # CAUTION remove this once debugging finished
 	LogManager.combat_log = combat_log
 
 

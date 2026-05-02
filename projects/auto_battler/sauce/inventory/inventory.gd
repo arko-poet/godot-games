@@ -73,7 +73,7 @@ func _draw() -> void:
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	assert(data is Dictionary)
-	if data.has("item"): # TODO make it better
+	if data.has("item"):
 		return _can_drop_item(at_position, data)
 	else:
 		return _can_drop_bag(at_position, data)	
@@ -234,14 +234,12 @@ func _place_item(item: Item) -> void:
 		return
 		
 	# find top left corner of item
-	var column: int = INVENTORY_SIZE
-	var row: int = INVENTORY_SIZE
+	var top_left_cell := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 	var hovered_bags: Array[Bag] = []
 	for cell in hovered_cells:
 		item_grid[cell.y][cell.x] = item
 		
-		column = min(column, cell.x) # TODO this name sucks, what column?
-		row = min(row, cell.y)
+		top_left_cell = Vector2i(min(top_left_cell.x, cell.x), min(top_left_cell.y, cell.y))
 		
 		var bag: Bag = bag_grid[cell.y][cell.x]
 		if not hovered_bags.has(bag) and bag != null:
@@ -251,29 +249,27 @@ func _place_item(item: Item) -> void:
 	for hb in hovered_bags:
 		if hovered_bags.size() == 1:
 			# find bag position
-			var bag_row: int = INVENTORY_SIZE
-			var bag_column: int = INVENTORY_SIZE
-			for b_row in bag_grid.size(): # TODO this is just INVENTORY_SIZE
-				for b_column in bag_grid.size():
-					if bag_grid[b_row][b_column] == hb:
-						bag_row = min(bag_row, b_row) # TODO change these names, confusing
-						bag_column = min(bag_column, b_column)
+			var bag_top_left_cell := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
+			for row in INVENTORY_SIZE:
+				for column in INVENTORY_SIZE:
+					if bag_grid[row][column] == hb:
+						bag_top_left_cell = Vector2i(min(bag_top_left_cell.x, column), min(bag_top_left_cell.y, row))
 
 			var min_item_offset := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 			for f in item.footprint:
 				min_item_offset = Vector2i(min(min_item_offset.x, f.x), min(min_item_offset.y, f.y))
-			var item_origin := Vector2i(column, row) - min_item_offset
+			var item_origin := top_left_cell - min_item_offset
 			
 			
 			var min_bag_offset := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 			for f in hb.footprint:
 				min_bag_offset = Vector2i(min(min_bag_offset.x, f.x), min(min_bag_offset.y, f.y))
 			
-			hb.full_items[item] = item_origin - (Vector2i(bag_column, bag_row) - min_bag_offset)# Vector2i(column - bag_column, row - bag_row)
+			hb.full_items[item] = item_origin - (bag_top_left_cell - min_bag_offset)
 		else:
 			hb.partial_items.append(item)
 	
-	item.position = Vector2(column, row) * CELL_SIZE - item.get_top_left_corner()
+	item.position = Vector2(top_left_cell) * CELL_SIZE - item.get_top_left_corner()
 	item.move_to_front()
 	
 	for bc in hovered_bonus_cells:
@@ -296,30 +292,30 @@ func _move_item(item: Item) -> void:
 
 #region Bag Placement
 func _place_bag(bag: Bag) -> void:
-	# without this check bag would be palced outside of grid
+	# without this check bag could end up outside of the inventory
 	if hovered_cells.is_empty():
 		return
 		
-	# find top left corner ofbag
-	var column: int = INVENTORY_SIZE
-	var row: int = INVENTORY_SIZE
-	for cell in hovered_cells:
-		column = min(column, cell.x)
-		row = min(row, cell.y)
-		bag_grid[cell.y][cell.x] = bag
+	# find top left corner of bag
+	var top_left_cell := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
+	for hc in hovered_cells:
+		top_left_cell = Vector2i(min(top_left_cell.x, hc.x), min(top_left_cell.y, hc.y))
+		bag_grid[hc.y][hc.x] = bag
 	
-	bag.position = Vector2(column, row) * CELL_SIZE - bag.get_top_left_corner()
+	bag.position = Vector2(top_left_cell) * CELL_SIZE - bag.get_top_left_corner()
 	bag.z_index = -1
 		
-	var cr := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
+	var min_bag_footprint := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 	for f in bag.footprint:
-		cr = Vector2i(min(cr.x, f.x), min(cr.y, f.y))
-		
+		min_bag_footprint = Vector2i(min(min_bag_footprint.x, f.x), min(min_bag_footprint.y, f.y))
 	for item in bag.full_items:
 		hovered_cells.clear()
 		for cell in item.footprint:
-			# TODO explain how this works
-			hovered_cells.append(cell - cr + Vector2i(column, row) + bag.full_items[item])
+			# computes cells that are going to be occupied by the item in the inventory grid
+			# top_left_cell is the top left inventory cell that bag is occupying
+			# bag.full_items[item] which cell in bag the item is occupying
+			# min_bag_footprint is to adjust for bag rotations
+			hovered_cells.append(cell + top_left_cell + bag.full_items[item] - min_bag_footprint)
 			
 		_move_item(item)
 
@@ -337,7 +333,6 @@ func _add_bag(bag: Bag) -> void:
 	bag.reparent(self)
 	_place_bag(bag)
 	bags.append(bag)
-	#item_added.emit(item)
 #endregion
 
 

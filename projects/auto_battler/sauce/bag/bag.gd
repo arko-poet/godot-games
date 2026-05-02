@@ -117,7 +117,7 @@ func _start_dragging() -> void:
 		# transforms seem to be applied backwards I think cause of matrix maths or something
 		# so point in item -> point in item parent (e.g. inventory) ->
 		# -> point in child of bag parent (bag) -> point in preview display
-		var item_to_bag := dup_bag.get_transform() * get_transform().inverse() * item.get_transform()
+		var item_to_bag := get_transform().inverse() * item.get_transform()
 		var item_to_dup_bag := dup_bag.get_transform() * item_to_bag
 		dup_item.position = item_to_dup_bag.origin
 
