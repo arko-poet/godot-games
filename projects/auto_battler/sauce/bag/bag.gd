@@ -105,7 +105,6 @@ func _start_dragging() -> void:
 	preview_display.rotation = rotation
 
 	var preview := Control.new()
-	preview.size = preview_display.size # TODO is this even needed?
 	preview.add_child(preview_display)
 	preview_display.pivot_offset = mp
 	for item in full_items:

@@ -132,7 +132,6 @@ func _start_dragging() -> void:
 	
 	var preview := Control.new()
 	preview.rotation = rotation
-	preview.size = preview_sprite.size
 	preview.add_child(preview_sprite)
 	preview_sprite.pivot_offset = mp
 	
