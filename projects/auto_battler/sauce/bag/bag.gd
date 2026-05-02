@@ -2,6 +2,8 @@
 
 signal rotated
 
+const HOVER_HIGHLIGHT_MODULATE := Color(1.1, 1.1, 1.1)
+
 @export_range(1, Inventory.INVENTORY_SIZE) var columns: int = 1
 @export_range(1, Inventory.INVENTORY_SIZE) var rows: int = 1
 @export var bg_color: Color = Color("#6B3F1E")
@@ -29,9 +31,8 @@ func _draw() -> void:
 	for row in rows:
 		for column in columns:
 			var cell := Vector2i(column, row)
-			var cell_position := cell * Inventory.CELL_SIZE
 			var cell_size := Vector2i(Inventory.CELL_SIZE, Inventory.CELL_SIZE)
-			var rect2i := Rect2i(cell_position, cell_size)
+			var rect2i := Rect2i(cell * Inventory.CELL_SIZE, cell_size)
 			draw_rect(rect2i, bg_color)
 			draw_rect(rect2i, border_color, false, 1)
 
@@ -43,8 +44,7 @@ func _notification(what: int) -> void:
 		rotation_counter = 0
 		
 		show()
-		for item in full_items:
-			item.show()
+		for item in full_items: item.show()
 
 
 func clear_items() -> void:
@@ -54,6 +54,7 @@ func clear_items() -> void:
 
 func rotate() -> void:
 	rotation_counter += 1
+	
 	rotation += PI / 2
 	for i in footprint.size():
 		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
@@ -68,6 +69,7 @@ func rotate() -> void:
 func unrotate() -> void:
 	while rotation_counter > 0:
 		rotation_counter -= 1
+		
 		rotation -= PI / 2
 		for i in footprint.size():
 			footprint[i] = Vector2i(footprint[i].y, -footprint[i].x)
@@ -87,10 +89,7 @@ func get_top_left_corner() -> Vector2:
 func _on_gui_input(event: InputEvent) -> void:
 	var mb := event as InputEventMouseButton
 	if mb != null:
-		if mb.button_index != MOUSE_BUTTON_LEFT:
-			return
-		
-		if not partial_items.is_empty():
+		if mb.button_index != MOUSE_BUTTON_LEFT or not partial_items.is_empty():
 			return
 		
 		assert(mb.pressed)
@@ -98,20 +97,19 @@ func _on_gui_input(event: InputEvent) -> void:
 
 
 func _start_dragging() -> void:
-	var mp := get_local_mouse_position()
+	var lmp := get_local_mouse_position()
 	
-	var preview_display: Bag = duplicate()
-	preview_display.position = -mp
-	preview_display.rotation = rotation
+	var dup_bag: Bag = duplicate()
+	dup_bag.position = -lmp
+	dup_bag.rotation = rotation
+	dup_bag.pivot_offset = lmp
 
 	var preview := Control.new()
-	preview.add_child(preview_display)
-	preview_display.pivot_offset = mp
+	preview.add_child(dup_bag)
+	
 	for item in full_items:
-		
-		var d_item: Item = item.duplicate()
-		d_item.rotation = item.rotation
-		
+		var dup_item: Item = item.duplicate()
+		dup_item.rotation = item.rotation
 		# calculate item preview position relative to preview
 		# not fully sure how this works but it seems that
 		# Transform2D represents how to map points from one set of coordinates to other set
@@ -119,34 +117,35 @@ func _start_dragging() -> void:
 		# transforms seem to be applied backwards I think cause of matrix maths or something
 		# so point in item -> point in item parent (e.g. inventory) ->
 		# -> point in child of bag parent (bag) -> point in preview display
-		var item_relative_to_bag := get_transform().inverse() * item.get_transform()
-		var item_relative_to_preview := preview_display.get_transform() * item_relative_to_bag
-		d_item.position = item_relative_to_preview.origin
+		var item_to_bag := dup_bag.get_transform() * get_transform().inverse() * item.get_transform()
+		var item_to_dup_bag := dup_bag.get_transform() * item_to_bag
+		dup_item.position = item_to_dup_bag.origin
 
-		preview.add_child(d_item)
+		preview.add_child(dup_item)
 
 	var drag_data := {
 		"bag": self,
-		"offset": mp * Transform2D(-rotation, Vector2.ZERO),
+		"offset": lmp * Transform2D(-rotation, Vector2.ZERO),
 		"items": full_items.keys(),
 		"cell_held": _get_cell_held(),
 		"preview": preview
 	}
 
 	force_drag.call_deferred(drag_data, preview)
+	
 	hide()
 	for item in full_items:
 		item.hide()
 
 
 func _get_cell_held() -> Vector2i:
-	var mp := get_local_mouse_position() / Inventory.CELL_SIZE
-	return Vector2i(mp * Transform2D(-rotation, Vector2.ZERO))
+	var lmp := get_local_mouse_position() / Inventory.CELL_SIZE
+	return Vector2i(lmp * Transform2D(-rotation, Vector2.ZERO))
 
 
 func _on_mouse_entered() -> void:
-	self_modulate = Color(1.1, 1.1, 1.1)
+	self_modulate = HOVER_HIGHLIGHT_MODULATE
 
 
 func _on_mouse_exited() -> void:
-	self_modulate = Color(1.0, 1.0, 1.0)
+	self_modulate = Color.WHITE
