@@ -12,7 +12,8 @@ var footprint: Array[Vector2i]
 var partial_items: Array[Item]
 ## items which are fully contained in the bag with the top left cell they occupy
 var full_items: Dictionary[Item, Vector2i]
-var preview_rotations := 0.0
+## this is to unrotate items in case of drop failure
+var rotation_counter := 0
 
 
 func _ready() -> void:
@@ -39,7 +40,7 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
 		if not get_viewport().gui_is_drag_successful():
 			unrotate()
-		preview_rotations = 0.0
+		rotation_counter = 0
 		
 		show()
 		for item in full_items:
@@ -52,7 +53,7 @@ func clear_items() -> void:
 
 
 func rotate() -> void:
-	preview_rotations += PI / 2
+	rotation_counter += 1
 	rotation += PI / 2
 	for i in footprint.size():
 		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
@@ -65,8 +66,8 @@ func rotate() -> void:
 
 
 func unrotate() -> void:
-	while preview_rotations > 0.0:
-		preview_rotations -= PI / 2
+	while rotation_counter > 0:
+		rotation_counter -= 1
 		rotation -= PI / 2
 		for i in footprint.size():
 			footprint[i] = Vector2i(footprint[i].y, -footprint[i].x)

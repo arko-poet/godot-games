@@ -11,7 +11,8 @@ signal rotated
 var bonus: Dictionary
 var base_cooldown: float
 var cdr := 0.0
-var preview_rotations = 0.0
+## this is to unrotate items in case of drop failure
+var rotation_counter = 0
 
 @onready var sprite: ColorRect = $Sprite
 @onready var _effect_timer: Timer = $EffectTimer
@@ -25,7 +26,7 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
 		if not get_viewport().gui_is_drag_successful():
 			unrotate()
-		preview_rotations = 0.0
+		rotation_counter = 0
 		
 		show()
 
@@ -57,7 +58,7 @@ func get_top_left_corner() -> Vector2:
 
 
 func rotate() -> void:
-	preview_rotations += PI / 2
+	rotation_counter += 1
 	rotation += PI / 2
 	for i in footprint.size():
 		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
@@ -67,8 +68,8 @@ func rotate() -> void:
 
 
 func unrotate() -> void:
-	while preview_rotations > 0.0:
-		preview_rotations -= PI / 2
+	while rotation_counter > 0:
+		rotation_counter -= 1
 		rotation -= PI / 2
 		for i in footprint.size():
 			footprint[i] = Vector2i(footprint[i].y, -footprint[i].x)
