@@ -8,7 +8,6 @@ signal rotated
 @export var bonus_cells: Array[Vector2i] = []
 
 ## which cells is item going to occupy at each rotation state
-var preview_sprite: Control
 var bonus: Dictionary
 var base_cooldown: float
 var cdr := 0.0
@@ -60,8 +59,6 @@ func get_top_left_corner() -> Vector2:
 func rotate() -> void:
 	preview_rotations += PI / 2
 	rotation += PI / 2
-	if preview_sprite:
-		preview_sprite.rotation += PI / 2
 	for i in footprint.size():
 		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
 	for i in bonus_cells.size():
@@ -129,7 +126,7 @@ func _animation_helper() -> void:
 
 func _start_dragging() -> void:
 	var mp := get_local_mouse_position()
-	preview_sprite = sprite.duplicate()
+	var preview_sprite: Control = sprite.duplicate()
 	preview_sprite.position -= mp
 	
 	var preview := Control.new()
@@ -141,7 +138,8 @@ func _start_dragging() -> void:
 	var drag_data := {
 		"item": self,
 		"offset": mp * Transform2D(-rotation, Vector2.ZERO),
-		"cell_held": _get_cell_held()
+		"cell_held": _get_cell_held(),
+		"preview": preview_sprite
 	}
 	
 	force_drag.call_deferred(drag_data, preview)

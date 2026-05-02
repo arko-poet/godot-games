@@ -12,7 +12,6 @@ var footprint: Array[Vector2i]
 var partial_items: Array[Item]
 ## items which are fully contained in the bag with the top left cell they occupy
 var full_items: Dictionary[Item, Vector2i]
-var preview: Control
 var preview_rotations := 0.0
 
 
@@ -55,7 +54,6 @@ func clear_items() -> void:
 func rotate() -> void:
 	preview_rotations += PI / 2
 	rotation += PI / 2
-	preview.rotation += PI / 2
 	for i in footprint.size():
 		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
 		
@@ -105,7 +103,7 @@ func _start_dragging() -> void:
 	preview_display.position = -mp
 	preview_display.rotation = rotation
 
-	preview = Control.new()
+	var preview := Control.new()
 	preview.size = preview_display.size # TODO is this even needed?
 	preview.add_child(preview_display)
 	preview_display.pivot_offset = mp
@@ -125,7 +123,8 @@ func _start_dragging() -> void:
 		"bag": self,
 		"offset": mp * Transform2D(-rotation, Vector2.ZERO),
 		"items": full_items.keys(),
-		"cell_held": _get_cell_held()
+		"cell_held": _get_cell_held(),
+		"preview": preview
 	}
 
 	force_drag.call_deferred(drag_data, preview)

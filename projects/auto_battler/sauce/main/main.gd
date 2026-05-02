@@ -42,6 +42,7 @@ func _input(event: InputEvent) -> void:
 			if not mb.pressed and get_viewport().gui_is_dragging():
 				var data: Dictionary = get_viewport().gui_get_drag_data()
 				data["cell_held"] = Vector2i(-data["cell_held"].y, data["cell_held"].x)
+				data["preview"].rotation += PI / 2
 				if data.has("item"):
 					var item: Item = data["item"]
 					item.rotate()
