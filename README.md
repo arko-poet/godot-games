@@ -8,7 +8,7 @@ Projects are listed in creation order, oldest first.
 
 ## 1. `Clicker` - based on cookie clicker
 2026-01-28 -> 2026-02-07
-![](screenshots/clicker.png)
+![](docs/screenshots/clicker.png)
 ### What I learned
 - Animated Buttons
 - Dynamic UI components
@@ -29,7 +29,7 @@ Node, Control, ColorRect, VBoxContainer, Label, TextureButton, Timer, Sprite2D, 
 
 ## 2. `Blocks` - based on Tetris
 2026-02-07 -> 2026-02-14
-![](screenshots/tetris.png)
+![](docs/screenshots/tetris.png)
 ### What I learned
 - Grid based game logic
 - Timer-driven movement
@@ -40,7 +40,7 @@ Node2D, AnimatedSprite2D, SubViewportContainer, SubViewport
 
 ## 3. `Satyr vs Zombies` - based on Last Stand
 2026-02-14 -> 2026-02-22
-![](screenshots/satyr-vs-zombies.png)
+![](docs/screenshots/satyr-vs-zombies.png)
 ### What I learned
 - Player movement with viewport clamping and collisions
 - Mouse-aimed combat
@@ -60,7 +60,7 @@ Area2D, CollisionShape2D, StaticBody2D, CharacterBody2D, TileMapLayer, Path2D, P
 
 ## 4. `Tower` - based on Icy Tower
 2026-02-22 -> 2026-02-27
-![](screenshots/tower.png)
+![](docs/screenshots/tower.png)
 ### What I learned
 - Parallax Scrolling
 - Procedural platform generation with object pooling
@@ -75,7 +75,7 @@ Parallax2D, Camera2D, AudioStreamPlayer
 
 ## 5. `Duck vs Slimes` - based on Vampire Survivors
 2026-02-27 -> 2026-03-12
-![](screenshots/survivors.png)
+![](docs/screenshots/survivors.png)
 ### What I learned
 - item pickups
 - agent pathfinding and avoidance (RVO)
@@ -93,7 +93,7 @@ PanelContainer, RichTextLabel, NavigationAgent2D, CPUParticles2D, GPUParticles2D
 
 ## 6. `Cards` - based on Slay the Spire
 2026-03-12 -> 2026-04-07
-![](screenshots/cards.png)
+![](docs/screenshots/cards.png)
 ### What I learned
 - custom Container layout to implement fan shaped hand of cards
 - running code in the editor with @tool
@@ -112,7 +112,7 @@ Container, Skeleton2D, Bone2D, ScrollContainer, Panel
 
 ## 7. `Auto Battler` - based on Backpack Battles
 2026-04-08 -> WIP
-![](screenshots/auto-battler.png)
+![](docs/screenshots/auto-battler.png)
 ### What I learned
 - godot drag and drop api
 - grid inventory system supporting items of various shapes and sizes, item rotations
