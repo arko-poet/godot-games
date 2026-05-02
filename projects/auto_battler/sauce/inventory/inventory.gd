@@ -69,8 +69,6 @@ func _draw() -> void:
 			elif cell in hovered_bonus_cells:
 				bg_color = BONUS_BG_COLOR
 			draw_rect(rect2i, bg_color)
-			#if bag_grid[y][x] == null:
-				#draw_rect(rect2i, BORDER_COLOR, false, 1) # TODO maybe dont draw if bag is here
 
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
@@ -86,7 +84,6 @@ func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
 	# check if cursor moved to other cell in which case hovered cells changed -> redraw needed
 	var redraw_needed: bool = false
 	var hovered_cell := _position_to_cell(at_position)
-	#print(hovered_cell)
 	if hovered_cell != last_hovered_cell or hovered_cells.is_empty() or update_rotation:
 		update_rotation = false
 		redraw_needed = true
@@ -94,12 +91,10 @@ func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
 		hovered_bonus_cells.clear()
 		for item_cell in item.footprint:
 			var cell: Vector2i = hovered_cell + item_cell - item.cell_held
-			#print(cell)
 			if (
 				cell.y >= 0 and cell.x >= 0
 				and cell.y < INVENTORY_SIZE and cell.x < INVENTORY_SIZE
 			):
-				#print(bag_grid[cell.y][cell.x])
 				if bag_grid[cell.y][cell.x] != null:
 					hovered_cells.append(cell)
 		last_hovered_cell = hovered_cell
@@ -167,7 +162,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 		for bag in bags:
 			bag.full_items.erase(drop_object)
 			bag.partial_items.erase(drop_object)
-		#print("clear hovered items?")
+
 		_clear_hovered_items(drop_object)
 		
 		if items.has(drop_object): _move_item(drop_object)
@@ -262,11 +257,7 @@ func _place_item(item: Item) -> void:
 					if bag_grid[b_row][b_column] == hb:
 						bag_row = min(bag_row, b_row) # TODO change these names, confusing
 						bag_column = min(bag_column, b_column)
-			#print(bag_row)
-			#print(bag_column)
-			#print(item)
-			#print(hb.full_items)
-			
+
 			var min_item_offset := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 			for f in item.footprint:
 				min_item_offset = Vector2i(min(min_item_offset.x, f.x), min(min_item_offset.y, f.y))
@@ -278,7 +269,6 @@ func _place_item(item: Item) -> void:
 				min_bag_offset = Vector2i(min(min_bag_offset.x, f.x), min(min_bag_offset.y, f.y))
 			
 			hb.full_items[item] = item_origin - (Vector2i(bag_column, bag_row) - min_bag_offset)# Vector2i(column - bag_column, row - bag_row)
-			print(hb.full_items[item])
 		else:
 			hb.partial_items.append(item)
 	
@@ -318,9 +308,7 @@ func _place_bag(bag: Bag) -> void:
 		bag_grid[cell.y][cell.x] = bag
 	
 	bag.position = Vector2(column, row) * CELL_SIZE - bag.get_top_left_corner()
-	#bag.position = Vector2(column, row) * CELL_SIZE# - bag.get_top_left_corner()
 	bag.z_index = -1
-		
 		
 	var cr := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 	for f in bag.footprint:
@@ -329,19 +317,8 @@ func _place_bag(bag: Bag) -> void:
 	for item in bag.full_items:
 		hovered_cells.clear()
 		for cell in item.footprint:
-			#hovered_cells.append(cell + Vector2i(Vector2(column, row) * Transform2D(bag.rotation, Vector2.ZERO)) - bag.full_items[item])
-			#print("---")
-			#print(cr)
-			#print(cell)
-			#print(Vector2i(column, row))
-			#print(bag.full_items[item])
-			#print(bag.footprint)
-			##print(Vector2i(Vector2(bag.full_items[item]) * Transform2D(bag.rotation, Vector2.ZERO)))
-			#hovered_cells.append(cell + Vector2i(column, row) - Vector2i(Vector2(bag.full_items[item]) * Transform2D(-bag.rotation, Vector2.ZERO)))
-			#print(cell + Vector2i(column, row) - Vector2i(Vector2(bag.full_items[item]) * Transform2D(-bag.rotation, Vector2.ZERO)))
 			# TODO explain how this works
 			hovered_cells.append(cell - cr + Vector2i(column, row) + bag.full_items[item])
-			#hovered_cells.append(Vector2i(column, row) + bag.full_items[item] + cell)
 			
 		_move_item(item)
 

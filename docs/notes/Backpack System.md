@@ -73,7 +73,7 @@
 - [ ] items disappear under bags when dragging
 	- doesnt seem reproducable anymore
 - [x] items are not removed from bags when moving to inventory? its fine except they are not together visually so monka
-- [ ] shader is not applied vertically if objects are rotated
+- [x] shader is not applied vertically if objects are rotated
 
 ### Other Things to work on
 - [ ] might be better to cerate common node for Item and Bag

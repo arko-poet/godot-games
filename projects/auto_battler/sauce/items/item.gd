@@ -99,7 +99,7 @@ func _on_gui_input(event: InputEvent) -> void:
 		if mb.button_index != MOUSE_BUTTON_LEFT:
 			return
 		assert(mb.pressed)
-		#print("??")
+
 		_start_dragging()
 
 
@@ -130,7 +130,6 @@ func _animation_helper() -> void:
 
 
 func _start_dragging() -> void:
-	#print("start item %s" % self)
 	var mp := get_local_mouse_position()
 	preview_sprite = sprite.duplicate()
 	preview_sprite.position -= mp
@@ -157,12 +156,8 @@ func _set_cell_held() -> void:
 
 
 func _on_mouse_entered() -> void:
-	#print("entered")
-	#print(color)
 	modulate = Color(1.1, 1.1, 1.1)
-	#print(modulate)
 	
-
 
 func _on_mouse_exited() -> void:
 	modulate = Color(1.0, 1.0, 1.0)

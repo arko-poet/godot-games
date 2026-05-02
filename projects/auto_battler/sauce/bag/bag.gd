@@ -72,8 +72,6 @@ func unrotate() -> void:
 	while preview_rotations > 0.0:
 		preview_rotations -= PI / 2
 		rotation -= PI / 2
-		#preview.rotation -= PI / 2
-		#cell_held = Vector2i(cell_held.y, -cell_held.x) # (x, y) -> (-y, x) -> (y, -x)
 		for i in footprint.size():
 			footprint[i] = Vector2i(footprint[i].y, -footprint[i].x)
 			
@@ -90,7 +88,6 @@ func get_top_left_corner() -> Vector2:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	#print("Bag click, partial_items: ", partial_items.size(), " full_items: ", full_items.size())
 	var mb := event as InputEventMouseButton
 	if mb != null:
 		if mb.button_index != MOUSE_BUTTON_LEFT:

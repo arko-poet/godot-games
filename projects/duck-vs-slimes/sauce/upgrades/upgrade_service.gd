@@ -98,7 +98,6 @@ func _get_rarity() -> Rarity:
 		var weight = RARITY_WEIGHTS[rarity]
 		cumulative += weight
 		if r < cumulative:
-			print("rarity = %s" % rarity)
 			return rarity
 	
 	push_error("Error generating random rarity")

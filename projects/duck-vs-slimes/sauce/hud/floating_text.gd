@@ -24,11 +24,3 @@ func _ready() -> void:
 	tween.tween_property(label, "position", Vector2(drift_x, drift_y), 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "modulate:a", 0.0, 1)
 	tween.finished.connect(queue_free)
-
-
-#func _process(_delta) -> void:
-	#print("-")
-	#print("N2D global_position = %s" % global_position)
-	#print("N2D position = %s" % position)
-	#print("Label global_position = %s" % global_position)
-	#print("Label position = %s" % position)
