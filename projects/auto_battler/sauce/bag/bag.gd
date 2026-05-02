@@ -112,10 +112,16 @@ func _start_dragging() -> void:
 		var d_item: Item = item.duplicate()
 		d_item.rotation = item.rotation
 		
-		# TODO explain how this works
+		# calculate item preview position relative to preview
+		# not fully sure how this works but it seems that
+		# Transform2D represents how to map points from one set of coordinates to other set
+		# e.g. item.get_transform() tells how to map point in item to point in its parent
+		# transforms seem to be applied backwards I think cause of matrix maths or something
+		# so point in item -> point in item parent (e.g. inventory) ->
+		# -> point in child of bag parent (bag) -> point in preview display
 		var item_relative_to_bag := get_transform().inverse() * item.get_transform()
-		var final_item_transform := preview_display.get_transform() * item_relative_to_bag
-		d_item.position = final_item_transform.origin
+		var item_relative_to_preview := preview_display.get_transform() * item_relative_to_bag
+		d_item.position = item_relative_to_preview.origin
 
 		preview.add_child(d_item)
 
