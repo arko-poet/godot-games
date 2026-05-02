@@ -12,7 +12,6 @@ var footprint: Array[Vector2i]
 var partial_items: Array[Item]
 ## items which are fully contained in the bag with the top left cell they occupy
 var full_items: Dictionary[Item, Vector2i]
-var cell_held: Vector2i ## TODO perhaps not needed, could be part of preview data
 var preview: Control
 var preview_rotations := 0.0
 
@@ -57,7 +56,6 @@ func rotate() -> void:
 	preview_rotations += PI / 2
 	rotation += PI / 2
 	preview.rotation += PI / 2
-	cell_held = Vector2i(-cell_held.y, cell_held.x)
 	for i in footprint.size():
 		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
 		
@@ -126,10 +124,9 @@ func _start_dragging() -> void:
 	var drag_data := {
 		"bag": self,
 		"offset": mp * Transform2D(-rotation, Vector2.ZERO),
-		"items": full_items.keys()
+		"items": full_items.keys(),
+		"cell_held": _get_cell_held()
 	}
-	
-	_set_cell_held()
 
 	force_drag.call_deferred(drag_data, preview)
 	hide()
@@ -137,9 +134,9 @@ func _start_dragging() -> void:
 		item.hide()
 
 
-func _set_cell_held() -> void:
+func _get_cell_held() -> Vector2i:
 	var mp := get_local_mouse_position() / Inventory.CELL_SIZE
-	cell_held = Vector2i(mp * Transform2D(-rotation, Vector2.ZERO))
+	return Vector2i(mp * Transform2D(-rotation, Vector2.ZERO))
 
 
 func _on_mouse_entered() -> void:

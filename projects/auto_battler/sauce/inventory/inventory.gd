@@ -89,8 +89,9 @@ func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
 		redraw_needed = true
 		hovered_cells.clear()
 		hovered_bonus_cells.clear()
+		var cell_held: Vector2i = data["cell_held"]
 		for item_cell in item.footprint:
-			var cell: Vector2i = hovered_cell + item_cell - item.cell_held
+			var cell: Vector2i = hovered_cell + item_cell - cell_held
 			if (
 				cell.y >= 0 and cell.x >= 0
 				and cell.y < INVENTORY_SIZE and cell.x < INVENTORY_SIZE
@@ -99,7 +100,7 @@ func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
 					hovered_cells.append(cell)
 		last_hovered_cell = hovered_cell
 		for item_cell in item.bonus_cells:
-			var bonus_cell: Vector2i = hovered_cell + item_cell - item.cell_held
+			var bonus_cell: Vector2i = hovered_cell + item_cell - cell_held
 			if (
 				bonus_cell.x >= 0 and bonus_cell.y >= 0 
 				and bonus_cell.x < INVENTORY_SIZE and bonus_cell.y < INVENTORY_SIZE
@@ -135,7 +136,7 @@ func _can_drop_bag(at_position: Vector2, data: Dictionary) -> bool:
 		hovered_cells.clear()
 		hovered_bonus_cells.clear()
 		for bag_cell in bag.footprint:
-			hovered_cells.append(hovered_cell + bag_cell - bag.cell_held)
+			hovered_cells.append(hovered_cell + bag_cell - data["cell_held"])
 		last_hovered_cell = hovered_cell
 	
 	var can_drop: bool = true

@@ -9,7 +9,6 @@ signal rotated
 
 ## which cells is item going to occupy at each rotation state
 var preview_sprite: Control
-var cell_held: Vector2i
 var bonus: Dictionary
 var base_cooldown: float
 var cdr := 0.0
@@ -63,7 +62,6 @@ func rotate() -> void:
 	rotation += PI / 2
 	if preview_sprite:
 		preview_sprite.rotation += PI / 2
-	cell_held = Vector2i(-cell_held.y, cell_held.x)
 	for i in footprint.size():
 		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
 	for i in bonus_cells.size():
@@ -142,17 +140,17 @@ func _start_dragging() -> void:
 	
 	var drag_data := {
 		"item": self,
-		"offset": mp * Transform2D(-rotation, Vector2.ZERO)
+		"offset": mp * Transform2D(-rotation, Vector2.ZERO),
+		"cell_held": _get_cell_held()
 	}
-	_set_cell_held()
 	
 	force_drag.call_deferred(drag_data, preview)
 	hide()
 
 
-func _set_cell_held() -> void:
+func _get_cell_held() -> Vector2i:
 	var mp := get_local_mouse_position() / Inventory.CELL_SIZE
-	cell_held = Vector2i(mp * Transform2D(-rotation, Vector2.ZERO))
+	return Vector2i(mp * Transform2D(-rotation, Vector2.ZERO))
 
 
 func _on_mouse_entered() -> void:
