@@ -69,7 +69,9 @@ func _start_dragging() -> void:
 	var lmp := get_local_mouse_position()
 	var preview: Control = _create_drag_preview(lmp)
 	var data: Dictionary = _create_drag_data(preview, lmp)
+	
 	force_drag.call_deferred(data, preview)
+	
 	hide()
 
 

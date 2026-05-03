@@ -55,7 +55,7 @@ func _unrotate() -> void:
 		rotation_counter_copy -= 1
 		
 		for item in full_items:
-			item.unrotate()
+			item._unrotate()
 			full_items[item] = Vector2i(full_items[item].y, -full_items[item].x)
 	
 	super._unrotate()
