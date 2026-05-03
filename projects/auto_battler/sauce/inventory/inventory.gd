@@ -73,14 +73,14 @@ func _draw() -> void:
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	assert(data is Dictionary)
-	if data.has("item"):
+	if data["inventory_component"] is Item:
 		return _can_drop_item(at_position, data)
 	else:
 		return _can_drop_bag(at_position, data)	
 
 
 func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
-	var item: Item = data["item"]
+	var item: Item = data["inventory_component"]
 	# check if cursor moved to other cell in which case hovered cells changed -> redraw needed
 	var redraw_needed: bool = false
 	var hovered_cell := _position_to_cell(at_position)
@@ -126,7 +126,7 @@ func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
 
 
 func _can_drop_bag(at_position: Vector2, data: Dictionary) -> bool:
-	var bag: Bag = data["bag"]
+	var bag: Bag = data["inventory_component"]
 	## check if cursor moved to other cell in which case hovered cells changed -> redraw needed
 	var redraw_needed: bool = false
 	var hovered_cell := _position_to_cell(at_position)
@@ -156,24 +156,21 @@ func _can_drop_bag(at_position: Vector2, data: Dictionary) -> bool:
 
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	var drop_object: Control
-	if data.has("item"):
-		drop_object = data["item"]
-		
+	var ic: InventoryComponent = data.get("inventory_component", null)
+	if ic is Item:
 		for bag in bags:
-			bag.full_items.erase(drop_object)
-			bag.partial_items.erase(drop_object)
+			bag.full_items.erase(ic)
+			bag.partial_items.erase(ic)
 
-		_clear_hovered_items(drop_object)
+		_clear_hovered_items(ic)
 		
-		if items.has(drop_object): _move_item(drop_object)
-		else: _add_item(drop_object)
-
+		if items.has(ic): _move_item(ic)
+		else: _add_item(ic)
 	else:
-		drop_object = data["bag"]
-		_clear_hovered_bags(drop_object)
-		if bags.has(drop_object): _move_bag(drop_object)
-		else: _add_bag(drop_object)
+		_clear_hovered_bags(ic)
+		
+		if bags.has(ic): _move_bag(ic)
+		else: _add_bag(ic)
 
 	hovered_cells.clear()
 	hovered_bonus_cells.clear()

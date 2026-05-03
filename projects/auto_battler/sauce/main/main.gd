@@ -43,12 +43,8 @@ func _input(event: InputEvent) -> void:
 				var data: Dictionary = get_viewport().gui_get_drag_data()
 				data["cell_held"] = Vector2i(-data["cell_held"].y, data["cell_held"].x)
 				data["preview"].rotation += PI / 2
-				if data.has("item"):
-					var item: Item = data["item"]
-					item.rotate()
-				else:
-					var bag: Bag = data["bag"]
-					bag.rotate()
+				var ic: InventoryComponent = data.get("inventory_component", null)
+				ic.rotate()
 				data["offset"] = Vector2(-data["offset"].y, data["offset"].x)
 
 func _on_player_died() -> void:

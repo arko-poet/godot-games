@@ -108,7 +108,7 @@ func _create_drag_preview(preview_position: Vector2) -> Control:
 
 func _create_drag_data(drag_preview: Control, preview_position: Vector2) -> Dictionary:
 	return {
-		"bag": self,
+		"inventory_component": self,
 		"offset": preview_position * Transform2D(-rotation, Vector2.ZERO),
 		"items": full_items.keys(),
 		"cell_held": _get_cell_held(preview_position),

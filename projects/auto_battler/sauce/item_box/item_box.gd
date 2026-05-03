@@ -15,18 +15,17 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 		push_error("invalid data format")
 		return
 	
-	var item: Item = dict.get("item", null)
-	if item:
-		inventory.remove_item(item)
-		item.reparent(self)
-		item.position = at_position - dict["offset"]
-		item.move_to_front()
+	var ic: InventoryComponent = dict.get("inventory_component", null)
+	if ic is Item:
+		inventory.remove_item(ic)
+		ic.reparent(self)
+		ic.position = at_position - dict["offset"]
+		ic.move_to_front()
 	else:
-		var bag: Bag = dict["bag"]
-		inventory.remove_bag(bag)
-		bag.clear_items()
-		bag.reparent(self)
-		bag.position = at_position - dict["offset"]
+		inventory.remove_bag(ic)
+		ic.clear_items()
+		ic.reparent(self)
+		ic.position = at_position - dict["offset"]
 
 
 func _on_combat_started(_combat_number: int) -> void:

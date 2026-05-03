@@ -87,14 +87,6 @@ func _animation_helper() -> void:
 		(sprite.material as ShaderMaterial).set_shader_parameter("progress", 1.0)
 
 
-#func _start_dragging() -> void:
-	#var lmp := get_local_mouse_position()
-	#var preview: Control = _create_drag_preview(lmp)
-	#var data: Dictionary = _create_drag_data(preview, lmp)
-	#force_drag.call_deferred(data, preview)
-	#hide()
-
-
 func _create_drag_preview(preview_position: Vector2) -> Control:
 	var preview_sprite: Control = sprite.duplicate()
 	preview_sprite.position -= preview_position
@@ -109,7 +101,7 @@ func _create_drag_preview(preview_position: Vector2) -> Control:
 
 func _create_drag_data(drag_preview: Control, preview_position: Vector2) -> Dictionary:
 	return {
-		"item": self,
+		"inventory_component": self,
 		"offset": preview_position * Transform2D(-rotation, Vector2.ZERO),
 		"cell_held": _get_cell_held(preview_position),
 		"preview": drag_preview
