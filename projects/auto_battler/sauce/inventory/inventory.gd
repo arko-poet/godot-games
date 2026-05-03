@@ -73,78 +73,43 @@ func _draw() -> void:
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	assert(data is Dictionary)
-	if data["inventory_component"] is Item:
-		return _can_drop_item(at_position, data)
-	else:
-		return _can_drop_bag(at_position, data)	
-
-
-func _can_drop_item(at_position: Vector2, data: Dictionary) -> bool:
-	var item: Item = data["inventory_component"]
+		
+	var inventory_component: InventoryComponent = data["inventory_component"]
+	var is_item := inventory_component is Item
+	var cell_held = data["cell_held"]
+	
 	# check if cursor moved to other cell in which case hovered cells changed -> redraw needed
-	var redraw_needed: bool = false
+	var redraw_needed := false
 	var hovered_cell := _position_to_cell(at_position)
 	if hovered_cell != last_hovered_cell or hovered_cells.is_empty() or update_rotation:
 		update_rotation = false
 		redraw_needed = true
+		
+		# update hovered cells
 		hovered_cells.clear()
-		hovered_bonus_cells.clear()
-		var cell_held: Vector2i = data["cell_held"]
-		for item_cell in item.footprint:
-			var cell: Vector2i = hovered_cell + item_cell - cell_held
-			if (
-				cell.y >= 0 and cell.x >= 0
-				and cell.y < INVENTORY_SIZE and cell.x < INVENTORY_SIZE
-			):
-				if bag_grid[cell.y][cell.x] != null:
+		for component_cell in inventory_component.footprint:
+			var cell: Vector2i = component_cell + hovered_cell - cell_held 
+			if is_item:
+				if _is_cell_in_inventory(cell) and bag_grid[cell.y][cell.x] != null:
 					hovered_cells.append(cell)
+			else:
+				hovered_cells.append(cell)
 		last_hovered_cell = hovered_cell
-		for item_cell in item.bonus_cells:
-			var bonus_cell: Vector2i = hovered_cell + item_cell - cell_held
-			if (
-				bonus_cell.x >= 0 and bonus_cell.y >= 0 
-				and bonus_cell.x < INVENTORY_SIZE and bonus_cell.y < INVENTORY_SIZE
-			):
-				hovered_bonus_cells.append(bonus_cell)
+		
+		# update bonus cells
+		if is_item:
+			hovered_bonus_cells.clear()
+			for item_cell in inventory_component.bonus_cells:
+				var bonus_cell: Vector2i = hovered_cell + item_cell - cell_held
+				if _is_cell_in_inventory(bonus_cell):
+					hovered_bonus_cells.append(bonus_cell)
 	
+	# can component be placed where its hovering
 	var can_drop: bool = true
-	if item.footprint.size() != hovered_cells.size():
+	if is_item and inventory_component.footprint.size() != hovered_cells.size():
 		can_drop = false
 	for hc in hovered_cells:
-		if (
-			hc.y < 0 or hc.x < 0
-			or hc.y >= INVENTORY_SIZE or hc.x >= INVENTORY_SIZE
-		):
-			can_drop = false
-			break
-	
-	if redraw_needed:
-		hover_color = CAN_DROP_BG_COLOR if can_drop else CANT_DROP_BG_COLOR
-		queue_redraw()
-	
-	return can_drop
-
-
-func _can_drop_bag(at_position: Vector2, data: Dictionary) -> bool:
-	var bag: Bag = data["inventory_component"]
-	## check if cursor moved to other cell in which case hovered cells changed -> redraw needed
-	var redraw_needed: bool = false
-	var hovered_cell := _position_to_cell(at_position)
-	if hovered_cell != last_hovered_cell or hovered_cells.is_empty() or update_rotation:
-		update_rotation = false
-		redraw_needed = true
-		hovered_cells.clear()
-		hovered_bonus_cells.clear()
-		for bag_cell in bag.footprint:
-			hovered_cells.append(hovered_cell + bag_cell - data["cell_held"])
-		last_hovered_cell = hovered_cell
-	
-	var can_drop: bool = true
-	for hc in hovered_cells:
-		if (
-			hc.y < 0 or hc.x < 0
-			or hc.y >= INVENTORY_SIZE or hc.x >= INVENTORY_SIZE
-		):
+		if not _is_cell_in_inventory(hc):
 			can_drop = false
 			break
 	
@@ -153,7 +118,6 @@ func _can_drop_bag(at_position: Vector2, data: Dictionary) -> bool:
 		queue_redraw()
 		
 	return can_drop
-
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var ic: InventoryComponent = data.get("inventory_component", null)
@@ -430,6 +394,13 @@ func _position_to_cell(at_position: Vector2) -> Vector2i:
 		floori(at_position.y / CELL_SIZE)
 	)
 	return cell
+	
+
+func _is_cell_in_inventory(cell: Vector2i) -> bool:
+	return (
+		cell.y >= 0 and cell.x >= 0
+		and cell.y < INVENTORY_SIZE and cell.x < INVENTORY_SIZE
+	)
 #endregion
 
 
