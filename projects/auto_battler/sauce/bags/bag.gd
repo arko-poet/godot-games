@@ -1,21 +1,15 @@
-@tool class_name Bag extends Control
+@tool class_name Bag extends InventoryComponent
 
-signal rotated
-
-const HOVER_HIGHLIGHT_MODULATE := Color(1.1, 1.1, 1.1)
 
 @export_range(1, Inventory.INVENTORY_SIZE) var columns: int = 1
 @export_range(1, Inventory.INVENTORY_SIZE) var rows: int = 1
 @export var bg_color: Color = Color("#6B3F1E")
 @export var border_color: Color = Color("#C4955A")
 
-var footprint: Array[Vector2i]
 ## items which are partially contained in the bag
 var partial_items: Array[Item]
 ## items which are fully contained in the bag with the top left cell they occupy
 var full_items: Dictionary[Item, Vector2i]
-## this is to unrotate items in case of drop failure
-var rotation_counter := 0
 
 
 func _ready() -> void:
@@ -37,14 +31,9 @@ func _draw() -> void:
 			draw_rect(rect2i, border_color, false, 1)
 
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_DRAG_END:
-		if not get_viewport().gui_is_drag_successful():
-			unrotate()
-		rotation_counter = 0
-		
-		show()
-		for item in full_items: item.show()
+func _show_component() -> void:
+	show()
+	for item in full_items: item.show()
 
 
 func clear_items() -> void:
@@ -53,30 +42,23 @@ func clear_items() -> void:
 
 
 func rotate() -> void:
-	rotation_counter += 1
-	
-	rotation += PI / 2
-	for i in footprint.size():
-		footprint[i] = Vector2i(-footprint[i].y, footprint[i].x)
-		
 	for item in full_items:
 		item.rotate()
 		full_items[item] = Vector2i(-full_items[item].y, full_items[item].x)
 	
-	rotated.emit()
+	super.rotate()
 
 
-func unrotate() -> void:
-	while rotation_counter > 0:
-		rotation_counter -= 1
+func _unrotate() -> void:
+	var rotation_counter_copy: int = rotation_counter
+	while rotation_counter_copy > 0:
+		rotation_counter_copy -= 1
 		
-		rotation -= PI / 2
-		for i in footprint.size():
-			footprint[i] = Vector2i(footprint[i].y, -footprint[i].x)
-			
 		for item in full_items:
 			item.unrotate()
 			full_items[item] = Vector2i(full_items[item].y, -full_items[item].x)
+	
+	super._unrotate()
 
 
 ## return visual top left corner of the Item while respecting rotation
@@ -86,23 +68,21 @@ func get_top_left_corner() -> Vector2:
 	return (local_transform * local_rect).position
 
 
-func _on_gui_input(event: InputEvent) -> void:
-	var mb := event as InputEventMouseButton
-	if mb != null:
-		if mb.button_index != MOUSE_BUTTON_LEFT or not partial_items.is_empty():
-			return
-		
-		assert(mb.pressed)
-		_start_dragging()
+func _should_not_start_dragging(event: InputEventMouseButton) -> bool:
+	return event.button_index != MOUSE_BUTTON_LEFT or not partial_items.is_empty()
 
 
 func _start_dragging() -> void:
-	var lmp := get_local_mouse_position()
-	
+	super._start_dragging()
+	for item in full_items:
+		item.hide()
+
+
+func _create_drag_preview(preview_position: Vector2) -> Control:
 	var dup_bag: Bag = duplicate()
-	dup_bag.position = -lmp
+	dup_bag.position = -preview_position
 	dup_bag.rotation = rotation
-	dup_bag.pivot_offset = lmp
+	dup_bag.pivot_offset = preview_position
 
 	var preview := Control.new()
 	preview.add_child(dup_bag)
@@ -122,30 +102,20 @@ func _start_dragging() -> void:
 		dup_item.position = item_to_dup_bag.origin
 
 		preview.add_child(dup_item)
+	
+	return preview
 
-	var drag_data := {
+
+func _create_drag_data(drag_preview: Control, preview_position: Vector2) -> Dictionary:
+	return {
 		"bag": self,
-		"offset": lmp * Transform2D(-rotation, Vector2.ZERO),
+		"offset": preview_position * Transform2D(-rotation, Vector2.ZERO),
 		"items": full_items.keys(),
-		"cell_held": _get_cell_held(),
-		"preview": preview
+		"cell_held": _get_cell_held(preview_position),
+		"preview": drag_preview
 	}
 
-	force_drag.call_deferred(drag_data, preview)
-	
-	hide()
-	for item in full_items:
-		item.hide()
 
-
-func _get_cell_held() -> Vector2i:
-	var lmp := get_local_mouse_position() / Inventory.CELL_SIZE
+func _get_cell_held(held_position: Vector2) -> Vector2i:
+	var lmp := held_position / Inventory.CELL_SIZE
 	return Vector2i(lmp * Transform2D(-rotation, Vector2.ZERO))
-
-
-func _on_mouse_entered() -> void:
-	self_modulate = HOVER_HIGHLIGHT_MODULATE
-
-
-func _on_mouse_exited() -> void:
-	self_modulate = Color.WHITE

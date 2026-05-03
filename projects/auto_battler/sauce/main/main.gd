@@ -8,8 +8,8 @@ const ITEM_SCENES: Array[PackedScene] = [
 	preload("res://sauce/items/gloves/gloves.tscn")
 ]
 const BAG_SCENES: Array[PackedScene] = [
-	preload("res://sauce/bag/satchel/satchel.tscn"),
-	preload("res://sauce/bag/knapsack/knapsack.tscn")
+	preload("res://sauce/bags/satchel/satchel.tscn"),
+	preload("res://sauce/bags/knapsack/knapsack.tscn")
 ]
 const DRAG_CURSOR := preload(
 	"res://assets/kenney_cursor-pack/PNG/Outline/Default/hand_closed.png"

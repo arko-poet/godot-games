@@ -50,7 +50,9 @@
 			- the problem with applying rotations after drop is successful is that can_drop uses rotated state so I would have to save rotation state without actually applying rotation and then yeah this is clearly more complex
 			- [x] unrotate items when bag palcement fails
 - [ ] make code not ass
+	- [x] make code more clear, better style names etc
 	- [ ] do some compositon or inheritance between bags and items, a lot of similarity
+	- [ ] refactor drag data, and other code palces where there is distinction between item and bag
 - [x] prevent grid from accepting items, backpacks fully handle it now
 
 ### Bugs
