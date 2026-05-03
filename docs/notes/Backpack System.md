@@ -50,6 +50,7 @@
 			- the problem with applying rotations after drop is successful is that can_drop uses rotated state so I would have to save rotation state without actually applying rotation and then yeah this is clearly more complex
 			- [x] unrotate items when bag palcement fails
 - [ ] make code not ass
+	- [ ] do some compositon or inheritance between bags and items, a lot of similarity
 - [x] prevent grid from accepting items, backpacks fully handle it now
 
 ### Bugs
@@ -62,7 +63,7 @@
 - [x] prevent bag dragging during combat
 - [x] preview items in a bag dont position properly
 - [x] item moved with bag are not placed in correct cell
-- [ ] some weird ass bug that delays after dragging after failing bag dragging when it was not allowed or something, dont know kidna werird
+- [x] some weird ass bug that delays after dragging after failing bag dragging when it was not allowed or something, dont know kidna werird
 	- doesnt seem reproducable anymore
 - [x] weird case where bag is being dragged instead of item
 	-  seems to happen when bag is added after item and item is moved on the bag, so an ordering issue
@@ -70,13 +71,14 @@
 - [x] items need to move back to item box with the bag
 - [x] another bug where certain cells become not allowed for some reason, happens when i have multiple bags and items
 - [x] visual indexing issues
-- [ ] items disappear under bags when dragging
+- [x] items disappear under bags when dragging
 	- doesnt seem reproducable anymore
 - [x] items are not removed from bags when moving to inventory? its fine except they are not together visually so monka
 - [x] shader is not applied vertically if objects are rotated
+- [ ] bonus cells dont get unrotated
 
 ### Other Things to work on
-- [ ] might be better to cerate common node for Item and Bag
+- might be better to cerate common node for Item and Bag
 
 ### Thoughts
 - Bag name ideas: Pouch, Satchel, Saddlebag, Haversack, Sack, Sling, Holster, Quiver, Wallet, Pockets, Backpack, Pack, Trunk, Chest, Crate, Barrel, Strongbox, Void Pouch, Bottomless Sack, Dimensional Pocket, Ether Sack, Runebag, Holding Pouch, Fanny Pack, Bindle, Knapsack, Ditty Bag, Swag Bag
