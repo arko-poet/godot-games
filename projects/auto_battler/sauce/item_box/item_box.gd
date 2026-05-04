@@ -49,4 +49,4 @@ func _on_inventory_item_removed(item: Item) -> void:
 
 func _on_inventory_bag_removed(bag: Bag) -> void:
 	bag.reparent(self)
-	bag.position = Vector2.ZERO
+	bag.position = -bag.get_top_left_corner()
