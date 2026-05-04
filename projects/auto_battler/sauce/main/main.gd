@@ -47,13 +47,14 @@ func _input(event: InputEvent) -> void:
 				ic.rotate()
 				data["offset"] = Vector2(-data["offset"].y, data["offset"].x)
 
+
 func _on_player_died() -> void:
 	get_tree().reload_current_scene()
 
 
 func _on_combat_finished() -> void:
 	#var item := ITEM_SCENES[randi() % ITEM_SCENES.size()].instantiate() WARNING dont remove this
-	var item: Item = ITEM_SCENES[3].instantiate()
+	var item: Item = ITEM_SCENES[4].instantiate()
 	item.rotated.connect(_on_item_rotated)
 	item_box.add_child(item)
 	

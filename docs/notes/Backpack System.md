@@ -49,13 +49,13 @@
 			- the problem with unrotating after failure is I would need information how amny times the preview was rotated to know how many times to unrotate it
 			- the problem with applying rotations after drop is successful is that can_drop uses rotated state so I would have to save rotation state without actually applying rotation and then yeah this is clearly more complex
 			- [x] unrotate items when bag palcement fails
-- [ ] make code not ass
+- [x] make code not ass
 	- [x] make code more clear, better style names etc
 	- [x] do some compositon or inheritance between bags and items, a lot of similarity
 	- [x] refactor drag data
-	- [ ] refactor code palces where there is distinction between item and bag, lots of dupliocation in inventory.gd
-	- [ ]  in inventory its fine to jsut say component instead of inventorty component
-	- [ ] do I even need list of items and bags in inventory?
+	- [x] refactor code palces where there is distinction between item and bag, lots of dupliocation in inventory.gd
+	- [x]  in inventory its fine to jsut say component instead of inventorty component
+	- [x] do I even need list of items and bags in inventory?
 - [x] prevent grid from accepting items, backpacks fully handle it now
 
 ### Bugs

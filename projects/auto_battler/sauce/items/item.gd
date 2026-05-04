@@ -61,6 +61,17 @@ func remove_bonus(item: Item) -> void:
 		_effect_timer.wait_time = base_cooldown / (1.0 + cdr)
 
 
+func _unrotate() -> void:
+	var rotation_coutner_copy = rotation_counter
+	while rotation_coutner_copy > 0:
+		rotation_coutner_copy -= 1
+		
+		for i in bonus_cells.size():
+			bonus_cells[i] = Vector2i(bonus_cells[i].y, -bonus_cells[i].x)
+			
+	super._unrotate()
+
+
 func _get_actions() -> Array[CombatAction]:
 	return []
 

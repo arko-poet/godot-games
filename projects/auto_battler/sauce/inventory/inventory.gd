@@ -74,8 +74,8 @@ func _draw() -> void:
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	assert(data is Dictionary)
 		
-	var inventory_component: InventoryComponent = data["inventory_component"]
-	var is_item := inventory_component is Item
+	var component: InventoryComponent = data["inventory_component"]
+	var is_item := component is Item
 	var cell_held = data["cell_held"]
 	
 	# check if cursor moved to other cell in which case hovered cells changed -> redraw needed
@@ -87,7 +87,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		
 		# update hovered cells
 		hovered_cells.clear()
-		for component_cell in inventory_component.footprint:
+		for component_cell in component.footprint:
 			var cell: Vector2i = component_cell + hovered_cell - cell_held 
 			if is_item:
 				if _is_cell_in_inventory(cell) and bag_grid[cell.y][cell.x] != null:
@@ -99,14 +99,14 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		# update bonus cells
 		if is_item:
 			hovered_bonus_cells.clear()
-			for item_cell in inventory_component.bonus_cells:
+			for item_cell in component.bonus_cells:
 				var bonus_cell: Vector2i = hovered_cell + item_cell - cell_held
 				if _is_cell_in_inventory(bonus_cell):
 					hovered_bonus_cells.append(bonus_cell)
 	
 	# can component be placed where its hovering
 	var can_drop: bool = true
-	if is_item and inventory_component.footprint.size() != hovered_cells.size():
+	if is_item and component.footprint.size() != hovered_cells.size():
 		can_drop = false
 	for hc in hovered_cells:
 		if not _is_cell_in_inventory(hc):
@@ -233,22 +233,21 @@ func _place_item(item: Item) -> void:
 	_apply_bonuses(item)
 
 
-func _move_component(inventory_component: InventoryComponent) -> void:
-	var is_item := inventory_component is Item
+func _move_component(component: InventoryComponent) -> void:
+	var is_item := component is Item
 	
-	if is_item: _remove_bonuses(inventory_component)
+	if is_item: _remove_bonuses(component)
 	
 	var grid := item_grid if is_item else bag_grid
 	for row in grid:
 		for col_i in INVENTORY_SIZE:
-			if inventory_component == row[col_i]:
+			if component == row[col_i]:
 				row[col_i] = null
 	
-	if is_item: _place_item(inventory_component)
-	else: _place_bag(inventory_component)
+	if is_item: _place_item(component)
+	else: _place_bag(component)
 
 
-#region Bag Placement
 func _place_bag(bag: Bag) -> void:
 	# without this check bag could end up outside of the inventory
 	if hovered_cells.is_empty():
@@ -274,7 +273,6 @@ func _place_bag(bag: Bag) -> void:
 			hovered_cells.append(cell + top_left_cell + bag.full_items[item] - min_bag_footprint)
 			
 		_move_component(item)
-#endregion
 
 
 ## remove components present in hovered cells except the specified one (the one dragging)
