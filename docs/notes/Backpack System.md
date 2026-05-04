@@ -80,6 +80,7 @@
 - [x] shader is not applied vertically if objects are rotated
 - [ ] bonus cells dont get unrotated
 - [ ] if bag is hovered on the left its not hgilghting grid cells
+- [ ] rotated bags dont get placed in box properly if they are replaced
 
 ### Other Things to work on
 - might be better to cerate common node for Item and Bag

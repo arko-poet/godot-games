@@ -126,12 +126,12 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 			bag.full_items.erase(ic)
 			bag.partial_items.erase(ic)
 
-		_clear_hovered_items(ic)
+		_clear_hovered_components(ic)
 		
 		if items.has(ic): _move_item(ic)
 		else: _add_item(ic)
 	else:
-		_clear_hovered_bags(ic)
+		_clear_hovered_components(ic)
 		
 		if bags.has(ic): _move_bag(ic)
 		else: _add_bag(ic)
@@ -297,29 +297,23 @@ func _add_bag(bag: Bag) -> void:
 #endregion
 
 
-## remove items present in hovered cells except the specified one (typically one dragging)
-func _clear_hovered_items(except_item: Item) -> void:
-	var overlapping_items: Array[Item] = []
-	for hc in hovered_cells:
-		var item: Item = item_grid[hc.y][hc.x]
-		if item != null and item not in overlapping_items:
-			overlapping_items.append(item)
+## remove components present in hovered cells except the specified one (the one dragging)
+func _clear_hovered_components(except_component: InventoryComponent) -> void:
+	var overlapping_components: Array[InventoryComponent] = []
+	var is_item := except_component is Item
 	
-	overlapping_items.erase(except_item)
-	for item in overlapping_items:
-		remove_item(item)
-		
-		
-func _clear_hovered_bags(except_bag: Bag) -> void:
-	var overlapping_bags: Array[Bag] = []
 	for hc in hovered_cells:
-		var bag: Bag = bag_grid[hc.y][hc.x]
-		if bag != null and bag not in overlapping_bags:
-			overlapping_bags.append(bag)
+		var component: InventoryComponent = item_grid[hc.y][hc.x] 
+		if is_item: component = item_grid[hc.y][hc.x] 
+		else: component = bag_grid[hc.y][hc.x]
+		
+		if component != null and component not in overlapping_components:
+			overlapping_components.append(component)
 	
-	overlapping_bags.erase(except_bag)
-	for bag in overlapping_bags:
-		remove_bag(bag)
+	overlapping_components.erase(except_component)
+	for oc in overlapping_components:
+		if is_item: remove_item(oc)
+		else: remove_bag(oc)
 
 
 #region Bonuses
