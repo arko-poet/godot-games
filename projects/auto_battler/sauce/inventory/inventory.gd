@@ -128,12 +128,12 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 
 		_clear_hovered_components(ic)
 		
-		if items.has(ic): _move_item(ic)
+		if items.has(ic): _move_component(ic)
 		else: _add_item(ic)
 	else:
 		_clear_hovered_components(ic)
 		
-		if bags.has(ic): _move_bag(ic)
+		if bags.has(ic): _move_component(ic)
 		else: _add_bag(ic)
 
 	hovered_cells.clear()
@@ -239,16 +239,21 @@ func _place_item(item: Item) -> void:
 		(bonus_providers[bc.y][bc.x] as Array).append(item)
 	
 	_apply_bonuses(item)
+	
 
-
-func _move_item(item: Item) -> void:
-	# clear previous item references
-	_remove_bonuses(item)
-	for row in item_grid:
+func _move_component(inventory_component: InventoryComponent) -> void:
+	var is_item := inventory_component is Item
+	
+	if is_item: _remove_bonuses(inventory_component)
+	
+	var grid := item_grid if is_item else bag_grid
+	for row in grid:
 		for col_i in INVENTORY_SIZE:
-			if item == row[col_i]:
+			if inventory_component == row[col_i]:
 				row[col_i] = null
-	_place_item(item)
+	
+	if is_item: _place_item(inventory_component)
+	else: _place_bag(inventory_component)
 
 
 #region Bag Placement
@@ -278,16 +283,7 @@ func _place_bag(bag: Bag) -> void:
 			# min_bag_footprint is to adjust for bag rotations
 			hovered_cells.append(cell + top_left_cell + bag.full_items[item] - min_bag_footprint)
 			
-		_move_item(item)
-
-
-func _move_bag(bag: Bag) -> void:
-	# clear previous bag references
-	for row in bag_grid:
-		for col_i in INVENTORY_SIZE:
-			if bag == row[col_i]:
-				row[col_i] = null
-	_place_bag(bag)
+		_move_component(item)
 	
 	
 func _add_bag(bag: Bag) -> void:
