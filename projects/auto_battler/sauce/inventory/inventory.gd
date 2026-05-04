@@ -121,20 +121,17 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var ic: InventoryComponent = data.get("inventory_component", null)
-	if ic is Item:
+	var is_item := ic is Item
+	
+	if is_item:
 		for bag in bags:
 			bag.full_items.erase(ic)
 			bag.partial_items.erase(ic)
 
-		_clear_hovered_components(ic)
+	_clear_hovered_components(ic)
 		
-		if items.has(ic): _move_component(ic)
-		else: _add_item(ic)
-	else:
-		_clear_hovered_components(ic)
-		
-		if bags.has(ic): _move_component(ic)
-		else: _add_bag(ic)
+	if items.has(ic) or bags.has(ic): _move_component(ic)
+	else: _add_component(ic)
 
 	hovered_cells.clear()
 	hovered_bonus_cells.clear()
@@ -181,13 +178,16 @@ func _on_mouse_exited() -> void:
 		queue_redraw()
 
 
-#region Item Placement
-func _add_item(item: Item) -> void:
-	item.reparent(self)
-	_place_item(item)
-	items.append(item)
-	item_added.emit(item)
-
+func _add_component(component: InventoryComponent) -> void:
+	component.reparent(self)
+	if component is Item:
+		_place_item(component)
+		items.append(component)
+		item_added.emit(component)
+	else:
+		_place_bag(component)
+		bags.append(component)
+		
 
 func _place_item(item: Item) -> void:
 	# without this check item would be palced outside of grid
@@ -274,12 +274,6 @@ func _place_bag(bag: Bag) -> void:
 			hovered_cells.append(cell + top_left_cell + bag.full_items[item] - min_bag_footprint)
 			
 		_move_component(item)
-	
-	
-func _add_bag(bag: Bag) -> void:
-	bag.reparent(self)
-	_place_bag(bag)
-	bags.append(bag)
 #endregion
 
 

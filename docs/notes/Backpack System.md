@@ -54,6 +54,8 @@
 	- [x] do some compositon or inheritance between bags and items, a lot of similarity
 	- [x] refactor drag data
 	- [ ] refactor code palces where there is distinction between item and bag, lots of dupliocation in inventory.gd
+	- [ ]  in inventory its fine to jsut say component instead of inventorty component
+	- [ ] do I even need list of items and bags in inventory?
 - [x] prevent grid from accepting items, backpacks fully handle it now
 
 ### Bugs
