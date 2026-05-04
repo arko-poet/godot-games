@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bhn5w8551mxks"]
 
-[ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/items/item.tscn" id="1_n7klb"]
-[ext_resource type="Script" uid="uid://brkq1gd3ctq25" path="res://sauce/items/gloves/gloves.gd" id="2_4ym6f"]
+[ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/inventory_components/items/item.tscn" id="1_n7klb"]
+[ext_resource type="Script" uid="uid://brkq1gd3ctq25" path="res://sauce/inventory_components/items/gloves/gloves.gd" id="2_4ym6f"]
 
 [node name="Gloves" unique_id=544253172 instance=ExtResource("1_n7klb")]
 offset_right = 32.0

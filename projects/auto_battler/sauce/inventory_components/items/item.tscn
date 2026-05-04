@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bu30q0ftvxekp"]
 
-[ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/items/progress_fill.gdshader" id="1_lluxc"]
-[ext_resource type="Script" uid="uid://n1m1dolhe4uv" path="res://sauce/items/item.gd" id="1_tcjyt"]
+[ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/inventory_components/items/progress_fill.gdshader" id="1_lluxc"]
+[ext_resource type="Script" uid="uid://n1m1dolhe4uv" path="res://sauce/inventory_components/items/item.gd" id="1_tcjyt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tcjyt"]
 resource_local_to_scene = true

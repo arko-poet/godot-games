@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cruowy067dcmj"]
 
-[ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/items/item.tscn" id="1_mlx7s"]
-[ext_resource type="Script" uid="uid://ct4vxd6d8ayo8" path="res://sauce/items/mace/mace.gd" id="2_2l5x4"]
-[ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/items/progress_fill.gdshader" id="3_hkg47"]
+[ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/inventory_components/items/item.tscn" id="1_mlx7s"]
+[ext_resource type="Script" uid="uid://ct4vxd6d8ayo8" path="res://sauce/inventory_components/items/mace/mace.gd" id="2_2l5x4"]
+[ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/inventory_components/items/progress_fill.gdshader" id="3_hkg47"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hkg47"]
 resource_local_to_scene = true

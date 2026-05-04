@@ -1,15 +1,15 @@
 extends Node
 
 const ITEM_SCENES: Array[PackedScene] = [
-	preload("res://sauce/items/stone/stone.tscn"),
-	preload("res://sauce/items/flower/flower.tscn"),
-	preload("res://sauce/items/beef/beef.tscn"),
-	preload("res://sauce/items/mace/mace.tscn"),
-	preload("res://sauce/items/gloves/gloves.tscn")
+	preload("res://sauce/inventory_components/bags/bag.tscn"),
+	preload("res://sauce/inventory_components/items/flower/flower.tscn"),
+	preload("res://sauce/inventory_components/items/beef/beef.tscn"),
+	preload("res://sauce/inventory_components/items/mace/mace.tscn"),
+	preload("res://sauce/inventory_components/items/gloves/gloves.tscn")
 ]
 const BAG_SCENES: Array[PackedScene] = [
-	preload("res://sauce/bags/satchel/satchel.tscn"),
-	preload("res://sauce/bags/knapsack/knapsack.tscn")
+	preload("res://sauce/inventory_components/bags/satchel/satchel.tscn"),
+	preload("res://sauce/inventory_components/bags/knapsack/knapsack.tscn")
 ]
 const DRAG_CURSOR := preload(
 	"res://assets/kenney_cursor-pack/PNG/Outline/Default/hand_closed.png"

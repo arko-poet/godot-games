@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://yh5u66bvma21"]
 
-[ext_resource type="Script" uid="uid://v88m7qfwrqtt" path="res://sauce/bags/bag.gd" id="1_7q30l"]
+[ext_resource type="Script" uid="uid://v88m7qfwrqtt" path="res://sauce/inventory_components/bags/bag.gd" id="1_7q30l"]
 
 [node name="Bag" type="Control" unique_id=106018777]
 z_index = -1

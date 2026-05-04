@@ -34,7 +34,7 @@
 			- [x] when bag contains full item, add duplicates of items to preview for dragging, provide item references to data so they can be moved in the grid like bag
 	- [x] fix bugs
 - [x] visual hover feedback
-- [ ] add bag rotations
+- [x] add bag rotations
 	- [x] rotate bags like items
 	- [x] make sure bags can be rotated with item in it
 		- [x] preview needs to rotate
@@ -82,7 +82,7 @@
 - [x] shader is not applied vertically if objects are rotated
 - [x] bonus cells dont get unrotated
 - [x] if bag is hovered on the left its not hgilghting grid cells
-- [ ] rotated bags dont get placed in box properly if they are replaced
+- [x] rotated bags dont get placed in box properly if they are replaced
 
 ### Other Things to work on
 - might be better to cerate common node for Item and Bag

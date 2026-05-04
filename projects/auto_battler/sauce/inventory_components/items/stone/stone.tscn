@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cl5ntef5qhred"]
 
-[ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/items/item.tscn" id="1_hjup5"]
-[ext_resource type="Script" uid="uid://ieanibm7aaum" path="res://sauce/items/stone/stone.gd" id="2_ksvvp"]
-[ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/items/progress_fill.gdshader" id="3_ksvvp"]
+[ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/inventory_components/items/item.tscn" id="1_hjup5"]
+[ext_resource type="Script" uid="uid://ieanibm7aaum" path="res://sauce/inventory_components/items/stone/stone.gd" id="2_ksvvp"]
+[ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/inventory_components/items/progress_fill.gdshader" id="3_ksvvp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ksvvp"]
 resource_local_to_scene = true
