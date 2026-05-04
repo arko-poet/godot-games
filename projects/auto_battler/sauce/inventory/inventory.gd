@@ -194,13 +194,11 @@ func _place_item(item: Item) -> void:
 	if hovered_cells.is_empty():
 		return
 		
-	# find top left corner of item
-	var top_left_cell := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
+	var top_left_cell := _get_top_left_cell(hovered_cells)
+	
 	var hovered_bags: Array[Bag] = []
 	for cell in hovered_cells:
 		item_grid[cell.y][cell.x] = item
-		
-		top_left_cell = Vector2i(min(top_left_cell.x, cell.x), min(top_left_cell.y, cell.y))
 		
 		var bag: Bag = bag_grid[cell.y][cell.x]
 		if not hovered_bags.has(bag) and bag != null:
@@ -216,15 +214,9 @@ func _place_item(item: Item) -> void:
 					if bag_grid[row][column] == hb:
 						bag_top_left_cell = Vector2i(min(bag_top_left_cell.x, column), min(bag_top_left_cell.y, row))
 
-			var min_item_offset := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
-			for f in item.footprint:
-				min_item_offset = Vector2i(min(min_item_offset.x, f.x), min(min_item_offset.y, f.y))
+			var min_item_offset := _get_top_left_cell(item.footprint)
 			var item_origin := top_left_cell - min_item_offset
-			
-			
-			var min_bag_offset := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
-			for f in hb.footprint:
-				min_bag_offset = Vector2i(min(min_bag_offset.x, f.x), min(min_bag_offset.y, f.y))
+			var min_bag_offset := _get_top_left_cell(hb.footprint)
 			
 			hb.full_items[item] = item_origin - (bag_top_left_cell - min_bag_offset)
 		else:
@@ -239,7 +231,7 @@ func _place_item(item: Item) -> void:
 		(bonus_providers[bc.y][bc.x] as Array).append(item)
 	
 	_apply_bonuses(item)
-	
+
 
 func _move_component(inventory_component: InventoryComponent) -> void:
 	var is_item := inventory_component is Item
@@ -262,18 +254,16 @@ func _place_bag(bag: Bag) -> void:
 	if hovered_cells.is_empty():
 		return
 		
-	# find top left corner of bag
-	var top_left_cell := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
+	var top_left_cell := _get_top_left_cell(hovered_cells)
+	
 	for hc in hovered_cells:
-		top_left_cell = Vector2i(min(top_left_cell.x, hc.x), min(top_left_cell.y, hc.y))
 		bag_grid[hc.y][hc.x] = bag
 	
 	bag.position = Vector2(top_left_cell) * CELL_SIZE - bag.get_top_left_corner()
 	bag.z_index = -1
 		
-	var min_bag_footprint := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
-	for f in bag.footprint:
-		min_bag_footprint = Vector2i(min(min_bag_footprint.x, f.x), min(min_bag_footprint.y, f.y))
+	var min_bag_footprint := _get_top_left_cell(bag.footprint)
+	
 	for item in bag.full_items:
 		hovered_cells.clear()
 		for cell in item.footprint:
@@ -391,6 +381,15 @@ func _is_cell_in_inventory(cell: Vector2i) -> bool:
 		cell.y >= 0 and cell.x >= 0
 		and cell.y < INVENTORY_SIZE and cell.x < INVENTORY_SIZE
 	)
+	
+	
+func _get_top_left_cell(cells: Array[Vector2i]) -> Vector2i:
+	var top_left_cell := Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
+		
+	for c in cells:
+		top_left_cell = Vector2i(min(top_left_cell.x, c.x), min(top_left_cell.y, c.y))
+	
+	return top_left_cell	
 #endregion
 
 
