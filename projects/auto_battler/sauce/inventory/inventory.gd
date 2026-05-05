@@ -32,6 +32,7 @@ var bonus_providers: Array[Array] = []
 var bags: Array[Bag] = []
 var bag_grid: Array[Array] = []
 
+
 func _ready() -> void:
 	custom_minimum_size = CELL_SIZE * Vector2i(INVENTORY_SIZE, INVENTORY_SIZE)
 	
