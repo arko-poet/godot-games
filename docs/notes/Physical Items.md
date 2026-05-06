@@ -13,7 +13,7 @@
 - The Items need to be able to gain momentum by users input, so user can throw it , this may require full reafactor to node2d, not sure if I can do it in some other way. Technically it might be possible to fake it, user drags control node around but underneath it there is a hidden rigidbody which gains momentum
 
 ### Tasks
-- [ ] Add some collision walls around visible area so item dont fall off the screen
+- [x] Add some collision walls around visible area so item dont fall off the screen
 - [ ] Create a test item object made of rigidbodies that is going to exist in physical world and be colliding with the walls, obey gravity
 - [ ] Make test item draggable, drag drop, gain momentum on mouse movement
 - [ ] Compose test dragabble with actual item and try to snap it to grid
