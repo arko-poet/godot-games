@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://7e70n3ftqehs" path="res://sauce/item_box/item_box.tscn" id="7_qdlrn"]
 [ext_resource type="Texture2D" uid="uid://c8hg8lh5ldyi8" path="res://assets/icon.svg" id="8_0vq18"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0vq18"]
+bounce = 0.8
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vq18"]
 radius = 6.0827627
 
@@ -103,6 +106,7 @@ offset_bottom = 14.0
 [node name="TestItem" type="RigidBody2D" parent="World" unique_id=1321285329]
 position = Vector2(145, 46)
 collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_0vq18")
 
 [node name="Sprite2D" type="Sprite2D" parent="World/TestItem" unique_id=450914078]
 scale = Vector2(0.1, 0.1)
