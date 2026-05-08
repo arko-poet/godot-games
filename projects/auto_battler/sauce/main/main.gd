@@ -38,7 +38,8 @@ func _input(event: InputEvent) -> void:
 	var mb := event as InputEventMouseButton
 	if mb != null:
 		if mb.button_index == MOUSE_BUTTON_RIGHT:
-			get_viewport().set_input_as_handled()
+			if get_viewport().gui_is_dragging():
+				get_viewport().set_input_as_handled()
 			if not mb.pressed and get_viewport().gui_is_dragging():
 				var data: Dictionary = get_viewport().gui_get_drag_data()
 				data["cell_held"] = Vector2i(-data["cell_held"].y, data["cell_held"].x)
