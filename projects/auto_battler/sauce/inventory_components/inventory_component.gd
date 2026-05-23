@@ -54,6 +54,7 @@ func _unrotate() -> void:
 func _on_gui_input(event: InputEvent) -> void:
 	var mb := event as InputEventMouseButton
 	if mb != null:
+		print("in inventory_component")
 		if _should_not_start_dragging(mb):
 			return
 		assert(mb.pressed)
