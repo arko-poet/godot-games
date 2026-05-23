@@ -14,7 +14,11 @@
 
 ### Tasks
 - [x] Add some collision walls around visible area so item dont fall off the screen
-- [ ] Create a test item object made of rigidbodies that is going to exist in physical world and be colliding with the walls, obey gravity
+- [x] Create a test item object made of rigidbodies that is going to exist in physical world and be colliding with the walls, obey gravity
 - [ ] Make test item draggable, drag drop, gain momentum on mouse movement
+	- [x] draggable
+	- [x] droppable
+	- [ ] ease on input
+	- [ ] momentum
 - [ ] Compose test dragabble with actual item and try to snap it to grid
 - [ ] converty testitem from grid to physical world
