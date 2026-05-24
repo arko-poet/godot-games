@@ -18,7 +18,7 @@
 - [ ] Make test item draggable, drag drop, gain momentum on mouse movement
 	- [x] draggable
 	- [x] droppable
-	- [ ] ease on input
+	- [x] ease on input
 	- [ ] momentum
 - [ ] Compose test dragabble with actual item and try to snap it to grid
 - [ ] converty testitem from grid to physical world

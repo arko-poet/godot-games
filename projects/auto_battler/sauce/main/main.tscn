@@ -14,7 +14,7 @@
 bounce = 0.8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vq18"]
-radius = 6.0827627
+radius = 11.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dma7"]
 size = Vector2(20, 326)
@@ -36,12 +36,12 @@ input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_0vq18")
 script = ExtResource("8_5dma7")
 
-[node name="Sprite2D" type="Sprite2D" parent="World/TestItem" unique_id=450914078]
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("8_0vq18")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/TestItem" unique_id=1605291165]
 shape = SubResource("CircleShape2D_0vq18")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/TestItem/CollisionShape2D" unique_id=450914078]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("8_0vq18")
 
 [node name="Walls" type="StaticBody2D" parent="World" unique_id=2014232484]
 collision_mask = 0
@@ -136,6 +136,8 @@ offset_right = 14.0
 offset_bottom = 14.0
 
 [connection signal="input_event" from="World/TestItem" to="World/TestItem" method="_on_input_event"]
+[connection signal="mouse_shape_entered" from="World/TestItem" to="World/TestItem" method="_on_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="World/TestItem" to="World/TestItem" method="_on_mouse_shape_exited"]
 [connection signal="bag_removed" from="UILayer/UI/Inventory" to="UILayer/UI/ItemBox" method="_on_inventory_bag_removed"]
 [connection signal="item_added" from="UILayer/UI/Inventory" to="UILayer/UI/Player" method="_on_inventory_item_added"]
 [connection signal="item_removed" from="UILayer/UI/Inventory" to="UILayer/UI/Player" method="_on_inventory_item_removed"]
