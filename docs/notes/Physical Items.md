@@ -15,10 +15,15 @@
 ### Tasks
 - [x] Add some collision walls around visible area so item dont fall off the screen
 - [x] Create a test item object made of rigidbodies that is going to exist in physical world and be colliding with the walls, obey gravity
-- [ ] Make test item draggable, drag drop, gain momentum on mouse movement
+- [x] Make test item draggable, drag drop, gain momentum on mouse movement
 	- [x] draggable
 	- [x] droppable
 	- [x] ease on input
-	- [ ] momentum
+	- [x] momentum
 - [ ] Compose test dragabble with actual item and try to snap it to grid
 - [ ] converty testitem from grid to physical world
+
+
+### Problems
+- [ ] the rigid body release impulse can be applied multiple times which make objects exceed speed limit
+- [ ] sometimes the firection of the impulse does not match where player expects the object to go, its not intuitive

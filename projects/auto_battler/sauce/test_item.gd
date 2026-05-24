@@ -28,23 +28,24 @@ func start_drag():
 
 func stop_drag():
 	freeze = false
+	var mouse_velocity := Input.get_last_mouse_velocity()
+	var mouse_direction := mouse_velocity.normalized()
+	var mouse_magnitude := mouse_velocity.length()
+	print(Input.get_last_mouse_velocity())
+	apply_central_impulse(mouse_direction * min(mouse_magnitude, get_gravity().length()))
+
 	dragging = false
+
 
 
 func _process(_delta):
 	if dragging:
 		global_position = get_global_mouse_position() + drag_offset
-		
-			#Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-#
-#func _on_area_2d_mouse_exited() -> void:
-	#scale = Vector2(1.0, 1.0)
-	#Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 
-func _on_mouse_shape_entered(shape_idx: int) -> void:
+func _on_mouse_shape_entered(_shape_idx: int) -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 
 
-func _on_mouse_shape_exited(shape_idx: int) -> void:
+func _on_mouse_shape_exited(_shape_idx: int) -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
