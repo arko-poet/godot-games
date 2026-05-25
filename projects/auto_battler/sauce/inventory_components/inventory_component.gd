@@ -9,6 +9,7 @@ const HOVER_HIGHLIGHT_MODULATE := Color(1.1, 1.1, 1.1)
 var footprint: Array[Vector2i]
 ## counts number of times component has been rotated while dragging
 var rotation_counter = 0
+var physical_item
 
 
 func _notification(what: int) -> void:
@@ -65,7 +66,12 @@ func _on_gui_input(event: InputEvent) -> void:
 func _should_not_start_dragging(event: InputEventMouseButton) -> bool:
 	return event.button_index != MOUSE_BUTTON_LEFT
 	
-	
+
+func test_drag(p_position: Vector2) -> void:
+	global_position = p_position
+	_start_dragging()
+
+
 func _start_dragging() -> void:
 	var lmp := get_local_mouse_position()
 	var preview: Control = _create_drag_preview(lmp)

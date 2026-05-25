@@ -22,6 +22,8 @@ const HOVER_CURSOR := preload(
 @onready var inventory: Inventory = $UILayer/UI/Inventory
 @onready var combat_log: RichTextLabel = $UILayer/UI/CombatLog
 @onready var item_box: Control = $UILayer/UI/ItemBox
+@onready var test_item: RigidBody2D = $World/TestItem
+@onready var stone: Control = $UILayer/UI/ItemBox/Stone
 
 
 func _ready() -> void:
@@ -32,6 +34,10 @@ func _ready() -> void:
 
 	_on_combat_finished() # CAUTION remove this once debugging finished
 	LogManager.combat_log = combat_log
+	
+	# test association between Physical items and InventoryComponents
+	test_item.inventory_component = stone
+	stone.physical_item = test_item
 
 
 func _input(event: InputEvent) -> void:

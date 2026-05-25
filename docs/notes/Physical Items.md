@@ -11,6 +11,10 @@
 - Failing drop operation is going to move item back to physical world by hiding control, showing physical and moving it to physical world
 - To obey physical laws I think RigidBody will be appropriate os that I can assign weight to certain item parts, e.g. mace is going to have most of its weight at the tip, and less at handle
 - The Items need to be able to gain momentum by users input, so user can throw it , this may require full reafactor to node2d, not sure if I can do it in some other way. Technically it might be possible to fake it, user drags control node around but underneath it there is a hidden rigidbody which gains momentum
+- Composition
+	- Option 1 Control parent, Node2D child
+	- Option 2 Node2D parent, Control child
+	- Option 3 separate associated components
 
 ### Tasks
 - [x] Add some collision walls around visible area so item dont fall off the screen
@@ -20,10 +24,12 @@
 	- [x] droppable
 	- [x] ease on input
 	- [x] momentum
-- [ ] Compose test dragabble with actual item and try to snap it to grid
+- [x] Compose test dragabble with actual item and try to snap it to grid
 - [ ] converty testitem from grid to physical world
 
 
 ### Problems
 - [ ] the rigid body release impulse can be applied multiple times which make objects exceed speed limit
 - [ ] sometimes the firection of the impulse does not match where player expects the object to go, its not intuitive
+	- perhaps an average of recent mouse movement would work better than whats now
+- [ ] input is captured on rigidbodies even when dragging control nodes
