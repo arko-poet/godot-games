@@ -14,6 +14,7 @@ var base_cooldown: float
 var cdr := 0.0
 
 @onready var sprite: ColorRect = $Sprite
+@onready var texture: TextureRect = $Texture
 @onready var _effect_timer: Timer = $EffectTimer
 
 
@@ -100,11 +101,13 @@ func _animation_helper() -> void:
 
 func _create_drag_preview(preview_position: Vector2) -> Control:
 	var preview_sprite: Control = sprite.duplicate()
+	var preview_texture: Control = texture.duplicate()
 	preview_sprite.position -= preview_position
 	
 	var preview := Control.new()
 	preview.rotation = rotation
 	preview.add_child(preview_sprite)
+	preview.add_child(preview_texture)
 	preview_sprite.pivot_offset = preview_position
 	
 	return preview

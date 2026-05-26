@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://dhvxcoqjnxbr" path="res://sauce/inventory/inventory.tscn" id="1_8ckbp"]
 [ext_resource type="Script" uid="uid://bk25fwts4x76a" path="res://sauce/main/main.gd" id="1_f2htl"]
 [ext_resource type="Texture2D" uid="uid://jv5807tot57l" path="res://sauce/inventory_components/items/stone/stone.png" id="3_5dma7"]
+[ext_resource type="Script" uid="uid://qkp1u4dnshg6" path="res://sauce/ui.gd" id="4_5dma7"]
 [ext_resource type="PackedScene" uid="uid://c6nwrbu2rteqe" path="res://sauce/combat/combat.tscn" id="4_udgcr"]
 [ext_resource type="PackedScene" uid="uid://tnft4nng5yf3" path="res://sauce/character/player/player.tscn" id="5_5t0sr"]
 [ext_resource type="PackedScene" uid="uid://cl5ntef5qhred" path="res://sauce/inventory_components/items/stone/stone.tscn" id="6_5t0sr"]
 [ext_resource type="PackedScene" uid="uid://lcvfg2c6lxj8" path="res://sauce/character/enemy/enemy.tscn" id="6_qdlrn"]
-[ext_resource type="PackedScene" uid="uid://7e70n3ftqehs" path="res://sauce/item_box/item_box.tscn" id="7_qdlrn"]
 [ext_resource type="Script" uid="uid://bkchrnhp34br6" path="res://sauce/test_item.gd" id="8_5dma7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0vq18"]
@@ -67,6 +67,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("4_5dma7")
 
 [node name="Inventory" parent="UILayer/UI" unique_id=543163270 instance=ExtResource("1_8ckbp")]
 layout_mode = 1
@@ -119,40 +120,30 @@ mouse_filter = 1
 scroll_following = true
 scroll_following_visible_characters = true
 
-[node name="ItemBox" parent="UILayer/UI" unique_id=1327112316 instance=ExtResource("7_qdlrn")]
-z_index = 0
-layout_mode = 1
-offset_left = 8.0
-offset_top = 113.0
-offset_right = -184.0
-offset_bottom = -8.0
-
-[node name="Stone" parent="UILayer/UI/ItemBox" unique_id=544253172 instance=ExtResource("6_5t0sr")]
+[node name="Stone" parent="UILayer/UI" unique_id=544253172 instance=ExtResource("6_5t0sr")]
 visible = false
 z_index = 0
 z_as_relative = false
 layout_mode = 1
-offset_right = 14.0
-offset_bottom = 14.0
+offset_left = 8.0
+offset_top = 113.0
+offset_right = 22.0
+offset_bottom = 127.0
 
 [connection signal="input_event" from="World/TestItem" to="World/TestItem" method="_on_input_event"]
 [connection signal="mouse_shape_entered" from="World/TestItem" to="World/TestItem" method="_on_mouse_shape_entered"]
 [connection signal="mouse_shape_exited" from="World/TestItem" to="World/TestItem" method="_on_mouse_shape_exited"]
-[connection signal="bag_removed" from="UILayer/UI/Inventory" to="UILayer/UI/ItemBox" method="_on_inventory_bag_removed"]
 [connection signal="item_added" from="UILayer/UI/Inventory" to="UILayer/UI/Player" method="_on_inventory_item_added"]
 [connection signal="item_removed" from="UILayer/UI/Inventory" to="UILayer/UI/Player" method="_on_inventory_item_removed"]
-[connection signal="item_removed" from="UILayer/UI/Inventory" to="UILayer/UI/ItemBox" method="_on_inventory_item_removed"]
 [connection signal="item_used" from="UILayer/UI/Inventory" to="UILayer/UI/Combat" method="_on_inventory_item_used"]
 [connection signal="finished" from="UILayer/UI/Combat" to="." method="_on_combat_finished"]
 [connection signal="finished" from="UILayer/UI/Combat" to="UILayer/UI/Inventory" method="_on_combat_finished"]
 [connection signal="finished" from="UILayer/UI/Combat" to="UILayer/UI/Player" method="_on_combat_finished"]
 [connection signal="finished" from="UILayer/UI/Combat" to="UILayer/UI/Enemy" method="_on_combat_finished"]
-[connection signal="finished" from="UILayer/UI/Combat" to="UILayer/UI/ItemBox" method="_on_combat_finished"]
 [connection signal="started" from="UILayer/UI/Combat" to="." method="_on_combat_started"]
 [connection signal="started" from="UILayer/UI/Combat" to="UILayer/UI/Inventory" method="_on_combat_started"]
 [connection signal="started" from="UILayer/UI/Combat" to="UILayer/UI/Enemy" method="_on_combat_started"]
-[connection signal="started" from="UILayer/UI/Combat" to="UILayer/UI/ItemBox" method="_on_combat_started"]
 [connection signal="died" from="UILayer/UI/Player" to="." method="_on_player_died"]
 [connection signal="acted" from="UILayer/UI/Enemy" to="UILayer/UI/Combat" method="_on_enemy_acted"]
 [connection signal="died" from="UILayer/UI/Enemy" to="UILayer/UI/Combat" method="_on_enemy_died"]
-[connection signal="rotated" from="UILayer/UI/ItemBox/Stone" to="." method="_on_item_rotated"]
+[connection signal="rotated" from="UILayer/UI/Stone" to="." method="_on_item_rotated"]

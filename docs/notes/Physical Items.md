@@ -16,6 +16,14 @@
 	- Option 2 Node2D parent, Control child
 	- Option 3 separate associated components
 		- this seems the least clunky option, other options are kinda hard cause Control and Node2D is a different coordinate system, also its tricky to move/hide one without affecting the other
+- Control to Node2D conversion
+	- need to detect whether drop was successful or not
+		- if successful - hide and freeze Node2D
+		- if unsuccessful - hide Control, show Node2D, unfreeze Node2D
+		- how to detect:
+			- items will exist in UI Control Node or in Inventory (ItemBox will be deprecated)
+			- UI will accept Items (unsuccessful drop)
+			- Inventory when accepting Item placement will notify Node2D
 
 ### Tasks
 - [x] Add some collision walls around visible area so item dont fall off the screen
@@ -27,10 +35,15 @@
 	- [x] momentum
 - [x] Compose test dragabble with actual item and try to snap it to grid
 - [ ] converty testitem from grid to physical world
+	- [ ] deprecate ItemBox
+	- [ ] ensure UI can accept items
+	- [ ] Drop data needs to notify Node2D of what happened
+	- [ ] 
 
 
-### Problems
+### Problems/Bugs
 - [ ] the rigid body release impulse can be applied multiple times which make objects exceed speed limit
 - [ ] sometimes the firection of the impulse does not match where player expects the object to go, its not intuitive
 	- perhaps an average of recent mouse movement would work better than whats now
 - [ ] input is captured on rigidbodies even when dragging control nodes
+- [ ] is there a way to make pixel art not look blurry under physics simulation?

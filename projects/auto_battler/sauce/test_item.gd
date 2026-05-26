@@ -13,12 +13,12 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 				start_drag()
 
 
-#func _input(event: InputEvent) -> void:
-	## release drag
-	#if event is InputEventMouseButton:
-		#if event.button_index == MOUSE_BUTTON_LEFT:
-			#if not event.pressed:
-				#stop_drag()
+func _input(event: InputEvent) -> void:
+	# release drag
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if not event.pressed:
+				stop_drag(global_position)
 
 
 func start_drag() -> void:

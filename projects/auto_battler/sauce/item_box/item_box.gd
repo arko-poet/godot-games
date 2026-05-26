@@ -1,3 +1,4 @@
+## DEPRECATED, it was just used for initial testing
 extends Control
 
 @onready var inventory: Inventory = $"../Inventory"
