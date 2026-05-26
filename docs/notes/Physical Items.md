@@ -15,6 +15,7 @@
 	- Option 1 Control parent, Node2D child
 	- Option 2 Node2D parent, Control child
 	- Option 3 separate associated components
+		- this seems the least clunky option, other options are kinda hard cause Control and Node2D is a different coordinate system, also its tricky to move/hide one without affecting the other
 
 ### Tasks
 - [x] Add some collision walls around visible area so item dont fall off the screen
