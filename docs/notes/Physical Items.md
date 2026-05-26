@@ -34,11 +34,14 @@
 	- [x] ease on input
 	- [x] momentum
 - [x] Compose test dragabble with actual item and try to snap it to grid
-- [ ] converty testitem from grid to physical world
-	- [ ] deprecate ItemBox
-	- [ ] ensure UI can accept items
-	- [ ] Drop data needs to notify Node2D of what happened
-	- [ ] 
+- [x] converty testitem from grid to physical world
+	- [x] deprecate ItemBox
+	- [x] ensure UI can accept items
+	- [x] Drop data needs to notify Node2D of what happened
+- [ ] Replace test_item withj actual physical components
+- [ ] Create sprites for all items and bags
+- [ ] Ensure all inventyory components have physical representation
+- [ ] Address all problems/bugs
 
 
 ### Problems/Bugs
@@ -47,3 +50,5 @@
 	- perhaps an average of recent mouse movement would work better than whats now
 - [ ] input is captured on rigidbodies even when dragging control nodes
 - [ ] is there a way to make pixel art not look blurry under physics simulation?
+- [ ] items remain hidden if dropped failed (when placed in a Control component that has no valid drop_data funmction)
+- [ ] Control and Node2D rotation does not match

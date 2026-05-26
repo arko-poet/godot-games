@@ -137,6 +137,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	hovered_cells.clear()
 	hovered_bonus_cells.clear()
 	
+	ic.show()
 	queue_redraw()
 
 

@@ -4,10 +4,12 @@ extends Control
 
 
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
+	print("can drop in ui?")
 	return true
 
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
+	print("drop in ui")
 	var dict: Dictionary
 	if data is Dictionary:
 		dict = data
@@ -26,3 +28,6 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 		ic.clear_items()
 		ic.reparent(self)
 		ic.position = at_position - dict["offset"]
+	
+	ic.hide()
+	ic.physical_item.stop_drag(ic.global_position)

@@ -18,11 +18,11 @@ func _notification(what: int) -> void:
 			_unrotate()
 		rotation_counter = 0
 		
-		_show_component()
-
-
-func _show_component() -> void:
-	show()
+		#_show_component()
+#
+#
+#func _show_component() -> void:
+	#show()
 
 
 ## return visual top left corner of the while respecting rotation
