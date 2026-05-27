@@ -1,11 +1,15 @@
 extends Node
 
+# note ITEM_SCENES and PHYSICAL_ITEM_SCENES must follow same order
 const ITEM_SCENES: Array[PackedScene] = [
-	preload("res://sauce/inventory_components/bags/bag.tscn"),
+	preload("res://sauce/inventory_components/items/stone/stone.tscn"),
 	preload("res://sauce/inventory_components/items/flower/flower.tscn"),
 	preload("res://sauce/inventory_components/items/beef/beef.tscn"),
 	preload("res://sauce/inventory_components/items/mace/mace.tscn"),
 	preload("res://sauce/inventory_components/items/gloves/gloves.tscn")
+]
+const PHYSICAL_ITEM_SCENES: Array[PackedScene] = [
+	preload("res://sauce/physical_components/physical_stone.tscn")
 ]
 const BAG_SCENES: Array[PackedScene] = [
 	preload("res://sauce/inventory_components/bags/satchel/satchel.tscn"),
@@ -22,8 +26,7 @@ const HOVER_CURSOR := preload(
 @onready var inventory: Inventory = $UILayer/UI/Inventory
 @onready var combat_log: RichTextLabel = $UILayer/UI/CombatLog
 #@onready var item_box: Control = $UILayer/UI/ItemBox
-@onready var test_item: RigidBody2D = $World/TestItem
-@onready var stone: Control = $UILayer/UI/Stone
+@onready var world: Node2D = $World
 
 
 func _ready() -> void:
@@ -34,10 +37,6 @@ func _ready() -> void:
 
 	_on_combat_finished() # CAUTION remove this once debugging finished
 	LogManager.combat_log = combat_log
-	
-	# test association between Physical items and InventoryComponents
-	test_item.inventory_component = stone
-	stone.physical_item = test_item
 
 
 func _input(event: InputEvent) -> void:
@@ -60,16 +59,27 @@ func _on_player_died() -> void:
 
 
 func _on_combat_finished() -> void:
-	#var item := ITEM_SCENES[randi() % ITEM_SCENES.size()].instantiate() WARNING dont remove this
-	var item: Item = ITEM_SCENES[4].instantiate()
+	# WARNING dont remove this (production)
+	#var item_index := randi() % ITEM_SCENES.size()
+	#var item := ITEM_SCENES[item_index].instantiate() 
+	#var physical_item := PHYSICAL_ITEM_SCENES[item_index]
+	
+	# TEST item
+	var item: Item = ITEM_SCENES[0].instantiate()
 	item.rotated.connect(_on_item_rotated)
 	add_child(item)
+	var physical_item: PhysicalComponent = PHYSICAL_ITEM_SCENES[0].instantiate()
+	world.add_child(physical_item)
+	item.physical_item = physical_item
+	item.hide()
+	physical_item.inventory_component = item
+	physical_item.position = Vector2(50, 150)
+	item.position = Vector2(50, 150)
 	
+	# TEST bag
 	var bag: Bag = BAG_SCENES[1].instantiate()
 	bag.rotated.connect(_on_bag_rotated)
 	add_child(bag)
-	
-	# test
 	bag.reparent(inventory)
 	bag.position = Vector2(50, 150)
 

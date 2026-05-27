@@ -41,6 +41,7 @@
 - [ ] Replace test_item withj actual physical components
 - [ ] Create sprites for all items and bags
 - [ ] Ensure all inventyory components have physical representation
+- [ ] Make walls longer and add a top wall
 - [ ] Address all problems/bugs
 
 

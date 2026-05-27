@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c28elmy4twm0i"]
+
+[ext_resource type="Script" uid="uid://upiwb70s0310" path="res://sauce/physical_components/physical_component.gd" id="1_hv1de"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0vq18"]
+bounce = 0.8
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hv1de"]
+radius = 8.0
+height = 18.0
+
+[node name="PhysicalComponent" type="RigidBody2D" unique_id=1401034818]
+collision_layer = 2
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_0vq18")
+script = ExtResource("1_hv1de")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1860699754]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1979762532]
+shape = SubResource("CapsuleShape2D_hv1de")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
