@@ -9,7 +9,11 @@ const ITEM_SCENES: Array[PackedScene] = [
 	preload("res://sauce/inventory_components/items/gloves/gloves.tscn")
 ]
 const PHYSICAL_ITEM_SCENES: Array[PackedScene] = [
-	preload("res://sauce/physical_components/physical_stone.tscn")
+	preload("res://sauce/physical_components/items/physical_stone.tscn"),
+	preload("res://sauce/physical_components/items/physical_flower.tscn"),
+	preload("res://sauce/physical_components/items/physical_beef.tscn"),
+	preload("res://sauce/physical_components/items/physical_mace.tscn"),
+	preload("res://sauce/physical_components/items/physical_gloves.tscn"),
 ]
 const BAG_SCENES: Array[PackedScene] = [
 	preload("res://sauce/inventory_components/bags/satchel/satchel.tscn"),
@@ -65,16 +69,18 @@ func _on_combat_finished() -> void:
 	#var physical_item := PHYSICAL_ITEM_SCENES[item_index]
 	
 	# TEST item
-	var item: Item = ITEM_SCENES[0].instantiate()
-	item.rotated.connect(_on_item_rotated)
-	add_child(item)
-	var physical_item: PhysicalComponent = PHYSICAL_ITEM_SCENES[0].instantiate()
-	world.add_child(physical_item)
-	item.physical_item = physical_item
-	item.hide()
-	physical_item.inventory_component = item
-	physical_item.position = Vector2(50, 150)
-	item.position = Vector2(50, 150)
+	for i in ITEM_SCENES.size():
+		var item: Item = ITEM_SCENES[i].instantiate()
+		item.rotated.connect(_on_item_rotated)
+		add_child(item)
+		var physical_item: PhysicalComponent = PHYSICAL_ITEM_SCENES[i].instantiate()
+		world.add_child(physical_item)
+		item.physical_item = physical_item
+		item.hide()
+		physical_item.inventory_component = item
+		physical_item.position = Vector2(50, 150)
+		item.position = Vector2(50, 150)
+	
 	
 	# TEST bag
 	var bag: Bag = BAG_SCENES[1].instantiate()

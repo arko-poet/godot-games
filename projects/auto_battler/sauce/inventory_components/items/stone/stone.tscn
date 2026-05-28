@@ -3,13 +3,19 @@
 [ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/inventory_components/items/item.tscn" id="1_hjup5"]
 [ext_resource type="Script" uid="uid://ieanibm7aaum" path="res://sauce/inventory_components/items/stone/stone.gd" id="2_ksvvp"]
 [ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/inventory_components/items/progress_fill.gdshader" id="3_ksvvp"]
-[ext_resource type="Texture2D" uid="uid://jv5807tot57l" path="res://sauce/inventory_components/items/stone/stone.png" id="4_q6gea"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q6gea"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fymi7"]
 resource_local_to_scene = true
 shader = ExtResource("3_ksvvp")
 shader_parameter/progress = 1.0
 shader_parameter/item_rotation = 0.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6cnot"]
+load_path = "res://.godot/imported/weapon-sheet.png-3ec02643a5a9daccbe3df160e9bd461b.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6gea"]
+atlas = SubResource("CompressedTexture2D_6cnot")
+region = Rect2(16, 16, 16, 16)
 
 [node name="Stone" unique_id=544253172 instance=ExtResource("1_hjup5")]
 tooltip_text = "Stone"
@@ -19,8 +25,8 @@ display_name = "Stone"
 
 [node name="Sprite" parent="." index="0" unique_id=443896673]
 visible = false
-material = SubResource("ShaderMaterial_q6gea")
+material = SubResource("ShaderMaterial_fymi7")
 color = Color(0.70980394, 0, 0, 1)
 
 [node name="Texture" parent="." index="2" unique_id=433329068]
-texture = ExtResource("4_q6gea")
+texture = SubResource("AtlasTexture_q6gea")

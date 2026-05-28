@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://de41pfd5yqo18"]
+
+[ext_resource type="PackedScene" uid="uid://c28elmy4twm0i" path="res://sauce/physical_components/physical_component.tscn" id="1_k0sjp"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6cnot"]
+load_path = "res://.godot/imported/weapon-sheet.png-3ec02643a5a9daccbe3df160e9bd461b.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04qw2"]
+atlas = SubResource("CompressedTexture2D_6cnot")
+region = Rect2(0, 32, 16, 48)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k0sjp"]
+resource_local_to_scene = true
+radius = 2.0
+height = 46.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0sjp"]
+radius = 8.0
+
+[node name="PhysicalMace" unique_id=1401034818 instance=ExtResource("1_k0sjp")]
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, -8)
+
+[node name="Sprite" parent="." index="0" unique_id=1860699754]
+texture = SubResource("AtlasTexture_04qw2")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1979762532]
+shape = SubResource("CapsuleShape2D_k0sjp")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="2" unique_id=696697228]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_k0sjp")

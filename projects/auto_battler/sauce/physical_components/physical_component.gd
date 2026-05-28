@@ -23,7 +23,6 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 func start_drag() -> void:
 	hide()
-	#inventory_component.show()
 	inventory_component.test_drag(global_position)
 	inventory_component.position = position
 	

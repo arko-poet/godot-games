@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://48g082eiybnq"]
+
+[ext_resource type="PackedScene" uid="uid://c28elmy4twm0i" path="res://sauce/physical_components/physical_component.tscn" id="1_c2xbv"]
+[ext_resource type="Texture2D" uid="uid://dxnb2wp42o15p" path="res://assets/items/weapons.tres" id="2_u75q2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0u25h"]
+resource_local_to_scene = true
+radius = 8.0
+height = 16.0
+
+[node name="PhysicalStone" unique_id=1401034818 instance=ExtResource("1_c2xbv")]
+
+[node name="Sprite" parent="." index="0" unique_id=1860699754]
+texture = ExtResource("2_u75q2")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1979762532]
+shape = SubResource("CapsuleShape2D_0u25h")

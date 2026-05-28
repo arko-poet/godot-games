@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jv5807tot57l"
-path="res://.godot/imported/stone.png-9789f9c8e96746de8ac1878eeab81035.ctex"
+uid="uid://csaxhtsjlb0gt"
+path="res://.godot/imported/weapon-sheet.png-3ec02643a5a9daccbe3df160e9bd461b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sauce/inventory_components/items/stone/stone.png"
-dest_files=["res://.godot/imported/stone.png-9789f9c8e96746de8ac1878eeab81035.ctex"]
+source_file="res://assets/items/weapon-sheet.png"
+dest_files=["res://.godot/imported/weapon-sheet.png-3ec02643a5a9daccbe3df160e9bd461b.ctex"]
 
 [params]
 

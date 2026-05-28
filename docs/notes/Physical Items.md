@@ -38,9 +38,11 @@
 	- [x] deprecate ItemBox
 	- [x] ensure UI can accept items
 	- [x] Drop data needs to notify Node2D of what happened
-- [ ] Replace test_item withj actual physical components
-- [ ] Create sprites for all items and bags
+- [x] Replace test_item withj actual physical components
+- [x] Create sprites for all items and bags
 - [ ] Ensure all inventyory components have physical representation
+	- [x] items
+	- [ ] bags
 - [ ] Make walls longer and add a top wall
 - [ ] Address all problems/bugs
 
@@ -53,3 +55,7 @@
 - [ ] is there a way to make pixel art not look blurry under physics simulation?
 - [ ] items remain hidden if dropped failed (when placed in a Control component that has no valid drop_data funmction)
 - [ ] Control and Node2D rotation does not match
+- [ ] remove ColorRect from Items
+- [ ] rename physical to rigid
+- [ ] cursor knocks other items
+- [ ] all items hover highlight is one cell for some reason

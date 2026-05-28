@@ -2,16 +2,34 @@
 
 [ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/inventory_components/items/item.tscn" id="1_n7klb"]
 [ext_resource type="Script" uid="uid://brkq1gd3ctq25" path="res://sauce/inventory_components/items/gloves/gloves.gd" id="2_4ym6f"]
+[ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/inventory_components/items/progress_fill.gdshader" id="3_my67r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0kjhh"]
+resource_local_to_scene = true
+shader = ExtResource("3_my67r")
+shader_parameter/progress = 1.0
+shader_parameter/item_rotation = 0.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qmq24"]
+load_path = "res://.godot/imported/weapon-sheet.png-3ec02643a5a9daccbe3df160e9bd461b.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkd7l"]
+atlas = SubResource("CompressedTexture2D_qmq24")
+region = Rect2(32, 0, 32, 32)
 
 [node name="Gloves" unique_id=544253172 instance=ExtResource("1_n7klb")]
 offset_right = 32.0
 offset_bottom = 32.0
 script = ExtResource("2_4ym6f")
 display_name = "Gloves"
-footprint = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, 1), Vector2i(1, 0), Vector2i(1, 1)])
 bonus_cells = Array[Vector2i]([Vector2i(1, -1), Vector2i(2, 0), Vector2i(2, 1), Vector2i(0, 2), Vector2i(1, 2), Vector2i(-1, 0), Vector2i(-1, 1), Vector2i(0, -1)])
 
 [node name="Sprite" parent="." index="0" unique_id=443896673]
+visible = false
+material = SubResource("ShaderMaterial_0kjhh")
 offset_right = 31.0
 offset_bottom = 31.0
 color = Color(0.8777824, 0.52083, 0.26252583, 1)
+
+[node name="Texture" parent="." index="2" unique_id=433329068]
+texture = SubResource("AtlasTexture_gkd7l")

@@ -2,6 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://bu30q0ftvxekp" path="res://sauce/inventory_components/items/item.tscn" id="1_oubwk"]
 [ext_resource type="Script" uid="uid://2vj8x68d42q2" path="res://sauce/inventory_components/items/flower/flower.gd" id="2_8img1"]
+[ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/inventory_components/items/progress_fill.gdshader" id="3_u2voj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75bft"]
+resource_local_to_scene = true
+shader = ExtResource("3_u2voj")
+shader_parameter/progress = 1.0
+shader_parameter/item_rotation = 0.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6cnot"]
+load_path = "res://.godot/imported/weapon-sheet.png-3ec02643a5a9daccbe3df160e9bd461b.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gfip"]
+atlas = SubResource("CompressedTexture2D_6cnot")
+region = Rect2(0, 0, 16, 16)
 
 [node name="Flower" unique_id=544253172 instance=ExtResource("1_oubwk")]
 tooltip_text = "Flower"
@@ -10,7 +24,12 @@ heal = 3
 display_name = "Flower"
 
 [node name="Sprite" parent="." index="0" unique_id=443896673]
+visible = false
+material = SubResource("ShaderMaterial_75bft")
 color = Color(0, 1, 0, 1)
 
 [node name="EffectTimer" parent="." index="1" unique_id=632830717]
 wait_time = 2.0
+
+[node name="Texture" parent="." index="2" unique_id=433329068]
+texture = SubResource("AtlasTexture_1gfip")

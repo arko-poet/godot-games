@@ -6,11 +6,13 @@
 bounce = 0.8
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hv1de"]
+resource_local_to_scene = true
 radius = 8.0
-height = 18.0
+height = 16.0
 
 [node name="PhysicalComponent" type="RigidBody2D" unique_id=1401034818]
 collision_layer = 2
+collision_mask = 3
 input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_0vq18")
 script = ExtResource("1_hv1de")
