@@ -40,11 +40,12 @@
 	- [x] Drop data needs to notify Node2D of what happened
 - [x] Replace test_item withj actual physical components
 - [x] Create sprites for all items and bags
-- [ ] Ensure all inventyory components have physical representation
+- [x] Ensure all inventyory components have physical representation
 	- [x] items
-	- [ ] bags
+	- [x] bags
 - [x] Make walls longer and add a top wall
 - [ ] Address all problems/bugs
+- [ ] Make code good
 
 
 ### Problems/Bugs
@@ -59,3 +60,5 @@
 - [ ] rename physical to rigid
 - [ ] cursor knocks other items
 - [ ] all items hover highlight is one cell for some reason
+- [ ] some sprites have parts of others that are in the same sheet for some reason (seems it might be related to pixel art being physics simulated)
+- [ ] bag preview not visible when dragging from world

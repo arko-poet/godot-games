@@ -1,10 +1,10 @@
-@tool class_name Bag extends InventoryComponent
+class_name Bag extends InventoryComponent
 
 
 @export_range(1, Inventory.INVENTORY_SIZE) var columns: int = 1
 @export_range(1, Inventory.INVENTORY_SIZE) var rows: int = 1
-@export var bg_color: Color = Color("#6B3F1E")
-@export var border_color: Color = Color("#C4955A")
+#@export var bg_color: Color = Color("#6B3F1E")
+#@export var border_color: Color = Color("#C4955A")
 
 ## items which are partially contained in the bag
 var partial_items: Array[Item]
@@ -20,15 +20,15 @@ func _ready() -> void:
 			footprint.append(cell)
 	queue_redraw()
 
-
-func _draw() -> void:
-	for row in rows:
-		for column in columns:
-			var cell := Vector2i(column, row)
-			var cell_size := Vector2i(Inventory.CELL_SIZE, Inventory.CELL_SIZE)
-			var rect2i := Rect2i(cell * Inventory.CELL_SIZE, cell_size)
-			draw_rect(rect2i, bg_color)
-			draw_rect(rect2i, border_color, false, 1)
+# DEPRECATED - use actual textures instead
+#func _draw() -> void:
+	#for row in rows:
+		#for column in columns:
+			#var cell := Vector2i(column, row)
+			#var cell_size := Vector2i(Inventory.CELL_SIZE, Inventory.CELL_SIZE)
+			#var rect2i := Rect2i(cell * Inventory.CELL_SIZE, cell_size)
+			#draw_rect(rect2i, bg_color)
+			#draw_rect(rect2i, border_color, false, 1)
 
 
 func _show_component() -> void:

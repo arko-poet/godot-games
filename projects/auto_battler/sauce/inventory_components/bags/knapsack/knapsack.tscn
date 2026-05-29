@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://ble5mhtlkghxc"]
 
 [ext_resource type="PackedScene" uid="uid://yh5u66bvma21" path="res://sauce/inventory_components/bags/bag.tscn" id="1_bj26i"]
+[ext_resource type="Texture2D" uid="uid://csaxhtsjlb0gt" path="res://assets/items/weapon-sheet.png" id="2_lyyls"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjyvw"]
+atlas = ExtResource("2_lyyls")
+region = Rect2(16, 32, 32, 48)
 
 [node name="Knapsack" unique_id=106018777 instance=ExtResource("1_bj26i")]
 custom_minimum_size = Vector2(32, 48)
 columns = 2
 rows = 3
+
+[node name="Texture" parent="." index="0" unique_id=26450925]
+texture = SubResource("AtlasTexture_fjyvw")

@@ -15,6 +15,10 @@ const PHYSICAL_ITEM_SCENES: Array[PackedScene] = [
 	preload("res://sauce/physical_components/items/physical_mace.tscn"),
 	preload("res://sauce/physical_components/items/physical_gloves.tscn"),
 ]
+const PHYSICAL_BAG_SCENES: Array[PackedScene] = [
+	preload("res://sauce/physical_components/bags/physical_satchel.tscn"),
+	preload("res://sauce/physical_components/bags/physical_knapsack.tscn")
+]
 const BAG_SCENES: Array[PackedScene] = [
 	preload("res://sauce/inventory_components/bags/satchel/satchel.tscn"),
 	preload("res://sauce/inventory_components/bags/knapsack/knapsack.tscn")
@@ -87,6 +91,13 @@ func _on_combat_finished() -> void:
 	bag.rotated.connect(_on_bag_rotated)
 	add_child(bag)
 	bag.reparent(inventory)
+	bag.position = Vector2(50, 150)
+	var physical_bag: PhysicalComponent = PHYSICAL_BAG_SCENES[1].instantiate()
+	world.add_child(physical_bag)
+	bag.physical_item = physical_bag
+	bag.hide()
+	physical_bag.inventory_component = bag
+	physical_bag.position = Vector2(50, 150)
 	bag.position = Vector2(50, 150)
 
 

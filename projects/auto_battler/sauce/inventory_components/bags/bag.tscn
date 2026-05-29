@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://yh5u66bvma21"]
 
 [ext_resource type="Script" uid="uid://v88m7qfwrqtt" path="res://sauce/inventory_components/bags/bag.gd" id="1_7q30l"]
+[ext_resource type="Texture2D" uid="uid://csaxhtsjlb0gt" path="res://assets/items/weapon-sheet.png" id="2_ff8mg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnl1y"]
+atlas = ExtResource("2_ff8mg")
+region = Rect2(16, 32, 16, 16)
 
 [node name="Bag" type="Control" unique_id=106018777]
 z_index = -1
@@ -9,6 +14,15 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_7q30l")
+
+[node name="Texture" type="TextureRect" parent="." unique_id=26450925]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mnl1y")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
