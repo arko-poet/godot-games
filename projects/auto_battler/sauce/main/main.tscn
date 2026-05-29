@@ -8,10 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://lcvfg2c6lxj8" path="res://sauce/character/enemy/enemy.tscn" id="6_qdlrn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dma7"]
-size = Vector2(20, 326)
+size = Vector2(21, 460)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irmtt"]
 size = Vector2(361, 23.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5t0sr"]
+size = Vector2(365, 20)
 
 [node name="Main" type="Node" unique_id=438263722]
 script = ExtResource("1_f2htl")
@@ -23,7 +26,7 @@ metadata/_edit_horizontal_guides_ = [104.0]
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls" unique_id=292651192]
-position = Vector2(-10, 17)
+position = Vector2(-11, -48)
 shape = SubResource("RectangleShape2D_5dma7")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="World/Walls" unique_id=533063542]
@@ -31,8 +34,12 @@ position = Vector2(160.5, 192)
 shape = SubResource("RectangleShape2D_irmtt")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="World/Walls" unique_id=595962161]
-position = Vector2(331, 17)
+position = Vector2(331, -48)
 shape = SubResource("RectangleShape2D_5dma7")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="World/Walls" unique_id=499625377]
+position = Vector2(161.5, -288)
+shape = SubResource("RectangleShape2D_5t0sr")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=377305203]
 

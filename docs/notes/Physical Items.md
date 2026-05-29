@@ -43,7 +43,7 @@
 - [ ] Ensure all inventyory components have physical representation
 	- [x] items
 	- [ ] bags
-- [ ] Make walls longer and add a top wall
+- [x] Make walls longer and add a top wall
 - [ ] Address all problems/bugs
 
 
