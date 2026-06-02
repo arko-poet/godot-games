@@ -19,7 +19,7 @@ script = ExtResource("1_hv1de")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1860699754]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1979762532]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1979762532]
 shape = SubResource("CapsuleShape2D_hv1de")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

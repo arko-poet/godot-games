@@ -24,7 +24,7 @@ center_of_mass = Vector2(0, -8)
 [node name="Sprite" parent="." index="0" unique_id=1860699754]
 texture = SubResource("AtlasTexture_04qw2")
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=1979762532]
+[node name="Collision" parent="." index="1" unique_id=1979762532]
 shape = SubResource("CapsuleShape2D_k0sjp")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="2" unique_id=696697228]

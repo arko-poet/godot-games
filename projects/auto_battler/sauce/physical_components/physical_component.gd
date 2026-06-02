@@ -5,6 +5,9 @@ var drag_offset = Vector2.ZERO
 
 var inventory_component: InventoryComponent
 
+@onready var collision: CollisionShape2D = $Collision
+
+
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	# start drag
 	if event is InputEventMouseButton:
@@ -28,6 +31,9 @@ func start_drag() -> void:
 	
 	freeze = true
 	dragging = true
+	#sleeping = true
+	#contact_monitor = false
+	collision.disabled = true
 	drag_offset = global_position - get_global_mouse_position()
 
 
@@ -38,6 +44,7 @@ func stop_drag(p_position: Vector2) -> void:
 	#inventory_component.hide()
 	
 	freeze = false
+	collision.disabled = false
 	var mouse_velocity := Input.get_last_mouse_velocity()
 	var mouse_direction := mouse_velocity.normalized()
 	var mouse_magnitude := mouse_velocity.length()

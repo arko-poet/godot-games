@@ -59,6 +59,8 @@
 - [ ] remove ColorRect from Items
 - [ ] rename physical to rigid
 - [ ] cursor knocks other items
+	- [x] disable collision object during drag
+	- [ ] address issue of mace containing multiple collision objects meaning only one is disabled
 - [ ] all items hover highlight is one cell for some reason
 - [ ] some sprites have parts of others that are in the same sheet for some reason (seems it might be related to pixel art being physics simulated)
 - [ ] bag preview not visible when dragging from world
