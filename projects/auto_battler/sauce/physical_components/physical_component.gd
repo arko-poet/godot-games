@@ -25,9 +25,12 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 
 func start_drag() -> void:
+	# drag preview is the only thing visible during dragging
+	# both physical and inventory components are hidden
 	hide()
+	
 	inventory_component.test_drag(global_position)
-	inventory_component.position = position
+
 	
 	freeze = true
 	dragging = true

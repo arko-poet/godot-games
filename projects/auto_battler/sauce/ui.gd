@@ -4,7 +4,6 @@ extends Control
 
 
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
-	print("can drop in ui?")
 	return true
 
 

@@ -64,3 +64,6 @@
 - [ ] all items hover highlight is one cell for some reason
 - [ ] some sprites have parts of others that are in the same sheet for some reason (seems it might be related to pixel art being physics simulated)
 - [ ] bag preview not visible when dragging from world
+- [x] item preview is not visible until second drag
+- [ ] inventory Control size does not match its visible size
+- [ ] picking up and dropping beef back to tyhe ground outside of inventory removes hp from player

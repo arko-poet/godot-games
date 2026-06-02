@@ -76,7 +76,7 @@ func _on_combat_finished() -> void:
 	for i in ITEM_SCENES.size():
 		var item: Item = ITEM_SCENES[i].instantiate()
 		item.rotated.connect(_on_item_rotated)
-		add_child(item)
+		ui.add_child(item)
 		var physical_item: PhysicalComponent = PHYSICAL_ITEM_SCENES[i].instantiate()
 		world.add_child(physical_item)
 		item.physical_item = physical_item
@@ -89,7 +89,7 @@ func _on_combat_finished() -> void:
 	# TEST bag
 	var bag: Bag = BAG_SCENES[1].instantiate()
 	bag.rotated.connect(_on_bag_rotated)
-	add_child(bag)
+	ui.add_child(bag)
 	bag.reparent(inventory)
 	bag.position = Vector2(50, 150)
 	var physical_bag: PhysicalComponent = PHYSICAL_BAG_SCENES[1].instantiate()
