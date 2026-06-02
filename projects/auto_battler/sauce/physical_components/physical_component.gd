@@ -31,9 +31,10 @@ func start_drag() -> void:
 	
 	freeze = true
 	dragging = true
-	#sleeping = true
-	#contact_monitor = false
-	collision.disabled = true
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.disabled = true
+	
 	drag_offset = global_position - get_global_mouse_position()
 
 
@@ -41,10 +42,12 @@ func stop_drag(p_position: Vector2) -> void:
 	global_position = p_position
 	
 	show()
-	#inventory_component.hide()
 	
 	freeze = false
-	collision.disabled = false
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.disabled = false
+			
 	var mouse_velocity := Input.get_last_mouse_velocity()
 	var mouse_direction := mouse_velocity.normalized()
 	var mouse_magnitude := mouse_velocity.length()
