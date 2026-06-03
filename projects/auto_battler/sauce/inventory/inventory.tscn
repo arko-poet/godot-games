@@ -7,8 +7,8 @@ z_index = 1
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 128.0
-offset_bottom = 128.0
+offset_right = 96.0
+offset_bottom = 96.0
 script = ExtResource("1_fbhci")
 
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

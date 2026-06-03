@@ -61,8 +61,8 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 8.0
 offset_top = -82.0
-offset_right = 136.0
-offset_bottom = 46.0
+offset_right = 104.0
+offset_bottom = 14.0
 grow_vertical = 2
 
 [node name="Combat" parent="UILayer/UI" unique_id=548601476 instance=ExtResource("4_udgcr")]
