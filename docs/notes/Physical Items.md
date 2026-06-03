@@ -74,7 +74,7 @@
 			- that's it
 - [x] item preview is not visible until second drag
 - [x] inventory Control size does not match its visible size
-- [ ] picking up and dropping beef back to the ground outside of inventory removes hp from player
+- [x] picking up and dropping beef back to the ground outside of inventory removes hp from player
 - [x] bag preview is not centered (item previews are also not centered)
 	- the easiest solution is to refactor drag offset such that drag preview is always centered on cursor rather then snap to whjere it was clicked on the item
 - [ ] items disappear when placed in the bag

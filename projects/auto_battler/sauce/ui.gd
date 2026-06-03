@@ -18,7 +18,8 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	
 	var ic: InventoryComponent = dict.get("inventory_component", null)
 	if ic is Item:
-		inventory.remove_item(ic)
+		if ic in inventory.get_children():
+			inventory.remove_item(ic)
 		ic.reparent(self)
 		ic.position = at_position - dict["offset"]
 		ic.move_to_front()

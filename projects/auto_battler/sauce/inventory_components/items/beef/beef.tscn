@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bhv0uhp0fsv6p" path="res://sauce/inventory_components/items/beef/beef.gd" id="2_bl8du"]
 [ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/inventory_components/items/progress_fill.gdshader" id="3_5l8i0"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v5iw0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5l8i0"]
 resource_local_to_scene = true
 shader = ExtResource("3_5l8i0")
 shader_parameter/progress = 1.0
@@ -23,9 +23,7 @@ script = ExtResource("2_bl8du")
 max_hp = 10
 display_name = "Beef"
 
-[node name="Sprite" parent="." index="0" unique_id=443896673]
+[node name="Sprite" parent="." index="1" unique_id=433329068]
 visible = false
-material = SubResource("ShaderMaterial_v5iw0")
-
-[node name="Texture" parent="." index="2" unique_id=433329068]
+material = SubResource("ShaderMaterial_5l8i0")
 texture = SubResource("AtlasTexture_5l8i0")
