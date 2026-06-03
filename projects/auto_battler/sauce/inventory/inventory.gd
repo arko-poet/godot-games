@@ -130,7 +130,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 			bag.partial_items.erase(ic)
 
 	_clear_hovered_components(ic)
-		
+		 
 	if (is_item and items.has(ic)) or (not is_item and bags.has(ic)): _move_component(ic)
 	else: _add_component(ic)
 

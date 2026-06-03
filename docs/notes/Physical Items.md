@@ -77,8 +77,9 @@
 - [x] picking up and dropping beef back to the ground outside of inventory removes hp from player
 - [x] bag preview is not centered (item previews are also not centered)
 	- the easiest solution is to refactor drag offset such that drag preview is always centered on cursor rather then snap to whjere it was clicked on the item
-- [ ] items disappear when placed in the bag
+- [x] items disappear when placed in the bag
 - [ ] items in bag are not blocking each other
 - [x] again item preview is not working
 - [ ] hover highlight of bags/items does not match where user wouild want to place it very well
 - [ ] remove position parameter from _create_drag_preview
+- [ ] some items get scaled when placed in inventory (gloves/mace)
