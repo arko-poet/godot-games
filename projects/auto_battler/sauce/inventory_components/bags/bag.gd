@@ -83,6 +83,7 @@ func _create_drag_preview(preview_position: Vector2) -> Control:
 	dup_bag.position = -preview_position
 	dup_bag.rotation = rotation
 	dup_bag.pivot_offset = preview_position
+	dup_bag.show()
 
 	var preview := Control.new()
 	preview.add_child(dup_bag)

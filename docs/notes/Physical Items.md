@@ -63,7 +63,14 @@
 	- [x] address issue of mace containing multiple collision objects meaning only one is disabled
 - [ ] all items hover highlight is one cell for some reason
 - [ ] some sprites have parts of others that are in the same sheet for some reason (seems it might be related to pixel art being physics simulated)
-- [ ] bag preview not visible when dragging from world
+- [x] bag preview not visible when dragging from world
+	- possible problems:
+		- preview is hidden
+		- preview is not created
+		- preview is not positioned properly
+		- components of preview don't incluide the visible parts
+			- that's it
 - [x] item preview is not visible until second drag
 - [ ] inventory Control size does not match its visible size
 - [ ] picking up and dropping beef back to tyhe ground outside of inventory removes hp from player
+- [ ] bag preview is not centered like item previews
