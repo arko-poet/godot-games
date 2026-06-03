@@ -1,13 +1,6 @@
 [gd_scene format=3 uid="uid://bu30q0ftvxekp"]
 
-[ext_resource type="Shader" uid="uid://ben7vvoe5ux0d" path="res://sauce/inventory_components/items/progress_fill.gdshader" id="1_lluxc"]
 [ext_resource type="Script" uid="uid://n1m1dolhe4uv" path="res://sauce/inventory_components/items/item.gd" id="1_tcjyt"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tcjyt"]
-resource_local_to_scene = true
-shader = ExtResource("1_lluxc")
-shader_parameter/progress = 1.0
-shader_parameter/item_rotation = 0.0
 
 [node name="Item" type="Control" unique_id=544253172]
 z_index = 1
@@ -19,19 +12,9 @@ mouse_filter = 1
 mouse_default_cursor_shape = 2
 script = ExtResource("1_tcjyt")
 
-[node name="Sprite" type="ColorRect" parent="." unique_id=443896673]
-material = SubResource("ShaderMaterial_tcjyt")
-layout_mode = 1
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 14.0
-offset_bottom = 14.0
-mouse_filter = 2
-color = Color(1, 0, 1, 1)
-
 [node name="EffectTimer" type="Timer" parent="." unique_id=632830717]
 
-[node name="Texture" type="TextureRect" parent="." unique_id=433329068]
+[node name="Sprite" type="TextureRect" parent="." unique_id=433329068]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
