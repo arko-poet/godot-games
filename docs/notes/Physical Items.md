@@ -52,7 +52,7 @@
 - [ ] the rigid body release impulse can be applied multiple times which make objects exceed speed limit
 - [ ] sometimes the firection of the impulse does not match where player expects the object to go, its not intuitive
 	- perhaps an average of recent mouse movement would work better than whats now
-- [ ] input is captured on rigidbodies even when dragging control nodes
+- [x] input is captured on rigidbodies even when dragging control nodes
 - [x] is there a way to make pixel art not look blurry under physics simulation?
 	- not really for rotating objects but couple things to make pixel art look better - use Nerest texture filter and snap vertices/transforms to pixels
 - [ ] items remain hidden if dropped failed (when placed in a Control component that has no valid drop_data funmction)
@@ -74,7 +74,7 @@
 - [x] item preview is not visible until second drag
 - [x] inventory Control size does not match its visible size
 - [ ] picking up and dropping beef back to the ground outside of inventory removes hp from player
-- [ ] bag preview is not centered like item previews
+- [ ] bag preview is not centered (item previews are also not centered)
 - [ ] items disappear when placed in the bag
 - [ ] items in bag are not blocking each other
-- [ ] again item preview is not working
+- [x] again item preview is not working
