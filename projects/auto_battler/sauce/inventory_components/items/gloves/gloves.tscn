@@ -18,7 +18,6 @@ atlas = SubResource("CompressedTexture2D_qmq24")
 region = Rect2(32, 0, 32, 32)
 
 [node name="Gloves" unique_id=544253172 instance=ExtResource("1_n7klb")]
-visible = false
 offset_right = 32.0
 offset_bottom = 32.0
 script = ExtResource("2_4ym6f")
@@ -28,6 +27,4 @@ _footprint = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Ve
 
 [node name="Sprite" parent="." index="1" unique_id=433329068]
 material = SubResource("ShaderMaterial_qmq24")
-offset_right = 31.0
-offset_bottom = 31.0
 texture = SubResource("AtlasTexture_gkd7l")

@@ -46,6 +46,8 @@
 - [x] Make walls longer and add a top wall
 - [ ] Address all problems/bugs
 - [ ] Make code good
+	- [ ] rename physical to rigid
+	- [ ] remove position parameter from _create_drag_preview
 
 
 ### Problems/Bugs
@@ -59,7 +61,6 @@
 - [x] Control and Node2D rotation does not match
 	- that's fine - it's not very confusing to the player
 - [x] remove ColorRect from Items
-- [ ] rename physical to rigid
 - [x] cursor knocks other items
 	- [x] disable collision object during drag
 	- [x] address issue of mace containing multiple collision objects meaning only one is disabled
@@ -81,5 +82,4 @@
 - [ ] items in bag are not blocking each other
 - [x] again item preview is not working
 - [ ] hover highlight of bags/items does not match where user wouild want to place it very well
-- [ ] remove position parameter from _create_drag_preview
-- [ ] some items get scaled when placed in inventory (gloves/mace)
+- [x] some items get scaled when placed in inventory (gloves/mace)

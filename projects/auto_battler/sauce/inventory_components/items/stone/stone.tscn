@@ -23,10 +23,6 @@ script = ExtResource("2_ksvvp")
 attack_damage = 5
 display_name = "Stone"
 
-[node name="Sprite" parent="." index="0" unique_id=443896673]
-visible = false
+[node name="Sprite" parent="." index="1" unique_id=433329068]
 material = SubResource("ShaderMaterial_fymi7")
-color = Color(0.70980394, 0, 0, 1)
-
-[node name="Texture" parent="." index="2" unique_id=433329068]
 texture = SubResource("AtlasTexture_q6gea")
