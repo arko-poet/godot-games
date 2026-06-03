@@ -63,7 +63,7 @@
 	- [x] disable collision object during drag
 	- [x] address issue of mace containing multiple collision objects meaning only one is disabled
 - [ ] all items hover highlight is one cell for some reason
-- [ ] some sprites have parts of others that are in the same sheet for some reason (seems it might be related to pixel art being physics simulated)
+- [x] some sprites have parts of others that are in the same sheet for some reason (seems it might be related to pixel art being physics simulated)
 - [x] bag preview not visible when dragging from world
 	- possible problems:
 		- preview is hidden

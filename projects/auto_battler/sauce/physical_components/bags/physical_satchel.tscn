@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_othsq"]
 atlas = ExtResource("2_avjm7")
-region = Rect2(16, 32, 32, 32)
+region = Rect2(32, 48, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vniib"]
 size = Vector2(32, 32)
@@ -15,5 +15,5 @@ size = Vector2(32, 32)
 [node name="Sprite" parent="." index="0" unique_id=1860699754]
 texture = SubResource("AtlasTexture_othsq")
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=1979762532]
+[node name="Collision" parent="." index="1" unique_id=1979762532]
 shape = SubResource("RectangleShape2D_vniib")

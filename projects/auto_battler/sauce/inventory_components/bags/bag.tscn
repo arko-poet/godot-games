@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnl1y"]
 atlas = ExtResource("2_ff8mg")
-region = Rect2(16, 32, 16, 16)
+region = Rect2(32, 48, 16, 16)
 
 [node name="Bag" type="Control" unique_id=106018777]
 z_index = -1

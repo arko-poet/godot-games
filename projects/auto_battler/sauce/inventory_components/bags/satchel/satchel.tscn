@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2cex3"]
 atlas = ExtResource("2_yjtbp")
-region = Rect2(16, 32, 32, 32)
+region = Rect2(32, 48, 32, 32)
 
 [node name="Satchel" unique_id=106018777 instance=ExtResource("1_rrciw")]
 z_index = 0
@@ -14,5 +14,5 @@ mouse_default_cursor_shape = 2
 columns = 2
 rows = 2
 
-[node name="Texture" parent="." index="0" unique_id=26450925]
+[node name="Sprite" parent="." index="0" unique_id=26450925]
 texture = SubResource("AtlasTexture_2cex3")
