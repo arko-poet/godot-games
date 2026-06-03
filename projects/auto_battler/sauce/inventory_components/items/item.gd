@@ -100,7 +100,8 @@ func _animation_helper() -> void:
 
 func _create_drag_preview(preview_position: Vector2) -> Control:
 	var preview_sprite: Control = sprite.duplicate()
-	preview_sprite.position -= preview_position
+	#preview_sprite.position -= preview_position
+	preview_sprite.position = -preview_sprite.size / 2
 	preview_sprite.show()
 	
 	var preview := Control.new()

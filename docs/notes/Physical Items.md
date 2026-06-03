@@ -56,7 +56,8 @@
 - [x] is there a way to make pixel art not look blurry under physics simulation?
 	- not really for rotating objects but couple things to make pixel art look better - use Nerest texture filter and snap vertices/transforms to pixels
 - [ ] items remain hidden if dropped failed (when placed in a Control component that has no valid drop_data funmction)
-- [ ] Control and Node2D rotation does not match
+- [x] Control and Node2D rotation does not match
+	- that's fine - it's not very confusing to the player
 - [x] remove ColorRect from Items
 - [ ] rename physical to rigid
 - [x] cursor knocks other items
@@ -74,7 +75,9 @@
 - [x] item preview is not visible until second drag
 - [x] inventory Control size does not match its visible size
 - [ ] picking up and dropping beef back to the ground outside of inventory removes hp from player
-- [ ] bag preview is not centered (item previews are also not centered)
+- [x] bag preview is not centered (item previews are also not centered)
+	- the easiest solution is to refactor drag offset such that drag preview is always centered on cursor rather then snap to whjere it was clicked on the item
 - [ ] items disappear when placed in the bag
 - [ ] items in bag are not blocking each other
 - [x] again item preview is not working
+- [ ] hover highlight of bags/items does not match where user wouild want to place it very well

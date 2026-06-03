@@ -80,9 +80,11 @@ func _start_dragging() -> void:
 
 func _create_drag_preview(preview_position: Vector2) -> Control:
 	var dup_bag: Bag = duplicate()
-	dup_bag.position = -preview_position
+	#dup_bag.position = -preview_position
+	dup_bag.position = - dup_bag.size / 2
 	dup_bag.rotation = rotation
-	dup_bag.pivot_offset = preview_position
+	#dup_bag.pivot_offset = preview_position
+	dup_bag.pivot_offset = dup_bag.size / 2
 	dup_bag.show()
 
 	var preview := Control.new()
