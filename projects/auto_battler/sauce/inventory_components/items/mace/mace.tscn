@@ -24,15 +24,13 @@ script = ExtResource("2_2l5x4")
 attack_damage = 8
 break_damage = 5
 display_name = "Mace"
+_footprint = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2)])
 
-[node name="Sprite" parent="." index="0" unique_id=443896673]
+[node name="EffectTimer" parent="." index="0" unique_id=632830717]
+wait_time = 2.0
+
+[node name="Sprite" parent="." index="1" unique_id=433329068]
 visible = false
 material = SubResource("ShaderMaterial_6cnot")
 offset_bottom = 46.0
-color = Color(0.28333315, 0.0009975579, 0.5811897, 1)
-
-[node name="EffectTimer" parent="." index="1" unique_id=632830717]
-wait_time = 2.0
-
-[node name="Texture" parent="." index="2" unique_id=433329068]
 texture = SubResource("AtlasTexture_ewh63")

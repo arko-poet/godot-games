@@ -63,7 +63,7 @@
 - [x] cursor knocks other items
 	- [x] disable collision object during drag
 	- [x] address issue of mace containing multiple collision objects meaning only one is disabled
-- [ ] all items hover highlight is one cell for some reason
+- [x] all items hover highlight is one cell for some reason
 - [x] some sprites have parts of others that are in the same sheet for some reason (seems it might be related to pixel art being physics simulated)
 - [x] bag preview not visible when dragging from world
 	- possible problems:
@@ -81,3 +81,4 @@
 - [ ] items in bag are not blocking each other
 - [x] again item preview is not working
 - [ ] hover highlight of bags/items does not match where user wouild want to place it very well
+- [ ] remove position parameter from _create_drag_preview
