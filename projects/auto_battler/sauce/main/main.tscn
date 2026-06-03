@@ -105,7 +105,9 @@ mouse_filter = 1
 scroll_following = true
 scroll_following_visible_characters = true
 
+[connection signal="bag_removed" from="UILayer/UI/Inventory" to="UILayer/UI" method="_on_inventory_component_removed"]
 [connection signal="item_added" from="UILayer/UI/Inventory" to="UILayer/UI/Player" method="_on_inventory_item_added"]
+[connection signal="item_removed" from="UILayer/UI/Inventory" to="UILayer/UI" method="_on_inventory_component_removed"]
 [connection signal="item_removed" from="UILayer/UI/Inventory" to="UILayer/UI/Player" method="_on_inventory_item_removed"]
 [connection signal="item_used" from="UILayer/UI/Inventory" to="UILayer/UI/Combat" method="_on_inventory_item_used"]
 [connection signal="finished" from="UILayer/UI/Combat" to="." method="_on_combat_finished"]

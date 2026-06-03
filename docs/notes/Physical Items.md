@@ -48,6 +48,7 @@
 - [ ] Make code good
 	- [ ] rename physical to rigid
 	- [ ] remove position parameter from _create_drag_preview
+	- [ ] add default ui position constant
 
 
 ### Problems/Bugs
@@ -80,6 +81,9 @@
 	- the easiest solution is to refactor drag offset such that drag preview is always centered on cursor rather then snap to whjere it was clicked on the item
 - [x] items disappear when placed in the bag
 - [ ] items in bag are not blocking each other
+	- [x] items need to be removed back to ui if placed over
+	- [ ] hover highlight should indicate items are being replaced
 - [x] again item preview is not working
 - [ ] hover highlight of bags/items does not match where user wouild want to place it very well
 - [x] some items get scaled when placed in inventory (gloves/mace)
+- [ ] moving bag with items hides items

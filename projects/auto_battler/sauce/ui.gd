@@ -31,3 +31,11 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	
 	ic.hide()
 	ic.physical_item.stop_drag(ic.global_position)
+
+
+func _on_inventory_component_removed(removed_component: InventoryComponent) -> void:
+	removed_component.reparent(self)
+	removed_component.physical_item.position = Vector2(50, 150)
+	removed_component.hide()
+	removed_component.physical_item.switch()
+	

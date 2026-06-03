@@ -229,7 +229,7 @@ func _place_item(item: Item) -> void:
 	
 	for bc in hovered_bonus_cells:
 		assert(item not in bonus_providers[bc.y][bc.x])
-		@warning_ignore("unsafe_cast") # bonus_providers cant be typed properly
+		@warning_ignore("unsafe_cast") # bonus_providers can't be typed properly
 		(bonus_providers[bc.y][bc.x] as Array).append(item)
 	
 	_apply_bonuses(item)
