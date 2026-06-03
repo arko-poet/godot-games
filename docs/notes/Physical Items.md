@@ -53,7 +53,8 @@
 - [ ] sometimes the firection of the impulse does not match where player expects the object to go, its not intuitive
 	- perhaps an average of recent mouse movement would work better than whats now
 - [ ] input is captured on rigidbodies even when dragging control nodes
-- [ ] is there a way to make pixel art not look blurry under physics simulation?
+- [x] is there a way to make pixel art not look blurry under physics simulation?
+	- not really for rotating objects but couple things to make pixel art look better - use Nerest texture filter and snap vertices/transforms to pixels
 - [ ] items remain hidden if dropped failed (when placed in a Control component that has no valid drop_data funmction)
 - [ ] Control and Node2D rotation does not match
 - [x] remove ColorRect from Items
@@ -72,7 +73,8 @@
 			- that's it
 - [x] item preview is not visible until second drag
 - [x] inventory Control size does not match its visible size
-- [ ] picking up and dropping beef back to tyhe ground outside of inventory removes hp from player
+- [ ] picking up and dropping beef back to the ground outside of inventory removes hp from player
 - [ ] bag preview is not centered like item previews
 - [ ] items disappear when placed in the bag
 - [ ] items in bag are not blocking each other
+- [ ] again item preview is not working
