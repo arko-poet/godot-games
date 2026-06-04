@@ -88,4 +88,4 @@
 - [x] hover highlight of bags/items does not match where user would want to place it very well
 - [x] some items get scaled when placed in inventory (gloves/mace)
 - [x] moving bag with items hides items
-- [ ] something weird is going on with fill shader
+- [x] something weird is going on with fill shader

@@ -20,6 +20,6 @@ void fragment() {
 
 	// shade parts of texture above progress
 	if (rotated_uv.y < (1.0 - progress)) {
-		COLOR = vec4(COLOR.rgb, SHADING);
+		COLOR = vec4(COLOR.rgb * SHADING, COLOR.a);
 	}
 }
