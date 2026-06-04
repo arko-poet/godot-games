@@ -116,6 +116,7 @@ func _create_drag_data(drag_preview: Control, preview_position: Vector2) -> Dict
 	return {
 		"inventory_component": self,
 		"offset": preview_position * Transform2D(-rotation, Vector2.ZERO),
-		"cell_held": _get_cell_held(preview_position),
+		#"cell_held": _get_cell_held(preview_position),
+		"cell_held": _get_cell_held(sprite.size / 2),
 		"preview": drag_preview
 	}

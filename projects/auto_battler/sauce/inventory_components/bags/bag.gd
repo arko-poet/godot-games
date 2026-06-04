@@ -11,6 +11,8 @@ var partial_items: Array[Item]
 ## items which are fully contained in the bag with the top left cell they occupy
 var full_items: Dictionary[Item, Vector2i]
 
+@onready var sprite: TextureRect = $Sprite
+
 
 func _ready() -> void:
 	custom_minimum_size = Vector2(columns, rows) * Inventory.CELL_SIZE
@@ -114,7 +116,8 @@ func _create_drag_data(drag_preview: Control, preview_position: Vector2) -> Dict
 		"inventory_component": self,
 		"offset": preview_position * Transform2D(-rotation, Vector2.ZERO),
 		"items": full_items.keys(),
-		"cell_held": _get_cell_held(preview_position),
+		#"cell_held": _get_cell_held(preview_position),
+		"cell_held": _get_cell_held(sprite.size / 2),
 		"preview": drag_preview
 	}
 
