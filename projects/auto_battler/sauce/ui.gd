@@ -3,6 +3,19 @@ extends Control
 @onready var inventory: Inventory = $Inventory
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_DRAG_END:
+		if not get_viewport().gui_is_drag_successful():
+			print("drag failed")
+			# restore item visibility if drag fails
+			for ic in get_children():
+				if ic is InventoryComponent:
+					ic.physical_item.switch()
+			for ic in inventory.get_children():
+				if ic is InventoryComponent:
+					ic.show()
+
+
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
 	return true
 

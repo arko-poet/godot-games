@@ -58,7 +58,13 @@
 - [x] input is captured on rigidbodies even when dragging control nodes
 - [x] is there a way to make pixel art not look blurry under physics simulation?
 	- not really for rotating objects but couple things to make pixel art look better - use Nerest texture filter and snap vertices/transforms to pixels
-- [ ] items remain hidden if dropped failed (when placed in a Control component that has no valid drop_data funmction)
+- [x] items remain hidden if dropped failed (when placed in a Control component that has no valid drop_data funmction)
+	- [x] from inventory it gets hidden
+	- [x] from world it gets hidden
+	- 2 options:
+		- show after failed
+			- this is easiest and works best
+		- move back to ui after failed
 - [x] Control and Node2D rotation does not match
 	- that's fine - it's not very confusing to the player
 - [x] remove ColorRect from Items
@@ -89,3 +95,5 @@
 - [x] some items get scaled when placed in inventory (gloves/mace)
 - [x] moving bag with items hides items
 - [x] something weird is going on with fill shader
+- [ ] there might be some bug with bonus stacking
+- [ ] add click masks

@@ -90,7 +90,6 @@ func _on_combat_finished() -> void:
 	var bag: Bag = BAG_SCENES[1].instantiate()
 	bag.rotated.connect(_on_bag_rotated)
 	ui.add_child(bag)
-	bag.reparent(inventory)
 	bag.position = Vector2(50, 150)
 	var physical_bag: PhysicalComponent = PHYSICAL_BAG_SCENES[1].instantiate()
 	world.add_child(physical_bag)
