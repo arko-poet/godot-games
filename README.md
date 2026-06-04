@@ -2,14 +2,20 @@
 
 A collection of projects I made while learning Godot.
 
-These are not fully finished games, just small playable POCs based on other games. Each one focuses on building most of the core mechanics, along with a gameplay loop and win/lose conditions where it made sense.
+These are not fully finished games, just small playable POCs based on other
+games. Each one focuses on building most of the core mechanics, along with a
+gameplay loop and win/lose conditions where it made sense.
 
 Projects are listed in creation order, oldest first.
 
-## 1. `Clicker` - based on cookie clicker
+## 1. `Clicker` - based on Cookie Clicker
+
 2026-01-28 -> 2026-02-07
-![](docs/screenshots/clicker.png)
+
+![Clicker](docs/screenshots/clicker.png)
+
 ### What I learned
+
 - Animated Buttons
 - Dynamic UI components
 - Animations using Tweening and AnimationPlayer
@@ -24,24 +30,38 @@ Projects are listed in creation order, oldest first.
 - Separating data from game logic
 - Utilising BitMap to create click masks
 - Click-based income loop and passive income timers
-### New Godot Nodes learned
-Node, Control, ColorRect, VBoxContainer, Label, TextureButton, Timer, Sprite2D, AudioStreamPlayer2D, AnimationPlayer, GridContainer, HSeparator, Button, ProgressBar, HBoxContainer, TextureRect
+
+### New Godot Nodes used
+
+Node, Control, ColorRect, VBoxContainer, Label, TextureButton, Timer, Sprite2D,
+AudioStreamPlayer2D, AnimationPlayer, GridContainer, HSeparator, Button, ProgressBar,HBoxContainer,
+TextureRect
 
 ## 2. `Blocks` - based on Tetris
+
 2026-02-07 -> 2026-02-14
-![](docs/screenshots/tetris.png)
+
+![Blocks](docs/screenshots/tetris.png)
+
 ### What I learned
+
 - Grid based game logic
 - Timer-driven movement
 - Using SubViewport to clip VFX to the board area
 - Tracking data across runs with a global singleton script
-### New Godot Nodes learned
+
+### New Godot Nodes used
+
 Node2D, AnimatedSprite2D, SubViewportContainer, SubViewport
 
-## 3. `Satyr vs Zombies` - based on Last Stand
+## 3. `Satyr vs Zombies` - based on The Last Stand
+
 2026-02-14 -> 2026-02-22
-![](docs/screenshots/satyr-vs-zombies.png)
+
+![Satyr vs Zombies](docs/screenshots/satyr-vs-zombies.png)
+
 ### What I learned
+
 - Player movement with viewport clamping and collisions
 - Mouse-aimed combat
 - Utilising sprite sheets to create animations
@@ -55,13 +75,19 @@ Node2D, AnimatedSprite2D, SubViewportContainer, SubViewport
 - Custom mouse cursor
 - Combat SFX integration
 - Utilising TileMapLayer to draw objects
-### New Godot Nodes learned
+
+### New Godot Nodes used
+
 Area2D, CollisionShape2D, StaticBody2D, CharacterBody2D, TileMapLayer, Path2D, PathFollow2D
 
 ## 4. `Tower` - based on Icy Tower
+
 2026-02-22 -> 2026-02-27
-![](docs/screenshots/tower.png)
+
+![Tower](docs/screenshots/tower.png)
+
 ### What I learned
+
 - Parallax Scrolling
 - Procedural platform generation with object pooling
 - Using Scene Groups
@@ -70,17 +96,23 @@ Area2D, CollisionShape2D, StaticBody2D, CharacterBody2D, TileMapLayer, Path2D, P
 - Implementing basic shaders to modify pixel colors
 - Texture smoothing using mipmaps and anisotropic filtering
 - Score persistence
-### New Godot Nodes learned
+
+### New Godot Nodes used
+
 Parallax2D, Camera2D, AudioStreamPlayer
 
 ## 5. `Duck vs Slimes` - based on Vampire Survivors
+
 2026-02-27 -> 2026-03-12
-![](docs/screenshots/survivors.png)
+![Duck vs Slimes](docs/screenshots/survivors.png)
+
 ### What I learned
+
 - item pickups
 - agent pathfinding and avoidance (RVO)
 - knockback
-- attack types: cone sweeps, homing projectiles, orbital projectiles, explosions, damaging ground
+- attack types: cone sweeps, homing projectiles, orbital projectiles,
+  explosions, damaging ground
 - 3 chunk system for horizontal infinity
 - weighted rarity system
 - random upgrade offers
@@ -88,13 +120,19 @@ Parallax2D, Camera2D, AudioStreamPlayer
 - shader based hit flashes
 - particle effects
 - baking navigation meshes
-### New Godot Nodes learned
-PanelContainer, RichTextLabel, NavigationAgent2D, CPUParticles2D, GPUParticles2D, Polygon2D, CanvasLayer, NavigationRegion2D
+
+### New Godot Nodes used
+
+PanelContainer, RichTextLabel, NavigationAgent2D, CPUParticles2D,
+GPUParticles2D, Polygon2D, CanvasLayer, NavigationRegion2D
 
 ## 6. `Cards` - based on Slay the Spire
+
 2026-03-12 -> 2026-04-07
-![](docs/screenshots/cards.png)
+![Cards](docs/screenshots/cards.png)
+
 ### What I learned
+
 - custom Container layout to implement fan shaped hand of cards
 - running code in the editor with @tool
 - turn-based combat
@@ -107,14 +145,28 @@ PanelContainer, RichTextLabel, NavigationAgent2D, CPUParticles2D, GPUParticles2D
 - drag and drop card interactions with hover, tweening, and play validation
 - event-driven combat system with relics that can modify or create combat actions
 - global keyword highlighting with tooltips
-### New Godot Nodes learned
+
+### New Godot Nodes used
+
 Container, Skeleton2D, Bone2D, ScrollContainer, Panel
 
 ## 7. `Auto Battler` - based on Backpack Battles
+
 2026-04-08 -> WIP
-![](docs/screenshots/auto-battler.png)
+<!-- ![Auto Battler](docs/screenshots/auto-battler.png) -->
+
 ### What I learned
-- godot drag and drop api
-- grid inventory system supporting items of various shapes and sizes, item rotations
+
+- Godot drag-and-drop API
+- bag-based grid inventory system
+  - variable inventory size composed of bags
+  - items and bags of various shapes and sizes
+  - item and bag rotations
+  - bonus-cell logic
 - combat log
-### New Godot Nodes learned
+- switching item state between the physics world and inventory grid
+- progress fill shader
+
+### New Godot Nodes used
+
+- RigidBody2D
