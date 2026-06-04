@@ -136,9 +136,6 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 
 	hovered_cells.clear()
 	hovered_bonus_cells.clear()
-	
-	ic.show()
-	queue_redraw()
 
 
 func remove_item(item: Item) -> void:
@@ -233,6 +230,8 @@ func _place_item(item: Item) -> void:
 		(bonus_providers[bc.y][bc.x] as Array).append(item)
 	
 	_apply_bonuses(item)
+	item.show()
+	queue_redraw()
 
 
 func _move_component(component: InventoryComponent) -> void:
@@ -275,6 +274,9 @@ func _place_bag(bag: Bag) -> void:
 			hovered_cells.append(cell + top_left_cell + bag.full_items[item] - min_bag_footprint)
 			
 		_move_component(item)
+	
+	bag.show()
+	queue_redraw()
 
 
 ## remove components present in hovered cells except the specified one (the one dragging)

@@ -87,5 +87,5 @@
 - [x] again item preview is not working
 - [x] hover highlight of bags/items does not match where user would want to place it very well
 - [x] some items get scaled when placed in inventory (gloves/mace)
-- [ ] moving bag with items hides items
+- [x] moving bag with items hides items
 - [ ] something weird is going on with fill shader
