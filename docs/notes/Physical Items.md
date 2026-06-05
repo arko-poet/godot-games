@@ -95,5 +95,13 @@
 - [x] some items get scaled when placed in inventory (gloves/mace)
 - [x] moving bag with items hides items
 - [x] something weird is going on with fill shader
-- [ ] there might be some bug with bonus stacking
+- [x] there might be some bug with bonus stacking
+	- no bug with stucking but another bug was fouind
 - [x] add click masks
+- [ ] items placed in bonus cells do not get bonuses
+- [ ] rotated items have a delayed progress fill
+	- this is completly cursed problem - wasted 1 day on it
+	- so it seems the shazder is applied with a delay to some items, or it is applied to invisible parts around the item
+	- this also seems to be affected by item rotations
+	- it applies certain items more then other - mace is especially affected
+	- I looked into shader stuff a lot but the issue might be with tweens instead need to investigate tomorrow
