@@ -24,6 +24,17 @@ func _ready() -> void:
 	base_cooldown = _effect_timer.wait_time
 
 
+func _has_point(point: Vector2) -> bool:
+	if not sprite.get_rect().has_point(point):
+		return false
+
+	if sprite.texture.get_image().get_pixelv(point).a == 0:
+		return false
+		
+	print(true)
+	return true
+
+
 func start() -> void:
 	#sprite.material.set_shader_parameter("progress", 0.0)
 	_effect_timer.start()

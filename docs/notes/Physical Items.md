@@ -52,7 +52,7 @@
 
 
 ### Problems/Bugs
-- [ ] the rigid body release impulse can be applied multiple times which make objects exceed speed limit
+- [x] the rigid body release impulse can be applied multiple times which make objects exceed speed limit
 - [ ] sometimes the firection of the impulse does not match where player expects the object to go, its not intuitive
 	- perhaps an average of recent mouse movement would work better than whats now
 - [x] input is captured on rigidbodies even when dragging control nodes
@@ -96,4 +96,4 @@
 - [x] moving bag with items hides items
 - [x] something weird is going on with fill shader
 - [ ] there might be some bug with bonus stacking
-- [ ] add click masks
+- [x] add click masks
