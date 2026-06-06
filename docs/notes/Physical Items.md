@@ -99,9 +99,11 @@
 	- no bug with stucking but another bug was fouind
 - [x] add click masks
 - [ ] items placed in bonus cells do not get bonuses
-- [ ] rotated items have a delayed progress fill
+- [x] rotated items have a delayed progress fill
 	- this is completly cursed problem - wasted 1 day on it
 	- so it seems the shazder is applied with a delay to some items, or it is applied to invisible parts around the item
 	- this also seems to be affected by item rotations
 	- it applies certain items more then other - mace is especially affected
 	- I looked into shader stuff a lot but the issue might be with tweens instead need to investigate tomorrow
+	- this was so cursed - the issue is that the shader UV corresponds to entire atlas texture rather then a selected region
+- [ ] you can replace bags such that items remain in a floating state

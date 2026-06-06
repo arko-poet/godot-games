@@ -17,6 +17,14 @@ var cdr := 0.0
 @onready var _effect_timer: Timer = $EffectTimer
 
 
+# just some testing code to debug shaders
+#func _process(delta: float) -> void:
+	#if get_parent() is Inventory:
+		#var calculated_progress = 1.0 - ($EffectTimer.time_left / $EffectTimer.wait_time)
+		#print("Timer: %.2f/%d | Progress: %.2f" % [$EffectTimer.time_left, $EffectTimer.wait_time, calculated_progress])
+	#sprite.material.set_shader_parameter("progress", (1.0 - $EffectTimer.time_left / $EffectTimer.wait_time))
+
+
 func _ready() -> void:
 	for f in _footprint:
 		footprint.append(f)
