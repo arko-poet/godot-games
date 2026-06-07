@@ -160,6 +160,8 @@ func remove_bag(bag: Bag) -> void:
 	
 	for item in bag.full_items:
 		remove_item(item)
+	for item in bag.partial_items:
+		remove_item(item)
 	bag.clear_items()
 	bag.z_index = 0
 	bag_removed.emit(bag)
