@@ -44,7 +44,7 @@
 	- [x] items
 	- [x] bags
 - [x] Make walls longer and add a top wall
-- [ ] Address all problems/bugs
+- [x] Address all problems/bugs
 - [ ] Make code good
 	- [ ] rename physical to rigid
 	- [ ] remove position parameter from _create_drag_preview
@@ -53,7 +53,7 @@
 
 ### Problems/Bugs
 - [x] the rigid body release impulse can be applied multiple times which make objects exceed speed limit
-- [ ] sometimes the firection of the impulse does not match where player expects the object to go, its not intuitive
+- [x] sometimes the firection of the impulse does not match where player expects the object to go, its not intuitive
 	- perhaps an average of recent mouse movement would work better than whats now
 - [x] input is captured on rigidbodies even when dragging control nodes
 - [x] is there a way to make pixel art not look blurry under physics simulation?
