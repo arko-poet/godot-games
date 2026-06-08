@@ -48,7 +48,16 @@
 - [ ] Make code good
 	- [ ] rename physical to rigid
 	- [ ] remove position parameter from _create_drag_preview
-	- [ ] add default ui position constant
+	- [x] add default ui position constant
+	- [ ] fix bag
+	- [ ] clear code:
+		- [x] main.gd
+		- [ ] inventory.gd
+		- [ ] bag.gd
+		- [ ] item.gd
+		- [ ] inventory_component.gd
+		- [ ] physical_component.gd
+		- [ ] ui.gd
 
 
 ### Problems/Bugs

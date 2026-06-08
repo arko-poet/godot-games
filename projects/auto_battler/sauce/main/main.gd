@@ -1,5 +1,6 @@
 extends Node
 
+const COMPONENT_SPAW_POSITION := Vector2(50, 150)
 # note ITEM_SCENES and PHYSICAL_ITEM_SCENES must follow same order
 const ITEM_SCENES: Array[PackedScene] = [
 	preload("res://sauce/inventory_components/items/stone/stone.tscn"),
@@ -43,8 +44,10 @@ func _ready() -> void:
 	Input.set_custom_mouse_cursor(DRAG_CURSOR, Input.CURSOR_FORBIDDEN)
 	Input.set_custom_mouse_cursor(HOVER_CURSOR, Input.CURSOR_POINTING_HAND)
 
-	_on_combat_finished() # CAUTION remove this once debugging finished
 	LogManager.combat_log = combat_log
+	
+	_test_add_all_items()
+	#_add_starter_items()
 
 
 func _input(event: InputEvent) -> void:
@@ -67,37 +70,14 @@ func _on_player_died() -> void:
 
 
 func _on_combat_finished() -> void:
-	# WARNING dont remove this (production)
-	#var item_index := randi() % ITEM_SCENES.size()
-	#var item := ITEM_SCENES[item_index].instantiate() 
-	#var physical_item := PHYSICAL_ITEM_SCENES[item_index]
-	
-	# TEST item
-	for i in ITEM_SCENES.size():
-		var item: Item = ITEM_SCENES[i].instantiate()
-		item.rotated.connect(_on_item_rotated)
-		ui.add_child(item)
-		var physical_item: PhysicalComponent = PHYSICAL_ITEM_SCENES[i].instantiate()
-		world.add_child(physical_item)
-		item.physical_item = physical_item
-		item.hide()
-		physical_item.inventory_component = item
-		physical_item.position = Vector2(50, 150)
-		item.position = Vector2(50, 150)
-	
-	
-	# TEST bag
-	var bag: Bag = BAG_SCENES[1].instantiate()
-	bag.rotated.connect(_on_bag_rotated)
-	ui.add_child(bag)
-	bag.position = Vector2(50, 150)
-	var physical_bag: PhysicalComponent = PHYSICAL_BAG_SCENES[1].instantiate()
-	world.add_child(physical_bag)
-	bag.physical_item = physical_bag
-	bag.hide()
-	physical_bag.inventory_component = bag
-	physical_bag.position = Vector2(50, 150)
-	bag.position = Vector2(50, 150)
+	# reward with new item
+	var scene_index: int
+	var is_bag := randf() < 0.5
+	if is_bag:
+		scene_index = randi() % BAG_SCENES.size()
+	else:
+		scene_index = randi() % ITEM_SCENES.size()
+	_add_new_component(scene_index, is_bag)
 
 
 func _on_item_rotated() -> void:
@@ -110,3 +90,41 @@ func _on_bag_rotated() -> void:
 
 func _on_combat_started(_combat_number: int) -> void:
 	combat_log.clear()
+
+
+func _test_add_all_items() -> void:
+	for i in ITEM_SCENES.size():
+		_add_new_component(i)
+
+
+	for i in BAG_SCENES.size():
+		_add_new_component(i, true)
+
+
+func _add_starter_items() -> void:
+	_add_new_component(3)
+	_add_new_component(1, true)
+
+
+## creates and adds item or bag to the game
+func _add_new_component(scene_index: int, is_bag: bool = false) -> void:
+	var inventory_component: InventoryComponent
+	var rigid_component: PhysicalComponent
+	if is_bag:
+		inventory_component = BAG_SCENES[scene_index].instantiate()
+		rigid_component = PHYSICAL_BAG_SCENES[scene_index].instantiate()
+	else:
+		inventory_component = ITEM_SCENES[scene_index].instantiate() 
+		rigid_component = PHYSICAL_ITEM_SCENES[scene_index].instantiate()
+		
+	ui.add_child(inventory_component)
+	world.add_child(rigid_component)
+	
+	inventory_component.rotated.connect(_on_item_rotated)
+	inventory_component.hide()
+	
+	inventory_component.physical_item = rigid_component
+	rigid_component.inventory_component = inventory_component
+	
+	rigid_component.position = COMPONENT_SPAW_POSITION
+	inventory_component.position = COMPONENT_SPAW_POSITION
