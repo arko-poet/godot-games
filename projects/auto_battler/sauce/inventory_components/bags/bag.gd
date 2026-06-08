@@ -80,7 +80,7 @@ func start_dragging() -> void:
 		item.hide()
 
 
-func _create_drag_preview(preview_position: Vector2) -> Control:
+func _create_drag_preview(_preview_position: Vector2) -> Control:
 	var dup_bag: Bag = duplicate()
 	#dup_bag.position = -preview_position
 	dup_bag.position = - dup_bag.size / 2

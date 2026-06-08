@@ -46,8 +46,8 @@ func _ready() -> void:
 
 	LogManager.combat_log = combat_log
 	
-	_test_add_all_items()
-	#_add_starter_items()
+	#_test_add_all_items()
+	_add_starter_items()
 
 
 func _input(event: InputEvent) -> void:

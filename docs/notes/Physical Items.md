@@ -47,7 +47,7 @@
 - [x] Address all problems/bugs
 - [x] Make code good
 	- [x] rename physical to rigid
-	- [ ] remove position parameter from _create_drag_preview
+	- [x] remove position parameter from _create_drag_preview
 	- [x] add default ui position constant
 	- [x] fix bag
 	- [x] clear code:
