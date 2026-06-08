@@ -19,8 +19,7 @@ func _notification(what: int) -> void:
 		rotation_counter = 0
 		
 		#_show_component()
-#
-#
+
 #func _show_component() -> void:
 	#show()
 
@@ -43,6 +42,16 @@ func rotate() -> void:
 	rotated.emit()
 
 
+func start_dragging() -> void:
+	var lmp := get_local_mouse_position()
+	var preview: Control = _create_drag_preview(lmp)
+	var data: Dictionary = _create_drag_data(preview, lmp)
+	
+	force_drag.call_deferred(data, preview)
+	
+	hide()
+
+
 func _unrotate() -> void:
 	while rotation_counter > 0:
 		rotation_counter -= 1
@@ -60,26 +69,11 @@ func _on_gui_input(event: InputEvent) -> void:
 			return
 		assert(mb.pressed)
 
-		_start_dragging()
+		start_dragging()
 		
 		
 func _should_not_start_dragging(event: InputEventMouseButton) -> bool:
 	return event.button_index != MOUSE_BUTTON_LEFT
-	
-
-func test_drag(p_position: Vector2) -> void:
-	global_position = p_position
-	_start_dragging()
-
-
-func _start_dragging() -> void:
-	var lmp := get_local_mouse_position()
-	var preview: Control = _create_drag_preview(lmp)
-	var data: Dictionary = _create_drag_data(preview, lmp)
-	
-	force_drag.call_deferred(data, preview)
-	
-	hide()
 
 
 @abstract func _create_drag_preview(preview_position: Vector2) -> Control

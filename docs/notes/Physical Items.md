@@ -45,19 +45,19 @@
 	- [x] bags
 - [x] Make walls longer and add a top wall
 - [x] Address all problems/bugs
-- [ ] Make code good
-	- [ ] rename physical to rigid
+- [x] Make code good
+	- [x] rename physical to rigid
 	- [ ] remove position parameter from _create_drag_preview
 	- [x] add default ui position constant
-	- [ ] fix bag
-	- [ ] clear code:
+	- [x] fix bag
+	- [x] clear code:
 		- [x] main.gd
-		- [ ] inventory.gd
-		- [ ] bag.gd
-		- [ ] item.gd
-		- [ ] inventory_component.gd
-		- [ ] physical_component.gd
-		- [ ] ui.gd
+		- [x] inventory.gd
+		- [x] bag.gd
+		- [x] item.gd
+		- [x] inventory_component.gd
+		- [x] physical_component.gd
+		- [x] ui.gd
 
 
 ### Problems/Bugs

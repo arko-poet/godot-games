@@ -24,7 +24,7 @@ func _process(delta) -> void:
 	if is_dragging:
 		global_position = get_global_mouse_position() + drag_offset
 		
-		#for release impulse calculation
+		# for release impulse calculation
 		if recent_mouse_positions.size() == MAX_VELOCITIES_STORED:
 			recent_mouse_positions.pop_front()
 			recent_deltas.pop_front()
@@ -43,7 +43,8 @@ func _process(delta) -> void:
 func start_drag() -> void:
 	switch(false)
 
-	inventory_component.test_drag(global_position)
+	inventory_component.position = global_position
+	inventory_component.start_dragging()
 
 	drag_offset = global_position - get_global_mouse_position()
 

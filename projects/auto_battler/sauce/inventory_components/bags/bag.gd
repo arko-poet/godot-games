@@ -74,8 +74,8 @@ func _should_not_start_dragging(event: InputEventMouseButton) -> bool:
 	return event.button_index != MOUSE_BUTTON_LEFT or not partial_items.is_empty()
 
 
-func _start_dragging() -> void:
-	super._start_dragging()
+func start_dragging() -> void:
+	super.start_dragging()
 	for item in full_items:
 		item.hide()
 

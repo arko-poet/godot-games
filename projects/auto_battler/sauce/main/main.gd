@@ -1,4 +1,4 @@
-extends Node
+class_name Main extends Node
 
 const COMPONENT_SPAW_POSITION := Vector2(50, 150)
 # note ITEM_SCENES and PHYSICAL_ITEM_SCENES must follow same order
