@@ -1,4 +1,4 @@
-class_name PhysicalComponent extends RigidBody2D
+class_name RigidComponent extends RigidBody2D
 
 const MAX_VELOCITIES_STORED := 10
 

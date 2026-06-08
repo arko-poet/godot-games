@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d3yvaxgqpg77d"]
 
-[ext_resource type="PackedScene" uid="uid://c28elmy4twm0i" path="res://sauce/physical_components/physical_component.tscn" id="1_8vkcd"]
+[ext_resource type="PackedScene" uid="uid://c28elmy4twm0i" path="res://sauce/rigid_components/rigid_component.tscn" id="1_8vkcd"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6cnot"]
 load_path = "res://.godot/imported/weapon-sheet.png-3ec02643a5a9daccbe3df160e9bd461b.ctex"
@@ -9,7 +9,15 @@ load_path = "res://.godot/imported/weapon-sheet.png-3ec02643a5a9daccbe3df160e9bd
 atlas = SubResource("CompressedTexture2D_6cnot")
 region = Rect2(16, 0, 16, 16)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ynhr5"]
+resource_local_to_scene = true
+radius = 8.0
+height = 16.0
+
 [node name="PhysicalBeef" unique_id=1401034818 instance=ExtResource("1_8vkcd")]
 
 [node name="Sprite" parent="." index="0" unique_id=1860699754]
 texture = SubResource("AtlasTexture_uc2dr")
+
+[node name="Collision" parent="." index="1" unique_id=1979762532]
+shape = SubResource("CapsuleShape2D_ynhr5")

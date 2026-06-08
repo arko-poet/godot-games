@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://vc1f2ypp7woh"]
 
-[ext_resource type="PackedScene" uid="uid://c28elmy4twm0i" path="res://sauce/physical_components/physical_component.tscn" id="1_2psuv"]
-[ext_resource type="Texture2D" uid="uid://csaxhtsjlb0gt" path="res://assets/items/weapon-sheet.png" id="2_x0v48"]
+[ext_resource type="PackedScene" uid="uid://c28elmy4twm0i" path="res://sauce/rigid_components/rigid_component.tscn" id="1_1ibth"]
+[ext_resource type="Texture2D" uid="uid://csaxhtsjlb0gt" path="res://assets/items/weapon-sheet.png" id="2_p1d2l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uhiou"]
-atlas = ExtResource("2_x0v48")
+atlas = ExtResource("2_p1d2l")
 region = Rect2(32, 48, 32, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hj4xa"]
 size = Vector2(32, 48)
 
-[node name="PhysicalKnapsack" unique_id=1401034818 instance=ExtResource("1_2psuv")]
+[node name="PhysicalKnapsack" unique_id=1401034818 instance=ExtResource("1_1ibth")]
 
 [node name="Sprite" parent="." index="0" unique_id=1860699754]
 texture = SubResource("AtlasTexture_uhiou")

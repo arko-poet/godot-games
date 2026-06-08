@@ -10,15 +10,15 @@ const ITEM_SCENES: Array[PackedScene] = [
 	preload("res://sauce/inventory_components/items/gloves/gloves.tscn")
 ]
 const PHYSICAL_ITEM_SCENES: Array[PackedScene] = [
-	preload("res://sauce/physical_components/items/physical_stone.tscn"),
-	preload("res://sauce/physical_components/items/physical_flower.tscn"),
-	preload("res://sauce/physical_components/items/physical_beef.tscn"),
-	preload("res://sauce/physical_components/items/physical_mace.tscn"),
-	preload("res://sauce/physical_components/items/physical_gloves.tscn"),
+	preload("res://sauce/rigid_components/items/rigid_stone.tscn"),
+	preload("res://sauce/rigid_components/items/rigid_flower.tscn"),
+	preload("res://sauce/rigid_components/items/rigid_beef.tscn"),
+	preload("res://sauce/rigid_components/items/rigid_mace.tscn"),
+	preload("res://sauce/rigid_components/items/rigid_gloves.tscn"),
 ]
 const PHYSICAL_BAG_SCENES: Array[PackedScene] = [
-	preload("res://sauce/physical_components/bags/physical_satchel.tscn"),
-	preload("res://sauce/physical_components/bags/physical_knapsack.tscn")
+	preload("res://sauce/rigid_components/bags/rigid_satchel.tscn"),
+	preload("res://sauce/rigid_components/bags/rigid_knapsack.tscn")
 ]
 const BAG_SCENES: Array[PackedScene] = [
 	preload("res://sauce/inventory_components/bags/satchel/satchel.tscn"),
@@ -109,7 +109,7 @@ func _add_starter_items() -> void:
 ## creates and adds item or bag to the game
 func _add_new_component(scene_index: int, is_bag: bool = false) -> void:
 	var inventory_component: InventoryComponent
-	var rigid_component: PhysicalComponent
+	var rigid_component: RigidComponent
 	if is_bag:
 		inventory_component = BAG_SCENES[scene_index].instantiate()
 		rigid_component = PHYSICAL_BAG_SCENES[scene_index].instantiate()
