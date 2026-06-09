@@ -46,7 +46,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 
 func _on_inventory_component_removed(removed_component: InventoryComponent) -> void:
 	removed_component.reparent(self)
-	removed_component.physical_item.position = Main.COMPONENT_SPAW_POSITION
+	removed_component.physical_item.position = Main.COMPONENT_SPAWN_POSITION
 	removed_component.hide()
 	removed_component.physical_item.switch()
 	

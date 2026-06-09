@@ -1,6 +1,6 @@
 class_name Main extends Node
 
-const COMPONENT_SPAW_POSITION := Vector2(50, 150)
+const COMPONENT_SPAWN_POSITION := Vector2(50, 150)
 # note ITEM_SCENES and PHYSICAL_ITEM_SCENES must follow same order
 const ITEM_SCENES: Array[PackedScene] = [
 	preload("res://sauce/inventory_components/items/stone/stone.tscn"),
@@ -126,5 +126,5 @@ func _add_new_component(scene_index: int, is_bag: bool = false) -> void:
 	inventory_component.physical_item = rigid_component
 	rigid_component.inventory_component = inventory_component
 	
-	rigid_component.position = COMPONENT_SPAW_POSITION
-	inventory_component.position = COMPONENT_SPAW_POSITION
+	rigid_component.position = COMPONENT_SPAWN_POSITION
+	inventory_component.position = COMPONENT_SPAWN_POSITION
