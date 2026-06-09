@@ -40,6 +40,12 @@ const HOVER_CURSOR := preload(
 @onready var combat_log: RichTextLabel = $UILayer/UI/CombatLog
 #@onready var item_box: Control = $UILayer/UI/ItemBox
 @onready var world: Node2D = $World
+@onready var level_label: Label = $UILayer/UI/LevelLabel
+
+var level := 1:
+	set(value):
+		level = value
+		level_label.text = "Level: %s" % level
 
 
 func _ready() -> void:
@@ -74,6 +80,8 @@ func _on_player_died() -> void:
 
 
 func _on_combat_finished() -> void:
+	level += 1
+	
 	# reward with new item
 	var scene_index: int
 	var is_bag := randf() < 0.5

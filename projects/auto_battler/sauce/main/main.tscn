@@ -105,6 +105,14 @@ mouse_filter = 1
 scroll_following = true
 scroll_following_visible_characters = true
 
+[node name="LevelLabel" type="Label" parent="UILayer/UI" unique_id=970737667]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 8.0
+offset_right = 152.0
+offset_bottom = 21.0
+text = "Level: 1"
+
 [connection signal="bag_removed" from="UILayer/UI/Inventory" to="UILayer/UI" method="_on_inventory_component_removed"]
 [connection signal="item_added" from="UILayer/UI/Inventory" to="UILayer/UI/Player" method="_on_inventory_item_added"]
 [connection signal="item_removed" from="UILayer/UI/Inventory" to="UILayer/UI" method="_on_inventory_component_removed"]

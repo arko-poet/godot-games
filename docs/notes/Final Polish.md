@@ -1,5 +1,11 @@
 Last finishes for the project
-- add more bag types
-	- 1 cell size
-	- 3 cell long 1 cell wide
-- make the game look not bad
+- [x] add more bag types
+	- [x] 1x1 size
+	- [x] 1x3 size
+- [ ] make the game look not bad
+	- [ ] add sprite for character
+	- [ ] add sprite for enemy
+	- [ ] add some background
+	- [ ] add background to combat log
+	- [x] make hover highlight transparent
+- [x] add combat counter
