@@ -12,7 +12,7 @@ const BORDER_COLOR := Color(0.35, 0.38, 0.44, 0.25)
 const BG_COLOR := Color(0.15, 0.17, 0.2, 0.25)
 const CAN_DROP_BG_COLOR := Color(0.0, 0.608, 0.0, 0.5)
 const CANT_DROP_BG_COLOR := Color(0.69, 0.0, 0.0, 0.5)
-const BONUS_BG_COLOR := Color.GOLD
+const BONUS_BG_COLOR := Color(1.0, 0.816, 0.0, 0.494)
 
 ## Array[Array[Item]] Item if cell occupied, null otherwise
 var item_grid: Array[Array] = [] 
