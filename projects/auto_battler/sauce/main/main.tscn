@@ -16,6 +16,9 @@ size = Vector2(361, 23.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5t0sr"]
 size = Vector2(365, 20)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5t0sr"]
+bg_color = Color(0.15, 0.17, 0.2, 0.25)
+
 [node name="Main" type="Node" unique_id=438263722]
 script = ExtResource("1_f2htl")
 metadata/_edit_horizontal_guides_ = [104.0]
@@ -102,6 +105,7 @@ offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_5t0sr")
 scroll_following = true
 scroll_following_visible_characters = true
 

@@ -6,6 +6,7 @@ Last finishes for the project
 	- [ ] add sprite for character
 	- [ ] add sprite for enemy
 	- [ ] add some background
-	- [ ] add background to combat log
+	- [x] add background to combat log
 	- [x] make hover highlight transparent
 - [x] add combat counter
+- [ ] remove print statements
