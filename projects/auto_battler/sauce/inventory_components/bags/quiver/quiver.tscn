@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://5uedbugj8exs"]
+
+[ext_resource type="PackedScene" uid="uid://yh5u66bvma21" path="res://sauce/inventory_components/bags/bag.tscn" id="1_k6ftv"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5thiv"]
+load_path = "res://.godot/imported/weapon-sheet.png-3ec02643a5a9daccbe3df160e9bd461b.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo36d"]
+atlas = SubResource("CompressedTexture2D_5thiv")
+region = Rect2(32, 48, 16, 48)
+
+[node name="Quiver" unique_id=106018777 instance=ExtResource("1_k6ftv")]
+custom_minimum_size = Vector2(16, 48)
+rows = 3
+
+[node name="Sprite" parent="." index="0" unique_id=26450925]
+texture = SubResource("AtlasTexture_yo36d")

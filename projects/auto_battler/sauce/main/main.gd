@@ -18,11 +18,15 @@ const PHYSICAL_ITEM_SCENES: Array[PackedScene] = [
 ]
 const PHYSICAL_BAG_SCENES: Array[PackedScene] = [
 	preload("res://sauce/rigid_components/bags/rigid_satchel.tscn"),
-	preload("res://sauce/rigid_components/bags/rigid_knapsack.tscn")
+	preload("res://sauce/rigid_components/bags/rigid_knapsack.tscn"),
+	preload("res://sauce/rigid_components/bags/rigid_pocket.tscn"),
+	preload("res://sauce/rigid_components/bags/rigid_quiver.tscn")
 ]
 const BAG_SCENES: Array[PackedScene] = [
 	preload("res://sauce/inventory_components/bags/satchel/satchel.tscn"),
-	preload("res://sauce/inventory_components/bags/knapsack/knapsack.tscn")
+	preload("res://sauce/inventory_components/bags/knapsack/knapsack.tscn"),
+	preload("res://sauce/inventory_components/bags/pocket/pocket.tscn"),
+	preload("res://sauce/inventory_components/bags/quiver/quiver.tscn")
 ]
 const DRAG_CURSOR := preload(
 	"res://assets/kenney_cursor-pack/PNG/Outline/Default/hand_closed.png"

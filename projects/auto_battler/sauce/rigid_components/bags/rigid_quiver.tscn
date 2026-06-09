@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cffl7uffy0u7f"]
+
+[ext_resource type="PackedScene" uid="uid://c28elmy4twm0i" path="res://sauce/rigid_components/rigid_component.tscn" id="1_2dsac"]
+[ext_resource type="Texture2D" uid="uid://csaxhtsjlb0gt" path="res://assets/items/weapon-sheet.png" id="2_1futl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pk8y"]
+atlas = ExtResource("2_1futl")
+region = Rect2(32, 48, 16, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmurk"]
+size = Vector2(16, 48)
+
+[node name="RigidQuiver" unique_id=1401034818 instance=ExtResource("1_2dsac")]
+
+[node name="Sprite" parent="." index="0" unique_id=1860699754]
+texture = SubResource("AtlasTexture_4pk8y")
+
+[node name="Collision" parent="." index="1" unique_id=1979762532]
+shape = SubResource("RectangleShape2D_bmurk")
