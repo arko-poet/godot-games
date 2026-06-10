@@ -39,7 +39,6 @@ func _has_point(point: Vector2) -> bool:
 	if sprite.texture.get_image().get_pixelv(point).a == 0:
 		return false
 		
-	print(true)
 	return true
 
 

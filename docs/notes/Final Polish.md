@@ -7,6 +7,8 @@ Last finishes for the project
 	- [ ] add sprite for enemy
 	- [ ] add some background
 	- [x] add background to combat log
-	- [x] make hover highlight transparent
+	- [x] make bonus hover highlight transparent
 - [x] add combat counter
-- [ ] remove print statements
+- [x] remove print statements
+- [ ] add tooltips to all inventory and rigid components
+- [ ] try centering the combat log
