@@ -7,6 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://tnft4nng5yf3" path="res://sauce/character/player/player.tscn" id="5_5t0sr"]
 [ext_resource type="PackedScene" uid="uid://lcvfg2c6lxj8" path="res://sauce/character/enemy/enemy.tscn" id="6_qdlrn"]
 
+[sub_resource type="Gradient" id="Gradient_5t0sr"]
+offsets = PackedFloat32Array(0, 0.20476191, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.20392157, 0.20392157, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qdlrn"]
+gradient = SubResource("Gradient_5t0sr")
+width = 320
+height = 180
+fill_from = Vector2(0.22627737, 0.6358475)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dma7"]
 size = Vector2(21, 460)
 
@@ -24,6 +34,11 @@ script = ExtResource("1_f2htl")
 metadata/_edit_horizontal_guides_ = [104.0]
 
 [node name="World" type="Node2D" parent="." unique_id=212984185]
+
+[node name="Background" type="Sprite2D" parent="World" unique_id=864782267]
+position = Vector2(159.99998, 90.00001)
+scale = Vector2(4.9999995, 2.8125)
+texture = SubResource("GradientTexture2D_qdlrn")
 
 [node name="Walls" type="StaticBody2D" parent="World" unique_id=2014232484]
 collision_mask = 0

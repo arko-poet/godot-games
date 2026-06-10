@@ -5,10 +5,11 @@ Last finishes for the project
 - [ ] make the game look not bad
 	- [ ] add sprite for character
 	- [ ] add sprite for enemy
-	- [ ] add some background
+	- [x] add some background
 	- [x] add background to combat log
 	- [x] make bonus hover highlight transparent
 - [x] add combat counter
 - [x] remove print statements
 - [ ] add tooltips to all inventory and rigid components
-- [ ] try centering the combat log
+- [x] try centering the combat log
+	- doesnt look good
