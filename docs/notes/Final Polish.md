@@ -10,6 +10,6 @@ Last finishes for the project
 	- [x] make bonus hover highlight transparent
 - [x] add combat counter
 - [x] remove print statements
-- [ ] add tooltips to all inventory and rigid components
+- [x] add tooltips to all inventory and rigid components
 - [x] try centering the combat log
 	- doesnt look good
