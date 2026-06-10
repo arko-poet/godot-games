@@ -18,7 +18,7 @@ atlas = SubResource("CompressedTexture2D_6cnot")
 region = Rect2(16, 16, 16, 16)
 
 [node name="Stone" unique_id=544253172 instance=ExtResource("1_hjup5")]
-tooltip_text = "Stone"
+tooltip_text = "Stone: deals damage"
 script = ExtResource("2_ksvvp")
 attack_damage = 5
 display_name = "Stone"
