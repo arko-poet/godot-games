@@ -13,4 +13,4 @@ Last finishes for the project
 - [x] add tooltips to all inventory and rigid components
 - [x] try centering the combat log
 	- doesnt look good
-- do some balancing on how much bag vs items to get
+- [x] do some balancing on how much bag vs items to get

@@ -56,8 +56,8 @@ func _ready() -> void:
 
 	LogManager.combat_log = combat_log
 	
-	_test_add_all_items()
-	#_add_starter_items()
+	#_test_add_all_items()
+	_add_starter_items()
 
 
 func _input(event: InputEvent) -> void:
@@ -84,7 +84,7 @@ func _on_combat_finished() -> void:
 	
 	# reward with new item
 	var scene_index: int
-	var is_bag := randf() < 0.5
+	var is_bag := randf() < 0.25
 	if is_bag:
 		scene_index = randi() % BAG_SCENES.size()
 	else:
