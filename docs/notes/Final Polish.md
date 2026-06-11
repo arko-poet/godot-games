@@ -2,9 +2,9 @@ Last finishes for the project
 - [x] add more bag types
 	- [x] 1x1 size
 	- [x] 1x3 size
-- [ ] make the game look not bad
-	- [ ] add sprite for character
-	- [ ] add sprite for enemy
+- [x] make the game look not bad
+	- [x] add sprite for character
+	- [x] add sprite for enemy
 	- [x] add some background
 	- [x] add background to combat log
 	- [x] make bonus hover highlight transparent
@@ -13,3 +13,4 @@ Last finishes for the project
 - [x] add tooltips to all inventory and rigid components
 - [x] try centering the combat log
 	- doesnt look good
+- do some balancing on how much bag vs items to get

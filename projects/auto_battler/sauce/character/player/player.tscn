@@ -2,7 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://chs2sw3ug0bth" path="res://sauce/character/character.tscn" id="1_q2gr1"]
 [ext_resource type="Script" uid="uid://dgitwn0beaqnw" path="res://sauce/character/player/player.gd" id="2_bfhdk"]
+[ext_resource type="Texture2D" uid="uid://dyt4th0bm3kro" path="res://assets/items/priest.png" id="3_ejd2u"]
 
 [node name="Player" unique_id=1945052062 instance=ExtResource("1_q2gr1")]
 script = ExtResource("2_bfhdk")
-max_hp = 0
+
+[node name="Sprite" parent="." index="1" unique_id=1898117454]
+texture = ExtResource("3_ejd2u")
