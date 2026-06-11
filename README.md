@@ -153,7 +153,7 @@ Container, Skeleton2D, Bone2D, ScrollContainer, Panel
 ## 7. `Auto Battler` - based on Backpack Battles
 
 2026-04-08 -> WIP
-<!-- ![Auto Battler](docs/screenshots/auto-battler.png) -->
+![Auto Battler](docs/screenshots/auto-battler.png)
 
 ### What I learned
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyt4th0bm3kro"
-path="res://.godot/imported/priest.png-3cbb41a1452b88753553d673eaba91f2.ctex"
+uid="uid://csaxhtsjlb0gt"
+path="res://.godot/imported/weapon-sheet.png-73c320486bb5b8e66bad45f6a6e5e2ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/priest.png"
-dest_files=["res://.godot/imported/priest.png-3cbb41a1452b88753553d673eaba91f2.ctex"]
+source_file="res://assets/arko/weapon-sheet.png"
+dest_files=["res://.godot/imported/weapon-sheet.png-73c320486bb5b8e66bad45f6a6e5e2ec.ctex"]
 
 [params]
 

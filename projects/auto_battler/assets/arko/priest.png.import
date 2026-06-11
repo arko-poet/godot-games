@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dekryrwvp1wyq"
-path="res://.godot/imported/demon.png-bb35543cd6f2ce00b649350a7c5492b1.ctex"
+uid="uid://dyt4th0bm3kro"
+path="res://.godot/imported/priest.png-eaf19989f9a889ba2493b684fba1566c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/demon.png"
-dest_files=["res://.godot/imported/demon.png-bb35543cd6f2ce00b649350a7c5492b1.ctex"]
+source_file="res://assets/arko/priest.png"
+dest_files=["res://.godot/imported/priest.png-eaf19989f9a889ba2493b684fba1566c.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ble5mhtlkghxc"]
 
 [ext_resource type="PackedScene" uid="uid://yh5u66bvma21" path="res://sauce/inventory_components/bags/bag.tscn" id="1_bj26i"]
-[ext_resource type="Texture2D" uid="uid://csaxhtsjlb0gt" path="res://assets/items/weapon-sheet.png" id="2_lyyls"]
+[ext_resource type="Texture2D" uid="uid://csaxhtsjlb0gt" path="res://assets/arko/weapon-sheet.png" id="2_lyyls"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjyvw"]
 atlas = ExtResource("2_lyyls")
