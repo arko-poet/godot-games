@@ -152,7 +152,7 @@ Container, Skeleton2D, Bone2D, ScrollContainer, Panel
 
 ## 7. `Auto Battler` - based on Backpack Battles
 
-2026-04-08 -> WIP
+2026-04-08 -> 2026-06-11
 ![Auto Battler](docs/screenshots/auto-battler.png)
 
 ### What I learned
@@ -170,3 +170,5 @@ Container, Skeleton2D, Bone2D, ScrollContainer, Panel
 ### New Godot Nodes used
 
 - RigidBody2D
+
+## 8. `Automation` - based on Factorio
