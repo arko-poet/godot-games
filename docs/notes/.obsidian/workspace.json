@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Final Polish.md",
+                "file": "Automation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Final Polish"
+              "title": "Automation"
             }
           }
         ]
@@ -183,12 +183,13 @@
       "bases:Create new base": false
     }
   },
-  "active": "4765b652915dbca3",
+  "active": "bbfaff9a52950292",
   "lastOpenFiles": [
     "Projects.md",
-    "Backpack System.md",
-    "Final Polish.md",
+    "Automation.md",
     "Auto Battler.md",
+    "Final Polish.md",
+    "Backpack System.md",
     "Physical Items.md",
     "2026-05-01.md",
     "Untitled.base",

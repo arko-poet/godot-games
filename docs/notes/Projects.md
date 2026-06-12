@@ -1,1 +1,2 @@
 [[Auto Battler]]
+[[Automation]]
