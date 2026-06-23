@@ -13,7 +13,7 @@ config_version=5
 config/name="Auto Battler"
 config/tags=PackedStringArray("personal")
 run/main_scene="uid://cbvq8476axeuk"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="uid://dyt4th0bm3kro"
 
 [display]
