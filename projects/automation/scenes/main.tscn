@@ -1,16 +1,49 @@
 [gd_scene format=3 uid="uid://l5gbhmfx0d0i"]
 
 [ext_resource type="Script" uid="uid://dvqjej40blqou" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://b4mk78hcp1vde" path="res://scripts/camera.gd" id="2_0wfyh"]
+
+[sub_resource type="Gradient" id="Gradient_o5qli"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vgun3"]
+gradient = SubResource("Gradient_o5qli")
+width = 960
+height = 540
 
 [node name="Main" type="Node" unique_id=492942481]
 script = ExtResource("1_o5qli")
 
 [node name="World" type="Node2D" parent="." unique_id=1038157832]
 
+[node name="Background" type="Sprite2D" parent="World" unique_id=1413439972]
+texture = SubResource("GradientTexture2D_vgun3")
+centered = false
+
+[node name="Camera" type="Camera2D" parent="World" unique_id=1268867468]
+anchor_mode = 0
+script = ExtResource("2_0wfyh")
+
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1472585026]
 
 [node name="UI" type="Control" parent="UILayer" unique_id=1479559101]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UILayer/UI" unique_id=1011759887]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -11.5
+offset_right = 49.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hello, world!"
