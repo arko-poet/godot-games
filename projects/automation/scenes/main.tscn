@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://l5gbhmfx0d0i"]
+
+[ext_resource type="Script" uid="uid://dvqjej40blqou" path="res://scripts/main.gd" id="1_o5qli"]
+
+[node name="Main" type="Node" unique_id=492942481]
+script = ExtResource("1_o5qli")
+
+[node name="World" type="Node2D" parent="." unique_id=1038157832]
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1472585026]
+
+[node name="UI" type="Control" parent="UILayer" unique_id=1479559101]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
