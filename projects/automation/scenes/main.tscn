@@ -79,4 +79,4 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Hello, world!"
 
-[connection signal="chunk_changed" from="World/Camera" to="UILayer/UI/DebugLabels" method="_on_camera_chunk_changed"]
+[connection signal="chunk_changed" from="World/Camera" to="World/TileMapLayers" method="_on_camera_chunk_changed"]

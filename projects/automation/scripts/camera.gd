@@ -1,6 +1,6 @@
 extends Camera2D
 
-signal chunk_changed
+signal chunk_changed(new_chunk: Vector2i)
 
 const CAMERA_SPEED := 200
 const SCREEN_BOUNDARY_WIDTH := 10
@@ -9,9 +9,7 @@ var chunk := Vector2i.ZERO:
 	set(value):
 		if chunk != value:
 			chunk = value
-			chunk_changed.emit()
-		else:
-			chunk = value
+			chunk_changed.emit(chunk)
 
 
 func _process(delta: float) -> void:
