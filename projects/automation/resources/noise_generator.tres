@@ -1,4 +1,6 @@
 [gd_resource type="FastNoiseLite" format=3 uid="uid://d1dr8tm0r1g54"]
 
 [resource]
-frequency = 0.342
+noise_type = 2
+frequency = 0.02
+cellular_jitter = 0.8

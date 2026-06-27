@@ -31,7 +31,7 @@ func _draw_chunk(chunk: Vector2i) -> void:
 			var coords := Vector2i(x + chunk.x * chunk_size, y + chunk.y * chunk_size)
 			terrain_layer.set_cell(coords, 0, Vector2.ZERO)
 			var noise := noise_generator.get_noise_2d(coords.x, coords.y)
-			if noise >= 0.3:
+			if noise <= -0.75:
 				resource_layer.set_cell(coords, 0, Vector2.ZERO)
 
 
