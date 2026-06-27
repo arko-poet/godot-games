@@ -15,7 +15,7 @@ This will be an automation game inspired by Factorio
 	- terrain layer
 	- resource layer
 	- building layer
-- Procedural Generation
+- [[Procedural Generation]]
 	- experiment with **FastNoiseLite** - godots noise generation
 	- maybe a chunk system
 	- maybe a seed system would be cool to learn

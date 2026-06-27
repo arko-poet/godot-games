@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Automation.md",
+                "file": "Procedural Generation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Automation"
+              "title": "Procedural Generation"
             }
           }
         ],
@@ -200,9 +200,10 @@
   },
   "active": "bd7b3a506dc25a08",
   "lastOpenFiles": [
+    "Automation.md",
+    "Procedural Generation.md",
     "Projects.md",
     "Auto Battler.md",
-    "Automation.md",
     "Final Polish.md",
     "Backpack System.md",
     "Physical Items.md",
