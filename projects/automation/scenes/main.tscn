@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://5ju4ekblc5ao" path="res://scenes/tile_map_layers.gd" id="3_tefeu"]
 [ext_resource type="Texture2D" uid="uid://dbbf0k4casok7" path="res://art/sprites/coal_tile.png" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://8foqbpe6478m" path="res://scenes/debug_labels.gd" id="6_tefeu"]
+[ext_resource type="FastNoiseLite" uid="uid://d1dr8tm0r1g54" path="res://resources/noise_generator.tres" id="8_tipki"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("3_jyhfs")
@@ -17,13 +18,23 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_jyhfs")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6xl0"]
 texture = ExtResource("5_tbgi4")
 texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_jyhfs"]
+[sub_resource type="TileSet" id="TileSet_o6xl0"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_tefeu")
+sources/0 = SubResource("TileSetAtlasSource_o6xl0")
+
+[sub_resource type="Gradient" id="Gradient_tipki"]
+offsets = PackedFloat32Array(0.5, 0.5)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vgun3"]
+width = 32
+height = 32
+noise = ExtResource("8_tipki")
+color_ramp = SubResource("Gradient_tipki")
 
 [node name="Main" type="Node" unique_id=492942481]
 script = ExtResource("1_o5qli")
@@ -45,7 +56,7 @@ tile_set = SubResource("TileSet_tbgi4")
 
 [node name="ResourceLayer" type="TileMapLayer" parent="World/TileMapLayers" unique_id=1712912305]
 unique_name_in_owner = true
-tile_set = SubResource("TileSet_jyhfs")
+tile_set = SubResource("TileSet_o6xl0")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1472585026]
 
@@ -78,5 +89,15 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Hello, world!"
+
+[node name="NoisePreview" type="TextureRect" parent="UILayer/UI" unique_id=1726880078]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+texture = SubResource("NoiseTexture2D_vgun3")
 
 [connection signal="chunk_changed" from="World/Camera" to="World/TileMapLayers" method="_on_camera_chunk_changed"]

@@ -174,3 +174,9 @@ Container, Skeleton2D, Bone2D, ScrollContainer, Panel
 ## 8. `Automation` - based on Factorio
 
 2026-06-25 -> Work in Progress
+
+### What I learned
+
+- changing camera position when mouse near edges of the screen
+- programmaticaly fill tilemaplayers
+- infinite procedural world generation

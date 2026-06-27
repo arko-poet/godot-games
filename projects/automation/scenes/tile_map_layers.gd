@@ -3,10 +3,15 @@ extends Node2D
 @onready var terrain_layer: TileMapLayer = %TerrainLayer
 @onready var resource_layer: TileMapLayer = %ResourceLayer
 
+var noise_generator := preload("res://resources/noise_generator.tres")
+
 var drawn_chunks: Dictionary[Vector2i, bool]
 
 
 func _ready() -> void:
+	#seed(1)
+	#randomize()
+	#noise.seed = 0
 	_draw_chunks(Vector2.ZERO)
 
 
@@ -25,6 +30,9 @@ func _draw_chunk(chunk: Vector2i) -> void:
 		for y in chunk_size:
 			var coords := Vector2i(x + chunk.x * chunk_size, y + chunk.y * chunk_size)
 			terrain_layer.set_cell(coords, 0, Vector2.ZERO)
+			var noise := noise_generator.get_noise_2d(coords.x, coords.y)
+			if noise >= 0.3:
+				resource_layer.set_cell(coords, 0, Vector2.ZERO)
 
 
 func _on_camera_chunk_changed(chunk: Vector2i) -> void:
