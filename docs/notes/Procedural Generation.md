@@ -12,5 +12,7 @@ Problems:
 	- script
 
 Approach
-- fixed world size, generate when game starts
-- 
+- generate chunks as camera position changes
+	- 0 - 960 -> 0
+	- 961 - 1920 -> 1
+	- -960 - -1 -> -1

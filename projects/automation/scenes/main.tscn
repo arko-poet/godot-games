@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvqjej40blqou" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://b4mk78hcp1vde" path="res://scripts/camera.gd" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://coo25h4u4feqo" path="res://scenes/world.gd" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://c8wh2kmpjh7ep" path="res://art/sprites/grass_tile.png" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://5ju4ekblc5ao" path="res://scenes/tile_map_layers.gd" id="3_tefeu"]
 [ext_resource type="Texture2D" uid="uid://dbbf0k4casok7" path="res://art/sprites/coal_tile.png" id="5_tbgi4"]
@@ -28,6 +29,7 @@ sources/0 = SubResource("TileSetAtlasSource_tefeu")
 script = ExtResource("1_o5qli")
 
 [node name="World" type="Node2D" parent="." unique_id=1038157832]
+script = ExtResource("2_o6xl0")
 
 [node name="Camera" type="Camera2D" parent="World" unique_id=1268867468]
 unique_name_in_owner = true
@@ -76,3 +78,5 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Hello, world!"
+
+[connection signal="chunk_changed" from="World/Camera" to="UILayer/UI/DebugLabels" method="_on_camera_chunk_changed"]
