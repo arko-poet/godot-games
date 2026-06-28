@@ -1,6 +1,7 @@
 extends Node2D
 
 signal resource_hovered(resource: TileResourceData)
+signal coal_collected
 
 @onready var terrain_layer: TileMapLayer = %TerrainLayer
 @onready var resource_layer: TileMapLayer = %ResourceLayer
@@ -31,8 +32,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 			hovered_coords = coords
 			resource_hovered.emit(resources[coords])
-	elif event is InputEventMouseButton and event.is_pressed():
-		pass
+	elif event is InputEventMouseButton and event.is_pressed() and hovered_coords != Vector2i.MIN:
+		resources[hovered_coords].quantity -= 1
+		coal_collected.emit()
 
 
 func _draw_chunks(center_chunk: Vector2i) -> void:

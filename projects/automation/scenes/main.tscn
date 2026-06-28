@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dbbf0k4casok7" path="res://art/sprites/coal_tile.png" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://8foqbpe6478m" path="res://scenes/debug_labels.gd" id="6_tefeu"]
 [ext_resource type="FastNoiseLite" uid="uid://d1dr8tm0r1g54" path="res://resources/noise_generator.tres" id="8_tipki"]
+[ext_resource type="Script" uid="uid://cdsu7j33uife0" path="res://scenes/resources.gd" id="9_85g3d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("3_jyhfs")
@@ -111,5 +112,24 @@ offset_bottom = 32.0
 grow_horizontal = 0
 texture = SubResource("NoiseTexture2D_vgun3")
 
+[node name="Resources" type="VBoxContainer" parent="UILayer/UI" unique_id=2106599517]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+script = ExtResource("9_85g3d")
+
+[node name="Coal" type="Label" parent="UILayer/UI/Resources" unique_id=594370168]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Hello, world!"
+
 [connection signal="chunk_changed" from="World/Camera" to="World/TileMapLayers" method="_on_camera_chunk_changed"]
+[connection signal="coal_collected" from="World/TileMapLayers" to="UILayer/UI/Resources" method="_on_tile_map_layers_coal_collected"]
 [connection signal="resource_hovered" from="World/TileMapLayers" to="UILayer/UI/DebugLabels" method="_on_tile_map_layers_resource_hovered"]
