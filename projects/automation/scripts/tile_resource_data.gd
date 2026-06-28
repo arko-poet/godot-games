@@ -1,12 +1,11 @@
 class_name TileResourceData extends RefCounted
 
 enum ResourceType {
-	COAL
+	COAL 
 }
 
 var resource: ResourceType
 var quantity: int
-var name: String
 
 
 func _init(p_resource: ResourceType, p_quantity: int = 5) -> void:
@@ -15,4 +14,4 @@ func _init(p_resource: ResourceType, p_quantity: int = 5) -> void:
 
 
 func get_name() -> String:
-	return ResourceType.keys()[resource]
+	return ResourceType.find_key(resource)
