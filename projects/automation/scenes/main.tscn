@@ -92,6 +92,14 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Hello, world!"
 
+[node name="Resource" type="Label" parent="UILayer/UI/DebugLabels" unique_id=34682592]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Hello, world!"
+
 [node name="NoisePreview" type="TextureRect" parent="UILayer/UI" unique_id=1726880078]
 visible = false
 layout_mode = 1
@@ -104,3 +112,4 @@ grow_horizontal = 0
 texture = SubResource("NoiseTexture2D_vgun3")
 
 [connection signal="chunk_changed" from="World/Camera" to="World/TileMapLayers" method="_on_camera_chunk_changed"]
+[connection signal="resource_hovered" from="World/TileMapLayers" to="UILayer/UI/DebugLabels" method="_on_tile_map_layers_resource_hovered"]

@@ -1,6 +1,6 @@
 extends Node2D
 
-signal resource_hovered
+signal resource_hovered(resource: TileResourceData)
 
 @onready var terrain_layer: TileMapLayer = %TerrainLayer
 @onready var resource_layer: TileMapLayer = %ResourceLayer
@@ -26,12 +26,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		if coords not in resources:
 			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 			hovered_coords = Vector2i.MIN
+			resource_hovered.emit(null)
 		elif coords != hovered_coords:
 			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 			hovered_coords = coords
-			print(resources[coords].quantity)
-			print(resources[coords].resource)
-			print(resources[coords].get_name())
+			resource_hovered.emit(resources[coords])
+	elif event is InputEventMouseButton and event.is_pressed():
+		pass
 
 
 func _draw_chunks(center_chunk: Vector2i) -> void:
