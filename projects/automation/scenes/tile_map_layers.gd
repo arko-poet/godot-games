@@ -33,8 +33,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			hovered_coords = coords
 			resource_hovered.emit(resources[coords])
 	elif event is InputEventMouseButton and event.is_pressed() and hovered_coords != Vector2i.MIN:
-		resources[hovered_coords].quantity -= 1
-		coal_collected.emit()
+		if resources[hovered_coords].quantity > 0:
+			resources[hovered_coords].quantity -= 1
+			coal_collected.emit()
+		
+		if resources[hovered_coords].quantity == 0:
+			resource_layer.set_cell(hovered_coords)
+			resources.erase(hovered_coords)
 
 
 func _draw_chunks(center_chunk: Vector2i) -> void:

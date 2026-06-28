@@ -9,7 +9,7 @@ var quantity: int
 var name: String
 
 
-func _init(p_resource: ResourceType, p_quantity: int = 100) -> void:
+func _init(p_resource: ResourceType, p_quantity: int = 5) -> void:
 	resource = p_resource
 	quantity = p_quantity
 
