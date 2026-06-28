@@ -7,6 +7,8 @@ var noise_generator := preload("res://resources/noise_generator.tres")
 
 var drawn_chunks: Dictionary[Vector2i, bool]
 
+var resources: Dictionary[Vector2i, TileResourceData]
+
 
 func _ready() -> void:
 	#seed(1)
@@ -32,6 +34,7 @@ func _draw_chunk(chunk: Vector2i) -> void:
 			terrain_layer.set_cell(coords, 0, Vector2.ZERO)
 			var noise := noise_generator.get_noise_2d(coords.x, coords.y)
 			if noise <= -0.75:
+				resources[coords] = TileResourceData.new(TileResourceData.ResourceType.COAL)
 				resource_layer.set_cell(coords, 0, Vector2.ZERO)
 
 
