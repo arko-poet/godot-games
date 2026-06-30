@@ -1,0 +1,11 @@
+requirements:
+- buildings are on a separate tile layer
+- buildings can be placed by a player
+- building perform tasks automatically
+- buildings consume are produce resources
+- buildings can store resources
+- buildings allow other units take resouirces from them
+- buildings can have various sizes
+- buildings require resources to make
+- placing buildings requires a preview
+- preview and buildings snap to the grid

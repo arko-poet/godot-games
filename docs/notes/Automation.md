@@ -25,7 +25,7 @@ This will be an automation game inspired by Factorio
 	- items queue on them
 - Inserters
 	- move resources from one tile to other
-- Buildings
+- [[Buildings]]
 	- 1 building for extracting resources
 	- 1 building for processing 2 resources into 3rd
 - Crafting

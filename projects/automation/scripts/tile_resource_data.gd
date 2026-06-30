@@ -1,7 +1,7 @@
 class_name TileResourceData extends RefCounted
 
 enum ResourceType {
-	COAL 
+	COAL
 }
 
 var resource: ResourceType
