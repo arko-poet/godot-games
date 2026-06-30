@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b0vrm20nvmoqx" path="res://scripts/building_preview.gd" id="1_t8f08"]
 
 [node name="BuildingPreview" type="Node2D" unique_id=923910990]
+modulate = Color(1, 1, 1, 0.49411765)
 script = ExtResource("1_t8f08")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=459463182]

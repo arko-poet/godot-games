@@ -29,6 +29,9 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_o6xl0")
 
+[sub_resource type="TileSet" id="TileSet_vgun3"]
+tile_size = Vector2i(32, 32)
+
 [sub_resource type="Gradient" id="Gradient_tipki"]
 offsets = PackedFloat32Array(0.5, 0.5)
 
@@ -59,6 +62,9 @@ tile_set = SubResource("TileSet_tbgi4")
 [node name="ResourceLayer" type="TileMapLayer" parent="World/TileMapLayers" unique_id=1712912305]
 unique_name_in_owner = true
 tile_set = SubResource("TileSet_o6xl0")
+
+[node name="BuildingLayer" type="TileMapLayer" parent="World/TileMapLayers" unique_id=1766994264]
+tile_set = SubResource("TileSet_vgun3")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1472585026]
 
