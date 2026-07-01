@@ -1,24 +1,30 @@
-class_name BuildingController extends Node
+extends Node
 
-const BuildingPreview := preload("res://scenes/building_preview.tscn")
-const MineScene := preload("res://scenes/mine.tscn")
+const _BuildingPreviewScene := preload("res://scenes/building_preview.tscn")
+const _MineScene := preload("res://scenes/mine.tscn")
 
-var building_preview: Node2D
+var _building_preview: BuildingPreview
 
-@onready var world: World = %World
+@onready var _world: World = %World
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed() and building_preview:
+	if event is InputEventMouseButton and event.is_pressed() and _building_preview:
 		get_viewport().set_input_as_handled()
-		var mine: Mine = MineScene.instantiate()
-		mine.position = building_preview.position
-		mine.tiles = world.layers.get_resource_tiles(mine.position, mine.TILE_RANGE)
-		world.add_child(mine)
-		building_preview.queue_free()
-		
+		_place_building()
+
+
+func _place_building() -> void:
+	var mine: Mine = _MineScene.instantiate()
+	mine.position = _building_preview.position
+	mine.set_tiles(_world.layers.get_resource_nodes(mine.position, mine.TILE_RANGE))
+	
+	_world.add_child(mine)
+	_building_preview.queue_free()
+
 
 func _on_create_mine_pressed() -> void:
-	building_preview = BuildingPreview.instantiate()
-	building_preview.tile_map_layer = world.layers.resource_layer
-	world.add_child(building_preview)
+	_building_preview = _BuildingPreviewScene.instantiate()
+	_building_preview.layer = _world.layers.resource_layer
+	
+	_world.add_child(_building_preview)

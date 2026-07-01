@@ -2,26 +2,29 @@ class_name Mine extends Node2D
 
 const TILE_RANGE := 2
 
-var storage: Dictionary[TileResourceData.ResourceType, int]
+var storage: Dictionary[Resources.Type, int]
 
-var tiles: Array[TileResourceData]
+var _resource_nodes: Array[ResourceNode]
 
 
-func set_tiles(p_tiles: Array[TileResourceData]) -> void:
-	tiles = p_tiles
-	for tile in tiles:
-		tile.depleted.connect(_on_tile_depleted)
+func set_tiles(resource_nodes: Array[ResourceNode]) -> void:
+	_resource_nodes = resource_nodes
+	
+	for resource_node in _resource_nodes:
+		resource_node.depleted.connect(_on_resource_node_depleted)
 
 
 func _on_miner_timeout() -> void:
-	if tiles.size() == 0:
+	if _resource_nodes.size() == 0:
 		return
-	var tile = tiles[randi() % tiles.size()]
-	if storage.has(tile.resource):
-		storage[tile.resource] += tile.mine()
+	
+	var resource_node = _resource_nodes[randi() % _resource_nodes.size()]
+	var mined_resource_quantity := resource_node.mine()
+	if storage.has(resource_node.resource_type):
+		storage[resource_node.resource_type] += mined_resource_quantity
 	else:
-		storage[tile.resource] = tile.mine()
+		storage[resource_node.resource_type] = mined_resource_quantity
 
 
-func _on_tile_depleted(tile: TileResourceData) -> void:
-	tiles.erase(tile)
+func _on_resource_node_depleted(resource_node: ResourceNode) -> void:
+	_resource_nodes.erase(resource_node)

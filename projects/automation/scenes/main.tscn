@@ -6,10 +6,11 @@
 [ext_resource type="Script" uid="uid://coo25h4u4feqo" path="res://scripts/world.gd" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://c8wh2kmpjh7ep" path="res://art/sprites/grass_tile.png" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://5ju4ekblc5ao" path="res://scripts/tile_map_layers.gd" id="3_tefeu"]
+[ext_resource type="Script" uid="uid://dbgtfjjxjisha" path="res://scripts/player_resources.gd" id="3_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://dbbf0k4casok7" path="res://art/sprites/coal_tile.png" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://8foqbpe6478m" path="res://scripts/debug_labels.gd" id="6_tefeu"]
 [ext_resource type="FastNoiseLite" uid="uid://d1dr8tm0r1g54" path="res://resources/noise_generator.tres" id="8_tipki"]
-[ext_resource type="Script" uid="uid://cdsu7j33uife0" path="res://scripts/resources.gd" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://cdsu7j33uife0" path="res://scripts/resource_labels.gd" id="9_85g3d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("3_jyhfs")
@@ -44,6 +45,9 @@ script = ExtResource("1_o5qli")
 
 [node name="BuildingController" type="Node" parent="." unique_id=1093450546]
 script = ExtResource("2_choun")
+
+[node name="PlayerResources" type="Node" parent="." unique_id=1160757587]
+script = ExtResource("3_ya4ey")
 
 [node name="World" type="Node2D" parent="." unique_id=1038157832]
 unique_name_in_owner = true
@@ -112,7 +116,7 @@ visible = false
 layout_mode = 2
 texture = SubResource("NoiseTexture2D_vgun3")
 
-[node name="Resources" type="VBoxContainer" parent="UILayer/UI" unique_id=2106599517]
+[node name="ResourceLabels" type="VBoxContainer" parent="UILayer/UI" unique_id=2106599517]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -122,7 +126,7 @@ offset_bottom = 40.0
 grow_horizontal = 0
 script = ExtResource("9_85g3d")
 
-[node name="Coal" type="Label" parent="UILayer/UI/Resources" unique_id=594370168]
+[node name="Coal" type="Label" parent="UILayer/UI/ResourceLabels" unique_id=594370168]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -140,7 +144,9 @@ offset_right = 8.0
 grow_vertical = 0
 text = "Mine"
 
+[connection signal="coal_changed" from="PlayerResources" to="UILayer/UI/ResourceLabels" method="_on_player_resources_coal_changed"]
 [connection signal="chunk_changed" from="World/Camera" to="World/Layers" method="_on_camera_chunk_changed"]
-[connection signal="coal_collected" from="World/Layers" to="UILayer/UI/Resources" method="_on_tile_map_layers_coal_collected"]
+[connection signal="chunk_changed" from="World/Camera" to="UILayer/UI/DebugLabels" method="_on_camera_chunk_changed"]
+[connection signal="coal_collected" from="World/Layers" to="PlayerResources" method="_on_layers_coal_collected"]
 [connection signal="resource_hovered" from="World/Layers" to="UILayer/UI/DebugLabels" method="_on_tile_map_layers_resource_hovered"]
 [connection signal="pressed" from="UILayer/UI/CreateMine" to="BuildingController" method="_on_create_mine_pressed"]

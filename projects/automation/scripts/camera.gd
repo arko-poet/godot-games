@@ -1,50 +1,50 @@
 extends Camera2D
 
-signal chunk_changed(new_chunk: Vector2i)
+signal chunk_changed(chunk: Vector2i)
 
-const CAMERA_SPEED := 200
-const SCREEN_BOUNDARY_WIDTH := 10
+const _EDGE_SCROLL_SPEED := 200.0
+const _SCREEN_BOUNDARY_WIDTH := 10.0
 
-var chunk := Vector2i.ZERO:
+var _chunk := Vector2i.ZERO:
 	set(value):
-		if chunk != value:
-			chunk = value
-			chunk_changed.emit(chunk)
+		if _chunk != value:
+			_chunk = value
+			chunk_changed.emit(_chunk)
 
 
 func _process(delta: float) -> void:
-	var direction := Vector2i.ZERO
+	var scroll_direction := Vector2i.ZERO
 	var mouse_position := get_local_mouse_position()
 	var viewport_size := get_viewport_rect().size
 	
-	if mouse_position.x <= SCREEN_BOUNDARY_WIDTH and mouse_position.x > -SCREEN_BOUNDARY_WIDTH:
-		direction.x = -1
+	if mouse_position.x <= _SCREEN_BOUNDARY_WIDTH and mouse_position.x > -_SCREEN_BOUNDARY_WIDTH:
+		scroll_direction.x = -1
 	if (
-			mouse_position.x >= viewport_size.x - SCREEN_BOUNDARY_WIDTH
-			and mouse_position.x < viewport_size.x + SCREEN_BOUNDARY_WIDTH
+			mouse_position.x >= viewport_size.x - _SCREEN_BOUNDARY_WIDTH
+			and mouse_position.x < viewport_size.x + _SCREEN_BOUNDARY_WIDTH
 	):
-		direction.x = 1
-	if mouse_position.y <= SCREEN_BOUNDARY_WIDTH and mouse_position.y > -SCREEN_BOUNDARY_WIDTH:
-		direction.y = -1
+		scroll_direction.x = 1
+	if mouse_position.y <= _SCREEN_BOUNDARY_WIDTH and mouse_position.y > -_SCREEN_BOUNDARY_WIDTH:
+		scroll_direction.y = -1
 	if (
-			mouse_position.y >= viewport_size.y - SCREEN_BOUNDARY_WIDTH
-			and mouse_position.y < viewport_size.y + SCREEN_BOUNDARY_WIDTH
+			mouse_position.y >= viewport_size.y - _SCREEN_BOUNDARY_WIDTH
+			and mouse_position.y < viewport_size.y + _SCREEN_BOUNDARY_WIDTH
 	):
-		direction.y = 1
+		scroll_direction.y = 1
 		
-	position += direction * CAMERA_SPEED * delta
+	position += scroll_direction * _EDGE_SCROLL_SPEED * delta
 	_update_chunk()
 	
 	
 func _update_chunk() -> void:
 	var centered_position := position + get_viewport_rect().size / 2
-	var new_chunk := Vector2i.ZERO
+	var chunk := Vector2i.ZERO
 	
 	if centered_position.x < 0:
-		new_chunk.x -= 1
+		chunk.x -= 1
 	if centered_position.y < 0:
-		new_chunk.y -= 1
+		chunk.y -= 1
 	
-	new_chunk += Vector2i(centered_position / (World.CHUNK_SIZE * World.TILE_SIZE))
+	chunk += Vector2i(centered_position / (World.CHUNK_SIZE * World.TILE_SIZE))
 	
-	chunk = new_chunk
+	_chunk = chunk

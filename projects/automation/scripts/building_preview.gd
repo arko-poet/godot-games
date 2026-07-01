@@ -1,9 +1,9 @@
-extends Node2D
+class_name BuildingPreview extends Node2D
 
 var footprint: Array[Vector2i]
 var center_tile: Vector2i
 
-var tile_map_layer: TileMapLayer
+var layer: TileMapLayer
 
 
 func _ready() -> void:
@@ -15,9 +15,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if not tile_map_layer:
+	if not layer:
 		return
 	
-	var mouse_tile := tile_map_layer.local_to_map(get_global_mouse_position())
-	position = tile_map_layer.map_to_local(mouse_tile)
-	
+	var hovered_tile := layer.local_to_map(get_global_mouse_position())
+	position = layer.map_to_local(hovered_tile)
