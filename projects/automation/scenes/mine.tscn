@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dudetde674lph"]
+
+[ext_resource type="Script" uid="uid://dgcrtcf71c4xn" path="res://scripts/mine.gd" id="1_yym1a"]
+[ext_resource type="Texture2D" uid="uid://bvnbm8tbh0rdi" path="res://art/sprites/mine.png" id="2_m55k0"]
+
+[node name="Mine" type="Node2D" unique_id=1553692430]
+script = ExtResource("1_yym1a")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1827808982]
+texture = ExtResource("2_m55k0")
+
+[node name="Miner" type="Timer" parent="." unique_id=141900873]
+autostart = true
+
+[connection signal="timeout" from="Miner" to="." method="_on_miner_timeout"]
