@@ -1,6 +1,6 @@
-extends Node2D
+class_name Mine extends Node2D
 
-const TILE_RANGE := 5
+const TILE_RANGE := 2
 
 var storage: Dictionary[TileResourceData.ResourceType, int]
 
@@ -14,8 +14,13 @@ func set_tiles(p_tiles: Array[TileResourceData]) -> void:
 
 
 func _on_miner_timeout() -> void:
+	if tiles.size() == 0:
+		return
 	var tile = tiles[randi() % tiles.size()]
-	storage[tile.resourece] += tile.mine()
+	if storage.has(tile.resource):
+		storage[tile.resource] += tile.mine()
+	else:
+		storage[tile.resource] = tile.mine()
 
 
 func _on_tile_depleted(tile: TileResourceData) -> void:

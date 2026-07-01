@@ -1,4 +1,4 @@
-extends Node2D
+class_name TileMapLayers extends Node2D
 
 signal resource_hovered(resource: TileResourceData)
 signal coal_collected
@@ -40,6 +40,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		if resources[hovered_coords].quantity == 0:
 			resource_layer.set_cell(hovered_coords)
 			resources.erase(hovered_coords)
+
+
+func get_resource_tiles(location: Vector2, tile_range: int) -> Array[TileResourceData]:
+	var center_tile := resource_layer.local_to_map(location)
+	var tiles: Array[TileResourceData]
+	
+	for i in range(-tile_range, tile_range + 1):
+		for j in range(-tile_range, tile_range + 1):
+			var tile := center_tile + Vector2i(i, j)
+			if resources.has(tile):
+				tiles.append(resources[tile])
+	
+	return tiles
 
 
 func _generate_chunks(center_chunk: Vector2i) -> void:
