@@ -34,12 +34,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			resource_hovered.emit(_resource_nodes[coords])
 	elif event is InputEventMouseButton and event.is_pressed() and _hovered_coords != Vector2i.MIN:
 		if _resource_nodes[_hovered_coords].quantity > 0:
-			_resource_nodes[_hovered_coords].quantity -= 1
-			coal_collected.emit()
-		
-		if _resource_nodes[_hovered_coords].quantity == 0:
-			resource_layer.set_cell(_hovered_coords)
-			_resource_nodes.erase(_hovered_coords)
+			var mined_coal := _resource_nodes[_hovered_coords].mine()
+			coal_collected.emit(mined_coal)
 
 
 func get_resource_nodes(location: Vector2, tile_range: int) -> Array[ResourceNode]:
@@ -72,9 +68,17 @@ func _generate_chunk(chunk: Vector2i) -> void:
 			terrain_layer.set_cell(coords, 0, Vector2.ZERO)
 			var noise := _NoiseGenerator.get_noise_2d(coords.x, coords.y)
 			if noise <= _NOISE_THRESHOLD:
-				_resource_nodes[coords] = ResourceNode.new(Resources.Type.COAL)
+				var resource_node := ResourceNode.new(Resources.Type.COAL)
+				_resource_nodes[coords] = resource_node
+				resource_node.depleted.connect(_on_resource_node_depleted)
 				resource_layer.set_cell(coords, 0, Vector2.ZERO)
 
 
 func _on_camera_chunk_changed(chunk: Vector2i) -> void:
 	_generate_chunks(chunk)
+
+
+func _on_resource_node_depleted(resource_node: ResourceNode) -> void:
+	var coordinates: Vector2i = _resource_nodes.find_key(resource_node)
+	resource_layer.set_cell(coordinates)
+	_resource_nodes.erase(coordinates)
