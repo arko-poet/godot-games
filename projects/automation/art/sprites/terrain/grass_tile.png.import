@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbbf0k4casok7"
-path="res://.godot/imported/coal_tile.png-b437d489543cc57f203e55182b5313e1.ctex"
+uid="uid://c8wh2kmpjh7ep"
+path="res://.godot/imported/grass_tile.png-b4a1e66929b7658316389ebd3f652b99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/coal_tile.png"
-dest_files=["res://.godot/imported/coal_tile.png-b437d489543cc57f203e55182b5313e1.ctex"]
+source_file="res://art/sprites/terrain/grass_tile.png"
+dest_files=["res://.godot/imported/grass_tile.png-b4a1e66929b7658316389ebd3f652b99.ctex"]
 
 [params]
 

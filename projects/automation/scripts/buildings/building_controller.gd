@@ -1,7 +1,7 @@
 extends Node
 
-const _BuildingPreviewScene := preload("res://scenes/building_preview.tscn")
-const _MineScene := preload("res://scenes/mine.tscn")
+const _BuildingPreviewScene := preload("res://scenes/buildings/building_preview.tscn")
+const _MineScene := preload("res://scenes/buildings/mine.tscn")
 
 var _building_preview: BuildingPreview
 
