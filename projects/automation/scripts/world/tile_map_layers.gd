@@ -70,7 +70,7 @@ func _generate_chunk(chunk: Vector2i) -> void:
 			
 			var noise := _NoiseGenerator.get_noise_2d(coords.x, coords.y)
 			if noise <= _NOISE_THRESHOLD:
-				var resource_type = Resources.Type.values()[randi() % Resources.Type.size()]
+				var resource_type = _determine_resource_type(coords)
 				var resource_node := ResourceNode.new(resource_type)
 				_resource_nodes[coords] = resource_node
 				resource_node.depleted.connect(_on_resource_node_depleted)
@@ -85,3 +85,15 @@ func _on_resource_node_depleted(resource_node: ResourceNode) -> void:
 	var coordinates: Vector2i = _resource_nodes.find_key(resource_node)
 	resource_layer.set_cell(coordinates)
 	_resource_nodes.erase(coordinates)
+
+
+func _determine_resource_type(coords: Vector2i) -> Resources.Type:
+	for i in range(-1, 2):
+		for j in range(-1, 2):
+			var adjacent_tile := coords + Vector2i(i, j)
+			var tile_id := resource_layer.get_cell_source_id(adjacent_tile)
+			if tile_id != -1:
+				return tile_id as Resources.Type
+				
+	return Resources.Type.values()[randi() % Resources.Type.size()]
+	
