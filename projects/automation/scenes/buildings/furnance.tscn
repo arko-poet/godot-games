@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cwc3eac4thkj5"]
+
+[ext_resource type="Script" uid="uid://taio6ruugxbi" path="res://scripts/buildings/furnance.gd" id="1_nn87h"]
+[ext_resource type="Texture2D" uid="uid://uti3b8v20g7m" path="res://art/sprites/buildings/furnance.png" id="2_x8q1y"]
+
+[node name="Furnance" type="Node2D" unique_id=984909764]
+script = ExtResource("1_nn87h")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=84664461]
+texture = ExtResource("2_x8q1y")
+
+[node name="Smelting" type="Timer" parent="." unique_id=1482640279]
+
+[connection signal="timeout" from="Smelting" to="." method="_on_smelting_timeout"]
