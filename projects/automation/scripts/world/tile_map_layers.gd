@@ -15,7 +15,7 @@ var _hovered_coords: Vector2i
 @onready var resource_layer: TileMapLayer = %ResourceLayer
 
 func _ready() -> void:
-	#seed(1)
+	seed(0)
 	#randomize()
 	#noise.seed = 0
 	_generate_chunks(Vector2.ZERO)

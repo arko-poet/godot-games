@@ -7,9 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://c8wh2kmpjh7ep" path="res://art/sprites/terrain/grass_tile.png" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://5ju4ekblc5ao" path="res://scripts/world/tile_map_layers.gd" id="3_tefeu"]
 [ext_resource type="Script" uid="uid://dbgtfjjxjisha" path="res://scripts/resources/player_resources.gd" id="3_ya4ey"]
-[ext_resource type="Texture2D" uid="uid://dbbf0k4casok7" path="res://art/sprites/resources/coal_tile.png" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://dbbf0k4casok7" path="res://art/sprites/resources/silver.png" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://8foqbpe6478m" path="res://scripts/debug/debug_labels.gd" id="6_tefeu"]
 [ext_resource type="FastNoiseLite" uid="uid://d1dr8tm0r1g54" path="res://resources/noise_generator.tres" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://bbcq1ndyfc0le" path="res://art/sprites/resources/coal.png" id="8_trceg"]
 [ext_resource type="Script" uid="uid://cdsu7j33uife0" path="res://scripts/resources/resource_labels.gd" id="9_85g3d"]
 [ext_resource type="Texture2D" uid="uid://dcgu2m2ixa0jp" path="res://art/sprites/resources/copper.png" id="9_eb6dy"]
 
@@ -22,9 +23,9 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_jyhfs")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6xl0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8y0u"]
 resource_name = "coal"
-texture = ExtResource("5_tbgi4")
+texture = ExtResource("8_trceg")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
@@ -34,10 +35,17 @@ texture = ExtResource("9_eb6dy")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jkv2x"]
+resource_name = "silver"
+texture = ExtResource("5_tbgi4")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_o6xl0"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_o6xl0")
 sources/1 = SubResource("TileSetAtlasSource_trceg")
+sources/2 = SubResource("TileSetAtlasSource_jkv2x")
+sources/0 = SubResource("TileSetAtlasSource_a8y0u")
 
 [sub_resource type="Gradient" id="Gradient_tipki"]
 offsets = PackedFloat32Array(0.5, 0.5)
@@ -143,6 +151,14 @@ theme_override_constants/outline_size = 4
 text = "Hello, world!"
 
 [node name="Copper" type="Label" parent="UILayer/UI/ResourceLabels" unique_id=933060280]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Hello, world!"
+
+[node name="Silver" type="Label" parent="UILayer/UI/ResourceLabels" unique_id=807709687]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
