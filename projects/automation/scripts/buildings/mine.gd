@@ -18,7 +18,7 @@ func _on_miner_timeout() -> void:
 	if _resource_nodes.size() == 0:
 		return
 	
-	var resource_node = _resource_nodes[randi() % _resource_nodes.size()]
+	var resource_node := _resource_nodes[randi() % _resource_nodes.size()]
 	var mined_resource_quantity := resource_node.mine()
 	if storage.has(resource_node.resource_type):
 		storage[resource_node.resource_type] += mined_resource_quantity

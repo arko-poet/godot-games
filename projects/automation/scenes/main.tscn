@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://8foqbpe6478m" path="res://scripts/debug/debug_labels.gd" id="6_tefeu"]
 [ext_resource type="FastNoiseLite" uid="uid://d1dr8tm0r1g54" path="res://resources/noise_generator.tres" id="8_tipki"]
 [ext_resource type="Script" uid="uid://cdsu7j33uife0" path="res://scripts/resources/resource_labels.gd" id="9_85g3d"]
+[ext_resource type="Texture2D" uid="uid://dcgu2m2ixa0jp" path="res://art/sprites/resources/copper.png" id="9_eb6dy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("3_jyhfs")
@@ -27,9 +28,16 @@ texture = ExtResource("5_tbgi4")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trceg"]
+resource_name = "copper"
+texture = ExtResource("9_eb6dy")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_o6xl0"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_o6xl0")
+sources/1 = SubResource("TileSetAtlasSource_trceg")
 
 [sub_resource type="Gradient" id="Gradient_tipki"]
 offsets = PackedFloat32Array(0.5, 0.5)
@@ -134,6 +142,14 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Hello, world!"
 
+[node name="Copper" type="Label" parent="UILayer/UI/ResourceLabels" unique_id=933060280]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Hello, world!"
+
 [node name="CreateMine" type="Button" parent="UILayer/UI" unique_id=261197490]
 layout_mode = 1
 anchors_preset = 2
@@ -144,9 +160,9 @@ offset_right = 8.0
 grow_vertical = 0
 text = "Mine"
 
-[connection signal="coal_changed" from="PlayerResources" to="UILayer/UI/ResourceLabels" method="_on_player_resources_coal_changed"]
+[connection signal="resource_changed" from="PlayerResources" to="UILayer/UI/ResourceLabels" method="_on_player_resources_resource_changed"]
 [connection signal="chunk_changed" from="World/Camera" to="World/Layers" method="_on_camera_chunk_changed"]
 [connection signal="chunk_changed" from="World/Camera" to="UILayer/UI/DebugLabels" method="_on_camera_chunk_changed"]
-[connection signal="coal_collected" from="World/Layers" to="PlayerResources" method="_on_layers_coal_collected"]
+[connection signal="resource_collected" from="World/Layers" to="PlayerResources" method="_on_layers_resource_collected"]
 [connection signal="resource_hovered" from="World/Layers" to="UILayer/UI/DebugLabels" method="_on_tile_map_layers_resource_hovered"]
 [connection signal="pressed" from="UILayer/UI/CreateMine" to="BuildingController" method="_on_create_mine_pressed"]

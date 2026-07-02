@@ -1,7 +1,7 @@
 class_name TileMapLayers extends Node2D
 
 signal resource_hovered(resource: ResourceNode)
-signal coal_collected(coal: int)
+signal resource_collected(type: Resources.Type, quantity: int)
 
 const _NOISE_THRESHOLD := -0.75
 
@@ -33,9 +33,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			_hovered_coords = coords
 			resource_hovered.emit(_resource_nodes[coords])
 	elif event is InputEventMouseButton and event.is_pressed() and _hovered_coords != Vector2i.MIN:
-		if _resource_nodes[_hovered_coords].quantity > 0:
-			var mined_coal := _resource_nodes[_hovered_coords].mine()
-			coal_collected.emit(mined_coal)
+		var resource_node := _resource_nodes[_hovered_coords]
+		if resource_node.quantity > 0:
+			resource_collected.emit(resource_node.resource_type, resource_node.mine())
 
 
 func get_resource_nodes(location: Vector2, tile_range: int) -> Array[ResourceNode]:
@@ -65,13 +65,16 @@ func _generate_chunk(chunk: Vector2i) -> void:
 	for x in chunk_size:
 		for y in chunk_size:
 			var coords := Vector2i(x + chunk.x * chunk_size, y + chunk.y * chunk_size)
+			
 			terrain_layer.set_cell(coords, 0, Vector2.ZERO)
+			
 			var noise := _NoiseGenerator.get_noise_2d(coords.x, coords.y)
 			if noise <= _NOISE_THRESHOLD:
-				var resource_node := ResourceNode.new(Resources.Type.COAL)
+				var resource_type = Resources.Type.values()[randi() % Resources.Type.size()]
+				var resource_node := ResourceNode.new(resource_type)
 				_resource_nodes[coords] = resource_node
 				resource_node.depleted.connect(_on_resource_node_depleted)
-				resource_layer.set_cell(coords, 0, Vector2.ZERO)
+				resource_layer.set_cell(coords, resource_type, Vector2.ZERO)
 
 
 func _on_camera_chunk_changed(chunk: Vector2i) -> void:
