@@ -166,19 +166,27 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Hello, world!"
 
-[node name="CreateMine" type="Button" parent="UILayer/UI" unique_id=261197490]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI" unique_id=1623089392]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -8.0
-offset_right = 8.0
+offset_top = -40.0
+offset_right = 47.0
 grow_vertical = 0
+
+[node name="CreateMine" type="Button" parent="UILayer/UI/HBoxContainer" unique_id=261197490]
+layout_mode = 2
 text = "Mine"
+
+[node name="CreateFurnance" type="Button" parent="UILayer/UI/HBoxContainer" unique_id=1630307146]
+layout_mode = 2
+text = "Furnance"
 
 [connection signal="resource_changed" from="PlayerResources" to="UILayer/UI/ResourceLabels" method="_on_player_resources_resource_changed"]
 [connection signal="chunk_changed" from="World/Camera" to="World/Layers" method="_on_camera_chunk_changed"]
 [connection signal="chunk_changed" from="World/Camera" to="UILayer/UI/DebugLabels" method="_on_camera_chunk_changed"]
 [connection signal="resource_collected" from="World/Layers" to="PlayerResources" method="_on_layers_resource_collected"]
 [connection signal="resource_hovered" from="World/Layers" to="UILayer/UI/DebugLabels" method="_on_tile_map_layers_resource_hovered"]
-[connection signal="pressed" from="UILayer/UI/CreateMine" to="BuildingController" method="_on_create_mine_pressed"]
+[connection signal="pressed" from="UILayer/UI/HBoxContainer/CreateMine" to="BuildingController" method="_on_create_mine_pressed"]
+[connection signal="pressed" from="UILayer/UI/HBoxContainer/CreateFurnance" to="BuildingController" method="_on_create_furnance_pressed"]

@@ -6,6 +6,8 @@ var storage: Dictionary[Resources.Type, int]
 
 var _resource_nodes: Array[ResourceNode]
 
+@onready var sprite: Sprite2D = $Sprite
+
 
 func set_tiles(resource_nodes: Array[ResourceNode]) -> void:
 	_resource_nodes = resource_nodes

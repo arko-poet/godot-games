@@ -5,6 +5,8 @@ var center_tile: Vector2i
 
 var layer: TileMapLayer
 
+@onready var sprite: Sprite2D = $Sprite
+
 
 func _ready() -> void:
 	for i in 3:
