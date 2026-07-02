@@ -14,5 +14,9 @@ func _ready() -> void:
 	_production_timer.wait_time = production_time
 
 
+func activate() -> void:
+	_production_timer.start()
+
+
 func _on_production_timer_timeout() -> void:
 	timeout.emit()

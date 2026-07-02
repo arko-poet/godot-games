@@ -6,7 +6,7 @@ var storage: Dictionary[Resources.Type, int]
 
 var _resource_nodes: Array[ResourceNode]
 
-@onready var sprite: Sprite2D = $Sprite
+@onready var building_component: BuildingComponent = $BuildingComponent
 
 
 func set_tiles(resource_nodes: Array[ResourceNode]) -> void:
@@ -16,7 +16,11 @@ func set_tiles(resource_nodes: Array[ResourceNode]) -> void:
 		resource_node.depleted.connect(_on_resource_node_depleted)
 
 
-func _on_miner_timeout() -> void:
+func _on_resource_node_depleted(resource_node: ResourceNode) -> void:
+	_resource_nodes.erase(resource_node)
+
+
+func _on_building_component_timeout() -> void:
 	if _resource_nodes.size() == 0:
 		return
 	
@@ -26,7 +30,3 @@ func _on_miner_timeout() -> void:
 		storage[resource_node.resource_type] += mined_resource_quantity
 	else:
 		storage[resource_node.resource_type] = mined_resource_quantity
-
-
-func _on_resource_node_depleted(resource_node: ResourceNode) -> void:
-	_resource_nodes.erase(resource_node)

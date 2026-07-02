@@ -20,6 +20,8 @@ func _input(event: InputEvent) -> void:
 func _place_building() -> void:
 	_building.position = _building_preview.position
 	
+	_building.building_component.activate()
+	
 	if _building.has_method(&"set_tiles"):
 		_building.set_tiles(_world.layers.get_resource_nodes(_building.position, _building.TILE_RANGE))
 	
@@ -45,7 +47,7 @@ func _create_building_preview() -> void:
 	_building_preview = _BuildingPreviewScene.instantiate()
 	_world.add_child(_building_preview)
 	
-	_building_preview.sprite.texture = _building.sprite.texture
+	_building_preview.sprite.texture = _building.building_component.texture
 	_building_preview.layer = _world.layers.resource_layer
 
 

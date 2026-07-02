@@ -1,14 +1,13 @@
 [gd_scene format=3 uid="uid://wgbq644n41sm"]
 
 [ext_resource type="Script" uid="uid://dx5x8i2f3bgqs" path="res://scripts/buildings/assembler.gd" id="1_l8kyj"]
-[ext_resource type="Texture2D" uid="uid://o7m6g41g31jd" path="res://art/sprites/buildings/assembler.png" id="2_y8ovc"]
+[ext_resource type="PackedScene" uid="uid://b7yyfjsfxrnkn" path="res://scenes/buildings/building_component.tscn" id="2_y8ovc"]
+[ext_resource type="Texture2D" uid="uid://o7m6g41g31jd" path="res://art/sprites/buildings/assembler.png" id="3_5wlhh"]
 
 [node name="Assembler" type="Node2D" unique_id=1499213367]
 script = ExtResource("1_l8kyj")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1359972511]
-texture = ExtResource("2_y8ovc")
+[node name="BuildingComponent" parent="." unique_id=712283767 instance=ExtResource("2_y8ovc")]
+texture = ExtResource("3_5wlhh")
 
-[node name="Assembling" type="Timer" parent="." unique_id=667074738]
-
-[connection signal="timeout" from="Assembling" to="." method="_on_assembling_timeout"]
+[connection signal="timeout" from="BuildingComponent" to="." method="_on_building_component_timeout"]
