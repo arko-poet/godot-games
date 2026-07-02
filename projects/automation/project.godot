@@ -29,7 +29,8 @@ folder_colors={
 "res://art/": "teal",
 "res://resources/": "orange",
 "res://scenes/": "blue",
-"res://scripts/": "red"
+"res://scripts/": "red",
+"res://sound/": "purple"
 }
 
 [physics]

@@ -3,6 +3,7 @@ extends Node
 const _BuildingPreviewScene := preload("res://scenes/buildings/building_preview.tscn")
 const _MineScene := preload("res://scenes/buildings/mine.tscn")
 const _FurnanceScene := preload("res://scenes/buildings/furnance.tscn")
+const _AssemblerScene := preload("res://scenes/buildings/assembler.tscn")
 
 var _building_preview: BuildingPreview
 var _building: Node2D
@@ -46,3 +47,8 @@ func _create_building_preview() -> void:
 	
 	_building_preview.sprite.texture = _building.sprite.texture
 	_building_preview.layer = _world.layers.resource_layer
+
+
+func _on_create_assembler_pressed() -> void:
+	_building = _AssemblerScene.instantiate()
+	_create_building_preview()

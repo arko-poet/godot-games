@@ -183,6 +183,11 @@ text = "Mine"
 layout_mode = 2
 text = "Furnance"
 
+[node name="CreateAssembler" type="Button" parent="UILayer/UI/HBoxContainer" unique_id=121397649]
+layout_mode = 2
+text = "Assembler
+"
+
 [connection signal="resource_changed" from="PlayerResources" to="UILayer/UI/ResourceLabels" method="_on_player_resources_resource_changed"]
 [connection signal="chunk_changed" from="World/Camera" to="World/Layers" method="_on_camera_chunk_changed"]
 [connection signal="chunk_changed" from="World/Camera" to="UILayer/UI/DebugLabels" method="_on_camera_chunk_changed"]
@@ -190,3 +195,4 @@ text = "Furnance"
 [connection signal="resource_hovered" from="World/Layers" to="UILayer/UI/DebugLabels" method="_on_tile_map_layers_resource_hovered"]
 [connection signal="pressed" from="UILayer/UI/HBoxContainer/CreateMine" to="BuildingController" method="_on_create_mine_pressed"]
 [connection signal="pressed" from="UILayer/UI/HBoxContainer/CreateFurnance" to="BuildingController" method="_on_create_furnance_pressed"]
+[connection signal="pressed" from="UILayer/UI/HBoxContainer/CreateAssembler" to="BuildingController" method="_on_create_assembler_pressed"]
