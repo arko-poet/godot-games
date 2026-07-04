@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ch0onvanik37w"]
+
+[ext_resource type="Script" uid="uid://c6tcgug10ltni" path="res://scripts/inserter.gd" id="1_56obi"]
+[ext_resource type="PackedScene" uid="uid://b7yyfjsfxrnkn" path="res://scenes/buildings/building_component.tscn" id="2_7mcej"]
+[ext_resource type="Texture2D" uid="uid://csa6o376v7qu5" path="res://art/sprites/buildings/inserter.png" id="3_188ax"]
+
+[node name="Inserter" type="Node2D" unique_id=247400453]
+script = ExtResource("1_56obi")
+
+[node name="BuildingComponent" parent="." unique_id=712283767 instance=ExtResource("2_7mcej")]
+texture = ExtResource("3_188ax")

@@ -4,6 +4,7 @@ const _BuildingPreviewScene := preload("res://scenes/buildings/building_preview.
 const _MineScene := preload("res://scenes/buildings/mine.tscn")
 const _FurnanceScene := preload("res://scenes/buildings/furnance.tscn")
 const _AssemblerScene := preload("res://scenes/buildings/assembler.tscn")
+const _InserterScene := preload("res://scenes/buildings/inserter.tscn")
 
 var _building_preview: BuildingPreview
 var _building: Node2D
@@ -53,4 +54,9 @@ func _create_building_preview() -> void:
 
 func _on_create_assembler_pressed() -> void:
 	_building = _AssemblerScene.instantiate()
+	_create_building_preview()
+
+
+func _on_create_inserter_pressed() -> void:
+	_building = _InserterScene.instantiate()
 	_create_building_preview()
