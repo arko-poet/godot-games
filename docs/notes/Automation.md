@@ -23,7 +23,7 @@ This will be an automation game inspired by Factorio
 	- they connect to each other
 	- they can be rotated
 	- items queue on them
-- Inserters
+- [[Inserters]]
 	- move resources from one tile to other
 - [[Buildings]]
 	- 1 building for extracting resources
@@ -33,3 +33,4 @@ This will be an automation game inspired by Factorio
 - Resources
 	- fuel resource + material resource = new resource
 - Extract resources manually
+

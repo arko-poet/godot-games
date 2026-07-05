@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Automation.md",
+                "file": "Inserters.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Automation"
+              "title": "Inserters"
             }
           }
         ],
@@ -214,8 +214,9 @@
   },
   "active": "7c211692d5731bdc",
   "lastOpenFiles": [
-    "Buildings.md",
     "Automation.md",
+    "Inserters.md",
+    "Buildings.md",
     "Backpack System.md",
     "Final Polish.md",
     "Physical Items.md",
