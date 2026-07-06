@@ -1,4 +1,4 @@
-extends Node
+class_name BuildingController extends Node
 
 const _BuildingPreviewScene := preload("res://scenes/buildings/building_preview.tscn")
 const _MineScene := preload("res://scenes/buildings/mine.tscn")
@@ -16,6 +16,15 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and _building_preview:
 		get_viewport().set_input_as_handled()
 		_place_building()
+
+
+static func get_building_component(building: Node2D) -> BuildingComponent:
+	for c in building.get_children():
+		if c is BuildingComponent:
+			return c
+	
+	push_error("Building lacks a building component")
+	return null
 
 
 func _place_building() -> void:

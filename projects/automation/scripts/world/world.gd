@@ -14,12 +14,7 @@ func _on_child_entered_tree(node: Node) -> void:
 
 
 func register_building(building: Node2D) -> void:
-	var building_component: BuildingComponent
-	for c in building.get_children():
-		if c is BuildingComponent:
-			building_component = c
-			break
-		push_error("Building lacks a building component")
+	var building_component := BuildingController.get_building_component(building)
 	
 	var center_tile := _get_tile(building.position)
 	var _building_radius = building_component.cell_radius
