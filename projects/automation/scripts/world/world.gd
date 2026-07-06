@@ -17,7 +17,7 @@ func get_tile(coords: Vector2) -> Vector2i:
 
 
 func register_building(building: Node2D) -> void:
-	var building_component := BuildingController.get_building_component(building)
+	var building_component: BuildingComponent = building.get_node(^"BuildingComponent")
 	
 	var center_tile := get_tile(building.position)
 	var _building_radius = building_component.footprint_size

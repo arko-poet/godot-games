@@ -19,15 +19,6 @@ func _input(event: InputEvent) -> void:
 			_place_building()
 
 
-static func get_building_component(building: Node2D) -> BuildingComponent:
-	for c in building.get_children():
-		if c is BuildingComponent:
-			return c
-	
-	push_error("Building lacks a building component")
-	return null
-
-
 func _place_building() -> void:
 	_building.position = _building_preview.position
 	
@@ -76,7 +67,7 @@ func _on_create_inserter_pressed() -> void:
 
 func _can_place_building() -> bool:
 	var center_tile := _world.get_tile(_building_preview.position)
-	var _building_radius := get_building_component(_building).footprint_size
+	var _building_radius := (_building.get_node(^"BuildingComponent") as BuildingComponent).footprint_size
 	for i in range(center_tile.x - _building_radius, center_tile.x + _building_radius + 1):
 		for j in range(center_tile.y - _building_radius, center_tile.y + _building_radius + 1):
 			var tile := Vector2i(i, j)
