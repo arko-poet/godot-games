@@ -9,7 +9,7 @@ const _InserterScene := preload("res://scenes/buildings/inserter.tscn")
 var _building_preview: BuildingPreview
 var _building: Node2D
 
-@onready var _world: World = %World
+@onready var world: World = %World
 
 
 func _input(event: InputEvent) -> void:
@@ -22,12 +22,12 @@ func _input(event: InputEvent) -> void:
 func _place_building() -> void:
 	_building.position = _building_preview.position
 	
-	_world.register_building(_building)
+	world.register_building(_building)
 	
 	_building.building_component.activate()
 	
 	if _building.has_method(&"set_tiles"):
-		_building.set_tiles(_world.layers.get_resource_nodes(_building.position, _building.TILE_RANGE))
+		_building.set_tiles(world.layers.get_resource_nodes(_building.position, _building.TILE_RANGE))
 	
 	_building.show()
 	
@@ -46,13 +46,13 @@ func _on_create_furnance_pressed() -> void:
 
 func _create_building_preview() -> void:
 	_building.hide()
-	_world.add_child(_building)
+	world.add_child(_building)
 	
 	_building_preview = _BuildingPreviewScene.instantiate()
-	_world.add_child(_building_preview)
+	world.add_child(_building_preview)
 	
 	_building_preview.sprite.texture = _building.building_component.texture
-	_building_preview.layer = _world.layers.resource_layer
+	_building_preview.layer = world.layers.resource_layer
 
 
 func _on_create_assembler_pressed() -> void:
@@ -62,16 +62,17 @@ func _on_create_assembler_pressed() -> void:
 
 func _on_create_inserter_pressed() -> void:
 	_building = _InserterScene.instantiate()
+	_building.world = world
 	_create_building_preview()
 
 
 func _can_place_building() -> bool:
-	var center_tile := _world.get_tile(_building_preview.position)
+	var center_tile := world.get_tile(_building_preview.position)
 	var _building_radius := (_building.get_node(^"BuildingComponent") as BuildingComponent).footprint_size
 	for i in range(center_tile.x - _building_radius, center_tile.x + _building_radius + 1):
 		for j in range(center_tile.y - _building_radius, center_tile.y + _building_radius + 1):
 			var tile := Vector2i(i, j)
-			if not _world.is_cell_free(tile):
+			if not world.is_cell_free(tile):
 				return false
 	
 	return true

@@ -1,6 +1,6 @@
 class_name Item extends Node2D
 
-signal item_moved(from: Vector2, to: Vector2)
+signal item_moved(item: Item, from: Vector2i, to: Vector2i)
 
 const _SPRITE_PATH := "res://art/sprites/resources/mined/%s.png"
 const _RESOURCE_TO_SPRITE_NAME := {
@@ -9,15 +9,21 @@ const _RESOURCE_TO_SPRITE_NAME := {
 	Resources.Type.SILVER: "silver"
 }
 
+var cell: Vector2i:
+	set(value):
+		var original_cell := cell
+		cell = value
+		item_moved.emit(self, original_cell, cell)
+
+
 var resource: Resources.Type:
 	set(value):
 		resource = value
-		_sprite.texture = load(_SPRITE_PATH % _RESOURCE_TO_SPRITE_NAME[resource])
+		if _sprite:
+			_sprite.texture = load(_SPRITE_PATH % _RESOURCE_TO_SPRITE_NAME[resource])
 
 @onready var _sprite: Sprite2D = $Sprite
 
 
-func move(destination: Vector2) -> void:
-	var from := position
-	position = destination
-	item_moved.emit(from, destination)
+func _ready() -> void:
+	resource = resource

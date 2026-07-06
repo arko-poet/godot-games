@@ -1,6 +1,7 @@
 class_name BuildingComponent extends Node2D
 
 signal timeout
+signal item_created(item: Item)
 
 const ItemScene := preload("res://scenes/item.tscn")
 
@@ -9,6 +10,8 @@ const ItemScene := preload("res://scenes/item.tscn")
 @export_range(0, INT32_MAX) var footprint_size: int = 0
 
 var storage: Dictionary[Resources.Type, int]
+
+var center_cell: Vector2i
 
 @onready var _sprite: Sprite2D = $Sprite
 @onready var _production_timer: Timer = $ProductionTimer
