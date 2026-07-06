@@ -10,3 +10,7 @@ var _item_and_building_coords: Dictionary[Vector2i, Node2D]
 
 func _on_child_entered_tree(node: Node) -> void:
 	print(node)
+
+
+func register_building(building: Node2D) -> void:
+	pass

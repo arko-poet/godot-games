@@ -21,6 +21,8 @@ func _input(event: InputEvent) -> void:
 func _place_building() -> void:
 	_building.position = _building_preview.position
 	
+	_world.register_building(_building)
+	
 	_building.building_component.activate()
 	
 	if _building.has_method(&"set_tiles"):
