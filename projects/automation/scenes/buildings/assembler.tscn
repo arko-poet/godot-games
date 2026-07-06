@@ -9,5 +9,6 @@ script = ExtResource("1_l8kyj")
 
 [node name="BuildingComponent" parent="." unique_id=712283767 instance=ExtResource("2_y8ovc")]
 texture = ExtResource("3_5wlhh")
+footprint_size = 1
 
 [connection signal="timeout" from="BuildingComponent" to="." method="_on_building_component_timeout"]

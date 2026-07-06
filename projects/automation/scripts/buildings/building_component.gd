@@ -4,7 +4,7 @@ signal timeout
 
 @export var texture: Texture2D
 @export var production_time: float = 1.0
-@export var cell_radius: int
+@export_range(0, INT32_MAX) var footprint_size: int = 0
 
 @onready var _sprite: Sprite2D = $Sprite
 @onready var _production_timer: Timer = $ProductionTimer

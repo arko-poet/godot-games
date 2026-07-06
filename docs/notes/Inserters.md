@@ -23,7 +23,7 @@ Implementation:
 
 Tasks:
 - [x] Implement Node2D called item which will be responsible for displaying items such as mined coal or other processed materials - it will need to snap to grid
-- [ ] Implement a dictionary of coords -> Node2D that occupy world cells
+- [x] Implement a dictionary of coords -> Node2D that occupy world cells
 	- how to update these coords? options:
 		- items and buildings notify of change in position by signal
 		- items and buiilding communicate with world directly

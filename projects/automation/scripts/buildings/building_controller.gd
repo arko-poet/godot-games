@@ -15,7 +15,8 @@ var _building: Node2D
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and _building_preview:
 		get_viewport().set_input_as_handled()
-		_place_building()
+		if _can_place_building():
+			_place_building()
 
 
 static func get_building_component(building: Node2D) -> BuildingComponent:
@@ -71,3 +72,15 @@ func _on_create_assembler_pressed() -> void:
 func _on_create_inserter_pressed() -> void:
 	_building = _InserterScene.instantiate()
 	_create_building_preview()
+
+
+func _can_place_building() -> bool:
+	var center_tile := _world.get_tile(_building_preview.position)
+	var _building_radius := get_building_component(_building).footprint_size
+	for i in range(center_tile.x - _building_radius, center_tile.x + _building_radius + 1):
+		for j in range(center_tile.y - _building_radius, center_tile.y + _building_radius + 1):
+			var tile := Vector2i(i, j)
+			if not _world.is_cell_free(tile):
+				return false
+	
+	return true
