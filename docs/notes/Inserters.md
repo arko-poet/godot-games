@@ -22,8 +22,12 @@ Implementation:
 	- if its a building then that building needs to provide information if it is  willing to accept such material
 
 Tasks:
-- [ ] Implement Node2D called item which will be responsible for displaying items such as mined coal or other processed materials - it will need to snap to grid
+- [x] Implement Node2D called item which will be responsible for displaying items such as mined coal or other processed materials - it will need to snap to grid
 - [ ] Implement a dictionary of coords -> Node2D that occupy world cells
+	- how to update these coords? options:
+		- items and buildings notify of change in position by signal
+		- items and buiilding communicate with world directly
+		- signals seem better
 - [ ] Implement logic of inserters
 - [ ] Enhance storage system of buildings so they can provide a fetchable materials that inserters can take
 - [ ] Enhance storage system of buildings so they can provide information which material they are willing to accept
