@@ -2,8 +2,6 @@ class_name Mine extends Node2D
 
 const TILE_RANGE := 2
 
-var storage: Dictionary[Resources.Type, int]
-
 var _resource_nodes: Array[ResourceNode]
 
 @onready var building_component: BuildingComponent = $BuildingComponent
@@ -26,6 +24,7 @@ func _on_building_component_timeout() -> void:
 	
 	var resource_node := _resource_nodes[randi() % _resource_nodes.size()]
 	var mined_resource_quantity := resource_node.mine()
+	var storage := building_component.storage
 	if storage.has(resource_node.resource_type):
 		storage[resource_node.resource_type] += mined_resource_quantity
 	else:
