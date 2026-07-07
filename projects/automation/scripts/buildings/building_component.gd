@@ -27,7 +27,7 @@ func activate() -> void:
 
 
 func store_item(item: Item) -> void:
-	storage[item.resource] += 1
+	storage[item.resource] = storage.get(item.resource, 0) + 1
 	item.queue_free()
 
 

@@ -29,7 +29,7 @@ Tasks:
 		- items and buiilding communicate with world directly
 		- signals seem better
 		- the problem is how do I have a common thing across all buildings?
-- [ ] Implement logic of inserters
+- [x] Implement logic of inserters
 - [ ] Enhance storage system of buildings so they can provide a fetchable materials that inserters can take
 - [ ] Enhance storage system of buildings so they can provide information which material they are willing to accept
 - [ ] Implement inserter rotations
