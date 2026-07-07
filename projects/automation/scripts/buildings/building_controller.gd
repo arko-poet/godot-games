@@ -13,23 +13,28 @@ var _building: Node2D
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed() and _building_preview:
+	if _building_preview:
 		get_viewport().set_input_as_handled()
-		if _can_place_building():
+	else:
+		return
+		
+	if event is InputEventMouseButton and event.is_pressed():
+		if (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT and _can_place_building():
 			_place_building()
+		else:
+			_rotate_preview()
 
 
 func _place_building() -> void:
 	_building.position = _building_preview.position
-	
-	world.register_building(_building)
-	
 	_building.building_component.activate()
+	_building.show()
+	_building.rotate(_building_preview.rotation)
 	
 	if _building.has_method(&"set_tiles"):
 		_building.set_tiles(world.layers.get_resource_nodes(_building.position, _building.TILE_RANGE))
 	
-	_building.show()
+	world.register_building(_building)
 	
 	_building_preview.queue_free()
 
@@ -76,3 +81,7 @@ func _can_place_building() -> bool:
 				return false
 	
 	return true
+
+
+func _rotate_preview() -> void:
+	_building_preview.rotate(TAU / 4.0)
