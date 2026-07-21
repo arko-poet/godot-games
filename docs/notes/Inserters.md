@@ -32,4 +32,4 @@ Tasks:
 - [x] Implement logic of inserters
 - [x] Enhance storage system of buildings so they can provide a fetchable materials that inserters can take
 - [x] Enhance storage system of buildings so they can provide information which material they are willing to accept
-- [ ] Implement inserter rotations
+- [x] Implement inserter rotations

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dgcrtcf71c4xn" path="res://scripts/buildings/mine.gd" id="1_0ngsx"]
 [ext_resource type="Texture2D" uid="uid://bvnbm8tbh0rdi" path="res://art/sprites/buildings/mine.png" id="2_e5jp1"]
 [ext_resource type="PackedScene" uid="uid://b7yyfjsfxrnkn" path="res://scenes/buildings/building_component.tscn" id="2_l7srj"]
+[ext_resource type="PackedScene" uid="uid://uuv4nmpiju1s" path="res://scenes/buildings/storage_component.tscn" id="4_l7srj"]
 
 [node name="Mine" type="Node2D" unique_id=1553692430]
 script = ExtResource("1_0ngsx")
@@ -10,5 +11,8 @@ script = ExtResource("1_0ngsx")
 [node name="BuildingComponent" parent="." unique_id=712283767 instance=ExtResource("2_l7srj")]
 texture = ExtResource("2_e5jp1")
 footprint_size = 1
+
+[node name="Storage" parent="." unique_id=1530100894 instance=ExtResource("4_l7srj")]
+unique_name_in_owner = true
 
 [connection signal="timeout" from="BuildingComponent" to="." method="_on_building_component_timeout"]

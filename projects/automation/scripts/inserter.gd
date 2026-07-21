@@ -20,10 +20,10 @@ func _on_building_component_timeout() -> void:
 	if source_node is Item:
 		item = source_node
 	else:
-		var bc: BuildingComponent = source_node.get_node(^"BuildingComponent")
-		if not bc.has_stored_items():
+		var storage: StorageComponent = source_node.get_node(^"Storage")
+		if not storage.has_stored_items():
 			return
-		item = bc.get_stored_item()
+		item = storage.get_stored_item()
 		world.add_child(item)
 	
 	if destination_node == null:

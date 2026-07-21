@@ -5,6 +5,7 @@ const TILE_RANGE := 2
 var _resource_nodes: Array[ResourceNode]
 
 @onready var building_component: BuildingComponent = $BuildingComponent
+@onready var storage: StorageComponent = %Storage
 
 
 func set_tiles(resource_nodes: Array[ResourceNode]) -> void:
@@ -24,8 +25,4 @@ func _on_building_component_timeout() -> void:
 	
 	var resource_node := _resource_nodes[randi() % _resource_nodes.size()]
 	var mined_resource_quantity := resource_node.mine()
-	var storage := building_component.storage
-	if storage.has(resource_node.resource_type):
-		storage[resource_node.resource_type] += mined_resource_quantity
-	else:
-		storage[resource_node.resource_type] = mined_resource_quantity
+	storage.store_resources(resource_node.resource_type, mined_resource_quantity)
