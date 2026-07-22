@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var building_component: BuildingComponent = $BuildingComponent
+@onready var sprite: Sprite2D = %Sprite
 
 var world: World
 

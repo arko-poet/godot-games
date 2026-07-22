@@ -8,6 +8,9 @@
 script = ExtResource("1_56obi")
 
 [node name="BuildingComponent" parent="." unique_id=712283767 instance=ExtResource("2_7mcej")]
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=88345061]
+unique_name_in_owner = true
 texture = ExtResource("3_188ax")
 
 [connection signal="timeout" from="BuildingComponent" to="." method="_on_building_component_timeout"]

@@ -6,6 +6,7 @@ var _resource_nodes: Array[ResourceNode]
 
 @onready var building_component: BuildingComponent = $BuildingComponent
 @onready var storage: StorageComponent = %Storage
+@onready var sprite: Sprite2D = %Sprite
 
 
 func set_tiles(resource_nodes: Array[ResourceNode]) -> void:

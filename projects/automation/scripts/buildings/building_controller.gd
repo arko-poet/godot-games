@@ -56,7 +56,9 @@ func _create_building_preview() -> void:
 	_building_preview = _BuildingPreviewScene.instantiate()
 	world.add_child(_building_preview)
 	
-	_building_preview.sprite.texture = _building.building_component.texture
+	var sprite: Sprite2D = _building.find_child(^"Sprite")
+	if sprite:
+		_building_preview.sprite.texture = sprite.texture
 	_building_preview.layer = world.layers.resource_layer
 
 

@@ -9,10 +9,13 @@
 script = ExtResource("1_0ngsx")
 
 [node name="BuildingComponent" parent="." unique_id=712283767 instance=ExtResource("2_l7srj")]
-texture = ExtResource("2_e5jp1")
 footprint_size = 1
 
 [node name="Storage" parent="." unique_id=1530100894 instance=ExtResource("4_l7srj")]
 unique_name_in_owner = true
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=2055303080]
+unique_name_in_owner = true
+texture = ExtResource("2_e5jp1")
 
 [connection signal="timeout" from="BuildingComponent" to="." method="_on_building_component_timeout"]
