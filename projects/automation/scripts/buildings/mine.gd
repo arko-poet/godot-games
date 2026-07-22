@@ -7,6 +7,7 @@ var _resource_nodes: Array[ResourceNode]
 @onready var building_component: BuildingComponent = $BuildingComponent
 @onready var storage: StorageComponent = %Storage
 @onready var sprite: Sprite2D = %Sprite
+@onready var _production_timer: Timer = %ProductionTimer
 
 
 func set_tiles(resource_nodes: Array[ResourceNode]) -> void:
@@ -16,11 +17,15 @@ func set_tiles(resource_nodes: Array[ResourceNode]) -> void:
 		resource_node.depleted.connect(_on_resource_node_depleted)
 
 
+func activate() ->  void:
+	_production_timer.start()
+
+
 func _on_resource_node_depleted(resource_node: ResourceNode) -> void:
 	_resource_nodes.erase(resource_node)
 
 
-func _on_building_component_timeout() -> void:
+func _on_production_timer_timeout() -> void:
 	if _resource_nodes.size() == 0:
 		return
 	

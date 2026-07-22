@@ -4,7 +4,3 @@
 
 [node name="BuildingComponent" type="Node2D" unique_id=712283767]
 script = ExtResource("1_p6o5l")
-
-[node name="ProductionTimer" type="Timer" parent="." unique_id=169609830]
-
-[connection signal="timeout" from="ProductionTimer" to="." method="_on_production_timer_timeout"]

@@ -27,7 +27,8 @@ func _input(event: InputEvent) -> void:
 
 func _place_building() -> void:
 	_building.position = _building_preview.position
-	_building.building_component.activate()
+	if _building is Mine or _building is Inserter:
+		_building.activate()
 	_building.show()
 	_building.rotate(_building_preview.rotation)
 	

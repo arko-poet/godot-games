@@ -18,4 +18,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 texture = ExtResource("3_5wlhh")
 
-[connection signal="timeout" from="BuildingComponent" to="." method="_on_building_component_timeout"]
+[node name="ProductionTimer" type="Timer" parent="." unique_id=913492938]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="ProductionTimer" to="." method="_on_production_timer_timeout"]

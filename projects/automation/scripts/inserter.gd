@@ -1,12 +1,17 @@
-extends Node2D
+class_name Inserter extends Node2D
 
 @onready var building_component: BuildingComponent = $BuildingComponent
 @onready var sprite: Sprite2D = %Sprite
+@onready var _production_timer: Timer = %ProductionTimer
 
 var world: World
 
 
-func _on_building_component_timeout() -> void:
+func activate() ->  void:
+	_production_timer.start()
+
+
+func _on_production_timer_timeout() -> void:
 	var direction := _get_direction()
 	
 	var source_node := world.get_node_at_cell(building_component.center_cell - direction)
