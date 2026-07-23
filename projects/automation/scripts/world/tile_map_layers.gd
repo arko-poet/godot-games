@@ -95,5 +95,5 @@ func _determine_resource_type(coords: Vector2i) -> Resources.Type:
 			if tile_id != -1:
 				return tile_id as Resources.Type
 				
-	return Resources.Type.values()[randi() % Resources.Type.size()]
+	return Resources._get_random_ore()
 	
