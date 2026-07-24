@@ -35,3 +35,15 @@ func has_stored_items() -> bool:
 			return true
 	
 	return false
+ 
+
+func has_stored_resource(resource: Resources.Type) -> bool:
+	return _storage.has(resource) and _storage[resource] > 0
+
+
+func withdraw_stored_resource(resource: Resources.Type) -> bool:
+	if has_stored_resource(resource):
+		_storage[resource] -= 1
+		return true
+	else:
+		return false

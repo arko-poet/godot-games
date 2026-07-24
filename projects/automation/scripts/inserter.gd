@@ -36,8 +36,8 @@ func _on_production_timer_timeout() -> void:
 		print(destination)
 		item.cell = destination
 	else:
-		var bc: BuildingComponent = destination_node.get_node(^"BuildingComponent")
-		bc.store_item(item)
+		var storage: StorageComponent = destination_node.get_node(^"Storage")
+		storage.store_item(item)
 
 
 func _get_direction() -> Vector2i:

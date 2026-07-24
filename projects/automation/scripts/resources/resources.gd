@@ -1,5 +1,7 @@
 class_name Resources extends Object
 
+const NUMBER_OF_ORES := 3
+
 enum Type {
 	COAL,
 	COPPER,
@@ -13,4 +15,4 @@ static func get_type_name(type: Type) -> String:
 
 
 static func _get_random_ore() -> Type:
-	return Resources.Type.values()[randi() % 3]
+	return Resources.Type.values()[randi() % NUMBER_OF_ORES]
