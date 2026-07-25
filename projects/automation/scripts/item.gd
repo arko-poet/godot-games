@@ -2,11 +2,13 @@ class_name Item extends Node2D
 
 signal item_moved(item: Item, from: Vector2i, to: Vector2i)
 
-const _SPRITE_PATH := "res://art/sprites/resources/mined/%s.png"
+const _SPRITE_PATH := "res://art/sprites/resources/%s.png"
 const _RESOURCE_TO_SPRITE_NAME := {
-	Resources.Type.COAL: "coal",
-	Resources.Type.COPPER: "copper",
-	Resources.Type.SILVER: "silver"
+	Resources.Type.COAL: "mined/coal",
+	Resources.Type.COPPER: "mined/copper",
+	Resources.Type.SILVER: "mined/silver",
+	Resources.Type.COPPER_BAR: "bars/copper_bar",
+	Resources.Type.SILVER_BAR: "bars/silver_bar"
 }
 
 var cell: Vector2i:
