@@ -14,9 +14,9 @@ func _on_child_entered_tree(node: Node) -> void:
 
 
 func get_node_at_cell(cell: Vector2i) -> Node2D:
-	var cell_occupant: Node2D = _cell_occupants.get(cell)
+	var cell_occupant = _cell_occupants.get(cell)
 	if cell_occupant:
-		return _cell_occupants.get(cell)
+		return cell_occupant
 	else:
 		return null
 
