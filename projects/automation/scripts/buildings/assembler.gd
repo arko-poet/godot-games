@@ -8,3 +8,24 @@ extends Node2D
 
 func _ready():
 	production_timer.start()
+
+
+func _on_production_timer_timeout() -> void:
+	if storage.has_stored_resource(Resources.Type.COPPER_BAR):
+		_make_copper_wire() 
+	elif storage.has_stored_resource(Resources.Type.SILVER_BAR):
+		_make_silver_plate()
+
+
+func _make_copper_wire() -> void:
+	if not storage.withdraw_stored_resource(Resources.Type.COPPER_BAR):
+		push_error("No silver in storage")
+	else:
+		storage.store_resources(Resources.Type.COPPER_WIRE, 1)
+
+
+func _make_silver_plate() -> void:
+	if not storage.withdraw_stored_resource(Resources.Type.SILVER_BAR):
+		push_error("No silver in storage")
+	else:
+		storage.store_resources(Resources.Type.SILVER_PLATE, 1)

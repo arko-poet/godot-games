@@ -33,7 +33,6 @@ func _on_production_timer_timeout() -> void:
 		world.add_child(item)
 	
 	if destination_node == null:
-		print(destination)
 		item.cell = destination
 	else:
 		var storage: StorageComponent = destination_node.get_node(^"Storage")

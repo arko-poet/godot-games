@@ -7,7 +7,9 @@ enum Type {
 	COPPER,
 	SILVER,
 	COPPER_BAR,
-	SILVER_BAR
+	SILVER_BAR,
+	COPPER_WIRE,
+	SILVER_PLATE
 }
 
 static func get_type_name(type: Type) -> String:

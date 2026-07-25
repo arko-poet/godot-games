@@ -14,7 +14,11 @@ func _on_child_entered_tree(node: Node) -> void:
 
 
 func get_node_at_cell(cell: Vector2i) -> Node2D:
-	return _cell_occupants.get(cell)
+	var cell_occupant: Node2D = _cell_occupants.get(cell)
+	if cell_occupant:
+		return _cell_occupants.get(cell)
+	else:
+		return null
 
 
 func get_tile(coords: Vector2) -> Vector2i:
@@ -23,6 +27,7 @@ func get_tile(coords: Vector2) -> Vector2i:
 
 func get_tile_position(coords: Vector2i) -> Vector2:
 	return layers.resource_layer.map_to_local(coords)
+
 
 func register_building(building: Node2D) -> void:
 	var building_component: BuildingComponent = building.get_node(^"BuildingComponent")
