@@ -14,6 +14,7 @@ var _hovered_coords: Vector2i
 @onready var terrain_layer: TileMapLayer = %TerrainLayer
 @onready var resource_layer: TileMapLayer = %ResourceLayer
 
+
 func _ready() -> void:
 	seed(0)
 	#randomize()
@@ -41,19 +42,19 @@ func _unhandled_input(event: InputEvent) -> void:
 func get_resource_nodes(location: Vector2, tile_range: int) -> Array[ResourceNode]:
 	var center_tile := resource_layer.local_to_map(location)
 	var resource_nodes: Array[ResourceNode]
-	
+
 	for i in range(-tile_range, tile_range + 1):
 		for j in range(-tile_range, tile_range + 1):
 			var tile := center_tile + Vector2i(i, j)
 			if _resource_nodes.has(tile):
 				resource_nodes.append(_resource_nodes[tile])
-	
+
 	return resource_nodes
 
 
 func _generate_chunks(center_chunk: Vector2i) -> void:
 	for x in range(center_chunk.x - 1, center_chunk.x + 2):
-		for y in range(center_chunk.y - 1, center_chunk.y  + 2):
+		for y in range(center_chunk.y - 1, center_chunk.y + 2):
 			var chunk := Vector2i(x, y)
 			if chunk not in _drawn_chunks:
 				_generate_chunk(chunk)
@@ -65,9 +66,9 @@ func _generate_chunk(chunk: Vector2i) -> void:
 	for x in chunk_size:
 		for y in chunk_size:
 			var coords := Vector2i(x + chunk.x * chunk_size, y + chunk.y * chunk_size)
-			
+
 			terrain_layer.set_cell(coords, 0, Vector2.ZERO)
-			
+
 			var noise := _NoiseGenerator.get_noise_2d(coords.x, coords.y)
 			if noise <= _NOISE_THRESHOLD:
 				var resource_type = _determine_resource_type(coords)
@@ -94,6 +95,5 @@ func _determine_resource_type(coords: Vector2i) -> Resources.Type:
 			var tile_id := resource_layer.get_cell_source_id(adjacent_tile)
 			if tile_id != -1:
 				return tile_id as Resources.Type
-				
+
 	return Resources._get_random_ore()
-	

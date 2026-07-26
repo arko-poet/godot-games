@@ -24,7 +24,7 @@ func get_stored_item() -> Item:
 			item.resource = resource
 			_storage[resource] -= 1
 			return item
-	
+
 	push_error("Attempt to get stored item on empty storage")
 	return null
 
@@ -33,9 +33,9 @@ func has_stored_items() -> bool:
 	for resource in _storage:
 		if _storage[resource] > 0:
 			return true
-	
+
 	return false
- 
+
 
 func has_stored_resource(resource: Resources.Type) -> bool:
 	return _storage.has(resource) and _storage[resource] > 0

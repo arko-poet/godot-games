@@ -31,7 +31,7 @@ func get_tile_position(coords: Vector2i) -> Vector2:
 
 func register_building(building: Node2D) -> void:
 	var building_component: BuildingComponent = building.get_node(^"BuildingComponent")
-	
+
 	var center_tile := get_tile(building.position)
 	building_component.center_cell = center_tile
 	var _building_radius = building_component.footprint_size
@@ -53,7 +53,7 @@ func _on_item_moved(item: Item, from: Vector2i, to: Vector2i) -> void:
 	if not is_cell_free(to):
 		push_error("Attempt to place item in occupied cell")
 		return
-		
+
 	print(item.position)
 	item.position = get_tile_position(to)
 	print(item.position)

@@ -19,5 +19,5 @@ func mine() -> int:
 	if quantity > 0:
 		quantity -= 1
 		return 1
-	
+
 	return 0

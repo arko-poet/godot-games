@@ -17,9 +17,12 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 	else:
 		return
-		
+
 	if event is InputEventMouseButton and event.is_pressed():
-		if (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT and _can_place_building():
+		if (
+			(event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT
+			and _can_place_building()
+		):
 			_place_building()
 		else:
 			_rotate_preview()
@@ -31,12 +34,15 @@ func _place_building() -> void:
 		_building.activate()
 	_building.show()
 	_building.rotate(_building_preview.rotation)
-	
+
 	if _building.has_method(&"set_tiles"):
-		_building.set_tiles(world.layers.get_resource_nodes(_building.position, _building.TILE_RANGE))
-	
+		_building.set_tiles(world.layers.get_resource_nodes(
+				_building.position,
+				_building.TILE_RANGE,
+			))
+
 	world.register_building(_building)
-	
+
 	_building_preview.queue_free()
 
 
@@ -53,10 +59,10 @@ func _on_create_furnance_pressed() -> void:
 func _create_building_preview() -> void:
 	_building.hide()
 	world.add_child(_building)
-	
+
 	_building_preview = _BuildingPreviewScene.instantiate()
 	world.add_child(_building_preview)
-	
+
 	var sprite: Sprite2D = _building.find_child(^"Sprite")
 	if sprite:
 		_building_preview.sprite.texture = sprite.texture
@@ -82,7 +88,7 @@ func _can_place_building() -> bool:
 			var tile := Vector2i(i, j)
 			if not world.is_cell_free(tile):
 				return false
-	
+
 	return true
 
 

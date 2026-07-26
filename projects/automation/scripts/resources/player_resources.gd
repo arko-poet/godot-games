@@ -17,6 +17,7 @@ var _silver: int:
 		_silver = value
 		resource_changed.emit(Resources.Type.SILVER, _silver)
 
+
 func _on_layers_resource_collected(type: Resources.Type, quantity: int) -> void:
 	match type:
 		Resources.Type.COAL:

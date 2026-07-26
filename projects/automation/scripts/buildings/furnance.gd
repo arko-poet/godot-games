@@ -23,14 +23,14 @@ func _smelt_copper() -> void:
 		push_error("No Coal in storage")
 	if not storage.withdraw_stored_resource(Resources.Type.COPPER):
 		push_error("No copper in storage")
-	
+
 	storage.store_resources(Resources.Type.COPPER_BAR, 1)
-	
+
 
 func _smelt_silver() -> void:
 	if not storage.withdraw_stored_resource(Resources.Type.COAL):
 		push_error("No Coal in storage")
 	if not storage.withdraw_stored_resource(Resources.Type.SILVER):
 		push_error("No silver in storage")
-	
+
 	storage.store_resources(Resources.Type.SILVER_BAR, 1)

@@ -8,7 +8,7 @@ const _RESOURCE_TO_SPRITE_NAME := {
 	Resources.Type.COPPER: "mined/copper",
 	Resources.Type.SILVER: "mined/silver",
 	Resources.Type.COPPER_BAR: "bars/copper_bar",
-	Resources.Type.SILVER_BAR: "bars/silver_bar"
+	Resources.Type.SILVER_BAR: "bars/silver_bar",
 }
 
 var cell: Vector2i:
@@ -16,7 +16,6 @@ var cell: Vector2i:
 		var original_cell := cell
 		cell = value
 		item_moved.emit(self, original_cell, cell)
-
 
 var resource: Resources.Type:
 	set(value):

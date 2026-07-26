@@ -7,21 +7,21 @@ class_name Inserter extends Node2D
 var world: World
 
 
-func activate() ->  void:
+func activate() -> void:
 	_production_timer.start()
 
 
 func _on_production_timer_timeout() -> void:
 	var direction := _get_direction()
-	
+
 	var source_node := world.get_node_at_cell(building_component.center_cell - direction)
-	
+
 	var destination := building_component.center_cell + direction
 	var destination_node := world.get_node_at_cell(destination)
-	
+
 	if destination_node is Item or source_node == null:
 		return
-	
+
 	var item: Item
 	if source_node is Item:
 		item = source_node
@@ -31,7 +31,7 @@ func _on_production_timer_timeout() -> void:
 			return
 		item = storage.get_stored_item()
 		world.add_child(item)
-	
+
 	if destination_node == null:
 		item.cell = destination
 	else:

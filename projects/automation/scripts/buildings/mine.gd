@@ -12,12 +12,12 @@ var _resource_nodes: Array[ResourceNode]
 
 func set_tiles(resource_nodes: Array[ResourceNode]) -> void:
 	_resource_nodes = resource_nodes
-	
+
 	for resource_node in _resource_nodes:
 		resource_node.depleted.connect(_on_resource_node_depleted)
 
 
-func activate() ->  void:
+func activate() -> void:
 	_production_timer.start()
 
 
@@ -28,7 +28,7 @@ func _on_resource_node_depleted(resource_node: ResourceNode) -> void:
 func _on_production_timer_timeout() -> void:
 	if _resource_nodes.size() == 0:
 		return
-	
+
 	var resource_node := _resource_nodes[randi() % _resource_nodes.size()]
 	var mined_resource_quantity := resource_node.mine()
 	storage.store_resources(resource_node.resource_type, mined_resource_quantity)
