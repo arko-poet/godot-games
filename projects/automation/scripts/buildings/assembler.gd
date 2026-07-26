@@ -11,10 +11,13 @@ func _ready():
 
 
 func _on_production_timer_timeout() -> void:
-	if storage.has_stored_resource(Resources.Type.COPPER_WIRE) and storage.has_stored_resource(Resources.Type.SILVER_PLATE):
+	if (
+		storage.has_stored_resource(Resources.Type.COPPER_WIRE)
+		and storage.has_stored_resource(Resources.Type.SILVER_PLATE)
+	):
 		_make_automatron()
 	if storage.has_stored_resource(Resources.Type.COPPER_BAR):
-		_make_copper_wire() 
+		_make_copper_wire()
 	elif storage.has_stored_resource(Resources.Type.SILVER_BAR):
 		_make_silver_plate()
 
