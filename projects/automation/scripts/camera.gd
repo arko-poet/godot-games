@@ -32,8 +32,16 @@ func _process(delta: float) -> void:
 	):
 		scroll_direction.y = 1
 
-	position += scroll_direction * _EDGE_SCROLL_SPEED * delta
+	position += (scroll_direction * _EDGE_SCROLL_SPEED * delta) / zoom
 	_update_chunk()
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			zoom += Vector2(0.1, 0.1)
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			zoom -= Vector2(0.1, 0.1)
 
 
 func _update_chunk() -> void:
