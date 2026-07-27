@@ -166,7 +166,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Hello, world!"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI" unique_id=1623089392]
+[node name="BuildingButtonContainer" type="HBoxContainer" parent="UILayer/UI" unique_id=1623089392]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -175,22 +175,46 @@ offset_top = -40.0
 offset_right = 47.0
 grow_vertical = 0
 
-[node name="CreateMine" type="Button" parent="UILayer/UI/HBoxContainer" unique_id=261197490]
+[node name="CreateMine" type="Button" parent="UILayer/UI/BuildingButtonContainer" unique_id=261197490]
 layout_mode = 2
 text = "Mine"
 
-[node name="CreateFurnance" type="Button" parent="UILayer/UI/HBoxContainer" unique_id=1630307146]
+[node name="CreateFurnance" type="Button" parent="UILayer/UI/BuildingButtonContainer" unique_id=1630307146]
 layout_mode = 2
 text = "Furnance"
 
-[node name="CreateAssembler" type="Button" parent="UILayer/UI/HBoxContainer" unique_id=121397649]
+[node name="CreateAssembler" type="Button" parent="UILayer/UI/BuildingButtonContainer" unique_id=121397649]
 layout_mode = 2
 text = "Assembler
 "
 
-[node name="CreateInserter" type="Button" parent="UILayer/UI/HBoxContainer" unique_id=719671651]
+[node name="CreateInserter" type="Button" parent="UILayer/UI/BuildingButtonContainer" unique_id=719671651]
 layout_mode = 2
 text = "Inserter"
+
+[node name="AutoamtronContainer" type="HBoxContainer" parent="UILayer/UI" unique_id=1948770140]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+
+[node name="AutomatronLabel" type="Label" parent="UILayer/UI/AutoamtronContainer" unique_id=1111780255]
+layout_mode = 2
+text = "Automatrons:"
+
+[node name="AutomatronsBar" type="ProgressBar" parent="UILayer/UI/AutoamtronContainer" unique_id=1126934788]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+size_flags_vertical = 1
+step = 1.0
 
 [connection signal="resource_changed" from="PlayerResources" to="UILayer/UI/ResourceLabels" method="_on_player_resources_resource_changed"]
 [connection signal="child_entered_tree" from="World" to="World" method="_on_child_entered_tree"]
@@ -198,7 +222,7 @@ text = "Inserter"
 [connection signal="chunk_changed" from="World/Camera" to="UILayer/UI/DebugLabels" method="_on_camera_chunk_changed"]
 [connection signal="resource_collected" from="World/Layers" to="PlayerResources" method="_on_layers_resource_collected"]
 [connection signal="resource_hovered" from="World/Layers" to="UILayer/UI/DebugLabels" method="_on_tile_map_layers_resource_hovered"]
-[connection signal="pressed" from="UILayer/UI/HBoxContainer/CreateMine" to="BuildingController" method="_on_create_mine_pressed"]
-[connection signal="pressed" from="UILayer/UI/HBoxContainer/CreateFurnance" to="BuildingController" method="_on_create_furnance_pressed"]
-[connection signal="pressed" from="UILayer/UI/HBoxContainer/CreateAssembler" to="BuildingController" method="_on_create_assembler_pressed"]
-[connection signal="pressed" from="UILayer/UI/HBoxContainer/CreateInserter" to="BuildingController" method="_on_create_inserter_pressed"]
+[connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateMine" to="BuildingController" method="_on_create_mine_pressed"]
+[connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateFurnance" to="BuildingController" method="_on_create_furnance_pressed"]
+[connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateAssembler" to="BuildingController" method="_on_create_assembler_pressed"]
+[connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateInserter" to="BuildingController" method="_on_create_inserter_pressed"]

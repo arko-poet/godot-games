@@ -16,6 +16,10 @@ run/main_scene="uid://l5gbhmfx0d0i"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://dcgu2m2ixa0jp"
 
+[autoload]
+
+SignalController="*uid://dt7c7myf2lnw6"
+
 [display]
 
 window/size/viewport_width=960
@@ -30,6 +34,7 @@ enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://addons/": "gray",
 "res://art/": "teal",
 "res://resources/": "orange",
 "res://scenes/": "blue",

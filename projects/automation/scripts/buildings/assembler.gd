@@ -44,3 +44,4 @@ func _make_automatron() -> void:
 		push_error("No silver plate in storage")
 		return
 	storage.store_resources(Resources.Type.AUTOMATRON, 1)
+	SignalController.automatron_created.emit()
