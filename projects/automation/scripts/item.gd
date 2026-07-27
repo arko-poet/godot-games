@@ -10,6 +10,8 @@ const _RESOURCE_TO_SPRITE_NAME := {
 	Resources.Type.SILVER: "mined/silver",
 	Resources.Type.COPPER_BAR: "bars/copper_bar",
 	Resources.Type.SILVER_BAR: "bars/silver_bar",
+	Resources.Type.SILVER_PLATE: "assembled/silver_plate",
+	Resources.Type.COPPER_WIRE: "assembled/copper_wire",
 }
 
 var cell: Vector2i:
