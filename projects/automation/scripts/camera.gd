@@ -1,9 +1,11 @@
 extends Camera2D
 
 signal chunk_changed(chunk: Vector2i)
+signal zoom_changed(new_zoom: Vector2)
 
 const _EDGE_SCROLL_SPEED := 200.0
 const _SCREEN_BOUNDARY_WIDTH := 10.0
+const _CAMERA_ZOOM_STEP := Vector2(0.1, 0.1)
 
 var _chunk := Vector2i.ZERO:
 	set(value):
@@ -39,9 +41,11 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			zoom += Vector2(0.1, 0.1)
+			zoom += _CAMERA_ZOOM_STEP
+			zoom_changed.emit(zoom)
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			zoom -= Vector2(0.1, 0.1)
+			zoom -= _CAMERA_ZOOM_STEP
+			zoom_changed.emit(zoom)
 
 
 func _update_chunk() -> void:

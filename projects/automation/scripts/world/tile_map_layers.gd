@@ -11,6 +11,14 @@ const _NoiseGenerator := preload("res://resources/noise_generator.tres")
 var _drawn_chunks: Array[Vector2i]
 var _resource_nodes: Dictionary[Vector2i, ResourceNode]
 var _hovered_coords: Vector2i
+var _chunk_generation_range := 1:
+	set(value):
+		_chunk_generation_range = value
+		_generate_chunks()
+var _current_chunk := Vector2.ZERO:
+	set(value):
+		_current_chunk = value
+		_generate_chunks()
 
 @onready var terrain_layer: TileMapLayer = %TerrainLayer
 @onready var resource_layer: TileMapLayer = %ResourceLayer
@@ -20,7 +28,7 @@ func _ready() -> void:
 	seed(0)
 	#randomize()
 	#noise.seed = 0
-	_generate_chunks(Vector2.ZERO)
+	_generate_chunks()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -53,9 +61,15 @@ func get_resource_nodes(location: Vector2, tile_range: int) -> Array[ResourceNod
 	return resource_nodes
 
 
-func _generate_chunks(center_chunk: Vector2i) -> void:
-	for x in range(center_chunk.x - 1, center_chunk.x + 2):
-		for y in range(center_chunk.y - 1, center_chunk.y + 2):
+func _generate_chunks() -> void:
+	for x in range(
+		_current_chunk.x - _chunk_generation_range,
+		_current_chunk.x + _chunk_generation_range + 1,
+	):
+		for y in range(
+			_current_chunk.y - _chunk_generation_range,
+			_current_chunk.y + _chunk_generation_range + 1,
+		):
 			var chunk := Vector2i(x, y)
 			if chunk not in _drawn_chunks:
 				_generate_chunk(chunk)
@@ -80,7 +94,7 @@ func _generate_chunk(chunk: Vector2i) -> void:
 
 
 func _on_camera_chunk_changed(chunk: Vector2i) -> void:
-	_generate_chunks(chunk)
+	_current_chunk = chunk
 
 
 func _on_resource_node_depleted(resource_node: ResourceNode) -> void:
@@ -98,3 +112,17 @@ func _determine_resource_type(coords: Vector2i) -> Resources.Type:
 				return tile_id as Resources.Type
 
 	return Resources.get_random_ore()
+
+
+func _on_camera_zoom_changed(new_zoom: Vector2) -> void:
+	print(new_zoom)
+	if new_zoom.x <= 0.1:
+		_chunk_generation_range = 9
+	elif new_zoom.x <= 0.2:
+		_chunk_generation_range = 4
+	elif new_zoom.x <= 0.3:
+		_chunk_generation_range = 3
+	elif new_zoom.x <= 0.4:
+		_chunk_generation_range = 2
+	else:
+		_chunk_generation_range = 1

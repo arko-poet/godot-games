@@ -35,3 +35,5 @@ This will be an automation game inspired by Factorio
 - Extract resources manually
 
 fix inserter direction
+change render distance based on camera
+zoom in/out at cursor
