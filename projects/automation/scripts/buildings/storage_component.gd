@@ -1,4 +1,5 @@
-class_name StorageComponent extends Node
+class_name StorageComponent
+extends Node
 
 const ItemScene := preload("res://scenes/item.tscn")
 

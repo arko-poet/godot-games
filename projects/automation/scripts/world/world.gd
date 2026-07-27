@@ -1,4 +1,5 @@
-class_name World extends Node2D
+class_name World
+extends Node2D
 
 const CHUNK_SIZE := 32
 const TILE_SIZE := 32
@@ -8,17 +9,12 @@ var _cell_occupants: Dictionary[Vector2i, Node2D]
 @onready var layers: TileMapLayers = %Layers
 
 
-func _on_child_entered_tree(node: Node) -> void:
-	if node is Item:
-		node.item_moved.connect(_on_item_moved)
-
-
 func get_node_at_cell(cell: Vector2i) -> Node2D:
 	var cell_occupant = _cell_occupants.get(cell)
 	if cell_occupant:
 		return cell_occupant
-	else:
-		return null
+
+	return null
 
 
 func get_tile(coords: Vector2) -> Vector2i:
@@ -48,14 +44,16 @@ func is_cell_free(coords: Vector2i) -> bool:
 	return coords not in _cell_occupants or _cell_occupants[coords] == null
 
 
+func _on_child_entered_tree(node: Node) -> void:
+	if node is Item:
+		node.item_moved.connect(_on_item_moved)
+
+
 func _on_item_moved(item: Item, from: Vector2i, to: Vector2i) -> void:
-	print("XD")
 	if not is_cell_free(to):
 		push_error("Attempt to place item in occupied cell")
 		return
 
-	print(item.position)
 	item.position = get_tile_position(to)
-	print(item.position)
 	_cell_occupants.erase(from)
 	_cell_occupants[to] = item

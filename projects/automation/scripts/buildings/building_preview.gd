@@ -1,4 +1,5 @@
-class_name BuildingPreview extends Node2D
+class_name BuildingPreview
+extends Node2D
 
 var footprint: Array[Vector2i]
 var center_tile: Vector2i

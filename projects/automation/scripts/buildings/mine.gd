@@ -1,4 +1,5 @@
-class_name Mine extends Node2D
+class_name Mine
+extends Node2D
 
 const TILE_RANGE := 2
 

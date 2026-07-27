@@ -1,4 +1,5 @@
-class_name BuildingComponent extends Node2D
+class_name BuildingComponent
+extends Node2D
 
 signal item_created(item: Item)
 

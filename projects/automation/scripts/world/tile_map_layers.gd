@@ -1,4 +1,5 @@
-class_name TileMapLayers extends Node2D
+class_name TileMapLayers
+extends Node2D
 
 signal resource_hovered(resource: ResourceNode)
 signal resource_collected(type: Resources.Type, quantity: int)
@@ -96,4 +97,4 @@ func _determine_resource_type(coords: Vector2i) -> Resources.Type:
 			if tile_id != -1:
 				return tile_id as Resources.Type
 
-	return Resources._get_random_ore()
+	return Resources.get_random_ore()

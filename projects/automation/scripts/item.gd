@@ -1,4 +1,5 @@
-class_name Item extends Node2D
+class_name Item
+extends Node2D
 
 signal item_moved(item: Item, from: Vector2i, to: Vector2i)
 

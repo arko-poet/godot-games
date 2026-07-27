@@ -1,4 +1,5 @@
-class_name BuildingController extends Node
+class_name BuildingController
+extends Node
 
 const _BuildingPreviewScene := preload("res://scenes/buildings/building_preview.tscn")
 const _MineScene := preload("res://scenes/buildings/mine.tscn")

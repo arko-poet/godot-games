@@ -1,10 +1,11 @@
-class_name Inserter extends Node2D
+class_name Inserter
+extends Node2D
+
+var world: World
 
 @onready var building_component: BuildingComponent = $BuildingComponent
 @onready var sprite: Sprite2D = %Sprite
 @onready var _production_timer: Timer = %ProductionTimer
-
-var world: World
 
 
 func activate() -> void:

@@ -1,4 +1,5 @@
-class_name ResourceNode extends RefCounted
+class_name ResourceNode
+extends RefCounted
 
 signal depleted(tile_resource_data: ResourceNode)
 
