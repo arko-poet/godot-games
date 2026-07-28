@@ -16,7 +16,7 @@ var _chunk := Vector2i.ZERO:
 
 func _process(delta: float) -> void:
 	var scroll_direction := Vector2i.ZERO
-	var mouse_position := get_local_mouse_position()
+	var mouse_position := get_viewport().get_mouse_position()
 	var viewport_size := get_viewport_rect().size
 
 	if mouse_position.x <= _SCREEN_BOUNDARY_WIDTH and mouse_position.x > -_SCREEN_BOUNDARY_WIDTH:
