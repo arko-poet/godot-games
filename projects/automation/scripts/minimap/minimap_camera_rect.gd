@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @onready var camera: Camera2D = %Camera
 
@@ -13,4 +13,4 @@ func _draw() -> void:
 func _get_camera_rect_size() -> Vector2:
 	if camera.zoom == Vector2(0.1, 0.1):
 		return get_viewport_rect().size
-	return get_viewport_rect().size
+	return get_viewport_rect().size / 2

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://l5gbhmfx0d0i"]
 
 [ext_resource type="Script" uid="uid://dvqjej40blqou" path="res://scripts/main.gd" id="1_o5qli"]
-[ext_resource type="Script" uid="uid://b4mk78hcp1vde" path="res://scripts/camera.gd" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://b4mk78hcp1vde" path="res://scripts/world/camera.gd" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://0y77mla5ecqb" path="res://scripts/buildings/building_controller.gd" id="2_choun"]
 [ext_resource type="Script" uid="uid://coo25h4u4feqo" path="res://scripts/world/world.gd" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://c8wh2kmpjh7ep" path="res://art/sprites/terrain/grass_tile.png" id="3_jyhfs"]
@@ -13,8 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://bbcq1ndyfc0le" path="res://art/sprites/resources/ore/coal.png" id="8_trceg"]
 [ext_resource type="Script" uid="uid://cdsu7j33uife0" path="res://scripts/resources/resource_labels.gd" id="9_85g3d"]
 [ext_resource type="Texture2D" uid="uid://dcgu2m2ixa0jp" path="res://art/sprites/resources/ore/copper.png" id="9_eb6dy"]
-[ext_resource type="Script" uid="uid://dt7dh8dkwn7cw" path="res://scripts/test.gd" id="12_jkv2x"]
-[ext_resource type="Script" uid="uid://dynip4v0k4al0" path="res://scripts/minimap.gd" id="14_a8y0u"]
+[ext_resource type="Script" uid="uid://dynip4v0k4al0" path="res://scripts/minimap/minimap_camera_rect.gd" id="12_jbj1t"]
+[ext_resource type="Script" uid="uid://dt7dh8dkwn7cw" path="res://scripts/minimap/minimap_viewport.gd" id="12_jkv2x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("3_jyhfs")
@@ -120,19 +120,33 @@ custom_minimum_size = Vector2(240, 135)
 custom_maximum_size = Vector2(240, 135)
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="UILayer/UI/VBoxContainer/Panel/MinimapContainer" unique_id=1321476792]
+[node name="MinimapViewport" type="SubViewport" parent="UILayer/UI/VBoxContainer/Panel/MinimapContainer" unique_id=1321476792]
 handle_input_locally = false
 size = Vector2i(240, 135)
 render_target_update_mode = 4
 script = ExtResource("12_jkv2x")
 
-[node name="Minimap" type="Node2D" parent="UILayer/UI/VBoxContainer/Panel/MinimapContainer/SubViewport" unique_id=303195190]
+[node name="MinimapCamera" type="Camera2D" parent="UILayer/UI/VBoxContainer/Panel/MinimapContainer/MinimapViewport" unique_id=850350881]
 unique_name_in_owner = true
-visible = false
-script = ExtResource("14_a8y0u")
-
-[node name="Camera2D" type="Camera2D" parent="UILayer/UI/VBoxContainer/Panel/MinimapContainer/SubViewport" unique_id=850350881]
 zoom = Vector2(0.02, 0.02)
+
+[node name="MinimapOverlayContainer" type="SubViewportContainer" parent="UILayer/UI/VBoxContainer/Panel" unique_id=1519166059]
+layout_mode = 2
+
+[node name="MinimapOverlayViewport" type="SubViewport" parent="UILayer/UI/VBoxContainer/Panel/MinimapOverlayContainer" unique_id=895218380]
+size = Vector2i(240, 135)
+
+[node name="MinimapCameraRect" type="Control" parent="UILayer/UI/VBoxContainer/Panel/MinimapOverlayContainer/MinimapOverlayViewport" unique_id=483309036]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 135)
+custom_maximum_size = Vector2(240, 135)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 244.0
+offset_bottom = 139.0
+script = ExtResource("12_jbj1t")
 
 [node name="DebugLabels" type="VBoxContainer" parent="UILayer/UI/VBoxContainer" unique_id=1875961438]
 layout_mode = 2
