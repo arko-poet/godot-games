@@ -34,6 +34,5 @@ This will be an automation game inspired by Factorio
 	- fuel resource + material resource = new resource
 - Extract resources manually
 
-fix inserter direction
 zoom in/out at cursor
 
