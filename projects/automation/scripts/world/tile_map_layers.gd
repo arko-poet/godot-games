@@ -115,7 +115,6 @@ func _determine_resource_type(coords: Vector2i) -> Resources.Type:
 
 
 func _on_camera_zoom_changed(new_zoom: Vector2) -> void:
-	print(new_zoom)
 	if new_zoom.x <= 0.1:
 		_chunk_generation_range = 9
 	elif new_zoom.x <= 0.2:

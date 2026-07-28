@@ -41,7 +41,7 @@ func _on_production_timer_timeout() -> void:
 
 
 func _get_direction() -> Vector2i:
-	var rotation_count := int(rotation / (TAU / 4.0))
+	var rotation_count := int(round(rotation / (TAU / 4.0))) % 4
 	match rotation_count:
 		0:
 			return Vector2i.RIGHT
