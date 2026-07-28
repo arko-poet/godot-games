@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bbcq1ndyfc0le" path="res://art/sprites/resources/ore/coal.png" id="8_trceg"]
 [ext_resource type="Script" uid="uid://cdsu7j33uife0" path="res://scripts/resources/resource_labels.gd" id="9_85g3d"]
 [ext_resource type="Texture2D" uid="uid://dcgu2m2ixa0jp" path="res://art/sprites/resources/ore/copper.png" id="9_eb6dy"]
+[ext_resource type="Script" uid="uid://dt7dh8dkwn7cw" path="res://scripts/test.gd" id="12_jkv2x"]
 [ext_resource type="Script" uid="uid://dynip4v0k4al0" path="res://scripts/minimap.gd" id="14_a8y0u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
@@ -47,6 +48,10 @@ tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_trceg")
 sources/2 = SubResource("TileSetAtlasSource_jkv2x")
 sources/0 = SubResource("TileSetAtlasSource_a8y0u")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgun3"]
+shadow_color = Color(0, 0, 1, 0.54509807)
+shadow_size = 4
 
 [sub_resource type="Gradient" id="Gradient_tipki"]
 offsets = PackedFloat32Array(0.5, 0.5)
@@ -99,25 +104,40 @@ mouse_filter = 2
 
 [node name="VBoxContainer" type="HBoxContainer" parent="UILayer/UI" unique_id=122360632]
 layout_mode = 1
-offset_right = 614.0
-offset_bottom = 593.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 618.0
+offset_bottom = 597.0
 
-[node name="MinimapContainer" type="SubViewportContainer" parent="UILayer/UI/VBoxContainer" unique_id=1467926172]
+[node name="Panel" type="PanelContainer" parent="UILayer/UI/VBoxContainer" unique_id=1106689535]
+custom_minimum_size = Vector2(240, 135)
+custom_maximum_size = Vector2(240, 135)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vgun3")
+
+[node name="MinimapContainer" type="SubViewportContainer" parent="UILayer/UI/VBoxContainer/Panel" unique_id=1467926172]
 custom_minimum_size = Vector2(240, 135)
 custom_maximum_size = Vector2(240, 135)
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="UILayer/UI/VBoxContainer/MinimapContainer" unique_id=1321476792]
+[node name="SubViewport" type="SubViewport" parent="UILayer/UI/VBoxContainer/Panel/MinimapContainer" unique_id=1321476792]
 handle_input_locally = false
 size = Vector2i(240, 135)
 render_target_update_mode = 4
+script = ExtResource("12_jkv2x")
 
-[node name="Minimap" type="Node2D" parent="UILayer/UI/VBoxContainer/MinimapContainer/SubViewport" unique_id=303195190]
+[node name="Minimap" type="Node2D" parent="UILayer/UI/VBoxContainer/Panel/MinimapContainer/SubViewport" unique_id=303195190]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("14_a8y0u")
+
+[node name="Camera2D" type="Camera2D" parent="UILayer/UI/VBoxContainer/Panel/MinimapContainer/SubViewport" unique_id=850350881]
+zoom = Vector2(0.02, 0.02)
 
 [node name="DebugLabels" type="VBoxContainer" parent="UILayer/UI/VBoxContainer" unique_id=1875961438]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 script = ExtResource("6_tefeu")
 
 [node name="Position" type="Label" parent="UILayer/UI/VBoxContainer/DebugLabels" unique_id=1011759887]
