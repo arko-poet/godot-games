@@ -134,6 +134,7 @@ zoom = Vector2(0.02, 0.02)
 layout_mode = 2
 
 [node name="MinimapOverlayViewport" type="SubViewport" parent="UILayer/UI/VBoxContainer/Panel/MinimapOverlayContainer" unique_id=895218380]
+transparent_bg = true
 size = Vector2i(240, 135)
 
 [node name="MinimapCameraRect" type="Control" parent="UILayer/UI/VBoxContainer/Panel/MinimapOverlayContainer/MinimapOverlayViewport" unique_id=483309036]
