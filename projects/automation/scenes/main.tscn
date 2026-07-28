@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bbcq1ndyfc0le" path="res://art/sprites/resources/ore/coal.png" id="8_trceg"]
 [ext_resource type="Script" uid="uid://cdsu7j33uife0" path="res://scripts/resources/resource_labels.gd" id="9_85g3d"]
 [ext_resource type="Texture2D" uid="uid://dcgu2m2ixa0jp" path="res://art/sprites/resources/ore/copper.png" id="9_eb6dy"]
+[ext_resource type="Script" uid="uid://dynip4v0k4al0" path="res://scripts/minimap.gd" id="14_a8y0u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("3_jyhfs")
@@ -96,13 +97,30 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="DebugLabels" type="VBoxContainer" parent="UILayer/UI" unique_id=1875961438]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBoxContainer" type="HBoxContainer" parent="UILayer/UI" unique_id=122360632]
+layout_mode = 1
+offset_right = 614.0
+offset_bottom = 593.0
+
+[node name="MinimapContainer" type="SubViewportContainer" parent="UILayer/UI/VBoxContainer" unique_id=1467926172]
+custom_minimum_size = Vector2(240, 135)
+custom_maximum_size = Vector2(240, 135)
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="UILayer/UI/VBoxContainer/MinimapContainer" unique_id=1321476792]
+handle_input_locally = false
+size = Vector2i(240, 135)
+render_target_update_mode = 4
+
+[node name="Minimap" type="Node2D" parent="UILayer/UI/VBoxContainer/MinimapContainer/SubViewport" unique_id=303195190]
+unique_name_in_owner = true
+script = ExtResource("14_a8y0u")
+
+[node name="DebugLabels" type="VBoxContainer" parent="UILayer/UI/VBoxContainer" unique_id=1875961438]
+layout_mode = 2
 script = ExtResource("6_tefeu")
 
-[node name="Position" type="Label" parent="UILayer/UI/DebugLabels" unique_id=1011759887]
+[node name="Position" type="Label" parent="UILayer/UI/VBoxContainer/DebugLabels" unique_id=1011759887]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -110,7 +128,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Hello, world!"
 
-[node name="Chunk" type="Label" parent="UILayer/UI/DebugLabels" unique_id=1815391866]
+[node name="Chunk" type="Label" parent="UILayer/UI/VBoxContainer/DebugLabels" unique_id=1815391866]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -118,7 +136,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Hello, world!"
 
-[node name="Resource" type="Label" parent="UILayer/UI/DebugLabels" unique_id=34682592]
+[node name="Resource" type="Label" parent="UILayer/UI/VBoxContainer/DebugLabels" unique_id=34682592]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -126,7 +144,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Hello, world!"
 
-[node name="NoisePreview" type="TextureRect" parent="UILayer/UI/DebugLabels" unique_id=1726880078]
+[node name="NoisePreview" type="TextureRect" parent="UILayer/UI/VBoxContainer/DebugLabels" unique_id=1726880078]
 visible = false
 layout_mode = 2
 texture = SubResource("NoiseTexture2D_vgun3")
@@ -218,10 +236,10 @@ step = 1.0
 [connection signal="resource_changed" from="PlayerResources" to="UILayer/UI/ResourceLabels" method="_on_player_resources_resource_changed"]
 [connection signal="child_entered_tree" from="World" to="World" method="_on_child_entered_tree"]
 [connection signal="chunk_changed" from="World/Camera" to="World/Layers" method="_on_camera_chunk_changed"]
-[connection signal="chunk_changed" from="World/Camera" to="UILayer/UI/DebugLabels" method="_on_camera_chunk_changed"]
+[connection signal="chunk_changed" from="World/Camera" to="UILayer/UI/VBoxContainer/DebugLabels" method="_on_camera_chunk_changed"]
 [connection signal="zoom_changed" from="World/Camera" to="World/Layers" method="_on_camera_zoom_changed"]
 [connection signal="resource_collected" from="World/Layers" to="PlayerResources" method="_on_layers_resource_collected"]
-[connection signal="resource_hovered" from="World/Layers" to="UILayer/UI/DebugLabels" method="_on_tile_map_layers_resource_hovered"]
+[connection signal="resource_hovered" from="World/Layers" to="UILayer/UI/VBoxContainer/DebugLabels" method="_on_tile_map_layers_resource_hovered"]
 [connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateMine" to="BuildingController" method="_on_create_mine_pressed"]
 [connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateFurnance" to="BuildingController" method="_on_create_furnance_pressed"]
 [connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateAssembler" to="BuildingController" method="_on_create_assembler_pressed"]

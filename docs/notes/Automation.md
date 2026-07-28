@@ -28,11 +28,7 @@ This will be an automation game inspired by Factorio
 - [[Buildings]]
 	- 1 building for extracting resources
 	- 1 building for processing 2 resources into 3rd
-- Crafting
-	- use resources to make buildings
 - Resources
 	- fuel resource + material resource = new resource
 - Extract resources manually
-
-zoom in/out at cursor
-
+- [[Minimap]]
