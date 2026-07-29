@@ -11,7 +11,7 @@ const _NoiseGenerator := preload("res://resources/noise_generator.tres")
 var _drawn_chunks: Array[Vector2i]
 var _resource_nodes: Dictionary[Vector2i, ResourceNode]
 var _hovered_coords: Vector2i
-var _chunk_generation_range := 1:
+var _chunk_generation_range := 9:
 	set(value):
 		_chunk_generation_range = value
 		_generate_chunks()
@@ -115,13 +115,14 @@ func _determine_resource_type(coords: Vector2i) -> Resources.Type:
 
 
 func _on_camera_zoom_changed(new_zoom: Vector2) -> void:
-	if new_zoom.x <= 0.1:
-		_chunk_generation_range = 9
-	elif new_zoom.x <= 0.2:
-		_chunk_generation_range = 4
-	elif new_zoom.x <= 0.3:
-		_chunk_generation_range = 3
-	elif new_zoom.x <= 0.4:
-		_chunk_generation_range = 2
-	else:
-		_chunk_generation_range = 1
+	pass
+	#if new_zoom.x <= 0.1:
+		#_chunk_generation_range = 9
+	#elif new_zoom.x <= 0.2:
+		#_chunk_generation_range = 4
+	#elif new_zoom.x <= 0.3:
+		#_chunk_generation_range = 3
+	#elif new_zoom.x <= 0.4:
+		#_chunk_generation_range = 2
+	#else:
+		#_chunk_generation_range = 1
