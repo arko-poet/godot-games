@@ -5,13 +5,14 @@ signal resource_hovered(resource: ResourceNode)
 signal resource_collected(type: Resources.Type, quantity: int)
 
 const _NOISE_THRESHOLD := -0.75
+const _DEFAULT_CHUNK_GENERATION_RANGE := 9
 
 const _NoiseGenerator := preload("res://resources/noise_generator.tres")
 
 var _drawn_chunks: Array[Vector2i]
 var _resource_nodes: Dictionary[Vector2i, ResourceNode]
 var _hovered_coords: Vector2i
-var _chunk_generation_range := 9:
+var _chunk_generation_range := _DEFAULT_CHUNK_GENERATION_RANGE:
 	set(value):
 		_chunk_generation_range = value
 		_generate_chunks()

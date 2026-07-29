@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dcgu2m2ixa0jp" path="res://art/sprites/resources/ore/copper.png" id="9_eb6dy"]
 [ext_resource type="Script" uid="uid://dynip4v0k4al0" path="res://scripts/minimap/minimap_camera_rect.gd" id="12_jbj1t"]
 [ext_resource type="Script" uid="uid://dt7dh8dkwn7cw" path="res://scripts/minimap/minimap_viewport.gd" id="12_jkv2x"]
+[ext_resource type="Script" uid="uid://5d18s4dxi1r7" path="res://scripts/minimap/minimap_camera.gd" id="12_muem4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("3_jyhfs")
@@ -129,6 +130,7 @@ script = ExtResource("12_jkv2x")
 [node name="MinimapCamera" type="Camera2D" parent="UILayer/UI/VBoxContainer/Panel/MinimapContainer/MinimapViewport" unique_id=850350881]
 unique_name_in_owner = true
 zoom = Vector2(0.02, 0.02)
+script = ExtResource("12_muem4")
 
 [node name="MinimapOverlayContainer" type="SubViewportContainer" parent="UILayer/UI/VBoxContainer/Panel" unique_id=1519166059]
 layout_mode = 2
