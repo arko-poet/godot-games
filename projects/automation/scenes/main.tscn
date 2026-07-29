@@ -129,7 +129,7 @@ script = ExtResource("12_jkv2x")
 
 [node name="MinimapCamera" type="Camera2D" parent="UILayer/UI/VBoxContainer/Panel/MinimapContainer/MinimapViewport" unique_id=850350881]
 unique_name_in_owner = true
-zoom = Vector2(0.02, 0.02)
+zoom = Vector2(0.05, 0.05)
 script = ExtResource("12_muem4")
 
 [node name="MinimapOverlayContainer" type="SubViewportContainer" parent="UILayer/UI/VBoxContainer/Panel" unique_id=1519166059]
@@ -277,6 +277,7 @@ step = 1.0
 [connection signal="chunk_changed" from="World/Camera" to="World/Layers" method="_on_camera_chunk_changed"]
 [connection signal="chunk_changed" from="World/Camera" to="UILayer/UI/VBoxContainer/DebugLabels" method="_on_camera_chunk_changed"]
 [connection signal="zoom_changed" from="World/Camera" to="World/Layers" method="_on_camera_zoom_changed"]
+[connection signal="zoom_changed" from="World/Camera" to="UILayer/UI/VBoxContainer/Panel/MinimapOverlayContainer/MinimapOverlayViewport/MinimapCameraRect" method="_on_camera_zoom_changed"]
 [connection signal="resource_collected" from="World/Layers" to="PlayerResources" method="_on_layers_resource_collected"]
 [connection signal="resource_hovered" from="World/Layers" to="UILayer/UI/VBoxContainer/DebugLabels" method="_on_tile_map_layers_resource_hovered"]
 [connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateMine" to="BuildingController" method="_on_create_mine_pressed"]

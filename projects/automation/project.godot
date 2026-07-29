@@ -24,6 +24,7 @@ SignalController="*uid://dt7c7myf2lnw6"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

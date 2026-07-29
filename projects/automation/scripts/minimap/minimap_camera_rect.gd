@@ -11,6 +11,8 @@ func _draw() -> void:
 
 
 func _get_camera_rect_size() -> Vector2:
-	if camera.zoom == Vector2(0.1, 0.1):
-		return get_viewport_rect().size
-	return get_viewport_rect().size / 2
+	return (get_viewport_rect().size * 0.25) / camera.zoom
+
+
+func _on_camera_zoom_changed(new_zoom: Vector2) -> void:
+	queue_redraw()
