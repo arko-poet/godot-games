@@ -43,7 +43,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 			_hovered_coords = coords
 			resource_hovered.emit(_resource_nodes[coords])
-	elif event is InputEventMouseButton and event.is_pressed() and _hovered_coords != Vector2i.MIN:
+	elif (
+		event is InputEventMouseButton and event.is_pressed()
+		and _hovered_coords != Vector2i.MIN and event.button_index == MOUSE_BUTTON_LEFT
+	):
 		var resource_node := _resource_nodes[_hovered_coords]
 		if resource_node.quantity > 0:
 			resource_collected.emit(resource_node.resource_type, resource_node.mine())
@@ -118,12 +121,12 @@ func _determine_resource_type(coords: Vector2i) -> Resources.Type:
 func _on_camera_zoom_changed(new_zoom: Vector2) -> void:
 	pass
 	#if new_zoom.x <= 0.1:
-		#_chunk_generation_range = 9
+	#_chunk_generation_range = 9
 	#elif new_zoom.x <= 0.2:
-		#_chunk_generation_range = 4
+	#_chunk_generation_range = 4
 	#elif new_zoom.x <= 0.3:
-		#_chunk_generation_range = 3
+	#_chunk_generation_range = 3
 	#elif new_zoom.x <= 0.4:
-		#_chunk_generation_range = 2
+	#_chunk_generation_range = 2
 	#else:
-		#_chunk_generation_range = 1
+	#_chunk_generation_range = 1
