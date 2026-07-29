@@ -6,6 +6,7 @@ signal zoom_changed(new_zoom: Vector2)
 const _EDGE_SCROLL_SPEED := 200.0
 const _SCREEN_BOUNDARY_WIDTH := 10.0
 const _CAMERA_ZOOM_STEP := Vector2(0.1, 0.1)
+const LOWEST_ZOOM := Vector2(0.2, 0.2)
 
 var _chunk := Vector2i.ZERO:
 	set(value):
@@ -41,11 +42,10 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			zoom += _CAMERA_ZOOM_STEP
-			zoom_changed.emit(zoom)
+			_change_zoom(_CAMERA_ZOOM_STEP)
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			zoom -= _CAMERA_ZOOM_STEP
-			zoom_changed.emit(zoom)
+			_change_zoom(-_CAMERA_ZOOM_STEP)
+			
 
 
 func _update_chunk() -> void:
@@ -60,3 +60,8 @@ func _update_chunk() -> void:
 	chunk += Vector2i(centered_position / (World.CHUNK_SIZE * World.TILE_SIZE))
 
 	_chunk = chunk
+
+
+func _change_zoom(addend: Vector2) -> void:
+	zoom = LOWEST_ZOOM.max(zoom + addend)
+	zoom_changed.emit(zoom)

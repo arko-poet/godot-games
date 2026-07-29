@@ -135,7 +135,9 @@ layout_mode = 2
 
 [node name="MinimapOverlayViewport" type="SubViewport" parent="UILayer/UI/VBoxContainer/Panel/MinimapOverlayContainer" unique_id=895218380]
 transparent_bg = true
+handle_input_locally = false
 size = Vector2i(240, 135)
+render_target_update_mode = 4
 
 [node name="MinimapCameraRect" type="Control" parent="UILayer/UI/VBoxContainer/Panel/MinimapOverlayContainer/MinimapOverlayViewport" unique_id=483309036]
 unique_name_in_owner = true
