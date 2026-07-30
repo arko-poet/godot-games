@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cnpphhevlmsur"]
+
+[ext_resource type="Script" uid="uid://beus7ys3swg61" path="res://scripts/buildings/belt.gd" id="1_1km7c"]
+[ext_resource type="PackedScene" uid="uid://b7yyfjsfxrnkn" path="res://scenes/buildings/building_component.tscn" id="1_s1u1g"]
+[ext_resource type="Texture2D" uid="uid://bkvcp6gpa15kv" path="res://art/sprites/buildings/belt.png" id="2_ci16f"]
+
+[node name="Belt" type="Node2D" unique_id=1882711507]
+script = ExtResource("1_1km7c")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=731956110]
+texture = ExtResource("2_ci16f")
+
+[node name="BuildingComponent" parent="." unique_id=712283767 instance=ExtResource("1_s1u1g")]
+unique_name_in_owner = true

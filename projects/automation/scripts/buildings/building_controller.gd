@@ -6,6 +6,7 @@ const _MineScene := preload("res://scenes/buildings/mine.tscn")
 const _FurnanceScene := preload("res://scenes/buildings/furnance.tscn")
 const _AssemblerScene := preload("res://scenes/buildings/assembler.tscn")
 const _InserterScene := preload("res://scenes/buildings/inserter.tscn")
+const _BeltScene := preload("res://scenes/buildings/belt.tscn")
 
 var _building_preview: BuildingPreview
 var _building: Node2D
@@ -95,3 +96,9 @@ func _can_place_building() -> bool:
 
 func _rotate_preview() -> void:
 	_building_preview.rotate(TAU / 4.0)
+
+
+func _on_create_belt_pressed() -> void:
+	_building = _BeltScene.instantiate()
+	_building.world = world
+	_create_building_preview()

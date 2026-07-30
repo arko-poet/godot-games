@@ -248,6 +248,10 @@ text = "Assembler
 layout_mode = 2
 text = "Inserter"
 
+[node name="CreateBelt" type="Button" parent="UILayer/UI/BuildingButtonContainer" unique_id=1520528395]
+layout_mode = 2
+text = "Belt"
+
 [node name="AutoamtronContainer" type="HBoxContainer" parent="UILayer/UI" unique_id=1948770140]
 layout_mode = 1
 anchors_preset = 3
@@ -284,3 +288,4 @@ step = 1.0
 [connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateFurnance" to="BuildingController" method="_on_create_furnance_pressed"]
 [connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateAssembler" to="BuildingController" method="_on_create_assembler_pressed"]
 [connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateInserter" to="BuildingController" method="_on_create_inserter_pressed"]
+[connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateBelt" to="BuildingController" method="_on_create_belt_pressed"]
