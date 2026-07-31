@@ -35,6 +35,10 @@ func _on_production_timer_timeout() -> void:
 
 	if destination_node == null:
 		item.cell = destination
+	elif destination_node is Belt:
+		if destination_node.stored_item == null:
+			destination_node.stored_item = item
+			item.cell = destination
 	else:
 		var storage: StorageComponent = destination_node.get_node(^"Storage")
 		storage.store_item(item)
