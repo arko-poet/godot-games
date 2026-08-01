@@ -41,9 +41,7 @@ func _on_production_timer_timeout() -> void:
 			if source_node is Belt:
 				source_node.stored_item = null
 			destination_node.stored_item = item
-			destination_node.item_displacement = Vector2.ZERO
 			item.position = destination_node.position
-			#item.cell = destination
 	else:
 		var storage: StorageComponent = destination_node.get_node(^"Storage")
 		storage.store_item(item)
