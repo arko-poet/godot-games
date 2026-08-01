@@ -17,16 +17,15 @@ func _on_production_timer_timeout() -> void:
 
 	var source_node := world.get_node_at_cell(building_component.center_cell - direction)
 
-	var destination := building_component.center_cell + direction
-	var destination_node := world.get_node_at_cell(destination)
+	var destination_node := world.get_node_at_cell(building_component.center_cell + direction)
 
-	print(destination_node)
-	if destination_node is Item or source_node == null:
+	if source_node == null:
 		return
 
 	var item: Item
-	if source_node is Item:
-		item = source_node
+	if source_node is Belt:
+		if source_node.stored_item:
+			item = source_node.stored_item
 	else:
 		var storage: StorageComponent = source_node.get_node(^"Storage")
 		if not storage.has_stored_items():
@@ -34,11 +33,15 @@ func _on_production_timer_timeout() -> void:
 		item = storage.get_stored_item()
 		world.add_child(item)
 
-	if destination_node == null:
-		item.cell = destination
-	elif destination_node is Belt:
+	if not item:
+		return
+
+	if destination_node is Belt:
 		if destination_node.stored_item == null:
+			if source_node is Belt:
+				source_node.stored_item = null
 			destination_node.stored_item = item
+			destination_node.item_displacement = Vector2.ZERO
 			item.position = destination_node.position
 			#item.cell = destination
 	else:
