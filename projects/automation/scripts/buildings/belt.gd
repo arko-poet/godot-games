@@ -5,38 +5,37 @@ var world: World
 
 var stored_item: Item
 var moving_item: Item
+var item_displacement: Vector2
 
 @onready var building_component: BuildingComponent = %BuildingComponent
 
 
 func _on_production_timer_timeout() -> void:
-	pass
-	#var direction := _get_direction()
-#
-	#var source_node := world.get_node_at_cell(building_component.center_cell - direction)
-#
-	#var destination := building_component.center_cell + direction
-	#var destination_node := world.get_node_at_cell(destination)
-#
-	#if destination_node is Item or source_node == null:
-		#return
-#
-	#var item: Item
-	#if source_node is Item:
-		#item = source_node
-	#else:
-		#var storage: StorageComponent = source_node.get_node(^"Storage")
-		#if not storage.has_stored_items():
-			#return
-		#item = storage.get_stored_item()
-		#world.add_child(item)
-#
-	#if destination_node == null:
-		#item.cell = destination
-	#else:
-		#var storage: StorageComponent = destination_node.get_node(^"Storage")
-		#storage.store_item(item)
+	var direction := _get_direction()
 
+	var destination := building_component.center_cell + direction
+	var destination_node := world.get_node_at_cell(destination)
+	var belt: Belt
+	if destination_node is not Belt:
+		return
+	belt = destination_node
+
+	if belt == null or belt.stored_item != null:
+		return
+
+	if moving_item == null:
+		moving_item = stored_item
+		stored_item = null
+		
+	if moving_item:
+		if item_displacement.length() == World.TILE_SIZE:
+			belt.stored_item = moving_item
+			moving_item.cell = destination + direction
+			moving_item = null
+			item_displacement = Vector2.ZERO
+		else:
+			moving_item.position += Vector2(direction)
+			item_displacement += Vector2(direction)
 
 func _get_direction() -> Vector2i:
 	var rotation_count := int(round(rotation / (TAU / 4.0))) % 4

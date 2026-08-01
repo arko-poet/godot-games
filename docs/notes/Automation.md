@@ -19,7 +19,7 @@ This will be an automation game inspired by Factorio
 	- experiment with **FastNoiseLite** - godots noise generation
 	- maybe a chunk system
 	- maybe a seed system would be cool to learn
-- Conveyor Belt
+- [[Conveyor Belt]]
 	- they connect to each other
 	- they can be rotated
 	- items queue on them
