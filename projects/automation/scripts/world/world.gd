@@ -50,10 +50,16 @@ func _on_child_entered_tree(node: Node) -> void:
 
 
 func _on_item_moved(item: Item, from: Vector2i, to: Vector2i) -> void:
-	if not (is_cell_free(to) or get_node_at_cell(to) is Belt):
-		push_error("Attempt to place item in occupied cell")
-		return
-
-	item.position = get_tile_position(to)
-	_cell_occupants.erase(from)
-	_cell_occupants[to] = item
+	if not (is_cell_free(to)):
+		if get_node_at_cell(to) is Belt:
+			var belt: Belt = get_node_at_cell(to)
+			if belt.stored_item == null:
+				belt.stored_item = item
+				item.position = get_tile_position(to)
+		else:
+			push_error("Attempt to place item in occupied cell")
+			return
+	else:
+		item.position = get_tile_position(to)
+		_cell_occupants.erase(from)
+		_cell_occupants[to] = item

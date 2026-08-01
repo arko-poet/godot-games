@@ -34,14 +34,13 @@ func _on_production_timer_timeout() -> void:
 		item = storage.get_stored_item()
 		world.add_child(item)
 
-	print(destination_node)
 	if destination_node == null:
 		item.cell = destination
 	elif destination_node is Belt:
-		print(destination_node.stored_item)
 		if destination_node.stored_item == null:
 			destination_node.stored_item = item
-			item.cell = destination
+			item.position = destination_node.position
+			#item.cell = destination
 	else:
 		var storage: StorageComponent = destination_node.get_node(^"Storage")
 		storage.store_item(item)

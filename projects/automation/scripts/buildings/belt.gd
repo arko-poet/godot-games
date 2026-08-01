@@ -30,7 +30,7 @@ func _on_production_timer_timeout() -> void:
 	if moving_item:
 		if item_displacement.length() == World.TILE_SIZE:
 			belt.stored_item = moving_item
-			moving_item.cell = destination + direction
+			#moving_item.cell = destination + direction
 			moving_item = null
 			item_displacement = Vector2.ZERO
 		else:
