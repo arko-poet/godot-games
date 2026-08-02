@@ -53,8 +53,8 @@ func has_stored_resource(resource: Resources.Type) -> bool:
 	return _storage.has(resource) and _storage[resource] > 0
 
 
-func withdraw_stored_resource(resource: Resources.Type) -> bool:
-	if has_stored_resource(resource) and resource in allowed_withdrawals:
+func withdraw_stored_resource(resource: Resources.Type, internal: bool = false) -> bool:
+	if has_stored_resource(resource) and (resource in allowed_withdrawals or internal):
 		_storage[resource] -= 1
 		return true
 	return false

@@ -23,24 +23,24 @@ func _on_production_timer_timeout() -> void:
 
 
 func _make_copper_wire() -> void:
-	if not storage.withdraw_stored_resource(Resources.Type.COPPER_BAR):
+	if not storage.withdraw_stored_resource(Resources.Type.COPPER_BAR, true):
 		push_error("No silver in storage")
 	else:
 		storage.store_resources(Resources.Type.COPPER_WIRE, 1)
 
 
 func _make_silver_plate() -> void:
-	if not storage.withdraw_stored_resource(Resources.Type.SILVER_BAR):
+	if not storage.withdraw_stored_resource(Resources.Type.SILVER_BAR, true):
 		push_error("No silver in storage")
 	else:
 		storage.store_resources(Resources.Type.SILVER_PLATE, 1)
 
 
 func _make_automatron() -> void:
-	if not storage.withdraw_stored_resource(Resources.Type.COPPER_WIRE):
+	if not storage.withdraw_stored_resource(Resources.Type.COPPER_WIRE, true):
 		push_error("No copper wire in storage")
 		return
-	if not storage.withdraw_stored_resource(Resources.Type.SILVER_PLATE):
+	if not storage.withdraw_stored_resource(Resources.Type.SILVER_PLATE, true):
 		push_error("No silver plate in storage")
 		return
 	storage.store_resources(Resources.Type.AUTOMATRON, 1)
