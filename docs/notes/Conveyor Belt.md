@@ -1,3 +1,3 @@
 problems
  - [x] items go below belts
- - [ ] inserters dont keep inserting
+ - [x] inserters dont keep inserting

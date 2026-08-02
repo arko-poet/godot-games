@@ -33,6 +33,7 @@ func _on_production_timer_timeout() -> void:
 		item = storage.get_stored_item()
 		world.add_child(item)
 
+	print(item)
 	if not item:
 		return
 

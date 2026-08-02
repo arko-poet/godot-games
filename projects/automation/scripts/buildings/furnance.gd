@@ -10,6 +10,7 @@ func _ready():
 
 
 func _on_production_timer_timeout() -> void:
+	print('timeout')
 	if not storage.has_stored_resource(Resources.Type.COAL):
 		return
 	if storage.has_stored_resource(Resources.Type.COPPER):

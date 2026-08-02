@@ -13,6 +13,8 @@ footprint_size = 1
 
 [node name="Storage" parent="." unique_id=1530100894 instance=ExtResource("4_oqjba")]
 unique_name_in_owner = true
+allowed_deposits = Array[int]([0, 1, 2, 3, 4])
+allowed_withdrawals = Array[int]([3, 4])
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=2083318213]
 unique_name_in_owner = true
