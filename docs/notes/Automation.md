@@ -36,7 +36,7 @@ This will be an automation game inspired by Factorio
 
 Polishing:
 - [ ] draw minimap instead of using extra camera
-- [ ] output and input limitation of storage
+- [x] output and input limitation of storage
 - [ ] make game a bit more presentable
 	- [ ] generate biomes
 	- [ ] improve natural resource clustering

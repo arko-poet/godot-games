@@ -3,6 +3,7 @@ extends Node2D
 
 signal resource_hovered(resource: ResourceNode)
 signal resource_collected(type: Resources.Type, quantity: int)
+signal chunk_generated(chunk: Vector2i)
 
 const _NOISE_THRESHOLD := -0.75
 const _DEFAULT_CHUNK_GENERATION_RANGE := 9
@@ -93,6 +94,8 @@ func _generate_chunk(chunk: Vector2i) -> void:
 				_resource_nodes[coords] = resource_node
 				resource_node.depleted.connect(_on_resource_node_depleted)
 				resource_layer.set_cell(coords, resource_type, Vector2.ZERO)
+
+	chunk_generated.emit(chunk)
 
 
 func _on_camera_chunk_changed(chunk: Vector2i) -> void:

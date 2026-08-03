@@ -16,6 +16,8 @@
 [ext_resource type="Script" uid="uid://dynip4v0k4al0" path="res://scripts/minimap/minimap_camera_rect.gd" id="12_jbj1t"]
 [ext_resource type="Script" uid="uid://dt7dh8dkwn7cw" path="res://scripts/minimap/minimap_viewport.gd" id="12_jkv2x"]
 [ext_resource type="Script" uid="uid://5d18s4dxi1r7" path="res://scripts/minimap/minimap_camera.gd" id="12_muem4"]
+[ext_resource type="Script" uid="uid://cfsrgboixtlli" path="res://scripts/test.gd" id="17_muem4"]
+[ext_resource type="Script" uid="uid://bxj5a7xmfeqjk" path="res://scripts/camera_test.gd" id="18_dp3eg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("3_jyhfs")
@@ -276,12 +278,37 @@ layout_mode = 2
 size_flags_vertical = 1
 step = 1.0
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="UILayer/UI" unique_id=2120267718]
+custom_minimum_size = Vector2(240, 135)
+custom_maximum_size = Vector2(240, 135)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -67.5
+offset_right = 240.0
+offset_bottom = 67.5
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="UILayer/UI/SubViewportContainer" unique_id=1676134948]
+handle_input_locally = false
+size = Vector2i(240, 135)
+render_target_update_mode = 4
+
+[node name="Node2D" type="Node2D" parent="UILayer/UI/SubViewportContainer/SubViewport" unique_id=588354455]
+script = ExtResource("17_muem4")
+
+[node name="Camera" type="Camera2D" parent="UILayer/UI/SubViewportContainer/SubViewport" unique_id=353019016]
+zoom = Vector2(1.6, 1.6)
+script = ExtResource("18_dp3eg")
+
 [connection signal="resource_changed" from="PlayerResources" to="UILayer/UI/ResourceLabels" method="_on_player_resources_resource_changed"]
 [connection signal="child_entered_tree" from="World" to="World" method="_on_child_entered_tree"]
 [connection signal="chunk_changed" from="World/Camera" to="World/Layers" method="_on_camera_chunk_changed"]
 [connection signal="chunk_changed" from="World/Camera" to="UILayer/UI/VBoxContainer/DebugLabels" method="_on_camera_chunk_changed"]
 [connection signal="zoom_changed" from="World/Camera" to="World/Layers" method="_on_camera_zoom_changed"]
 [connection signal="zoom_changed" from="World/Camera" to="UILayer/UI/VBoxContainer/Panel/MinimapOverlayContainer/MinimapOverlayViewport/MinimapCameraRect" method="_on_camera_zoom_changed"]
+[connection signal="chunk_generated" from="World/Layers" to="UILayer/UI/SubViewportContainer/SubViewport/Node2D" method="_on_layers_chunk_generated"]
 [connection signal="resource_collected" from="World/Layers" to="PlayerResources" method="_on_layers_resource_collected"]
 [connection signal="resource_hovered" from="World/Layers" to="UILayer/UI/VBoxContainer/DebugLabels" method="_on_tile_map_layers_resource_hovered"]
 [connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateMine" to="BuildingController" method="_on_create_mine_pressed"]
