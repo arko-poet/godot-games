@@ -9,6 +9,7 @@ const _NOISE_THRESHOLD := -0.75
 const _DEFAULT_CHUNK_GENERATION_RANGE := 9
 
 var noise_generator := preload("res://resources/noise_generator.tres")
+var new_noise_generator := preload("res://resources/new_fast_noise_lite.tres")
 var _drawn_chunks: Array[Vector2i]
 var _resource_nodes: Dictionary[Vector2i, ResourceNode]
 var _hovered_coords: Vector2i
@@ -20,6 +21,7 @@ var _current_chunk := Vector2.ZERO:
 	set(value):
 		_current_chunk = value
 		_generate_chunks()
+var noise_to_resource: Dictionary[float, Resources.Type]
 
 @onready var terrain_layer: TileMapLayer = %TerrainLayer
 @onready var resource_layer: TileMapLayer = %ResourceLayer
@@ -109,6 +111,14 @@ func _on_resource_node_depleted(resource_node: ResourceNode) -> void:
 
 
 func _determine_resource_type(coords: Vector2i) -> Resources.Type:
+	var noise := new_noise_generator.get_noise_2d(coords.x, coords.y)
+	print(noise)
+	if noise in noise_to_resource:
+		return noise_to_resource[noise]
+	else:
+		var resource := Resources.get_random_ore()
+		noise_to_resource[noise] = resource
+		return resource
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			var adjacent_tile := coords + Vector2i(i, j)

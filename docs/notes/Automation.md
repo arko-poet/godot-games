@@ -40,7 +40,7 @@ Polishing:
 - [x] output and input limitation of storage
 - [x] fix minimap drawing delay
 - [ ] make game a bit more presentable
-	- [ ] generate biomes
+	- [x] generate biomes
 	- [ ] improve natural resource clustering
 	- [ ] better building sprites
 - [ ] make code not ass
