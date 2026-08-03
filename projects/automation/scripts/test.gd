@@ -7,7 +7,8 @@ var queue: Array[Vector2i]
 
 func _on_layers_chunk_generated(chunk: Vector2i) -> void:
 	if not resource_layer:
-		queue.append(chunk)
+		if chunk not in queue:
+			queue.append(chunk)
 		return
 	
 	var image := Image.create(32, 32, false, Image.FORMAT_RGBA8)
@@ -27,6 +28,7 @@ func _on_layers_chunk_generated(chunk: Vector2i) -> void:
 			image.set_pixel(i, j, color)
 	
 	var sprite := Sprite2D.new()
+	sprite.centered = false
 	sprite.texture = ImageTexture.create_from_image(image)
 	sprite.position = chunk * 32
 	add_child(sprite)

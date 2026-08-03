@@ -7,4 +7,4 @@ func _process(_delta: float) -> void:
 	print('---')
 	print(camera.position)
 	print(position)
-	position = (camera.position / 20) * 1.6
+	position = camera.global_position / 32
