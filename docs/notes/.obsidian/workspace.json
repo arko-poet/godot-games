@@ -69,12 +69,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Minimap.md",
+                "file": "Automation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Minimap"
+              "title": "Automation"
             }
           }
         ],
@@ -244,9 +244,9 @@
   },
   "active": "454f85391baa1656",
   "lastOpenFiles": [
+    "Minimap.md",
     "Automation.md",
     "Conveyor Belt.md",
-    "Minimap.md",
     "Backpack System.md",
     "Buildings.md",
     "Final Polish.md",

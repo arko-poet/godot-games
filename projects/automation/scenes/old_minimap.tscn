@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0j80uvs1wren"]
 
-[ext_resource type="Script" uid="uid://dt7dh8dkwn7cw" path="res://scripts/minimap/minimap_viewport.gd" id="1_7y6r2"]
-[ext_resource type="Script" uid="uid://5d18s4dxi1r7" path="res://scripts/minimap/minimap_camera.gd" id="2_ybyie"]
+[ext_resource type="Script" uid="uid://dt7dh8dkwn7cw" path="res://scripts/minimap/old_minimap_viewport.gd" id="1_7y6r2"]
+[ext_resource type="Script" uid="uid://5d18s4dxi1r7" path="res://scripts/minimap/old_minimap_camera.gd" id="2_ybyie"]
 
 [node name="MinimapContainer" type="SubViewportContainer" unique_id=1136547650]
 custom_minimum_size = Vector2(240, 135)
