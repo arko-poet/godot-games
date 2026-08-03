@@ -5,6 +5,11 @@ extends Node2D
 var chunks: Array[Image]
 var queue: Array[Vector2i]
 
+
+func _ready() -> void:
+	_on_layers_chunk_generated(Vector2.ZERO)
+
+
 func _on_layers_chunk_generated(chunk: Vector2i) -> void:
 	if not resource_layer:
 		if chunk not in queue:
