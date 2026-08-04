@@ -12,7 +12,7 @@ func activate() -> void:
 
 
 func _on_production_timer_timeout() -> void:
-	var direction := _get_direction()
+	var direction := get_direction()
 
 	var source_node := world.get_node_at_cell(center_cell - direction)
 

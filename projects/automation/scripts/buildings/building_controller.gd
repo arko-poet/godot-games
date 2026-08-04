@@ -100,5 +100,4 @@ func _rotate_preview() -> void:
 
 func _on_create_belt_pressed() -> void:
 	_building = _BeltScene.instantiate()
-	_building.world = world
 	_create_building_preview()

@@ -25,7 +25,7 @@ func get_tile_position(coords: Vector2i) -> Vector2:
 	return layers.resource_layer.map_to_local(coords)
 
 
-func register_building(building: Node2D) -> void:
+func register_building(building: Building) -> void:
 	var center_tile := get_tile(building.position)
 	building.center_cell = center_tile
 	var _building_radius = building.footprint_size
@@ -36,6 +36,15 @@ func register_building(building: Node2D) -> void:
 				push_error("Attempting to place building on occupied tile")
 				return
 			_cell_occupants[tile] = building
+	
+	if building is Belt:
+		var destination_node := get_node_at_cell(building.center_cell + building.get_direction())
+		if destination_node and destination_node is Belt:
+			building.next_belt = destination_node
+		
+		var source_node := get_node_at_cell(building.center_cell + building.get_direction() * -1)
+		if source_node and source_node is Belt:
+			source_node.next_belt = building
 
 
 func is_cell_free(coords: Vector2i) -> bool:
