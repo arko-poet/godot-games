@@ -1,5 +1,5 @@
 class_name Belt
-extends Node2D
+extends Building
 
 var world: World
 
@@ -7,13 +7,11 @@ var stored_item: Item
 var moving_item: Item
 var item_displacement: Vector2
 
-@onready var building_component: BuildingComponent = %BuildingComponent
-
 
 func _on_production_timer_timeout() -> void:
 	var direction := _get_direction()
 
-	var destination := building_component.center_cell + direction
+	var destination := center_cell + direction
 	var destination_node := world.get_node_at_cell(destination)
 	var belt: Belt
 	if destination_node is not Belt:

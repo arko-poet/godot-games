@@ -1,6 +1,5 @@
-extends Node2D
+extends Building
 
-@onready var building_component: BuildingComponent = $BuildingComponent
 @onready var storage: StorageComponent = %Storage
 @onready var production_timer: Timer = %ProductionTimer
 

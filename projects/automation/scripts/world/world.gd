@@ -26,11 +26,9 @@ func get_tile_position(coords: Vector2i) -> Vector2:
 
 
 func register_building(building: Node2D) -> void:
-	var building_component: BuildingComponent = building.get_node(^"BuildingComponent")
-
 	var center_tile := get_tile(building.position)
-	building_component.center_cell = center_tile
-	var _building_radius = building_component.footprint_size
+	building.center_cell = center_tile
+	var _building_radius = building.footprint_size
 	for i in range(center_tile.x - _building_radius, center_tile.x + _building_radius + 1):
 		for j in range(center_tile.y - _building_radius, center_tile.y + _building_radius + 1):
 			var tile := Vector2i(i, j)

@@ -9,7 +9,7 @@ const _InserterScene := preload("res://scenes/buildings/inserter.tscn")
 const _BeltScene := preload("res://scenes/buildings/belt.tscn")
 
 var _building_preview: BuildingPreview
-var _building: Node2D
+var _building: Building
 
 @onready var world: World = %World
 
@@ -84,7 +84,7 @@ func _on_create_inserter_pressed() -> void:
 
 func _can_place_building() -> bool:
 	var center_tile := world.get_tile(_building_preview.position)
-	var _building_radius := (_building.get_node(^"BuildingComponent") as BuildingComponent).footprint_size
+	var _building_radius := _building.footprint_size
 	for i in range(center_tile.x - _building_radius, center_tile.x + _building_radius + 1):
 		for j in range(center_tile.y - _building_radius, center_tile.y + _building_radius + 1):
 			var tile := Vector2i(i, j)

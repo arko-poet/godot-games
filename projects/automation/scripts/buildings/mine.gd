@@ -1,11 +1,10 @@
 class_name Mine
-extends Node2D
+extends Building
 
 const TILE_RANGE := 2
 
 var _resource_nodes: Array[ResourceNode]
 
-@onready var building_component: BuildingComponent = $BuildingComponent
 @onready var storage: StorageComponent = %Storage
 @onready var sprite: Sprite2D = %Sprite
 @onready var _production_timer: Timer = %ProductionTimer

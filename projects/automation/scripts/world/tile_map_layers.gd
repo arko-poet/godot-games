@@ -93,7 +93,6 @@ func _generate_chunk(chunk: Vector2i) -> void:
 			var noise := noise_generator.get_noise_2d(coords.x, coords.y)
 			
 			var noise2 := new_noise_generator2.get_noise_2d(coords.x, coords.y)
-			print(noise2)
 			if noise2 > -0.4:
 				continue
 			
