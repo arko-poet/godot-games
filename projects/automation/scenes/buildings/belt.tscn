@@ -5,13 +5,12 @@
 
 [node name="Belt" type="Node2D" unique_id=1882711507]
 script = ExtResource("1_1km7c")
-footprint_size = null
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=731956110]
 texture = ExtResource("2_ci16f")
 
-[node name="ProductionTimer" type="Timer" parent="." unique_id=1798835552]
+[node name="DisplacementTimer" type="Timer" parent="." unique_id=1798835552]
 wait_time = 0.05
 autostart = true
 
-[connection signal="timeout" from="ProductionTimer" to="." method="_on_production_timer_timeout"]
+[connection signal="timeout" from="DisplacementTimer" to="." method="_on_displacement_timer_timeout"]

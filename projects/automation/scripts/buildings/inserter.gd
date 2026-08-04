@@ -44,19 +44,3 @@ func _on_production_timer_timeout() -> void:
 	else:
 		var storage: StorageComponent = destination_node.get_node(^"Storage")
 		storage.store_item(item)
-
-
-func _get_direction() -> Vector2i:
-	var rotation_count := int(round(rotation / (TAU / 4.0))) % 4
-	match rotation_count:
-		0:
-			return Vector2i.RIGHT
-		1:
-			return Vector2i.DOWN
-		2:
-			return Vector2i.LEFT
-		3:
-			return Vector2i.UP
-		_:
-			push_error("Invalid inserter direction")
-			return Vector2i.RIGHT
