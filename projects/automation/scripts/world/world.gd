@@ -36,19 +36,28 @@ func register_building(building: Building) -> void:
 				push_error("Attempting to place building on occupied tile")
 				return
 			_cell_occupants[tile] = building
-	
+
 	if building is Belt:
-		var destination_node := get_node_at_cell(building.center_cell + building.get_direction())
-		if destination_node and destination_node is Belt:
-			building.next_belt = destination_node
-		
-		var source_node := get_node_at_cell(building.center_cell + building.get_direction() * -1)
-		if source_node and source_node is Belt:
-			source_node.next_belt = building
+		_register_belt(building)
 
 
 func is_cell_free(coords: Vector2i) -> bool:
 	return coords not in _cell_occupants or _cell_occupants[coords] == null
+
+
+## adds belt to belt chain (linked list)
+func _register_belt(belt: Belt) -> void:
+	var destination_node := get_node_at_cell(belt.center_cell + belt.get_direction())
+	if destination_node and destination_node is Belt:
+		belt.next_belt = destination_node
+
+	for direction in belt.DIRECTIONS:
+		var source_node := get_node_at_cell(belt.center_cell + direction)
+		if (
+			source_node and source_node is Belt
+			and get_node_at_cell(source_node.center_cell + source_node.get_direction()) == belt
+		):
+			source_node.next_belt = belt
 
 
 func _on_child_entered_tree(node: Node) -> void:
