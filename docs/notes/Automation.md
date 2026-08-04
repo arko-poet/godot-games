@@ -44,3 +44,5 @@ Polishing:
 	- [x] improve natural resource clustering
 	- [x] better building sprites
 - [ ] make code not ass
+	- [x] improve assembler.gd
+	- [ ] 

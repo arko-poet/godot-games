@@ -1,46 +1,35 @@
 extends Building
 
+## order affects production priority
+const _RECIPES := {
+	Resources.Type.AUTOMATRON: [Resources.Type.SILVER_PLATE, Resources.Type.COPPER_WIRE],
+	Resources.Type.SILVER_PLATE: [Resources.Type.SILVER_BAR],
+	Resources.Type.COPPER_WIRE: [Resources.Type.COPPER_BAR],
+}
+
 @onready var sprite: Sprite2D = %Sprite
 @onready var storage: StorageComponent = %Storage
-@onready var production_timer: Timer = %ProductionTimer
-
-
-func _ready():
-	production_timer.start()
 
 
 func _on_production_timer_timeout() -> void:
-	if (
-		storage.has_stored_resource(Resources.Type.COPPER_WIRE)
-		and storage.has_stored_resource(Resources.Type.SILVER_PLATE)
-	):
-		_make_automatron()
-	if storage.has_stored_resource(Resources.Type.COPPER_BAR):
-		_make_copper_wire()
-	elif storage.has_stored_resource(Resources.Type.SILVER_BAR):
-		_make_silver_plate()
+	for product in _RECIPES.keys():
+		if _make(product):
+			break
 
 
-func _make_copper_wire() -> void:
-	if not storage.withdraw_stored_resource(Resources.Type.COPPER_BAR, true):
-		push_error("No silver in storage")
-	else:
-		storage.store_resources(Resources.Type.COPPER_WIRE, 1)
+func _make(product: Resources.Type) -> bool:
+	var withdrawn_resources: Array[Resources.Type]
+	for required_resource in _RECIPES.get(product, []):
+		if not storage.withdraw_stored_resource(required_resource, true):
+			for withdrawn_resource in withdrawn_resources:
+				storage.store_resources(withdrawn_resource, 1)
+			return false
 
+		withdrawn_resources.append(required_resource)
 
-func _make_silver_plate() -> void:
-	if not storage.withdraw_stored_resource(Resources.Type.SILVER_BAR, true):
-		push_error("No silver in storage")
-	else:
-		storage.store_resources(Resources.Type.SILVER_PLATE, 1)
+	storage.store_resources(product, 1)
 
+	if product == Resources.Type.AUTOMATRON:
+		SignalController.automatron_created.emit()
 
-func _make_automatron() -> void:
-	if not storage.withdraw_stored_resource(Resources.Type.COPPER_WIRE, true):
-		push_error("No copper wire in storage")
-		return
-	if not storage.withdraw_stored_resource(Resources.Type.SILVER_PLATE, true):
-		push_error("No silver plate in storage")
-		return
-	storage.store_resources(Resources.Type.AUTOMATRON, 1)
-	SignalController.automatron_created.emit()
+	return true
