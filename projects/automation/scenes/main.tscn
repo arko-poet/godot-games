@@ -130,6 +130,7 @@ render_target_update_mode = 4
 script = ExtResource("17_muem4")
 
 [node name="MinimapCamera" type="Camera2D" parent="UILayer/UI/VBoxContainer/Panel/MinimapContainer/MinimapViewport" unique_id=353019016]
+unique_name_in_owner = true
 zoom = Vector2(1.6, 1.6)
 script = ExtResource("18_dp3eg")
 
