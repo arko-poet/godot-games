@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bnhwrolc83pvi" path="res://art/sprites/buildings/assembler.png" id="3_5wlhh"]
 [ext_resource type="PackedScene" uid="uid://uuv4nmpiju1s" path="res://scenes/buildings/storage_component.tscn" id="4_6ft44"]
 [ext_resource type="PackedScene" uid="uid://ksfjxb4xc6tq" path="res://scenes/buildings/crafting_component.tscn" id="4_occxx"]
-[ext_resource type="Script" uid="uid://vr3gbqiphf6a" path="res://scripts/buildings/recipe.gd" id="5_x0uct"]
+[ext_resource type="Script" uid="uid://vr3gbqiphf6a" path="res://scripts/resources/recipe.gd" id="5_x0uct"]
 
 [sub_resource type="Resource" id="Resource_mbwpi"]
 script = ExtResource("5_x0uct")
