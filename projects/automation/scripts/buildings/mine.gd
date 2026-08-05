@@ -7,7 +7,6 @@ var _resource_nodes: Array[ResourceNode]
 
 @onready var storage: StorageComponent = %Storage
 @onready var sprite: Sprite2D = %Sprite
-@onready var _production_timer: Timer = %ProductionTimer
 
 
 func set_tiles(resource_nodes: Array[ResourceNode]) -> void:

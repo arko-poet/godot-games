@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ksfjxb4xc6tq"]
+
+[ext_resource type="Script" uid="uid://v2d4dkrno741" path="res://scripts/buildings/crafting_component.gd" id="1_ll6le"]
+
+[node name="CraftingComponent" type="Node" unique_id=1586315800]
+script = ExtResource("1_ll6le")

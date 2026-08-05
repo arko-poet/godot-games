@@ -3,6 +3,26 @@
 [ext_resource type="Script" uid="uid://dx5x8i2f3bgqs" path="res://scripts/buildings/assembler.gd" id="1_l8kyj"]
 [ext_resource type="Texture2D" uid="uid://bnhwrolc83pvi" path="res://art/sprites/buildings/assembler.png" id="3_5wlhh"]
 [ext_resource type="PackedScene" uid="uid://uuv4nmpiju1s" path="res://scenes/buildings/storage_component.tscn" id="4_6ft44"]
+[ext_resource type="PackedScene" uid="uid://ksfjxb4xc6tq" path="res://scenes/buildings/crafting_component.tscn" id="4_occxx"]
+[ext_resource type="Script" uid="uid://vr3gbqiphf6a" path="res://scripts/buildings/recipe.gd" id="5_x0uct"]
+
+[sub_resource type="Resource" id="Resource_mbwpi"]
+script = ExtResource("5_x0uct")
+product = 7
+ingredients = Array[int]([5, 6])
+metadata/_custom_type_script = "uid://vr3gbqiphf6a"
+
+[sub_resource type="Resource" id="Resource_jghsw"]
+script = ExtResource("5_x0uct")
+product = 5
+ingredients = Array[int]([3])
+metadata/_custom_type_script = "uid://vr3gbqiphf6a"
+
+[sub_resource type="Resource" id="Resource_m0ksg"]
+script = ExtResource("5_x0uct")
+product = 6
+ingredients = Array[int]([4])
+metadata/_custom_type_script = "uid://vr3gbqiphf6a"
 
 [node name="Assembler" type="Node2D" unique_id=1499213367]
 script = ExtResource("1_l8kyj")
@@ -20,5 +40,9 @@ texture = ExtResource("3_5wlhh")
 [node name="ProductionTimer" type="Timer" parent="." unique_id=913492938]
 unique_name_in_owner = true
 autostart = true
+
+[node name="CraftingComponent" parent="." unique_id=1586315800 instance=ExtResource("4_occxx")]
+unique_name_in_owner = true
+recipes = Array[ExtResource("5_x0uct")]([SubResource("Resource_mbwpi"), SubResource("Resource_jghsw"), SubResource("Resource_m0ksg")])
 
 [connection signal="timeout" from="ProductionTimer" to="." method="_on_production_timer_timeout"]

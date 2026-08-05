@@ -3,6 +3,20 @@
 [ext_resource type="Script" uid="uid://taio6ruugxbi" path="res://scripts/buildings/furnace.gd" id="1_nn87h"]
 [ext_resource type="Texture2D" uid="uid://bk2xd14bwbokk" path="res://art/sprites/buildings/furnace.png" id="3_ko4et"]
 [ext_resource type="PackedScene" uid="uid://uuv4nmpiju1s" path="res://scenes/buildings/storage_component.tscn" id="4_oqjba"]
+[ext_resource type="PackedScene" uid="uid://ksfjxb4xc6tq" path="res://scenes/buildings/crafting_component.tscn" id="4_t2xwi"]
+[ext_resource type="Script" uid="uid://vr3gbqiphf6a" path="res://scripts/buildings/recipe.gd" id="5_5wjd3"]
+
+[sub_resource type="Resource" id="Resource_88hq4"]
+script = ExtResource("5_5wjd3")
+product = 3
+ingredients = Array[int]([0, 1])
+metadata/_custom_type_script = "uid://vr3gbqiphf6a"
+
+[sub_resource type="Resource" id="Resource_3dcdl"]
+script = ExtResource("5_5wjd3")
+product = 4
+ingredients = Array[int]([0, 2])
+metadata/_custom_type_script = "uid://vr3gbqiphf6a"
 
 [node name="Furnace" type="Node2D" unique_id=984909764]
 script = ExtResource("1_nn87h")
@@ -17,7 +31,12 @@ allowed_withdrawals = Array[int]([3, 4])
 unique_name_in_owner = true
 texture = ExtResource("3_ko4et")
 
-[node name="ProductionTimer" type="Timer" parent="." unique_id=1834391114]
+[node name="SmeltingTimer" type="Timer" parent="." unique_id=1834391114]
 unique_name_in_owner = true
+autostart = true
 
-[connection signal="timeout" from="ProductionTimer" to="." method="_on_production_timer_timeout"]
+[node name="CraftingComponent" parent="." unique_id=1586315800 instance=ExtResource("4_t2xwi")]
+unique_name_in_owner = true
+recipes = Array[ExtResource("5_5wjd3")]([SubResource("Resource_88hq4"), SubResource("Resource_3dcdl")])
+
+[connection signal="timeout" from="SmeltingTimer" to="." method="_on_smelting_timer_timeout"]

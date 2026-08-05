@@ -234,9 +234,9 @@ grow_vertical = 0
 layout_mode = 2
 text = "Mine"
 
-[node name="CreateFurnance" type="Button" parent="UILayer/UI/BuildingButtonContainer" unique_id=1630307146]
+[node name="CreateFurnace" type="Button" parent="UILayer/UI/BuildingButtonContainer" unique_id=1630307146]
 layout_mode = 2
-text = "Furnance"
+text = "Furnace"
 
 [node name="CreateAssembler" type="Button" parent="UILayer/UI/BuildingButtonContainer" unique_id=121397649]
 layout_mode = 2
@@ -285,7 +285,7 @@ step = 1.0
 [connection signal="resource_collected" from="World/Layers" to="PlayerResources" method="_on_layers_resource_collected"]
 [connection signal="resource_hovered" from="World/Layers" to="UILayer/UI/VBoxContainer/DebugLabels" method="_on_tile_map_layers_resource_hovered"]
 [connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateMine" to="BuildingController" method="_on_create_mine_pressed"]
-[connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateFurnance" to="BuildingController" method="_on_create_furnance_pressed"]
+[connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateFurnace" to="BuildingController" method="_on_create_furnace_pressed"]
 [connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateAssembler" to="BuildingController" method="_on_create_assembler_pressed"]
 [connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateInserter" to="BuildingController" method="_on_create_inserter_pressed"]
 [connection signal="pressed" from="UILayer/UI/BuildingButtonContainer/CreateBelt" to="BuildingController" method="_on_create_belt_pressed"]
