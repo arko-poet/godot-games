@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cwc3eac4thkj5"]
 
-[ext_resource type="Script" uid="uid://taio6ruugxbi" path="res://scripts/buildings/furnance.gd" id="1_nn87h"]
-[ext_resource type="Texture2D" uid="uid://bk2xd14bwbokk" path="res://art/sprites/buildings/furnance.png" id="3_ko4et"]
+[ext_resource type="Script" uid="uid://taio6ruugxbi" path="res://scripts/buildings/furnace.gd" id="1_nn87h"]
+[ext_resource type="Texture2D" uid="uid://bk2xd14bwbokk" path="res://art/sprites/buildings/furnace.png" id="3_ko4et"]
 [ext_resource type="PackedScene" uid="uid://uuv4nmpiju1s" path="res://scenes/buildings/storage_component.tscn" id="4_oqjba"]
 
-[node name="Furnance" type="Node2D" unique_id=984909764]
+[node name="Furnace" type="Node2D" unique_id=984909764]
 script = ExtResource("1_nn87h")
 footprint_size = 1
 

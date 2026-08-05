@@ -19,5 +19,6 @@ texture = ExtResource("2_e5jp1")
 
 [node name="ProductionTimer" type="Timer" parent="." unique_id=1297183541]
 unique_name_in_owner = true
+autostart = true
 
 [connection signal="timeout" from="ProductionTimer" to="." method="_on_production_timer_timeout"]

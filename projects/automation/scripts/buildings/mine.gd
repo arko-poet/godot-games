@@ -17,10 +17,6 @@ func set_tiles(resource_nodes: Array[ResourceNode]) -> void:
 		resource_node.depleted.connect(_on_resource_node_depleted)
 
 
-func activate() -> void:
-	_production_timer.start()
-
-
 func _on_resource_node_depleted(resource_node: ResourceNode) -> void:
 	_resource_nodes.erase(resource_node)
 

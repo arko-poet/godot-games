@@ -7,10 +7,6 @@ var world: World
 @onready var _production_timer: Timer = %ProductionTimer
 
 
-func activate() -> void:
-	_production_timer.start()
-
-
 func _on_production_timer_timeout() -> void:
 	var direction := get_direction()
 
