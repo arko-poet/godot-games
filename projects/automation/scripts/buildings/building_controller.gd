@@ -35,8 +35,8 @@ func _place_building() -> void:
 	_building.show()
 	_building.rotate(_building_preview.rotation)
 
-	if _building.has_method(&"set_tiles"):
-		_building.set_tiles(world.layers.get_resource_nodes(
+	if _building is Mine:
+		_building.set_resource_nodes(world.layers.get_resource_nodes(
 				_building.position,
 				_building.TILE_RANGE,
 			))
