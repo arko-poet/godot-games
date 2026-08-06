@@ -20,7 +20,7 @@ metadata/_custom_type_script = "uid://vr3gbqiphf6a"
 
 [node name="Furnace" type="Node2D" unique_id=984909764]
 script = ExtResource("1_nn87h")
-footprint_size = 1
+radius = 1
 
 [node name="Storage" parent="." unique_id=1530100894 instance=ExtResource("4_oqjba")]
 unique_name_in_owner = true

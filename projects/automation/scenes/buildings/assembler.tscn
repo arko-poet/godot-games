@@ -26,7 +26,7 @@ metadata/_custom_type_script = "uid://vr3gbqiphf6a"
 
 [node name="Assembler" type="Node2D" unique_id=1499213367]
 script = ExtResource("1_l8kyj")
-footprint_size = 1
+radius = 1
 
 [node name="Storage" parent="." unique_id=1530100894 instance=ExtResource("4_6ft44")]
 unique_name_in_owner = true

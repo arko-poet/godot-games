@@ -4,7 +4,7 @@ extends Node2D
 const DIRECTIONS := [Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT, Vector2i.UP]
 const RIGHT_ANGLE := TAU / 4.0
 
-@export_range(0, INT32_MAX) var footprint_size: int = 0
+@export_range(0, INT32_MAX) var radius: int = 0
 
 var center_cell: Vector2i
 

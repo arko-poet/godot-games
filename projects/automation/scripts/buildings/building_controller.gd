@@ -61,7 +61,7 @@ func _create_building_preview() -> void:
 
 func _can_place_building() -> bool:
 	var center_tile := world.get_tile(_building_preview.position)
-	var building_radius := _building.footprint_size
+	var building_radius := _building.radius
 	for i in range(center_tile.x - building_radius, center_tile.x + building_radius + 1):
 		for j in range(center_tile.y - building_radius, center_tile.y + building_radius + 1):
 			var tile := Vector2i(i, j)

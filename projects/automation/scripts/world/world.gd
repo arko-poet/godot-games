@@ -28,7 +28,7 @@ func get_tile_position(coords: Vector2i) -> Vector2:
 func register_building(building: Building) -> void:
 	var center_tile := get_tile(building.position)
 	building.center_cell = center_tile
-	var _building_radius = building.footprint_size
+	var _building_radius = building.radius
 	for i in range(center_tile.x - _building_radius, center_tile.x + _building_radius + 1):
 		for j in range(center_tile.y - _building_radius, center_tile.y + _building_radius + 1):
 			var tile := Vector2i(i, j)
@@ -65,6 +65,7 @@ func _on_child_entered_tree(node: Node) -> void:
 		node.item_moved.connect(_on_item_moved)
 
 
+## deprecated
 func _on_item_moved(item: Item, from: Vector2i, to: Vector2i) -> void:
 	if not (is_cell_free(to)):
 		if get_node_at_cell(to) is Belt:

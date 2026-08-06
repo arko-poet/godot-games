@@ -6,7 +6,7 @@
 
 [node name="Mine" type="Node2D" unique_id=1553692430]
 script = ExtResource("1_0ngsx")
-footprint_size = 1
+radius = 1
 
 [node name="Storage" parent="." unique_id=1530100894 instance=ExtResource("4_l7srj")]
 unique_name_in_owner = true
