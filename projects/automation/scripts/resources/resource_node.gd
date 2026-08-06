@@ -11,7 +11,7 @@ var quantity: int:
 			depleted.emit(self)
 
 
-func _init(p_resource_type: Resources.Type, p_quantity: int = 5) -> void:
+func _init(p_resource_type: Resources.Type, p_quantity: int = 100) -> void:
 	resource_type = p_resource_type
 	quantity = p_quantity
 

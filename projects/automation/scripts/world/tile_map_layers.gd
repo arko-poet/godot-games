@@ -5,12 +5,19 @@ signal resource_hovered(resource: ResourceNode)
 signal resource_collected(type: Resources.Type, quantity: int)
 signal chunk_generated(chunk: Vector2i)
 
-const _NOISE_THRESHOLD := -0.75
+const _RESOURCE_THRESHOLD := -0.75
+const _CELLULAR_NOISE_THRESHOLD := -0.4
 const _DEFAULT_CHUNK_GENERATION_RANGE := 9
 
-var noise_generator := preload("res://resources/noise_generator.tres")
-var new_noise_generator := preload("res://resources/new_fast_noise_lite.tres")
-var new_noise_generator2 := preload("res://resources/new_fast_noise_lite2.tres")
+## determines where resources are placed
+var resource_cluster_generator := preload("res://resources/resource_clusters.tres")
+## determines which resource to place in a region
+var cellular_noise_value_generator := preload("res://resources/cellular_noise_value.tres")
+## extra noise filter to make sure resources don't appear on boundaries of regions
+var cellular_noise_distance_generator := preload("res://resources/cellular_noise_distance.tres")
+
+## cellular_noise_value is same in each region, and each region maps to resource
+var noise_to_resource: Dictionary[float, Resources.Type]
 var _drawn_chunks: Array[Vector2i]
 var _resource_nodes: Dictionary[Vector2i, ResourceNode]
 var _hovered_coords: Vector2i
@@ -22,15 +29,17 @@ var _current_chunk := Vector2.ZERO:
 	set(value):
 		_current_chunk = value
 		_generate_chunks()
-var noise_to_resource: Dictionary[float, Resources.Type]
 
 @onready var terrain_layer: TileMapLayer = %TerrainLayer
 @onready var resource_layer: TileMapLayer = %ResourceLayer
 
 
 func _ready() -> void:
-	seed(randi())
-	noise_generator.seed = randi()
+	var seed := randi()
+	seed(seed)
+	resource_cluster_generator.seed = seed
+	cellular_noise_value_generator.seed = seed
+	cellular_noise_distance_generator.seed = seed
 	_generate_chunks()
 
 
@@ -66,6 +75,16 @@ func get_resource_nodes(location: Vector2, tile_range: int) -> Array[ResourceNod
 
 	return resource_nodes
 
+## deprecated
+func determine_resource_type(coords: Vector2i) -> Resources.Type:
+	var noise := cellular_noise_value_generator.get_noise_2d(coords.x, coords.y)
+	if noise in noise_to_resource:
+		return noise_to_resource[noise]
+
+	var resource := Resources.get_random_ore()
+	noise_to_resource[noise] = resource
+	return resource
+
 
 func _generate_chunks() -> void:
 	for x in range(
@@ -90,14 +109,14 @@ func _generate_chunk(chunk: Vector2i) -> void:
 
 			terrain_layer.set_cell(coords, 0, Vector2.ZERO)
 
-			var noise := noise_generator.get_noise_2d(coords.x, coords.y)
-			
-			var noise2 := new_noise_generator2.get_noise_2d(coords.x, coords.y)
-			if noise2 > -0.4:
+			var noise := resource_cluster_generator.get_noise_2d(coords.x, coords.y)
+
+			var noise2 := cellular_noise_distance_generator.get_noise_2d(coords.x, coords.y)
+			if noise2 > _CELLULAR_NOISE_THRESHOLD:
 				continue
-			
-			if noise <= _NOISE_THRESHOLD:
-				var resource_type = _determine_resource_type(coords)
+
+			if noise <= _RESOURCE_THRESHOLD:
+				var resource_type := _determine_resource_type(coords)
 				var resource_node := ResourceNode.new(resource_type)
 				_resource_nodes[coords] = resource_node
 				resource_node.depleted.connect(_on_resource_node_depleted)
@@ -117,32 +136,21 @@ func _on_resource_node_depleted(resource_node: ResourceNode) -> void:
 
 
 func _determine_resource_type(coords: Vector2i) -> Resources.Type:
-	var noise := new_noise_generator.get_noise_2d(coords.x, coords.y)
+	var noise := cellular_noise_value_generator.get_noise_2d(coords.x, coords.y)
 	if noise in noise_to_resource:
 		return noise_to_resource[noise]
-	else:
-		var resource := Resources.get_random_ore()
-		noise_to_resource[noise] = resource
-		return resource
+
+	var resource := Resources.get_random_ore()
+	noise_to_resource[noise] = resource
+	return resource
+
+## deprecated
+## clusters resources without using noise generator
+func _determine_resource_type_without_noise(coords: Vector2i) -> Resources.Type:
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			var adjacent_tile := coords + Vector2i(i, j)
 			var tile_id := resource_layer.get_cell_source_id(adjacent_tile)
 			if tile_id != -1:
 				return tile_id as Resources.Type
-
 	return Resources.get_random_ore()
-
-
-func _on_camera_zoom_changed(new_zoom: Vector2) -> void:
-	pass
-	#if new_zoom.x <= 0.1:
-	#_chunk_generation_range = 9
-	#elif new_zoom.x <= 0.2:
-	#_chunk_generation_range = 4
-	#elif new_zoom.x <= 0.3:
-	#_chunk_generation_range = 3
-	#elif new_zoom.x <= 0.4:
-	#_chunk_generation_range = 2
-	#else:
-	#_chunk_generation_range = 1
