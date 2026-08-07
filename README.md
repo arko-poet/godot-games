@@ -173,15 +173,15 @@ Container, Skeleton2D, Bone2D, ScrollContainer, Panel
 
 ## 8. `Automation` - based on Factorio
 
-2026-06-25 -> 2026/08/06
+2026-06-25 -> 2026-08-06
 ![Automation](docs/screenshots/automation.png)
 
 ### What I learned
 
 - edge-scrolling camera
 - chunk-based infinite world generation
-- procedural world generation using data data-driven 3 layer FastNoiseLite
-- programmaticaly filling tilemaplayers
+- procedural world generation using 3 layers of FastNoiseLite
+- programmaticaly filling tilemap layers
 - grid-based building placement
 - procedural minimap generation
 - camera frustum rectangle overlay
