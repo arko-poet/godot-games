@@ -174,6 +174,7 @@ Container, Skeleton2D, Bone2D, ScrollContainer, Panel
 ## 8. `Automation` - based on Factorio
 
 2026-06-25 -> 2026/08/06
+![Automation](docs/screenshots/automation.png)
 
 ### What I learned
 
