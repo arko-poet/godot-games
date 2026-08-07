@@ -173,10 +173,14 @@ Container, Skeleton2D, Bone2D, ScrollContainer, Panel
 
 ## 8. `Automation` - based on Factorio
 
-2026-06-25 -> Work in Progress
+2026-06-25 -> 2026/08/06
 
 ### What I learned
 
-- changing camera position when mouse near edges of the screen
-- programmaticaly fill tilemaplayers
-- infinite procedural world generation
+- edge-scrolling camera
+- chunk-based infinite world generation
+- procedural world generation using data data-driven 3 layer FastNoiseLite
+- programmaticaly filling tilemaplayers
+- grid-based building placement
+- procedural minimap generation
+- camera frustum rectangle overlay

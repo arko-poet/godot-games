@@ -43,5 +43,5 @@ Polishing:
 	- [x] generate biomes
 	- [x] improve natural resource clustering
 	- [x] better building sprites
-- [ ] make code not ass
-- [ ] fix typos in building sprites
+- [x] make code not ass
+- [x] fix typos in building sprites
